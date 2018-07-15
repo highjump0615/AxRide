@@ -13,10 +13,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //
+        // init status bar
+        //
+        UIApplication.shared.statusBarView?.backgroundColor = Constants.gColorPurple
+        
+        //
+        // init navigation bar
+        //
+        // Sets background to a blank/empty image
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        // Sets shadow (line below the bar) to a blank image
+        UINavigationBar.appearance().shadowImage = UIImage()
+        // Sets the translucent background color
+        UINavigationBar.appearance().backgroundColor = .clear
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        UINavigationBar.appearance().isTranslucent = true
+        
+        let nav = UINavigationController()
+        
+        goToSigninView(nav: nav)
+        
         return true
+    }
+    
+    func goToSigninView(nav: UINavigationController) {
+        // if tutorial has been read, go to log in page directly
+        if let tutorial = UserDefaults.standard.value(forKey: OnboardViewController.KEY_TUTORIAL) as? Bool, tutorial == true {
+            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
+            nav.setViewControllers([signinVC], animated: true)
+            UIApplication.shared.delegate?.window??.rootViewController = nav
+        }
+        else {
+            let onboardVC = OnboardViewController(nibName: "OnboardViewController", bundle: nil)
+            nav.setViewControllers([onboardVC], animated: true)
+            UIApplication.shared.delegate?.window??.rootViewController = nav
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

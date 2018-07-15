@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521B9EDAA5218C1B803E4E9C /* Pods_AxRide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD4DFAFCE8002BE88FE3AD10 /* Pods_AxRide.framework */; };
+		8441F18E76A70D924F67E449 /* Pods_AxRideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D309FD1287A9F9B420515CCC /* Pods_AxRideTests.framework */; };
+		8E8DCF09DD854F0CE5B74A99 /* Pods_AxRideUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E54110D02939500BADE773A /* Pods_AxRideUITests.framework */; };
 		C37C645E20F8B4C100ECC1FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C645D20F8B4C100ECC1FA /* AppDelegate.swift */; };
-		C37C646020F8B4C100ECC1FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C645F20F8B4C100ECC1FA /* ViewController.swift */; };
-		C37C646320F8B4C100ECC1FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37C646120F8B4C100ECC1FA /* Main.storyboard */; };
 		C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C37C646420F8B4C100ECC1FA /* Assets.xcassets */; };
 		C37C646820F8B4C100ECC1FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37C646620F8B4C100ECC1FA /* LaunchScreen.storyboard */; };
 		C37C647320F8B4C200ECC1FA /* AxRideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C647220F8B4C200ECC1FA /* AxRideTests.swift */; };
 		C37C647E20F8B4C200ECC1FA /* AxRideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C647D20F8B4C200ECC1FA /* AxRideUITests.swift */; };
+		C3FC10FB20FA00F100DAA392 /* OnboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */; };
+		C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC10FD20FA86F900DAA392 /* Constants.swift */; };
+		C3FC110020FA8F2B00DAA392 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC10FF20FA8F2B00DAA392 /* OnboardViewController.swift */; };
+		C3FC110320FA914400DAA392 /* EXO-EXTRABOLD.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3FC110220FA914400DAA392 /* EXO-EXTRABOLD.otf */; };
+		C3FC110520FA919400DAA392 /* ARTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC110420FA919400DAA392 /* ARTextHelper.swift */; };
+		C3FC110720FA957400DAA392 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC110620FA957400DAA392 /* Extensions.swift */; };
+		C3FC110920FB023900DAA392 /* SigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC110820FB023900DAA392 /* SigninViewController.xib */; };
+		C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC110A20FB0A3900DAA392 /* SigninViewController.swift */; };
+		C3FC110D20FB0A7700DAA392 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC110C20FB0A7700DAA392 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		384C2CA1F8994EC5FAAB7EE0 /* Pods-AxRideUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideUITests/Pods-AxRideUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6022E6D68BBBE849C094CDAC /* Pods-AxRide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRide/Pods-AxRide.debug.xcconfig"; sourceTree = "<group>"; };
+		8E54110D02939500BADE773A /* Pods_AxRideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD4DFAFCE8002BE88FE3AD10 /* Pods_AxRide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8684931169060DD272CA2EE /* Pods-AxRideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideTests/Pods-AxRideTests.release.xcconfig"; sourceTree = "<group>"; };
 		C37C645A20F8B4C100ECC1FA /* AxRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AxRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37C645D20F8B4C100ECC1FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C37C645F20F8B4C100ECC1FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C37C646220F8B4C100ECC1FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C37C646420F8B4C100ECC1FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C37C646720F8B4C100ECC1FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C37C646920F8B4C200ECC1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +60,19 @@
 		C37C647920F8B4C200ECC1FA /* AxRideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AxRideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37C647D20F8B4C200ECC1FA /* AxRideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxRideUITests.swift; sourceTree = "<group>"; };
 		C37C647F20F8B4C200ECC1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardViewController.xib; sourceTree = "<group>"; };
+		C3FC10FD20FA86F900DAA392 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C3FC10FF20FA8F2B00DAA392 /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
+		C3FC110220FA914400DAA392 /* EXO-EXTRABOLD.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EXO-EXTRABOLD.otf"; sourceTree = "<group>"; };
+		C3FC110420FA919400DAA392 /* ARTextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTextHelper.swift; sourceTree = "<group>"; };
+		C3FC110620FA957400DAA392 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C3FC110820FB023900DAA392 /* SigninViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SigninViewController.xib; sourceTree = "<group>"; };
+		C3FC110A20FB0A3900DAA392 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
+		C3FC110C20FB0A7700DAA392 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		CDDE5B81BF71EA296A4F3E88 /* Pods-AxRideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideTests/Pods-AxRideTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D309FD1287A9F9B420515CCC /* Pods_AxRideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F816AA4BB6B87A4BEA370A89 /* Pods-AxRide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRide.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxRide/Pods-AxRide.release.xcconfig"; sourceTree = "<group>"; };
+		FB54C084FB713550978A82D6 /* Pods-AxRideUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideUITests/Pods-AxRideUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521B9EDAA5218C1B803E4E9C /* Pods_AxRide.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8441F18E76A70D924F67E449 /* Pods_AxRideTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +96,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E8DCF09DD854F0CE5B74A99 /* Pods_AxRideUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14640E14BB1BFE82CA287F65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD4DFAFCE8002BE88FE3AD10 /* Pods_AxRide.framework */,
+				D309FD1287A9F9B420515CCC /* Pods_AxRideTests.framework */,
+				8E54110D02939500BADE773A /* Pods_AxRideUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3BF1DE47CA2A4DB4F80A039C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6022E6D68BBBE849C094CDAC /* Pods-AxRide.debug.xcconfig */,
+				F816AA4BB6B87A4BEA370A89 /* Pods-AxRide.release.xcconfig */,
+				CDDE5B81BF71EA296A4F3E88 /* Pods-AxRideTests.debug.xcconfig */,
+				B8684931169060DD272CA2EE /* Pods-AxRideTests.release.xcconfig */,
+				384C2CA1F8994EC5FAAB7EE0 /* Pods-AxRideUITests.debug.xcconfig */,
+				FB54C084FB713550978A82D6 /* Pods-AxRideUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C37C645120F8B4C100ECC1FA = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +133,8 @@
 				C37C647120F8B4C200ECC1FA /* AxRideTests */,
 				C37C647C20F8B4C200ECC1FA /* AxRideUITests */,
 				C37C645B20F8B4C100ECC1FA /* Products */,
+				3BF1DE47CA2A4DB4F80A039C /* Pods */,
+				14640E14BB1BFE82CA287F65 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,11 +151,13 @@
 		C37C645C20F8B4C100ECC1FA /* AxRide */ = {
 			isa = PBXGroup;
 			children = (
+				C3FC10FC20FA86D700DAA392 /* Helpers */,
+				C3891F6420F9304100E6D81B /* Resource */,
+				C3891F6320F9303300E6D81B /* Model */,
+				C3891F6120F92FD800E6D81B /* ViewController */,
+				C3891F6020F92FC800E6D81B /* View */,
 				C37C645D20F8B4C100ECC1FA /* AppDelegate.swift */,
-				C37C645F20F8B4C100ECC1FA /* ViewController.swift */,
-				C37C646120F8B4C100ECC1FA /* Main.storyboard */,
 				C37C646420F8B4C100ECC1FA /* Assets.xcassets */,
-				C37C646620F8B4C100ECC1FA /* LaunchScreen.storyboard */,
 				C37C646920F8B4C200ECC1FA /* Info.plist */,
 			);
 			path = AxRide;
@@ -125,6 +181,67 @@
 			path = AxRideUITests;
 			sourceTree = "<group>";
 		};
+		C3891F6020F92FC800E6D81B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */,
+				C3891F6220F92FEB00E6D81B /* Storyboard */,
+				C3FC110820FB023900DAA392 /* SigninViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C3891F6120F92FD800E6D81B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C3FC10FF20FA8F2B00DAA392 /* OnboardViewController.swift */,
+				C3FC110A20FB0A3900DAA392 /* SigninViewController.swift */,
+				C3FC110C20FB0A7700DAA392 /* BaseViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C3891F6220F92FEB00E6D81B /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C37C646620F8B4C100ECC1FA /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		C3891F6320F9303300E6D81B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C3891F6420F9304100E6D81B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C3FC110120FA906200DAA392 /* Font */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		C3FC10FC20FA86D700DAA392 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C3FC10FD20FA86F900DAA392 /* Constants.swift */,
+				C3FC110420FA919400DAA392 /* ARTextHelper.swift */,
+				C3FC110620FA957400DAA392 /* Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C3FC110120FA906200DAA392 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				C3FC110220FA914400DAA392 /* EXO-EXTRABOLD.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +249,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C37C648220F8B4C200ECC1FA /* Build configuration list for PBXNativeTarget "AxRide" */;
 			buildPhases = (
+				C47CEAC0556A47204BEB61FA /* [CP] Check Pods Manifest.lock */,
 				C37C645620F8B4C100ECC1FA /* Sources */,
 				C37C645720F8B4C100ECC1FA /* Frameworks */,
 				C37C645820F8B4C100ECC1FA /* Resources */,
+				87A889957B97C9C8BE5BCB43 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +268,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C37C648520F8B4C200ECC1FA /* Build configuration list for PBXNativeTarget "AxRideTests" */;
 			buildPhases = (
+				82EF82D85FA7ECC2E58E288A /* [CP] Check Pods Manifest.lock */,
 				C37C646A20F8B4C200ECC1FA /* Sources */,
 				C37C646B20F8B4C200ECC1FA /* Frameworks */,
 				C37C646C20F8B4C200ECC1FA /* Resources */,
@@ -167,6 +287,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C37C648820F8B4C200ECC1FA /* Build configuration list for PBXNativeTarget "AxRideUITests" */;
 			buildPhases = (
+				A1670F8B0D5DC19C5E277E78 /* [CP] Check Pods Manifest.lock */,
 				C37C647520F8B4C200ECC1FA /* Sources */,
 				C37C647620F8B4C200ECC1FA /* Frameworks */,
 				C37C647720F8B4C200ECC1FA /* Resources */,
@@ -233,8 +354,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C37C646820F8B4C100ECC1FA /* LaunchScreen.storyboard in Resources */,
+				C3FC110920FB023900DAA392 /* SigninViewController.xib in Resources */,
 				C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */,
-				C37C646320F8B4C100ECC1FA /* Main.storyboard in Resources */,
+				C3FC110320FA914400DAA392 /* EXO-EXTRABOLD.otf in Resources */,
+				C3FC10FB20FA00F100DAA392 /* OnboardViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,13 +377,93 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		82EF82D85FA7ECC2E58E288A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AxRideTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87A889957B97C9C8BE5BCB43 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AxRide/Pods-AxRide-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AxRide/Pods-AxRide-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1670F8B0D5DC19C5E277E78 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AxRideUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C47CEAC0556A47204BEB61FA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AxRide-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C37C645620F8B4C100ECC1FA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C37C646020F8B4C100ECC1FA /* ViewController.swift in Sources */,
+				C3FC110720FA957400DAA392 /* Extensions.swift in Sources */,
 				C37C645E20F8B4C100ECC1FA /* AppDelegate.swift in Sources */,
+				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,
+				C3FC110520FA919400DAA392 /* ARTextHelper.swift in Sources */,
+				C3FC110020FA8F2B00DAA392 /* OnboardViewController.swift in Sources */,
+				C3FC110D20FB0A7700DAA392 /* BaseViewController.swift in Sources */,
+				C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +499,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C37C646120F8B4C100ECC1FA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C37C646220F8B4C100ECC1FA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C37C646620F8B4C100ECC1FA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -424,34 +619,37 @@
 		};
 		C37C648320F8B4C200ECC1FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6022E6D68BBBE849C094CDAC /* Pods-AxRide.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AxRide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.AxRide;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.Axle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		C37C648420F8B4C200ECC1FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F816AA4BB6B87A4BEA370A89 /* Pods-AxRide.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AxRide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.AxRide;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.Axle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		C37C648620F8B4C200ECC1FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDDE5B81BF71EA296A4F3E88 /* Pods-AxRideTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -468,6 +666,7 @@
 		};
 		C37C648720F8B4C200ECC1FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8684931169060DD272CA2EE /* Pods-AxRideTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -484,6 +683,7 @@
 		};
 		C37C648920F8B4C200ECC1FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 384C2CA1F8994EC5FAAB7EE0 /* Pods-AxRideUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -499,6 +699,7 @@
 		};
 		C37C648A20F8B4C200ECC1FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB54C084FB713550978A82D6 /* Pods-AxRideUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
