@@ -24,6 +24,8 @@
 		C3FC110920FB023900DAA392 /* SigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC110820FB023900DAA392 /* SigninViewController.xib */; };
 		C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC110A20FB0A3900DAA392 /* SigninViewController.swift */; };
 		C3FC110D20FB0A7700DAA392 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC110C20FB0A7700DAA392 /* BaseViewController.swift */; };
+		C3FC110F20FB472D00DAA392 /* ForgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC110E20FB472D00DAA392 /* ForgetViewController.xib */; };
+		C3FC111120FBD13000DAA392 /* ForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC111020FBD13000DAA392 /* ForgetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		C3FC110820FB023900DAA392 /* SigninViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SigninViewController.xib; sourceTree = "<group>"; };
 		C3FC110A20FB0A3900DAA392 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		C3FC110C20FB0A7700DAA392 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C3FC110E20FB472D00DAA392 /* ForgetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgetViewController.xib; sourceTree = "<group>"; };
+		C3FC111020FBD13000DAA392 /* ForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
 		CDDE5B81BF71EA296A4F3E88 /* Pods-AxRideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideTests/Pods-AxRideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D309FD1287A9F9B420515CCC /* Pods_AxRideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F816AA4BB6B87A4BEA370A89 /* Pods-AxRide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRide.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxRide/Pods-AxRide.release.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */,
 				C3891F6220F92FEB00E6D81B /* Storyboard */,
 				C3FC110820FB023900DAA392 /* SigninViewController.xib */,
+				C3FC110E20FB472D00DAA392 /* ForgetViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 				C3FC10FF20FA8F2B00DAA392 /* OnboardViewController.swift */,
 				C3FC110A20FB0A3900DAA392 /* SigninViewController.swift */,
 				C3FC110C20FB0A7700DAA392 /* BaseViewController.swift */,
+				C3FC111020FBD13000DAA392 /* ForgetViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -309,7 +315,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Administrator;
 				TargetAttributes = {
 					C37C645920F8B4C100ECC1FA = {
@@ -354,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C37C646820F8B4C100ECC1FA /* LaunchScreen.storyboard in Resources */,
+				C3FC110F20FB472D00DAA392 /* ForgetViewController.xib in Resources */,
 				C3FC110920FB023900DAA392 /* SigninViewController.xib in Resources */,
 				C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */,
 				C3FC110320FA914400DAA392 /* EXO-EXTRABOLD.otf in Resources */,
@@ -460,6 +467,7 @@
 				C3FC110720FA957400DAA392 /* Extensions.swift in Sources */,
 				C37C645E20F8B4C100ECC1FA /* AppDelegate.swift in Sources */,
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,
+				C3FC111120FBD13000DAA392 /* ForgetViewController.swift in Sources */,
 				C3FC110520FA919400DAA392 /* ARTextHelper.swift in Sources */,
 				C3FC110020FA8F2B00DAA392 /* OnboardViewController.swift in Sources */,
 				C3FC110D20FB0A7700DAA392 /* BaseViewController.swift in Sources */,
@@ -524,6 +532,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -531,6 +540,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -581,6 +591,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -588,6 +599,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

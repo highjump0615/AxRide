@@ -27,11 +27,17 @@ class OnboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        showNavbar(show: false)
 
         // Do any additional setup after loading the view.
         mButNext.makeRound(r: 10)
+        
+        self.title = " "
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        showNavbar(show: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +65,11 @@ class OnboardViewController: UIViewController {
     }
     
     @IBAction func onButSkip(_ sender: Any) {
+        UserDefaults.standard.set(true, forKey: OnboardViewController.KEY_TUTORIAL)
+        
+        // go to next page
+        let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
+        self.navigationController?.pushViewController(signinVC, animated: true)
     }
     
     @IBAction func onButNext(_ sender: Any) {
@@ -73,11 +84,7 @@ class OnboardViewController: UIViewController {
             mPageControl.currentPage = 1
         }
         else {
-            UserDefaults.standard.set(true, forKey: OnboardViewController.KEY_TUTORIAL)
-            
-            // go to next page
-            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
-            self.navigationController?.pushViewController(signinVC, animated: true)
+            onButSkip(sender)
         }
     }
     

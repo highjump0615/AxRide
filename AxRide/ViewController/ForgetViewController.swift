@@ -1,19 +1,23 @@
 //
-//  BaseViewController.swift
+//  ForgetViewController.swift
 //  AxRide
 //
-//  Created by Administrator on 7/15/18.
+//  Created by Administrator on 7/16/18.
 //  Copyright © 2018 Administrator. All rights reserved.
 //
 
 import UIKit
 
-class BaseViewController: UIViewController {
-
+class ForgetViewController: BaseViewController {
+    
+    @IBOutlet weak var mTextEmail: UITextField!
+    @IBOutlet weak var mButDone: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        mButDone.makeRound(r: 12.0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,10 +25,16 @@ class BaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationItem.title = " "
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // title
+        self.title = "Reset password"
     }
-
+    
+    @IBAction func onButDone(_ sender: Any) {
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -35,4 +45,14 @@ class BaseViewController: UIViewController {
     }
     */
 
+}
+
+extension ForgetViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        onButDone(textField)
+        
+        return true
+    }
+    
 }

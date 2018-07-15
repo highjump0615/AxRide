@@ -54,6 +54,9 @@ class SigninViewController: BaseViewController {
     }
     
     @IBAction func onButForget(_ sender: Any) {
+        // go to forget page
+        let forgetVC = ForgetViewController(nibName: "ForgetViewController", bundle: nil)
+        self.navigationController?.pushViewController(forgetVC, animated: true)
     }
     
     @IBAction func onButFacebook(_ sender: Any) {

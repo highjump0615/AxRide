@@ -14,5 +14,6 @@ class Constants {
     
     static let gColorTheme = UIColor(red: 211/255.0, green: 25/255.0, blue: 213/255.0, alpha: 1.0)
     static let gColorPurple = UIColor(red: 95/255.0, green: 2/255.0, blue: 164/255.0, alpha: 1.0)
+    static let gColorGray = UIColor(red: 90/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1.0)
 
 }
