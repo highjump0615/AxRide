@@ -17,6 +17,9 @@ class ForgetViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        mTextEmail.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                              attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
+        
         mButDone.makeRound(r: 12.0)
     }
 

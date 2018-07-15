@@ -1,41 +1,46 @@
 //
-//  SigninViewController.swift
+//  SignupEmailViewController.swift
 //  AxRide
 //
-//  Created by Administrator on 7/15/18.
+//  Created by Administrator on 7/16/18.
 //  Copyright © 2018 Administrator. All rights reserved.
 //
 
 import UIKit
 
-class SigninViewController: BaseViewController {
+class SignupEmailViewController: BaseViewController {
     
     @IBOutlet weak var mViewEmail: UIView!
     @IBOutlet weak var mTextEmail: UITextField!
     @IBOutlet weak var mViewPassword: UIView!
     @IBOutlet weak var mTextPassword: UITextField!
+    @IBOutlet weak var mViewRePassword: UIView!
+    @IBOutlet weak var mTextRePassword: UITextField!
     
-    @IBOutlet weak var mButSignin: UIButton!
-    
+    @IBOutlet weak var mButNext: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        showNavbar()
-        
         mViewEmail.backgroundColor = UIColor.clear
         mViewEmail.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
         
         mViewPassword.backgroundColor = UIColor.clear
         mViewPassword.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
         
+        mViewRePassword.backgroundColor = UIColor.clear
+        mViewRePassword.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
+        
         // placeholders
         mTextEmail.attributedPlaceholder = NSAttributedString(string: "Email",
                                                               attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         mTextPassword.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                              attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+                                                                 attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        mTextRePassword.attributedPlaceholder = NSAttributedString(string: "Re-enter Password",
+                                                                 attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
-        mButSignin.makeRound(r: 12.0)
+        mButNext.makeRound(r: 12.0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,30 +52,15 @@ class SigninViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         // title
-        self.title = "Sign In"
+        self.title = "Sign Up"
     }
     
-    @IBAction func onButSignin(_ sender: Any) {
+    @IBAction func onButNext(_ sender: Any) {
+        // go to signup profile page
+        let signupProfileVC = SignupProfileViewController(nibName: "SignupProfileViewController", bundle: nil)
+        self.navigationController?.pushViewController(signupProfileVC, animated: true)
     }
-    
-    @IBAction func onButForget(_ sender: Any) {
-        // go to forget page
-        let forgetVC = ForgetViewController(nibName: "ForgetViewController", bundle: nil)
-        self.navigationController?.pushViewController(forgetVC, animated: true)
-    }
-    
-    @IBAction func onButFacebook(_ sender: Any) {
-    }
-    
-    @IBAction func onButGoogle(_ sender: Any) {
-    }
-    
-    @IBAction func onButSignup(_ sender: Any) {
-        // go to signup page
-        let signupEmailVC = SignupEmailViewController(nibName: "SignupEmailViewController", bundle: nil)
-        self.navigationController?.pushViewController(signupEmailVC, animated: true)
-    }
-    
+
     /*
     // MARK: - Navigation
 
@@ -83,17 +73,21 @@ class SigninViewController: BaseViewController {
 
 }
 
-extension SigninViewController: UITextFieldDelegate {
+extension SignupEmailViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == mTextEmail {
             mTextPassword.becomeFirstResponder()
         }
         else if textField == mTextPassword {
+            mTextRePassword.becomeFirstResponder()
+        }
+        else if textField == mTextRePassword {
             textField.resignFirstResponder()
-            onButSignin(textField)
+            onButNext(textField)
         }
         
         return true
     }
     
 }
+

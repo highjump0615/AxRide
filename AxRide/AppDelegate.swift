@@ -49,16 +49,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func goToSigninView(nav: UINavigationController) {
         // if tutorial has been read, go to log in page directly
-//        if let tutorial = UserDefaults.standard.value(forKey: OnboardViewController.KEY_TUTORIAL) as? Bool, tutorial == true {
-//            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
-//            nav.setViewControllers([signinVC], animated: true)
-//            UIApplication.shared.delegate?.window??.rootViewController = nav
-//        }
-//        else {
+        if let tutorial = UserDefaults.standard.value(forKey: OnboardViewController.KEY_TUTORIAL) as? Bool, tutorial == true {
+            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
+            nav.setViewControllers([signinVC], animated: true)
+            UIApplication.shared.delegate?.window??.rootViewController = nav
+        }
+        else {
             let onboardVC = OnboardViewController(nibName: "OnboardViewController", bundle: nil)
             nav.setViewControllers([onboardVC], animated: true)
             UIApplication.shared.delegate?.window??.rootViewController = nav
-//        }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
