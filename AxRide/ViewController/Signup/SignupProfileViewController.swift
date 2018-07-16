@@ -57,6 +57,9 @@ class SignupProfileViewController: BaseViewController {
     }
     
     @IBAction func onButNext(_ sender: Any) {
+        // go to signup profile page
+        let signupChooseVC = SignupChooseViewController(nibName: "SignupChooseViewController", bundle: nil)
+        self.navigationController?.pushViewController(signupChooseVC, animated: true)
     }
     
     /*

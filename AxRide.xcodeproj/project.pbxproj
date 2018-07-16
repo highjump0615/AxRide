@@ -15,6 +15,7 @@
 		C37C646820F8B4C100ECC1FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37C646620F8B4C100ECC1FA /* LaunchScreen.storyboard */; };
 		C37C647320F8B4C200ECC1FA /* AxRideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C647220F8B4C200ECC1FA /* AxRideTests.swift */; };
 		C37C647E20F8B4C200ECC1FA /* AxRideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C647D20F8B4C200ECC1FA /* AxRideUITests.swift */; };
+		C3EE8C7E20FC2F92000D7CD5 /* SignupChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */; };
 		C3FC10FB20FA00F100DAA392 /* OnboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */; };
 		C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC10FD20FA86F900DAA392 /* Constants.swift */; };
 		C3FC110020FA8F2B00DAA392 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC10FF20FA8F2B00DAA392 /* OnboardViewController.swift */; };
@@ -30,6 +31,7 @@
 		C3FC111720FBE69200DAA392 /* SignupEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC111620FBE69200DAA392 /* SignupEmailViewController.swift */; };
 		C3FC111920FBEBEE00DAA392 /* SignupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC111820FBEBEE00DAA392 /* SignupProfileViewController.xib */; };
 		C3FC111B20FBF37100DAA392 /* SignupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC111A20FBF37100DAA392 /* SignupProfileViewController.swift */; };
+		C3FC111D20FC0F1C00DAA392 /* SignupChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC111C20FC0F1C00DAA392 /* SignupChooseViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,7 @@
 		C37C647920F8B4C200ECC1FA /* AxRideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AxRideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37C647D20F8B4C200ECC1FA /* AxRideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxRideUITests.swift; sourceTree = "<group>"; };
 		C37C647F20F8B4C200ECC1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupChooseViewController.swift; sourceTree = "<group>"; };
 		C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardViewController.xib; sourceTree = "<group>"; };
 		C3FC10FD20FA86F900DAA392 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C3FC10FF20FA8F2B00DAA392 /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +84,7 @@
 		C3FC111620FBE69200DAA392 /* SignupEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupEmailViewController.swift; sourceTree = "<group>"; };
 		C3FC111820FBEBEE00DAA392 /* SignupProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupProfileViewController.xib; sourceTree = "<group>"; };
 		C3FC111A20FBF37100DAA392 /* SignupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileViewController.swift; sourceTree = "<group>"; };
+		C3FC111C20FC0F1C00DAA392 /* SignupChooseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupChooseViewController.xib; sourceTree = "<group>"; };
 		CDDE5B81BF71EA296A4F3E88 /* Pods-AxRideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideTests/Pods-AxRideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D309FD1287A9F9B420515CCC /* Pods_AxRideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F816AA4BB6B87A4BEA370A89 /* Pods-AxRide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRide.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxRide/Pods-AxRide.release.xcconfig"; sourceTree = "<group>"; };
@@ -263,6 +267,7 @@
 			children = (
 				C3FC111320FBE05800DAA392 /* SignupEmailViewController.xib */,
 				C3FC111820FBEBEE00DAA392 /* SignupProfileViewController.xib */,
+				C3FC111C20FC0F1C00DAA392 /* SignupChooseViewController.xib */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				C3FC111620FBE69200DAA392 /* SignupEmailViewController.swift */,
+				C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */,
 				C3FC111A20FBF37100DAA392 /* SignupProfileViewController.swift */,
 			);
 			path = Signup;
@@ -391,6 +397,7 @@
 				C3FC111420FBE05800DAA392 /* SignupEmailViewController.xib in Resources */,
 				C3FC110F20FB472D00DAA392 /* ForgetViewController.xib in Resources */,
 				C3FC110920FB023900DAA392 /* SigninViewController.xib in Resources */,
+				C3FC111D20FC0F1C00DAA392 /* SignupChooseViewController.xib in Resources */,
 				C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */,
 				C3FC110320FA914400DAA392 /* EXO-EXTRABOLD.otf in Resources */,
 				C3FC111920FBEBEE00DAA392 /* SignupProfileViewController.xib in Resources */,
@@ -495,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3FC110720FA957400DAA392 /* Extensions.swift in Sources */,
+				C3EE8C7E20FC2F92000D7CD5 /* SignupChooseViewController.swift in Sources */,
 				C37C645E20F8B4C100ECC1FA /* AppDelegate.swift in Sources */,
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,
 				C3FC111720FBE69200DAA392 /* SignupEmailViewController.swift in Sources */,
