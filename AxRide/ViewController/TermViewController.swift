@@ -1,5 +1,5 @@
 //
-//  SignupChooseViewController.swift
+//  TermViewController.swift
 //  AxRide
 //
 //  Created by Administrator on 7/16/18.
@@ -7,13 +7,28 @@
 //
 
 import UIKit
+import WebKit
 
-class SignupChooseViewController: BaseViewController {
+class TermViewController: BaseViewController {
 
+    @IBOutlet weak var mWebView: WKWebView!
+    @IBOutlet weak var mButAccept: UIButton!
+    @IBOutlet weak var mIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        mWebView.navigationDelegate = self
+        
+        let url = URL(string: Config.urlTermCondition)!
+        mWebView.load(URLRequest(url: url))
+        mIndicator.startAnimating()
+        
+        mButAccept.makeRound(r: 12.0)
+        
+        showNavbar(transparent: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,26 +39,11 @@ class SignupChooseViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        showNavbar()
-        
         // title
-        self.title = "Sign Up"
+        self.title = "Terms & Conditions"
     }
     
-    @IBAction func onButRider(_ sender: Any) {
-        gotoTermView()
-    }
-    
-    @IBAction func onButDriver(_ sender: Any) {
-        gotoTermView()
-    }
-    
-    func gotoTermView() {
-        // go to term page
-        let termVC = TermViewController(nibName: "TermViewController", bundle: nil)
-        self.navigationController?.pushViewController(termVC, animated: true)
-    }
-    
+
     /*
     // MARK: - Navigation
 
@@ -54,4 +54,11 @@ class SignupChooseViewController: BaseViewController {
     }
     */
 
+}
+
+extension TermViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        // hide loading indicator
+        mIndicator.isHidden = true
+    }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OnboardViewController: UIViewController {
+class OnboardViewController: BaseViewController {
     
     static let KEY_TUTORIAL = "tutorial"
     

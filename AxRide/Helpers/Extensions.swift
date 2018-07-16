@@ -20,10 +20,6 @@ extension UIApplication {
 
 extension UIViewController {
     
-    func showNavbar(show: Bool = true, animated: Bool = false) {
-        self.navigationController?.setNavigationBarHidden(!show, animated: animated)
-    }
-    
     func alertOk(title: String, message: String, cancelButton: String, cancelHandler: ((UIAlertAction) -> ())?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
