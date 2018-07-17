@@ -7,6 +7,9 @@ target 'AxRide' do
 
   # Pods for AxRide
   pod 'IHKeyboardAvoiding'
+  
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 
   target 'AxRideTests' do
     inherit! :search_paths

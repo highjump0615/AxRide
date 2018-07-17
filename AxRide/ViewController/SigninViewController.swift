@@ -51,6 +51,9 @@ class SigninViewController: BaseViewController {
     }
     
     @IBAction func onButSignin(_ sender: Any) {
+        // go to signup page
+        let mainUserVC = MainUserViewController(nibName: "MainUserViewController", bundle: nil)
+        self.navigationController?.setViewControllers([mainUserVC], animated: true)
     }
     
     @IBAction func onButForget(_ sender: Any) {
