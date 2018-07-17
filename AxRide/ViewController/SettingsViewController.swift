@@ -92,7 +92,8 @@ class SettingsViewController: UITableViewController {
             
         case 4:
             // about the app
-            break
+            let aboutVC = AboutViewController(nibName: "AboutViewController", bundle: nil)
+            self.navigationController?.pushViewController(aboutVC, animated: true)
             
         case 5:
             // privacy policy
@@ -112,8 +113,6 @@ class SettingsViewController: UITableViewController {
             // go to sign in page
             let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
             self.navigationController?.setViewControllers([signinVC], animated: true)
-            
-            break
             
         default:
             break

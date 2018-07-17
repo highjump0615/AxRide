@@ -20,6 +20,8 @@
 		C3C81D5220FDF4B0001F2C08 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C81D5120FDF4B0001F2C08 /* Settings.storyboard */; };
 		C3C81D5420FDF99C001F2C08 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D5320FDF99C001F2C08 /* SettingsViewController.swift */; };
 		C3C81D5620FE6DA3001F2C08 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D5520FE6DA3001F2C08 /* Utils.swift */; };
+		C3C81D5820FE7061001F2C08 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C81D5720FE7061001F2C08 /* AboutViewController.xib */; };
+		C3C81D5A20FE70D9001F2C08 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D5920FE70D9001F2C08 /* AboutViewController.swift */; };
 		C3E0EA2A20FD3EFE00F41DB7 /* BaseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */; };
 		C3EE8C7E20FC2F92000D7CD5 /* SignupChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */; };
 		C3EE8C8020FC39A8000D7CD5 /* TermViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */; };
@@ -84,6 +86,8 @@
 		C3C81D5120FDF4B0001F2C08 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		C3C81D5320FDF99C001F2C08 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C3C81D5520FE6DA3001F2C08 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		C3C81D5720FE7061001F2C08 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		C3C81D5920FE70D9001F2C08 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewController.swift; sourceTree = "<group>"; };
 		C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupChooseViewController.swift; sourceTree = "<group>"; };
 		C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermViewController.xib; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 				C3FC110E20FB472D00DAA392 /* ForgetViewController.xib */,
 				C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */,
 				C3EE8C8520FC44E7000D7CD5 /* MainUserViewController.xib */,
+				C3C81D5720FE7061001F2C08 /* AboutViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 				C3EE8C8720FCA38B000D7CD5 /* MainUserViewController.swift */,
 				C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */,
 				C3C81D5320FDF99C001F2C08 /* SettingsViewController.swift */,
+				C3C81D5920FE70D9001F2C08 /* AboutViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 				C3FC111420FBE05800DAA392 /* SignupEmailViewController.xib in Resources */,
 				C3FC110F20FB472D00DAA392 /* ForgetViewController.xib in Resources */,
 				C3FC110920FB023900DAA392 /* SigninViewController.xib in Resources */,
+				C3C81D5820FE7061001F2C08 /* AboutViewController.xib in Resources */,
 				C3FC111D20FC0F1C00DAA392 /* SignupChooseViewController.xib in Resources */,
 				C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */,
 				C3FC110320FA914400DAA392 /* EXO-EXTRABOLD.otf in Resources */,
@@ -576,6 +583,7 @@
 				C3FC110D20FB0A7700DAA392 /* BaseViewController.swift in Sources */,
 				C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */,
 				C3C81D5620FE6DA3001F2C08 /* Utils.swift in Sources */,
+				C3C81D5A20FE70D9001F2C08 /* AboutViewController.swift in Sources */,
 				C3C81D5420FDF99C001F2C08 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
