@@ -10,6 +10,11 @@ import UIKit
 
 class SignupProfileViewController: BaseViewController {
     
+    static let FROM_SIGNUP = 0
+    static let FROM_PROFILE = 1
+    
+    var type = SignupProfileViewController.FROM_SIGNUP
+    
     @IBOutlet weak var mButPhoto: UIButton!
     
     @IBOutlet weak var mTextName: UITextField!
@@ -37,7 +42,16 @@ class SignupProfileViewController: BaseViewController {
                                                                  attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
 
         mButPhoto.makeRound()
+        
+        // next button
         mButNext.makeRound(r: 12.0)
+        
+        if type == SignupProfileViewController.FROM_PROFILE {
+            mButNext.setTitle("Save", for: .normal)
+        }
+        else {
+            mButNext.setTitle("Next", for: .normal)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

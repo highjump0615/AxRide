@@ -15,6 +15,11 @@
 		C37C646820F8B4C100ECC1FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37C646620F8B4C100ECC1FA /* LaunchScreen.storyboard */; };
 		C37C647320F8B4C200ECC1FA /* AxRideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C647220F8B4C200ECC1FA /* AxRideTests.swift */; };
 		C37C647E20F8B4C200ECC1FA /* AxRideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C647D20F8B4C200ECC1FA /* AxRideUITests.swift */; };
+		C3C81D4C20FDE6F6001F2C08 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D4B20FDE6F6001F2C08 /* Globals.swift */; };
+		C3C81D4E20FDE9BE001F2C08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D4D20FDE9BE001F2C08 /* User.swift */; };
+		C3C81D5220FDF4B0001F2C08 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C81D5120FDF4B0001F2C08 /* Settings.storyboard */; };
+		C3C81D5420FDF99C001F2C08 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D5320FDF99C001F2C08 /* SettingsViewController.swift */; };
+		C3C81D5620FE6DA3001F2C08 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D5520FE6DA3001F2C08 /* Utils.swift */; };
 		C3E0EA2A20FD3EFE00F41DB7 /* BaseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */; };
 		C3EE8C7E20FC2F92000D7CD5 /* SignupChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */; };
 		C3EE8C8020FC39A8000D7CD5 /* TermViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */; };
@@ -74,6 +79,11 @@
 		C37C647920F8B4C200ECC1FA /* AxRideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AxRideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37C647D20F8B4C200ECC1FA /* AxRideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxRideUITests.swift; sourceTree = "<group>"; };
 		C37C647F20F8B4C200ECC1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3C81D4B20FDE6F6001F2C08 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		C3C81D4D20FDE9BE001F2C08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C3C81D5120FDF4B0001F2C08 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		C3C81D5320FDF99C001F2C08 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C3C81D5520FE6DA3001F2C08 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewController.swift; sourceTree = "<group>"; };
 		C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupChooseViewController.swift; sourceTree = "<group>"; };
 		C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermViewController.xib; sourceTree = "<group>"; };
@@ -234,6 +244,7 @@
 				C3EE8C8120FC3AF9000D7CD5 /* TermViewController.swift */,
 				C3EE8C8720FCA38B000D7CD5 /* MainUserViewController.swift */,
 				C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */,
+				C3C81D5320FDF99C001F2C08 /* SettingsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -242,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				C37C646620F8B4C100ECC1FA /* LaunchScreen.storyboard */,
+				C3C81D5120FDF4B0001F2C08 /* Settings.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -249,6 +261,7 @@
 		C3891F6320F9303300E6D81B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C3C81D4D20FDE9BE001F2C08 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -268,6 +281,8 @@
 				C3FC110420FA919400DAA392 /* ARTextHelper.swift */,
 				C3FC110620FA957400DAA392 /* Extensions.swift */,
 				C3EE8C8320FC3BA0000D7CD5 /* Config.swift */,
+				C3C81D4B20FDE6F6001F2C08 /* Globals.swift */,
+				C3C81D5520FE6DA3001F2C08 /* Utils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -422,6 +437,7 @@
 				C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */,
 				C3FC110320FA914400DAA392 /* EXO-EXTRABOLD.otf in Resources */,
 				C3FC111920FBEBEE00DAA392 /* SignupProfileViewController.xib in Resources */,
+				C3C81D5220FDF4B0001F2C08 /* Settings.storyboard in Resources */,
 				C3FC10FB20FA00F100DAA392 /* OnboardViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,14 +565,18 @@
 				C37C645E20F8B4C100ECC1FA /* AppDelegate.swift in Sources */,
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,
 				C3FC111720FBE69200DAA392 /* SignupEmailViewController.swift in Sources */,
+				C3C81D4E20FDE9BE001F2C08 /* User.swift in Sources */,
 				C3FC111120FBD13000DAA392 /* ForgetViewController.swift in Sources */,
 				C3EE8C8420FC3BA0000D7CD5 /* Config.swift in Sources */,
 				C3EE8C8220FC3AF9000D7CD5 /* TermViewController.swift in Sources */,
 				C3FC110520FA919400DAA392 /* ARTextHelper.swift in Sources */,
 				C3FC111B20FBF37100DAA392 /* SignupProfileViewController.swift in Sources */,
+				C3C81D4C20FDE6F6001F2C08 /* Globals.swift in Sources */,
 				C3FC110020FA8F2B00DAA392 /* OnboardViewController.swift in Sources */,
 				C3FC110D20FB0A7700DAA392 /* BaseViewController.swift in Sources */,
 				C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */,
+				C3C81D5620FE6DA3001F2C08 /* Utils.swift in Sources */,
+				C3C81D5420FDF99C001F2C08 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

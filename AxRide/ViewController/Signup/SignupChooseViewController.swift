@@ -31,16 +31,17 @@ class SignupChooseViewController: BaseViewController {
     }
     
     @IBAction func onButRider(_ sender: Any) {
-        gotoTermView()
+        gotoTermView(userType: User.TYPE_USER)
     }
     
     @IBAction func onButDriver(_ sender: Any) {
-        gotoTermView()
+        gotoTermView(userType: User.TYPE_DRIVER)
     }
     
-    func gotoTermView() {
+    func gotoTermView(userType: Int) {
         // go to term page
         let termVC = TermViewController(nibName: "TermViewController", bundle: nil)
+        termVC.mSelectedUserType = userType
         self.navigationController?.pushViewController(termVC, animated: true)
     }
     

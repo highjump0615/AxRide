@@ -79,9 +79,6 @@ extension UIViewController {
                 }
             }
         }
-        
-        
-        
     }
     
     static func doTakePhoto<T: UIViewController>(viewController: T) where T: UINavigationControllerDelegate, T: UIImagePickerControllerDelegate {
@@ -159,6 +156,34 @@ extension UIViewController {
         picker.sourceType = .photoLibrary
         
         viewController.present(picker, animated: true, completion: nil)
+    }
+    
+    //
+    // navigation bar
+    //
+    func showNavbar(show: Bool = true, transparent: Bool = true, animated: Bool = false) {
+        if transparent {
+            // Sets background to a blank/empty image
+            if Globals.shared().mImgNavbarBg == nil {
+                // save the original image to restore in colored navigation bar
+                Globals.shared().mImgNavbarBg = self.navigationController?.navigationBar.backgroundImage(for: .default)
+            }
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+
+            // Sets shadow (line below the bar) to a blank image
+            if Globals.shared().mImgNavbarShadow == nil {
+                // save the original image to restore in colored navigation bar
+                Globals.shared().mImgNavbarShadow = self.navigationController?.navigationBar.shadowImage
+            }
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+        }
+        else {
+            self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+            self.navigationController?.navigationBar.shadowImage = nil
+            self.navigationController?.navigationBar.barTintColor = Constants.gColorPurple
+        }
+    
+        self.navigationController?.setNavigationBarHidden(!show, animated: animated)
     }
 }
 

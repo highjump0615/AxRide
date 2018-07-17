@@ -9,8 +9,6 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-    var mImgNavbarBg: UIImage?
-    var mImgNavbarShadow: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,38 +20,13 @@ class BaseViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         self.navigationItem.title = " "
     }
     
-    func showNavbar(show: Bool = true, transparent: Bool = true, animated: Bool = false) {
-        if transparent {
-            // Sets background to a blank/empty image
-            if mImgNavbarBg == nil {
-                // save the original image to restore in colored navigation bar
-                mImgNavbarBg = self.navigationController?.navigationBar.backgroundImage(for: .default)
-            }
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            
-            // Sets shadow (line below the bar) to a blank image
-            if mImgNavbarShadow == nil {
-                // save the original image to restore in colored navigation bar
-                mImgNavbarShadow = self.navigationController?.navigationBar.shadowImage
-            }
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            // Sets the translucent background color
-            self.navigationController?.navigationBar.backgroundColor = .clear            
-        }
-        else {
-            self.navigationController?.navigationBar.setBackgroundImage(mImgNavbarBg, for: .default)
-            self.navigationController?.navigationBar.shadowImage = mImgNavbarShadow
-            self.navigationController?.navigationBar.barTintColor = Constants.gColorPurple
-        }
-        
-        self.navigationController?.setNavigationBarHidden(!show, animated: animated)
-    }
-
 
     /*
     // MARK: - Navigation

@@ -10,6 +10,14 @@ import UIKit
 import WebKit
 
 class TermViewController: BaseViewController {
+    
+    var mSelectedUserType = User.TYPE_USER
+    
+    static let TERMS_FROM_SIGNUP = 0
+    static let TERMS_FROM_SETTING = 1
+    static let PRIVACY_POLICY = 2
+    
+    var type = TermViewController.TERMS_FROM_SIGNUP
 
     @IBOutlet weak var mWebView: WKWebView!
     @IBOutlet weak var mButAccept: UIButton!
@@ -22,13 +30,19 @@ class TermViewController: BaseViewController {
         
         mWebView.navigationDelegate = self
         
-        let url = URL(string: Config.urlTermCondition)!
+        let url = type == TermViewController.PRIVACY_POLICY ?
+            URL(string: Config.urlPrivacyPolicy)! : URL(string: Config.urlTermCondition)!
         mWebView.load(URLRequest(url: url))
         mIndicator.startAnimating()
         
         mButAccept.makeRound(r: 12.0)
         
         showNavbar(transparent: false)
+        
+        if type != TermViewController.TERMS_FROM_SIGNUP {
+            // hide accept button
+            mButAccept.isHidden = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,10 +54,17 @@ class TermViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         // title
-        self.title = "Terms & Conditions"
+        self.title = type == TermViewController.PRIVACY_POLICY ? "Privacy Policy" : "Terms & Conditions"
     }
     
-
+    @IBAction func onButAccept(_ sender: Any) {
+        // go to main page
+        if mSelectedUserType == User.TYPE_USER {
+            let mainUserVC = MainUserViewController(nibName: "MainUserViewController", bundle: nil)
+            self.navigationController?.setViewControllers([mainUserVC], animated: true)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -53,6 +53,9 @@ class MainUserViewController: BaseMapViewController {
         mImgViewRideShare.image = mImgViewRideNormal.image!.withRenderingMode(.alwaysTemplate)
         
         updateRideView()
+        
+        // empty title
+        self.navigationItem.title = " "
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,6 +73,10 @@ class MainUserViewController: BaseMapViewController {
     }
     
     @IBAction func onButSetting(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+        let settingsController = storyboard.instantiateViewController(withIdentifier: "settingsController") as! SettingsViewController
+        
+        self.navigationController?.pushViewController(settingsController, animated: true)
     }
     
     @IBAction func onButRideNormal(_ sender: Any) {
