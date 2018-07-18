@@ -70,9 +70,13 @@ class MainUserViewController: BaseMapViewController {
     }
     
     @IBAction func onButProfile(_ sender: Any) {
+        // go to profile page
+        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
     @IBAction func onButSetting(_ sender: Any) {
+        // go to settings page
         let storyboard = UIStoryboard(name: "Settings", bundle: nil)
         let settingsController = storyboard.instantiateViewController(withIdentifier: "settingsController") as! SettingsViewController
         

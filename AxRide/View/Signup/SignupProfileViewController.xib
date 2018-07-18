@@ -26,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Py5-is-CzV">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundEditProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Py5-is-CzV">
                     <rect key="frame" x="0.0" y="20" width="375" height="612"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGq-nf-NOL">
@@ -173,7 +173,7 @@
         </view>
     </objects>
     <resources>
-        <image name="BackgroundProfile" width="374" height="612"/>
+        <image name="BackgroundEditProfile" width="374" height="612"/>
         <image name="ButProfilePhoto" width="95" height="95"/>
     </resources>
 </document>

@@ -161,7 +161,7 @@ extension UIViewController {
     //
     // navigation bar
     //
-    func showNavbar(show: Bool = true, transparent: Bool = true, animated: Bool = false) {
+    func showNavbar(show: Bool = true, transparent: Bool = true, animated: Bool = true) {
         if transparent {
             // Sets background to a blank/empty image
             if Globals.shared().mImgNavbarBg == nil {
@@ -201,5 +201,19 @@ extension UIView {
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height: width)
         self.layer.addSublayer(border)
+    }
+}
+
+extension UIButton {
+    
+    func setBackgroundColor(_ color: UIColor, for state: UIControlState) {
+        
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+        UIGraphicsGetCurrentContext()!.setFillColor(color.cgColor)
+        UIGraphicsGetCurrentContext()!.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+        let colorImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        setBackgroundImage(colorImage, for: state)
     }
 }
