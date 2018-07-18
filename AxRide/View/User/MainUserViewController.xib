@@ -325,6 +325,9 @@
                                 <constraint firstAttribute="width" secondItem="7j0-DX-Tj4" secondAttribute="height" id="8mK-cg-hKp"/>
                             </constraints>
                             <state key="normal" image="ButMainGo"/>
+                            <connections>
+                                <action selector="onButGo:" destination="-1" eventType="touchUpInside" id="g2U-Qf-gEk"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="85$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STU-UQ-Zer">
                             <rect key="frame" x="20" y="18.5" width="31.5" height="20.5"/>

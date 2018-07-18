@@ -17,6 +17,10 @@
 		C37C647E20F8B4C200ECC1FA /* AxRideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C647D20F8B4C200ECC1FA /* AxRideUITests.swift */; };
 		C38E718C20FFBC94003C139F /* ProfileEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E718B20FFBC94003C139F /* ProfileEmptyCell.swift */; };
 		C38E718E20FFC1C0003C139F /* ProfileLocationListFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E718D20FFC1C0003C139F /* ProfileLocationListFooter.swift */; };
+		C38E719220FFCB15003C139F /* FoundDriverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C38E719120FFCB15003C139F /* FoundDriverViewController.xib */; };
+		C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */; };
+		C38E719620FFDB24003C139F /* DriverProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C38E719520FFDB24003C139F /* DriverProfileViewController.xib */; };
+		C38E719820FFDB73003C139F /* DriverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E719720FFDB73003C139F /* DriverProfileViewController.swift */; };
 		C3C81D4C20FDE6F6001F2C08 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D4B20FDE6F6001F2C08 /* Globals.swift */; };
 		C3C81D4E20FDE9BE001F2C08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D4D20FDE9BE001F2C08 /* User.swift */; };
 		C3C81D5220FDF4B0001F2C08 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C81D5120FDF4B0001F2C08 /* Settings.storyboard */; };
@@ -94,6 +98,10 @@
 		C37C647F20F8B4C200ECC1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C38E718B20FFBC94003C139F /* ProfileEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEmptyCell.swift; sourceTree = "<group>"; };
 		C38E718D20FFC1C0003C139F /* ProfileLocationListFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLocationListFooter.swift; sourceTree = "<group>"; };
+		C38E719120FFCB15003C139F /* FoundDriverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoundDriverViewController.xib; sourceTree = "<group>"; };
+		C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundDriverViewController.swift; sourceTree = "<group>"; };
+		C38E719520FFDB24003C139F /* DriverProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverProfileViewController.xib; sourceTree = "<group>"; };
+		C38E719720FFDB73003C139F /* DriverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverProfileViewController.swift; sourceTree = "<group>"; };
 		C3C81D4B20FDE6F6001F2C08 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C3C81D4D20FDE9BE001F2C08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C3C81D5120FDF4B0001F2C08 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -248,6 +256,7 @@
 		C3891F6020F92FC800E6D81B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C38E718F20FFCADD003C139F /* User */,
 				C3C81D5D20FE7C5E001F2C08 /* Profile */,
 				C3FC111220FBDE3200DAA392 /* Signup */,
 				C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */,
@@ -255,7 +264,6 @@
 				C3FC110820FB023900DAA392 /* SigninViewController.xib */,
 				C3FC110E20FB472D00DAA392 /* ForgetViewController.xib */,
 				C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */,
-				C3EE8C8520FC44E7000D7CD5 /* MainUserViewController.xib */,
 				C3C81D5720FE7061001F2C08 /* AboutViewController.xib */,
 			);
 			path = View;
@@ -264,6 +272,7 @@
 		C3891F6120F92FD800E6D81B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C38E719020FFCAF5003C139F /* User */,
 				C3C81D6B20FEB6E4001F2C08 /* CustomUI */,
 				C3C81D6620FE825F001F2C08 /* Profile */,
 				C3FC111520FBE63D00DAA392 /* Signup */,
@@ -272,7 +281,6 @@
 				C3FC110C20FB0A7700DAA392 /* BaseViewController.swift */,
 				C3FC111020FBD13000DAA392 /* ForgetViewController.swift */,
 				C3EE8C8120FC3AF9000D7CD5 /* TermViewController.swift */,
-				C3EE8C8720FCA38B000D7CD5 /* MainUserViewController.swift */,
 				C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */,
 				C3C81D5320FDF99C001F2C08 /* SettingsViewController.swift */,
 				C3C81D5920FE70D9001F2C08 /* AboutViewController.swift */,
@@ -303,6 +311,26 @@
 				C3FC110120FA906200DAA392 /* Font */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		C38E718F20FFCADD003C139F /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C3EE8C8520FC44E7000D7CD5 /* MainUserViewController.xib */,
+				C38E719120FFCB15003C139F /* FoundDriverViewController.xib */,
+				C38E719520FFDB24003C139F /* DriverProfileViewController.xib */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		C38E719020FFCAF5003C139F /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C3EE8C8720FCA38B000D7CD5 /* MainUserViewController.swift */,
+				C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */,
+				C38E719720FFDB73003C139F /* DriverProfileViewController.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		C3C81D5D20FE7C5E001F2C08 /* Profile */ = {
@@ -491,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3EE8C8020FC39A8000D7CD5 /* TermViewController.xib in Resources */,
+				C38E719220FFCB15003C139F /* FoundDriverViewController.xib in Resources */,
 				C3EE8C8620FC44E7000D7CD5 /* MainUserViewController.xib in Resources */,
 				C3C81D5C20FE732B001F2C08 /* ProfileViewController.xib in Resources */,
 				C37C646820F8B4C100ECC1FA /* LaunchScreen.storyboard in Resources */,
@@ -501,6 +530,7 @@
 				C3FC110920FB023900DAA392 /* SigninViewController.xib in Resources */,
 				C3C81D5820FE7061001F2C08 /* AboutViewController.xib in Resources */,
 				C3FC111D20FC0F1C00DAA392 /* SignupChooseViewController.xib in Resources */,
+				C38E719620FFDB24003C139F /* DriverProfileViewController.xib in Resources */,
 				C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */,
 				C3C81D6120FE8062001F2C08 /* ProfileCardListHeader.xib in Resources */,
 				C3FC110320FA914400DAA392 /* EXO-EXTRABOLD.otf in Resources */,
@@ -635,6 +665,7 @@
 				C37C645E20F8B4C100ECC1FA /* AppDelegate.swift in Sources */,
 				C3C81D6F20FEB74C001F2C08 /* ProfileCardListHeader.swift in Sources */,
 				C38E718E20FFC1C0003C139F /* ProfileLocationListFooter.swift in Sources */,
+				C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */,
 				C3C81D6D20FEB6F7001F2C08 /* BaseCustomView.swift in Sources */,
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,
 				C3FC111720FBE69200DAA392 /* SignupEmailViewController.swift in Sources */,
@@ -646,6 +677,7 @@
 				C3FC111B20FBF37100DAA392 /* SignupProfileViewController.swift in Sources */,
 				C3C81D4C20FDE6F6001F2C08 /* Globals.swift in Sources */,
 				C3FC110020FA8F2B00DAA392 /* OnboardViewController.swift in Sources */,
+				C38E719820FFDB73003C139F /* DriverProfileViewController.swift in Sources */,
 				C3FC110D20FB0A7700DAA392 /* BaseViewController.swift in Sources */,
 				C38E718C20FFBC94003C139F /* ProfileEmptyCell.swift in Sources */,
 				C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */,

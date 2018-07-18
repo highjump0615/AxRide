@@ -140,6 +140,12 @@ class MainUserViewController: BaseMapViewController {
         mTextLocationTo.text = strAddrFrom
     }
     
+    @IBAction func onButGo(_ sender: Any) {
+        // go to profile page
+        let foundVC = FoundDriverViewController(nibName: "FoundDriverViewController", bundle: nil)
+        present(foundVC, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
