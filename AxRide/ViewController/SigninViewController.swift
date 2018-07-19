@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IHKeyboardAvoiding
 
 class SigninViewController: BaseViewController {
     
@@ -36,6 +37,10 @@ class SigninViewController: BaseViewController {
                                                               attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
         mButSignin.makeRound(r: 12.0)
+        
+        // keyboard avoiding
+        KeyboardAvoiding.setAvoidingView(self.view, withTriggerView: mTextPassword)
+        
     }
 
     override func didReceiveMemoryWarning() {

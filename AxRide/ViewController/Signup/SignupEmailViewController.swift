@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IHKeyboardAvoiding
 
 class SignupEmailViewController: BaseViewController {
     
@@ -41,6 +42,9 @@ class SignupEmailViewController: BaseViewController {
                                                                  attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
         mButNext.makeRound(r: 12.0)
+        
+        // keyboard avoiding
+        KeyboardAvoiding.setAvoidingView(self.view, withTriggerView: mTextRePassword)
     }
 
     override func didReceiveMemoryWarning() {

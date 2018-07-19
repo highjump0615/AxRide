@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IHKeyboardAvoiding
 
 class SignupProfileViewController: BaseViewController {
     
@@ -52,6 +53,9 @@ class SignupProfileViewController: BaseViewController {
         else {
             mButNext.setTitle("Next", for: .normal)
         }
+        
+        // keyboard avoiding
+        KeyboardAvoiding.setAvoidingView(self.view, withTriggerView: mTextContact)
     }
     
     override func viewWillAppear(_ animated: Bool) {
