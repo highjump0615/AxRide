@@ -188,6 +188,9 @@ class MainUserViewController: BaseMapViewController {
     }
     
     @IBAction func onButDriverChat(_ sender: Any) {
+        // go to chat page
+        let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
+        self.navigationController?.pushViewController(chatVC, animated: true)
     }
     
     @IBAction func onButCancel(_ sender: Any) {

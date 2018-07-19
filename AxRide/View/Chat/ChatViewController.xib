@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController" customModule="AxRide" customModuleProvider="target">
+            <connections>
+                <outlet property="mTableView" destination="aXU-z9-3Wm" id="Ybk-Ex-vpr"/>
+                <outlet property="mTextMessage" destination="HYJ-DL-IoH" id="8SM-CX-T4k"/>
+                <outlet property="mViewInput" destination="Z5C-Tp-JpR" id="Szf-OB-0aV"/>
+                <outlet property="view" destination="iN0-l3-epB" id="h9W-7p-R3t"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KeyboardDismissingView" customModule="IHKeyboardAvoiding">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aXU-z9-3Wm">
+                    <rect key="frame" x="0.0" y="64" width="375" height="553"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="aFH-Js-Sms"/>
+                        <outlet property="delegate" destination="-1" id="LX4-Hf-SAL"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5C-Tp-JpR">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HYJ-DL-IoH">
+                            <rect key="frame" x="12" y="0.0" width="299" height="50"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="tOo-Y6-A1f"/>
+                            </connections>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fj-6B-ZDB">
+                            <rect key="frame" x="311" y="0.0" width="64" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="cUl-9z-MEa"/>
+                            </constraints>
+                            <state key="normal" image="ButChatSend"/>
+                            <connections>
+                                <action selector="onButSend:" destination="-1" eventType="touchUpInside" id="0MI-ZR-p3X"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="1fj-6B-ZDB" firstAttribute="leading" secondItem="HYJ-DL-IoH" secondAttribute="trailing" id="1Vk-zP-uB3"/>
+                        <constraint firstAttribute="height" constant="50" id="8jL-ZB-RwR"/>
+                        <constraint firstAttribute="trailing" secondItem="1fj-6B-ZDB" secondAttribute="trailing" id="MmN-az-AaT"/>
+                        <constraint firstAttribute="bottom" secondItem="1fj-6B-ZDB" secondAttribute="bottom" id="VO8-dp-EKu"/>
+                        <constraint firstItem="HYJ-DL-IoH" firstAttribute="top" secondItem="Z5C-Tp-JpR" secondAttribute="top" id="hZ0-ct-xgF"/>
+                        <constraint firstItem="1fj-6B-ZDB" firstAttribute="top" secondItem="Z5C-Tp-JpR" secondAttribute="top" id="hdj-0h-3XE"/>
+                        <constraint firstItem="HYJ-DL-IoH" firstAttribute="leading" secondItem="Z5C-Tp-JpR" secondAttribute="leading" constant="12" id="ptL-4S-IPu"/>
+                        <constraint firstAttribute="bottom" secondItem="HYJ-DL-IoH" secondAttribute="bottom" id="yOb-aH-wPN"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Z5C-Tp-JpR" firstAttribute="top" secondItem="aXU-z9-3Wm" secondAttribute="bottom" id="17n-7s-225"/>
+                <constraint firstItem="Z5C-Tp-JpR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2eQ-iI-x87"/>
+                <constraint firstItem="aXU-z9-3Wm" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="3Oz-bj-aU6"/>
+                <constraint firstItem="aXU-z9-3Wm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5rd-0l-TLj"/>
+                <constraint firstItem="Z5C-Tp-JpR" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="8JX-4G-GdW"/>
+                <constraint firstItem="aXU-z9-3Wm" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="BOA-sn-zYI"/>
+                <constraint firstItem="Z5C-Tp-JpR" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="prg-nI-pen"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="81.5" y="58.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButChatSend" width="38" height="38"/>
+    </resources>
+</document>
