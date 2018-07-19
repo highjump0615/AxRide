@@ -14,7 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FoundDriverViewController" customModule="AxRide" customModuleProvider="target">
             <connections>
                 <outlet property="mButProceed" destination="yln-yX-XdO" id="Wbg-ZJ-ymB"/>
-                <outlet property="mImgViewPhoto" destination="bQ2-ry-Mj0" id="cMJ-hc-cON"/>
+                <outlet property="mButUser" destination="sCF-IL-aUo" id="wf7-sT-GBP"/>
                 <outlet property="mLblDistance" destination="FTo-6g-NY2" id="4c0-iF-IL0"/>
                 <outlet property="mLblUserName" destination="u5J-oa-cmy" id="5ZB-It-gXl"/>
                 <outlet property="mViewMain" destination="N90-Ck-2dx" id="ZGq-fZ-Wa3"/>
@@ -42,18 +42,22 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8B3-Ru-UUu">
                             <rect key="frame" x="100" y="87.5" width="146" height="146"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefault" translatesAutoresizingMaskIntoConstraints="NO" id="bQ2-ry-Mj0">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCF-IL-aUo">
                                     <rect key="frame" x="4" y="4" width="138" height="138"/>
-                                </imageView>
+                                    <state key="normal" image="UserDefault"/>
+                                    <connections>
+                                        <action selector="onButUser:" destination="-1" eventType="touchUpInside" id="IlE-UW-oie"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="bQ2-ry-Mj0" secondAttribute="bottom" constant="4" id="KBs-Dk-kTY"/>
-                                <constraint firstItem="bQ2-ry-Mj0" firstAttribute="leading" secondItem="8B3-Ru-UUu" secondAttribute="leading" constant="4" id="WEJ-Qb-umc"/>
-                                <constraint firstItem="bQ2-ry-Mj0" firstAttribute="top" secondItem="8B3-Ru-UUu" secondAttribute="top" constant="4" id="acn-dR-XJ0"/>
+                                <constraint firstAttribute="trailing" secondItem="sCF-IL-aUo" secondAttribute="trailing" constant="4" id="9uV-zG-VB4"/>
+                                <constraint firstItem="sCF-IL-aUo" firstAttribute="top" secondItem="8B3-Ru-UUu" secondAttribute="top" constant="4" id="Jx9-OI-dGz"/>
+                                <constraint firstItem="sCF-IL-aUo" firstAttribute="leading" secondItem="8B3-Ru-UUu" secondAttribute="leading" constant="4" id="Ktg-qM-Gyt"/>
+                                <constraint firstAttribute="bottom" secondItem="sCF-IL-aUo" secondAttribute="bottom" constant="4" id="qVk-Ym-EMe"/>
                                 <constraint firstAttribute="height" constant="146" id="v06-HL-jVR"/>
                                 <constraint firstAttribute="width" constant="146" id="v5i-Ij-QSu"/>
-                                <constraint firstAttribute="trailing" secondItem="bQ2-ry-Mj0" secondAttribute="trailing" constant="4" id="vrp-Vb-LQD"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, my name is" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoO-sA-ewz">

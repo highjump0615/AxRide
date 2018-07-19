@@ -143,7 +143,11 @@ class MainUserViewController: BaseMapViewController {
     @IBAction func onButGo(_ sender: Any) {
         // go to profile page
         let foundVC = FoundDriverViewController(nibName: "FoundDriverViewController", bundle: nil)
-        present(foundVC, animated: true, completion: nil)
+        
+        let nav = UINavigationController()
+        nav.setViewControllers([foundVC], animated: true)
+        
+        present(nav, animated: true, completion: nil)
     }
     
     /*

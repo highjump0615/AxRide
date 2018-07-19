@@ -1,4 +1,5 @@
 PODS:
+  - Cosmos (16.0.0)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -7,23 +8,30 @@ PODS:
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
   - IHKeyboardAvoiding (4.2)
+  - KMPlaceholderTextView (1.3.0)
 
 DEPENDENCIES:
+  - Cosmos (~> 16.0)
   - GoogleMaps
   - GooglePlaces
   - IHKeyboardAvoiding
+  - KMPlaceholderTextView (~> 1.3.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Cosmos
     - GoogleMaps
     - GooglePlaces
     - IHKeyboardAvoiding
+    - KMPlaceholderTextView
 
 SPEC CHECKSUMS:
+  Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   IHKeyboardAvoiding: 9fbf816b7c3c84911964802ff110d12caf40ebef
+  KMPlaceholderTextView: 2bbcd19a273648a80a61e1e48f9743a24d8930e3
 
-PODFILE CHECKSUM: a2c9be357363abb66db375e6ddabf3579691f68b
+PODFILE CHECKSUM: 3021483ffc770c3b55e57bd96720956d59eb8d47
 
 COCOAPODS: 1.5.3
