@@ -51,6 +51,8 @@
 		C3FBDAA2210041AA007143BF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA1210041AA007143BF /* ChatViewController.swift */; };
 		C3FBDAA4210041D0007143BF /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA3210041D0007143BF /* ChatCell.swift */; };
 		C3FBDAA62100430C007143BF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA52100430C007143BF /* Message.swift */; };
+		C3FBDAA821005A0C007143BF /* SignupApplicationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FBDAA721005A0C007143BF /* SignupApplicationViewController.xib */; };
+		C3FBDAAA210065C3007143BF /* SignupApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA9210065C3007143BF /* SignupApplicationViewController.swift */; };
 		C3FC10FB20FA00F100DAA392 /* OnboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */; };
 		C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC10FD20FA86F900DAA392 /* Constants.swift */; };
 		C3FC110020FA8F2B00DAA392 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC10FF20FA8F2B00DAA392 /* OnboardViewController.swift */; };
@@ -139,6 +141,8 @@
 		C3FBDAA1210041AA007143BF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C3FBDAA3210041D0007143BF /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		C3FBDAA52100430C007143BF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		C3FBDAA721005A0C007143BF /* SignupApplicationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupApplicationViewController.xib; sourceTree = "<group>"; };
+		C3FBDAA9210065C3007143BF /* SignupApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupApplicationViewController.swift; sourceTree = "<group>"; };
 		C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardViewController.xib; sourceTree = "<group>"; };
 		C3FC10FD20FA86F900DAA392 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C3FC10FF20FA8F2B00DAA392 /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
@@ -429,6 +433,7 @@
 				C3FC111320FBE05800DAA392 /* SignupEmailViewController.xib */,
 				C3FC111820FBEBEE00DAA392 /* SignupProfileViewController.xib */,
 				C3FC111C20FC0F1C00DAA392 /* SignupChooseViewController.xib */,
+				C3FBDAA721005A0C007143BF /* SignupApplicationViewController.xib */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				C3FC111620FBE69200DAA392 /* SignupEmailViewController.swift */,
 				C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */,
 				C3FC111A20FBF37100DAA392 /* SignupProfileViewController.swift */,
+				C3FBDAA9210065C3007143BF /* SignupApplicationViewController.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -571,6 +577,7 @@
 				C3FC111D20FC0F1C00DAA392 /* SignupChooseViewController.xib in Resources */,
 				C38E719620FFDB24003C139F /* DriverProfileViewController.xib in Resources */,
 				C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */,
+				C3FBDAA821005A0C007143BF /* SignupApplicationViewController.xib in Resources */,
 				C3C81D6120FE8062001F2C08 /* ProfileCardListHeader.xib in Resources */,
 				C3FC110320FA914400DAA392 /* EXO-EXTRABOLD.otf in Resources */,
 				C33F88F121003B0100C52766 /* ChatItemViewFrom.xib in Resources */,
@@ -726,6 +733,7 @@
 				C38E719820FFDB73003C139F /* DriverProfileViewController.swift in Sources */,
 				C3FC110D20FB0A7700DAA392 /* BaseViewController.swift in Sources */,
 				C38E718C20FFBC94003C139F /* ProfileEmptyCell.swift in Sources */,
+				C3FBDAAA210065C3007143BF /* SignupApplicationViewController.swift in Sources */,
 				C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */,
 				C3C81D5620FE6DA3001F2C08 /* Utils.swift in Sources */,
 				C3C81D6820FE8305001F2C08 /* ProfileViewController.swift in Sources */,

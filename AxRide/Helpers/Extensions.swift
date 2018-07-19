@@ -223,4 +223,10 @@ extension UIButton {
         
         setBackgroundImage(colorImage, for: state)
     }
+    
+    func makeEnable(enable: Bool) {
+        self.isEnabled = enable
+        self.alpha = enable ? 1 : 0.6
+    }
+
 }

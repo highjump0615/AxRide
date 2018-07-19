@@ -58,10 +58,17 @@ class TermViewController: BaseViewController {
     }
     
     @IBAction func onButAccept(_ sender: Any) {
-        // go to main page
+        // user
         if mSelectedUserType == User.TYPE_USER {
+            // go to main page
             let mainUserVC = MainUserViewController(nibName: "MainUserViewController", bundle: nil)
             self.navigationController?.setViewControllers([mainUserVC], animated: true)
+        }
+        // driver
+        else {
+            // go to application page
+            let applicationVC = SignupApplicationViewController(nibName: "SignupApplicationViewController", bundle: nil)
+            self.navigationController?.pushViewController(applicationVC, animated: true)
         }
     }
     

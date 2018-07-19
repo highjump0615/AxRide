@@ -49,6 +49,12 @@ class DriverProfileViewController: BaseViewController {
         mImgViewUser.makeRound()
     }
 
+    @IBAction func onButChat(_ sender: Any) {
+        // go to chat page
+        let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
+        self.navigationController?.pushViewController(chatVC, animated: true)        
+    }
+    
     /*
     // MARK: - Navigation
 
