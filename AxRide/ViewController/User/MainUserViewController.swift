@@ -13,6 +13,7 @@ class MainUserViewController: BaseMapViewController {
     @IBOutlet weak var mButProfile: UIButton!
     @IBOutlet weak var mViewSearch: UIView!
     @IBOutlet weak var mViewLocation: UIView!
+    @IBOutlet weak var mViewRequest: UIView!
     
     @IBOutlet weak var mViewRide: UIView!
     @IBOutlet weak var mImgViewRideNormal: UIImageView!
@@ -23,11 +24,25 @@ class MainUserViewController: BaseMapViewController {
     @IBOutlet weak var mTextLocationFrom: UITextField!
     @IBOutlet weak var mTextLocationTo: UITextField!
     
+    @IBOutlet weak var mViewDriver: UIView!
+    @IBOutlet weak var mButCancel: UIButton!
+    @IBOutlet weak var mButDriver: UIButton!
+    
+    
     static let RIDE_TYPE_NORMAL = 0
     static let RIDE_TYPE_SUV = 1
     static let RIDE_TYPE_SHARE = 2
     
     var mnRideType = RIDE_TYPE_NORMAL
+    
+    private var mOrder: Order?
+    var order: Order? {
+        get { return mOrder}
+        set {
+            mOrder = newValue
+            updateOrder()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +53,9 @@ class MainUserViewController: BaseMapViewController {
         mViewSearch.makeRound(r: 10)
         mViewLocation.makeRound(r: 20)
         mViewRide.makeRound(r: 16)
+        mViewDriver.makeRound(r: 6)
+        mButCancel.makeRound(r: 6)
+        mButDriver.makeRound()
         
         // placeholders
         mTextSearch.attributedPlaceholder = NSAttributedString(string: "Search",
@@ -143,11 +161,36 @@ class MainUserViewController: BaseMapViewController {
     @IBAction func onButGo(_ sender: Any) {
         // go to profile page
         let foundVC = FoundDriverViewController(nibName: "FoundDriverViewController", bundle: nil)
+        foundVC.homeVC = self
         
         let nav = UINavigationController()
         nav.setViewControllers([foundVC], animated: true)
         
         present(nav, animated: true, completion: nil)
+    }
+    
+    func updateOrder() {
+        if let o = order {
+            // hide location & ride
+            mViewLocation.isHidden = true
+            mViewRide.isHidden = true
+            mViewRequest.isHidden = true
+            
+            // show driver info
+            mViewDriver.isHidden = false
+        }
+    }
+    
+    @IBAction func onButDriver(_ sender: Any) {
+        // go to driver profile page
+        let profileVC = DriverProfileViewController(nibName: "DriverProfileViewController", bundle: nil)
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    @IBAction func onButDriverChat(_ sender: Any) {
+    }
+    
+    @IBAction func onButCancel(_ sender: Any) {
     }
     
     /*
@@ -159,7 +202,7 @@ class MainUserViewController: BaseMapViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
 
 extension MainUserViewController: UITextFieldDelegate {

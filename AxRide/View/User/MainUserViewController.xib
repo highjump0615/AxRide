@@ -13,6 +13,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainUserViewController" customModule="AxRide" customModuleProvider="target">
             <connections>
+                <outlet property="mButCancel" destination="fIq-6x-5ER" id="kgw-Rg-Elf"/>
+                <outlet property="mButDriver" destination="i1K-kq-yab" id="zd1-hs-oqg"/>
                 <outlet property="mButProfile" destination="7bR-fb-vfQ" id="MiV-Hb-GIw"/>
                 <outlet property="mImgViewRideNormal" destination="snh-ya-bIu" id="IWm-97-TAl"/>
                 <outlet property="mImgViewRideShare" destination="EbR-or-gfV" id="6cy-oR-UIj"/>
@@ -20,8 +22,10 @@
                 <outlet property="mTextLocationFrom" destination="gZF-Td-X4G" id="KK9-Cs-uXe"/>
                 <outlet property="mTextLocationTo" destination="gZx-2Q-zgV" id="6GM-gZ-Wl0"/>
                 <outlet property="mTextSearch" destination="0IZ-Tw-XXd" id="cXz-mV-fzc"/>
+                <outlet property="mViewDriver" destination="bqS-6N-SCc" id="jtm-nV-M3n"/>
                 <outlet property="mViewLocation" destination="c4A-ns-X3A" id="3jh-oV-Ml9"/>
                 <outlet property="mViewMap" destination="A2r-cq-qP6" id="ge2-Wu-nLO"/>
+                <outlet property="mViewRequest" destination="PBn-GB-wqU" id="myq-XN-yEX"/>
                 <outlet property="mViewRide" destination="33B-w6-xKI" id="Z5e-iE-Qw4"/>
                 <outlet property="mViewSearch" destination="gXB-Ds-YUo" id="rFx-I9-two"/>
                 <outlet property="view" destination="iN0-l3-epB" id="P9x-Tg-vxB"/>
@@ -348,11 +352,107 @@
                         <constraint firstItem="hnd-yN-ctH" firstAttribute="centerX" secondItem="PBn-GB-wqU" secondAttribute="centerX" id="zlz-1G-z9r"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqS-6N-SCc">
+                    <rect key="frame" x="16" y="469" width="343" height="169"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIq-6x-5ER">
+                            <rect key="frame" x="4" y="125" width="335" height="40"/>
+                            <color key="backgroundColor" red="1" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="yDJ-ln-AEI"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="Cancel this Ride">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="onButCancel:" destination="-1" eventType="touchUpInside" id="h2h-ne-TDp"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DRIVERS PROFILE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebg-ue-fZ6">
+                            <rect key="frame" x="18" y="8" width="79.5" height="11"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 MINS AWAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frx-Wq-dzo">
+                            <rect key="frame" x="268.5" y="8" width="60.5" height="11"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trevor Hall     4.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KsQ-QS-35l">
+                            <rect key="frame" x="117" y="81" width="109" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BROOKLYN, NEW YORK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feP-LE-r16">
+                            <rect key="frame" x="119.5" y="102" width="104.5" height="11"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqU-Fj-DMV">
+                            <rect key="frame" x="92" y="32" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Bqd-04-bAJ"/>
+                                <constraint firstAttribute="width" constant="30" id="RM9-oh-C3c"/>
+                            </constraints>
+                            <state key="normal" image="ButMapStatus"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1K-kq-yab">
+                            <rect key="frame" x="150" y="26" width="43" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="i1K-kq-yab" secondAttribute="height" multiplier="1:1" id="5ml-uE-0r5"/>
+                                <constraint firstAttribute="width" constant="43" id="bTi-T4-s7m"/>
+                            </constraints>
+                            <state key="normal" image="UserDefault"/>
+                            <connections>
+                                <action selector="onButDriver:" destination="-1" eventType="touchUpInside" id="XNX-58-Sh1"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="my1-u7-A2H">
+                            <rect key="frame" x="221" y="32.5" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="SYV-qr-fKN"/>
+                                <constraint firstAttribute="width" constant="30" id="o9v-Qq-6PE"/>
+                            </constraints>
+                            <state key="normal" image="ButMapChat"/>
+                            <connections>
+                                <action selector="onButDriverChat:" destination="-1" eventType="touchUpInside" id="9EU-Y5-geT"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="fIq-6x-5ER" secondAttribute="bottom" constant="4" id="0pU-9J-P8t"/>
+                        <constraint firstItem="KsQ-QS-35l" firstAttribute="centerX" secondItem="bqS-6N-SCc" secondAttribute="centerX" id="0sf-Sa-70F"/>
+                        <constraint firstItem="KsQ-QS-35l" firstAttribute="top" secondItem="i1K-kq-yab" secondAttribute="bottom" constant="12" id="AUT-Pc-4fQ"/>
+                        <constraint firstItem="fIq-6x-5ER" firstAttribute="leading" secondItem="bqS-6N-SCc" secondAttribute="leading" constant="4" id="BDp-uL-CGI"/>
+                        <constraint firstItem="my1-u7-A2H" firstAttribute="centerY" secondItem="i1K-kq-yab" secondAttribute="centerY" id="EOz-OQ-QlF"/>
+                        <constraint firstAttribute="trailing" secondItem="Frx-Wq-dzo" secondAttribute="trailing" constant="14" id="Efh-Em-ikF"/>
+                        <constraint firstItem="feP-LE-r16" firstAttribute="top" secondItem="KsQ-QS-35l" secondAttribute="bottom" constant="4" id="HxB-hf-mF0"/>
+                        <constraint firstAttribute="height" constant="169" id="KVh-Dq-UP4"/>
+                        <constraint firstItem="ebg-ue-fZ6" firstAttribute="leading" secondItem="bqS-6N-SCc" secondAttribute="leading" constant="18" id="Krl-qM-heu"/>
+                        <constraint firstAttribute="trailing" secondItem="fIq-6x-5ER" secondAttribute="trailing" constant="4" id="LYP-UP-ryP"/>
+                        <constraint firstItem="ebg-ue-fZ6" firstAttribute="top" secondItem="bqS-6N-SCc" secondAttribute="top" constant="8" id="Z9Y-V5-GPT"/>
+                        <constraint firstItem="feP-LE-r16" firstAttribute="centerX" secondItem="bqS-6N-SCc" secondAttribute="centerX" id="aST-G1-UaX"/>
+                        <constraint firstItem="i1K-kq-yab" firstAttribute="centerX" secondItem="bqS-6N-SCc" secondAttribute="centerX" id="bul-UL-TBc"/>
+                        <constraint firstItem="uqU-Fj-DMV" firstAttribute="centerY" secondItem="i1K-kq-yab" secondAttribute="centerY" id="fPT-Ze-qh9"/>
+                        <constraint firstItem="i1K-kq-yab" firstAttribute="leading" secondItem="uqU-Fj-DMV" secondAttribute="trailing" constant="28" id="oUt-98-d5L"/>
+                        <constraint firstItem="i1K-kq-yab" firstAttribute="top" secondItem="bqS-6N-SCc" secondAttribute="top" constant="26" id="ufd-EZ-cTI"/>
+                        <constraint firstItem="my1-u7-A2H" firstAttribute="leading" secondItem="i1K-kq-yab" secondAttribute="trailing" constant="28" id="vpk-EF-SHI"/>
+                        <constraint firstItem="Frx-Wq-dzo" firstAttribute="centerY" secondItem="ebg-ue-fZ6" secondAttribute="centerY" id="xab-QG-IHm"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="bqS-6N-SCc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="0FH-SZ-yZ4"/>
                 <constraint firstItem="PBn-GB-wqU" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="5gk-mO-KhD"/>
                 <constraint firstItem="A2r-cq-qP6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6Z3-qR-uq5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bqS-6N-SCc" secondAttribute="trailing" constant="16" id="7TN-pC-IsZ"/>
                 <constraint firstItem="PBn-GB-wqU" firstAttribute="top" secondItem="33B-w6-xKI" secondAttribute="bottom" constant="16" id="DPa-Jt-4TQ"/>
                 <constraint firstItem="PBn-GB-wqU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Fga-Rp-CVh"/>
                 <constraint firstItem="m1n-OM-iMh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="H7Z-Tq-CX0"/>
@@ -362,6 +462,7 @@
                 <constraint firstItem="33B-w6-xKI" firstAttribute="leading" secondItem="c4A-ns-X3A" secondAttribute="leading" id="TL4-KA-Rjz"/>
                 <constraint firstItem="m1n-OM-iMh" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="TbD-rO-lVX"/>
                 <constraint firstItem="A2r-cq-qP6" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="UV9-Sm-k0M"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bqS-6N-SCc" secondAttribute="bottom" constant="29" id="WFp-Cf-EEB"/>
                 <constraint firstItem="m1n-OM-iMh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ct5-vN-Ltd"/>
                 <constraint firstItem="c4A-ns-X3A" firstAttribute="top" secondItem="m1n-OM-iMh" secondAttribute="bottom" constant="16" id="edR-jo-KKM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="A2r-cq-qP6" secondAttribute="bottom" id="fEm-Jx-VJq"/>
@@ -374,6 +475,8 @@
     </objects>
     <resources>
         <image name="ButMainGo" width="22" height="22"/>
+        <image name="ButMapChat" width="19" height="15"/>
+        <image name="ButMapStatus" width="30" height="30"/>
         <image name="MainLocationClose" width="10" height="10"/>
         <image name="MainLocationExchange" width="18" height="17"/>
         <image name="MainLocationFrom" width="15" height="15"/>

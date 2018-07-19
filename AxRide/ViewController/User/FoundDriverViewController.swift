@@ -19,6 +19,8 @@ class FoundDriverViewController: BaseViewController {
     @IBOutlet weak var mButUser: UIButton!
     @IBOutlet weak var mButProceed: UIButton!
     
+    var homeVC: UIViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,6 +51,10 @@ class FoundDriverViewController: BaseViewController {
     }
     
     @IBAction func onButProceed(_ sender: Any) {
+        let parentVC = homeVC as? MainUserViewController
+        parentVC?.order = Order()
+        
+        dismiss(animated: true)
     }
     
     /*
