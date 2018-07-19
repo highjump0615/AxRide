@@ -53,6 +53,9 @@
 		C3FBDAA62100430C007143BF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA52100430C007143BF /* Message.swift */; };
 		C3FBDAA821005A0C007143BF /* SignupApplicationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FBDAA721005A0C007143BF /* SignupApplicationViewController.xib */; };
 		C3FBDAAA210065C3007143BF /* SignupApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA9210065C3007143BF /* SignupApplicationViewController.swift */; };
+		C3FBDAAD210075F7007143BF /* MainDriverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FBDAAC210075F7007143BF /* MainDriverViewController.xib */; };
+		C3FBDAB021007BC7007143BF /* MainDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAAF21007BC7007143BF /* MainDriverViewController.swift */; };
+		C3FBDAB221008038007143BF /* SignupApplicationViewControllerSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FBDAB121008038007143BF /* SignupApplicationViewControllerSmall.xib */; };
 		C3FC10FB20FA00F100DAA392 /* OnboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */; };
 		C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC10FD20FA86F900DAA392 /* Constants.swift */; };
 		C3FC110020FA8F2B00DAA392 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC10FF20FA8F2B00DAA392 /* OnboardViewController.swift */; };
@@ -143,6 +146,9 @@
 		C3FBDAA52100430C007143BF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C3FBDAA721005A0C007143BF /* SignupApplicationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupApplicationViewController.xib; sourceTree = "<group>"; };
 		C3FBDAA9210065C3007143BF /* SignupApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupApplicationViewController.swift; sourceTree = "<group>"; };
+		C3FBDAAC210075F7007143BF /* MainDriverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainDriverViewController.xib; sourceTree = "<group>"; };
+		C3FBDAAF21007BC7007143BF /* MainDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDriverViewController.swift; sourceTree = "<group>"; };
+		C3FBDAB121008038007143BF /* SignupApplicationViewControllerSmall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupApplicationViewControllerSmall.xib; sourceTree = "<group>"; };
 		C3FC10FA20FA00F100DAA392 /* OnboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardViewController.xib; sourceTree = "<group>"; };
 		C3FC10FD20FA86F900DAA392 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C3FC10FF20FA8F2B00DAA392 /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 		C3891F6020F92FC800E6D81B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C3FBDAAB21007580007143BF /* Driver */,
 				C33F88EF210038B500C52766 /* Chat */,
 				C38E718F20FFCADD003C139F /* User */,
 				C3C81D5D20FE7C5E001F2C08 /* Profile */,
@@ -310,6 +317,7 @@
 		C3891F6120F92FD800E6D81B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C3FBDAAE21007BAE007143BF /* Driver */,
 				C33F88EE210038AE00C52766 /* Chat */,
 				C38E719020FFCAF5003C139F /* User */,
 				C3C81D6B20FEB6E4001F2C08 /* CustomUI */,
@@ -406,6 +414,22 @@
 			path = CustomUI;
 			sourceTree = "<group>";
 		};
+		C3FBDAAB21007580007143BF /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				C3FBDAAC210075F7007143BF /* MainDriverViewController.xib */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		C3FBDAAE21007BAE007143BF /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				C3FBDAAF21007BC7007143BF /* MainDriverViewController.swift */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
 		C3FC10FC20FA86D700DAA392 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,6 +458,7 @@
 				C3FC111820FBEBEE00DAA392 /* SignupProfileViewController.xib */,
 				C3FC111C20FC0F1C00DAA392 /* SignupChooseViewController.xib */,
 				C3FBDAA721005A0C007143BF /* SignupApplicationViewController.xib */,
+				C3FBDAB121008038007143BF /* SignupApplicationViewControllerSmall.xib */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -562,6 +587,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3EE8C8020FC39A8000D7CD5 /* TermViewController.xib in Resources */,
+				C3FBDAB221008038007143BF /* SignupApplicationViewControllerSmall.xib in Resources */,
+				C3FBDAAD210075F7007143BF /* MainDriverViewController.xib in Resources */,
 				C38E719220FFCB15003C139F /* FoundDriverViewController.xib in Resources */,
 				C33F88ED2100376000C52766 /* ChatViewController.xib in Resources */,
 				C3EE8C8620FC44E7000D7CD5 /* MainUserViewController.xib in Resources */,
@@ -723,6 +750,7 @@
 				C3FC111720FBE69200DAA392 /* SignupEmailViewController.swift in Sources */,
 				C3FBDAA62100430C007143BF /* Message.swift in Sources */,
 				C3C81D4E20FDE9BE001F2C08 /* User.swift in Sources */,
+				C3FBDAB021007BC7007143BF /* MainDriverViewController.swift in Sources */,
 				C3FC111120FBD13000DAA392 /* ForgetViewController.swift in Sources */,
 				C3EE8C8420FC3BA0000D7CD5 /* Config.swift in Sources */,
 				C3EE8C8220FC3AF9000D7CD5 /* TermViewController.swift in Sources */,

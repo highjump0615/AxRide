@@ -67,7 +67,12 @@ class TermViewController: BaseViewController {
         // driver
         else {
             // go to application page
-            let applicationVC = SignupApplicationViewController(nibName: "SignupApplicationViewController", bundle: nil)
+            var applicationVC = SignupApplicationViewController(nibName: "SignupApplicationViewController", bundle: nil)
+            // check iphone screen size
+            if UIScreen.main.bounds.width < 375 {
+                applicationVC = SignupApplicationViewController(nibName: "SignupApplicationViewControllerSmall", bundle: nil)
+            }
+            
             self.navigationController?.pushViewController(applicationVC, animated: true)
         }
     }

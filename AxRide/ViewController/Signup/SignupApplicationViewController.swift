@@ -10,8 +10,6 @@ import UIKit
 
 class SignupApplicationViewController: BaseViewController {
     
-    @IBOutlet var mViewPhoneSE: UIView!
-    
     @IBOutlet weak var mViewLicense: UIView!
     @IBOutlet weak var mViewInsurance: UIView!
     @IBOutlet weak var mViewRegistration: UIView!
@@ -35,11 +33,6 @@ class SignupApplicationViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // check iphone screen size
-        if UIScreen.main.bounds.width < 375 {
-            self.view = mViewPhoneSE
-        }
 
         // Do any additional setup after loading the view.
         showNavbar(transparent: false)
@@ -91,6 +84,9 @@ class SignupApplicationViewController: BaseViewController {
     }
     
     @IBAction func onButSubmit(_ sender: Any) {
+        // go to forget page
+        let mainVC = MainDriverViewController(nibName: "MainDriverViewController", bundle: nil)
+        self.navigationController?.pushViewController(mainVC, animated: true)
     }
     
     @IBAction func onButDeclare(_ sender: Any) {
