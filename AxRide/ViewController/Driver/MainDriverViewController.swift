@@ -39,7 +39,7 @@ class MainDriverViewController: BaseMapViewController {
     
     @IBAction func onButProfile(_ sender: Any) {
         // go to profile page
-        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        let profileVC = ProfileDriverViewController(nibName: "ProfileDriverViewController", bundle: nil)
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
