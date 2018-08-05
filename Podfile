@@ -13,6 +13,16 @@ target 'AxRide' do
   
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Messaging'
+  
+  pod 'SDWebImage'
+  pod 'SVProgressHUD'
+  pod 'ReachabilitySwift'
 
   target 'AxRideTests' do
     inherit! :search_paths

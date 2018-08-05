@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Reachability
 
 // colors
 class Constants {
@@ -17,4 +18,5 @@ class Constants {
     static let gColorSemiPurple = UIColor(red: 117/255.0, green: 28/255.0, blue: 174/255.0, alpha: 1.0)
     static let gColorGray = UIColor(red: 90/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1.0)
 
+    static let reachability = Reachability(hostname: "www.google.com")!
 }

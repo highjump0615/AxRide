@@ -11,8 +11,6 @@ import WebKit
 
 class TermViewController: BaseViewController {
     
-    var mSelectedUserType = User.TYPE_USER
-    
     static let TERMS_FROM_SIGNUP = 0
     static let TERMS_FROM_SETTING = 1
     static let PRIVACY_POLICY = 2
@@ -58,22 +56,24 @@ class TermViewController: BaseViewController {
     }
     
     @IBAction func onButAccept(_ sender: Any) {
-        // user
-        if mSelectedUserType == User.TYPE_USER {
-            // go to main page
-            let mainUserVC = MainUserViewController(nibName: "MainUserViewController", bundle: nil)
-            self.navigationController?.setViewControllers([mainUserVC], animated: true)
-        }
-        // driver
-        else {
-            // go to application page
-            var applicationVC = SignupApplicationViewController(nibName: "SignupApplicationViewController", bundle: nil)
-            // check iphone screen size
-            if UIScreen.main.bounds.width < 375 {
-                applicationVC = SignupApplicationViewController(nibName: "SignupApplicationViewControllerSmall", bundle: nil)
+        if let userCurrent = User.currentUser {
+            // user
+            if userCurrent.type == UserType.customer {
+                // go to main page
+                let mainUserVC = MainUserViewController(nibName: "MainUserViewController", bundle: nil)
+                self.navigationController?.setViewControllers([mainUserVC], animated: true)
             }
-            
-            self.navigationController?.pushViewController(applicationVC, animated: true)
+            // driver
+            else {
+                // go to application page
+                var applicationVC = SignupApplicationViewController(nibName: "SignupApplicationViewController", bundle: nil)
+                // check iphone screen size
+                if UIScreen.main.bounds.width < 375 {
+                    applicationVC = SignupApplicationViewController(nibName: "SignupApplicationViewControllerSmall", bundle: nil)
+                }
+                
+                self.navigationController?.pushViewController(applicationVC, animated: true)
+            }
         }
     }
     

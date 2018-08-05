@@ -20,6 +20,14 @@ extension UIApplication {
 
 extension UIViewController {
     
+    /// show internet connection error
+    func showConnectionError() {
+        alertOk(title: "No internet connection",
+                message: "Please connect to the internet and try again",
+                cancelButton: "OK",
+                cancelHandler: nil)
+    }
+    
     func alertOk(title: String, message: String, cancelButton: String, cancelHandler: ((UIAlertAction) -> ())?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         

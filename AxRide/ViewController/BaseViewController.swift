@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class BaseViewController: UIViewController {
 
@@ -37,5 +38,36 @@ class BaseViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    /// show loading mast view
+    ///
+    /// - Parameter show: show/hide
+    func showLoadingView(show: Bool = true) {
+        if SVProgressHUD.isVisible() && show {
+            // loading view is already shown
+            return
+        }
+        
+        SVProgressHUD.dismiss()
+        
+        if show {
+            SVProgressHUD.setContainerView(self.view)
+            SVProgressHUD.setDefaultMaskType(.gradient)
+            SVProgressHUD.show()
+        }
+    }
 
+    /// go to main page according to user type
+    func goToMain() {
+        let userCurrent = User.currentUser!
+        
+        if userCurrent.type == UserType.customer {
+            let mainUserVC = MainUserViewController(nibName: "MainUserViewController", bundle: nil)
+            self.navigationController?.setViewControllers([mainUserVC], animated: true)
+        }
+        else {
+            let mainDriverVC = MainDriverViewController(nibName: "MainDriverViewController", bundle: nil)
+            self.navigationController?.setViewControllers([mainDriverVC], animated: true)
+        }
+    }
 }
