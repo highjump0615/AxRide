@@ -14,6 +14,9 @@ class SignupProfileViewController: BaseViewController {
     static let FROM_SIGNUP = 0
     static let FROM_PROFILE = 1
     
+    var email: String?
+    var password: String?
+    
     var type = SignupProfileViewController.FROM_SIGNUP
     
     @IBOutlet weak var mButPhoto: UIButton!

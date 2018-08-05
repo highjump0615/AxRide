@@ -22,11 +22,11 @@ class User : BaseModel {
     // table info
     //
     static let TABLE_NAME = "users"
-    static let FIELD_EMAIL = "email"
+    static let FIELD_EMAIL = "userEmail"
     static let FIELD_FIRSTNAME = "firstName"
     static let FIELD_LASTNAME = "lastName"
     static let FIELD_PHOTO = "photoUrl"
-    static let FIELD_TYPE = "type"
+    static let FIELD_TYPE = "userType"
     static let FIELD_BANNED = "banned"
     static let FIELD_TOKEN = "token"
     

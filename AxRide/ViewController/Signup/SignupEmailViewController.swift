@@ -60,9 +60,77 @@ class SignupEmailViewController: BaseViewController {
     }
     
     @IBAction func onButNext(_ sender: Any) {
-        // go to signup profile page
-        let signupProfileVC = SignupProfileViewController(nibName: "SignupProfileViewController", bundle: nil)
-        self.navigationController?.pushViewController(signupProfileVC, animated: true)
+        
+        var email = mTextEmail.text!
+        var password = mTextPassword.text!
+        var passwordConfirm = mTextRePassword.text!
+        
+        self.view.endEditing(true)
+        
+        // trim white spaces
+        email = email.trimmingCharacters(in: CharacterSet.whitespaces)
+        password = password.trimmingCharacters(in: CharacterSet.whitespaces)
+        passwordConfirm = passwordConfirm.trimmingCharacters(in: CharacterSet.whitespaces)
+        
+        //
+        // check input validity
+        //
+        if email == "" {
+            alertOk(title: "Email Invalid", message: "Please enter your email", cancelButton: "OK", cancelHandler: nil)
+            return
+        }
+        if !email.contains("@") || !Utils.isEmailValid(email: email){
+            alertOk(title: "Email Invalid", message: "Please enter valid email address", cancelButton: "OK", cancelHandler: nil)
+            return
+        }
+        if password == "" {
+            alertOk(title: "Password Invalid",
+                    message: "Please enter your password",
+                    cancelButton: "OK",
+                    cancelHandler: nil)
+            return
+        }
+        if password != passwordConfirm {
+            alertOk(title: "Password Invalid",
+                    message: "Confirm password does not match",
+                    cancelButton: "OK",
+                    cancelHandler: nil)
+            return
+        }
+        
+        // check connection
+        if Constants.reachability.connection == .none {
+            showConnectionError()
+            return
+        }
+        
+        // show loading view
+        showLoadingView()
+        
+        // check if email has been used
+        let database = FirebaseManager.ref()
+        let query = database.child(User.TABLE_NAME)
+        query.queryOrdered(byChild: User.FIELD_EMAIL)
+            .queryEqual(toValue: "\(email)")
+            .observeSingleEvent(of: .value, with: {snapshot in
+                // hide loading view
+                self.showLoadingView(show: false)
+                
+                if snapshot.exists() {
+                    // existing
+                    self.alertOk(title: "Email is already in use",
+                                 message: "Please enter other email address",
+                                 cancelButton: "OK",
+                                 cancelHandler: nil)
+                    return
+                }
+                
+                // go to signup profile page
+                let signupProfileVC = SignupProfileViewController(nibName: "SignupProfileViewController", bundle: nil)
+                signupProfileVC.email = email
+                signupProfileVC.password = password
+                self.navigationController?.pushViewController(signupProfileVC, animated: true)
+            })
     }
 
     /*
