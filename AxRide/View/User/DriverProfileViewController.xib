@@ -63,7 +63,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="gzg-hf-P46">
-                            <rect key="frame" x="14" y="12" width="118.5" height="19.5"/>
+                            <rect key="frame" x="14" y="11.5" width="118.5" height="19.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Wn-uV-B7j">
                                     <rect key="frame" x="0.0" y="0.0" width="23.5" height="19.5"/>

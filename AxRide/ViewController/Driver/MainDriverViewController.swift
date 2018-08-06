@@ -10,7 +10,6 @@ import UIKit
 
 class MainDriverViewController: BaseMapViewController {
     
-    @IBOutlet weak var mButProfile: UIButton!
     @IBOutlet weak var mSwitch: UISwitch!
     @IBOutlet weak var mViewInfo: UIView!
     
@@ -18,7 +17,6 @@ class MainDriverViewController: BaseMapViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        mButProfile.makeRound()
         mViewInfo.makeRound(r: 16)
         mSwitch.transform = CGAffineTransform(scaleX: 0.7, y: 0.7);
         

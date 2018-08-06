@@ -8,9 +8,8 @@
 
 import UIKit
 
-class MainUserViewController: BaseMapViewController {
+class MainUserViewController: BaseHomeViewController {
     
-    @IBOutlet weak var mButProfile: UIButton!
     @IBOutlet weak var mViewSearch: UIView!
     @IBOutlet weak var mViewLocation: UIView!
     @IBOutlet weak var mViewRequest: UIView!
@@ -47,8 +46,7 @@ class MainUserViewController: BaseMapViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        mButProfile.makeRound()
+        // Do any additional setup after loading the view.        
         
         mViewSearch.makeRound(r: 10)
         mViewLocation.makeRound(r: 20)

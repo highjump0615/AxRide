@@ -61,6 +61,20 @@ class SignupProfileViewController: BaseViewController {
         
         // keyboard avoiding
         KeyboardAvoiding.setAvoidingView(self.view, withTriggerView: mTextContact)
+        
+        // fill info
+        if let user = User.currentUser {
+            if let photoUrl = user.photoUrl {
+                mButPhoto.sd_setImage(with: URL(string: photoUrl),
+                                        for: .normal,
+                                        placeholderImage: UIImage(named: "UserDefault"),
+                                        options: .progressiveDownload,
+                                        completed: nil)
+            }
+            
+            mTextName.text = user.firstName
+            mTextLastName.text = user.lastName
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
