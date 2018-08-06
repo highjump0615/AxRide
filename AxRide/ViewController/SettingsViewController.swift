@@ -109,14 +109,20 @@ class SettingsViewController: UITableViewController {
             
         case 7:
             // log out
-            
-            // go to sign in page
-            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
-            self.navigationController?.setViewControllers([signinVC], animated: true)
+            doSignOut()
             
         default:
             break
         }
+    }
+    
+    private func doSignOut() {
+        FirebaseManager.signOut()
+        User.currentUser = nil
+        
+        // go to sign in page
+        let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
+        self.navigationController?.setViewControllers([signinVC], animated: true)
     }
 }
 

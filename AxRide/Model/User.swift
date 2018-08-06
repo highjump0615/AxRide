@@ -13,6 +13,7 @@ enum UserType : String {
     case driver = "driver"
     case customer = "customer"
     case admin = "admin"
+    case notdetermined = "notdetermined"
 }
 
 
@@ -38,10 +39,15 @@ class User : BaseModel {
     var lastName = ""
     var photoUrl: String?
     
-    var type = UserType.customer
+    var type = UserType.notdetermined
     var banned: Bool = false
     
     var token: String?
+    
+    //
+    // excludes
+    //
+    var password = ""
     
     static func readFromDatabase(withId: String, completion: @escaping((User?)->())) {
         let userRef = FirebaseManager.ref().child(TABLE_NAME).child(withId)
@@ -57,6 +63,10 @@ class User : BaseModel {
             
             completion(user)
         })
+    }
+    
+    override func tableName() -> String {
+        return User.TABLE_NAME
     }
     
     init(withId: String) {
@@ -96,5 +106,19 @@ class User : BaseModel {
         if let t = info[User.FIELD_TYPE] {
             self.type = UserType(rawValue: t as! String)!
         }
+    }
+    
+    override func toDictionary() -> [String: Any] {
+        var dict = super.toDictionary()
+        
+        dict[User.FIELD_EMAIL] = self.email
+        dict[User.FIELD_FIRSTNAME] = self.firstName
+        dict[User.FIELD_LASTNAME] = self.lastName
+        dict[User.FIELD_PHOTO] = self.photoUrl
+        dict[User.FIELD_BANNED] = self.banned
+        dict[User.FIELD_TOKEN] = self.token
+        dict[User.FIELD_TYPE] = self.type.rawValue
+        
+        return dict
     }
 }

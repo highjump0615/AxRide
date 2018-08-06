@@ -56,18 +56,30 @@ class BaseViewController: UIViewController {
             SVProgressHUD.show()
         }
     }
+    
+    static func getMainViewController() -> UIViewController? {
+        let userCurrent = User.currentUser!
+        
+        var vc: UIViewController?
+        
+        // go to home page with new navigation
+        if userCurrent.type == UserType.driver {
+            vc = MainDriverViewController(nibName: "MainDriverViewController", bundle: nil)
+        }
+        else if userCurrent.type == UserType.customer {
+            vc = MainUserViewController(nibName: "MainUserViewController", bundle: nil)
+        }
+        else if userCurrent.type == UserType.notdetermined {
+            vc = SignupChooseViewController(nibName: "SignupChooseViewController", bundle: nil)
+        }
+        
+        return vc
+    }
 
     /// go to main page according to user type
     func goToMain() {
-        let userCurrent = User.currentUser!
-        
-        if userCurrent.type == UserType.customer {
-            let mainUserVC = MainUserViewController(nibName: "MainUserViewController", bundle: nil)
-            self.navigationController?.setViewControllers([mainUserVC], animated: true)
-        }
-        else {
-            let mainDriverVC = MainDriverViewController(nibName: "MainDriverViewController", bundle: nil)
-            self.navigationController?.setViewControllers([mainDriverVC], animated: true)
+        if let vc = BaseViewController.getMainViewController() {
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

@@ -47,7 +47,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let nav = UINavigationController()
         
-        goToSigninView(nav: nav)
+        // go to home when logged in
+        let userId = FirebaseManager.mAuth.currentUser?.uid
+        if !Utils.isStringNullOrEmpty(text: userId) {
+            // open splash screen temporately
+            let splashVC = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
+            UIApplication.shared.delegate?.window??.rootViewController = splashVC
+            
+            // check connection
+            if Constants.reachability.connection == .none {
+                self.goToSigninView(nav: nav)
+            }
+            else {
+                // fetch user info
+                User.readFromDatabase(withId: userId!) { (user) in
+                    User.currentUser = user
+                    
+                    if user != nil {
+                        // go to home page
+                        if let homeVC = BaseViewController.getMainViewController() {
+                            nav.setViewControllers([homeVC], animated: true)
+                            UIApplication.shared.delegate?.window??.rootViewController = nav
+                        }                        
+                    }
+                    else {
+                        self.goToSigninView(nav: nav)
+                    }
+                }
+            }
+        }
+        else {
+            goToSigninView(nav: nav)
+        }
         
         return true
     }

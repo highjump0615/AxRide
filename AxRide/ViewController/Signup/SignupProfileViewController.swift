@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import Firebase
 import IHKeyboardAvoiding
+import SDWebImage
 
 class SignupProfileViewController: BaseViewController {
     
@@ -78,9 +80,150 @@ class SignupProfileViewController: BaseViewController {
     }
     
     @IBAction func onButNext(_ sender: Any) {
-        // go to signup profile page
-        let signupChooseVC = SignupChooseViewController(nibName: "SignupChooseViewController", bundle: nil)
-        self.navigationController?.pushViewController(signupChooseVC, animated: true)
+        let _firstName = getFirstName()
+        let _lastName = getLastName()
+        
+        if _firstName.isEmpty {
+            self.alertOk(title: "First Name Invalid",
+                         message: "First name cannot be empty",
+                         cancelButton: "OK",
+                         cancelHandler: nil)
+            return
+        }
+        if !Utils.isNameValid(name: _firstName) {
+            self.alertOk(title: "First Name Invalid",
+                         message: "First name can only be normal charaters",
+                         cancelButton: "OK",
+                         cancelHandler: nil)
+            return
+        }
+        
+        if _lastName.isEmpty {
+            self.alertOk(title: "Last Name Invalid",
+                         message: "Last name cannot be empty",
+                         cancelButton: "OK",
+                         cancelHandler: nil)
+            return
+        }
+        if !Utils.isNameValid(name: _lastName) {
+            self.alertOk(title: "Last Name Invalid",
+                         message: "Last name can only be normal charaters",
+                         cancelButton: "OK",
+                         cancelHandler: nil)
+            return
+        }
+        
+        if User.currentUser == nil {
+            //
+            // sign up new user
+            //
+            
+            // show loading view
+            showLoadingView()
+            
+            FirebaseManager.mAuth.createUser(withEmail: email!, password: password!, completion: { (result, error) in
+                if let error = error {
+                    // hide loading view
+                    self.showLoadingView(show: false)
+                    
+                    self.alertOk(title: "Sign up Failed",
+                                 message: error.localizedDescription,
+                                 cancelButton: "OK",
+                                 cancelHandler: nil)
+                    return
+                }
+                
+                // set user
+                let userNew = User(withId: (result?.user.uid)!)
+                
+                // save user info
+                userNew.email = self.email!
+                User.currentUser = userNew
+                
+                self.uploadImageAndSetupUserInfo()
+            })
+        }
+        else {
+            uploadImageAndSetupUserInfo()
+        }
+    }
+    
+    func uploadImageAndSetupUserInfo() {
+        // upload photo
+        let user = User.currentUser!
+        if avatarLoaded, let image = self.mButPhoto.image(for: .normal) {
+            showLoadingView()
+            
+            let path = "users / " + user.id + ".png"
+            
+            let resized = image.resized(toWidth: 200, toHeight: 200)
+            FirebaseManager.uploadImageTo(path: path, image: resized, completionHandler: { (downloadURL, error) in
+                if let error = error {
+                    self.showLoadingView(show: false)
+                    self.alertOk(title: "Failed Uploading Photo",
+                                 message: error.localizedDescription,
+                                 cancelButton: "OK",
+                                 cancelHandler: nil)
+                    return
+                }
+                
+                if let url = downloadURL {
+                    User.currentUser?.photoUrl = url
+                    
+                    // save image to cache
+                    SDWebImageManager.shared().saveImage(toCache: resized,
+                                                         for: URL(string: url))
+                }
+                
+                self.saveUserInfo()
+            })
+        }
+        else {
+            self.saveUserInfo()
+        }
+    }
+    
+    /// save user data into db
+    ///
+    /// - Parameter imageURL: <#imageURL description#>
+    func saveUserInfo() {
+        let user = User.currentUser
+        
+        // save info
+        user?.firstName = getFirstName()
+        user?.lastName = getLastName()
+        
+        user?.saveToDatabase()
+        
+        // hide loading
+        showLoadingView(show: false)
+        
+        if type == SignupProfileViewController.FROM_PROFILE {
+            // edit profile page
+            self.navigationController?.popViewController(animated: true)
+        }
+        else {
+            // signup profile page
+            // go to signup choose page
+            let signupChooseVC = SignupChooseViewController(nibName: "SignupChooseViewController", bundle: nil)
+            self.navigationController?.pushViewController(signupChooseVC, animated: true)
+        }
+    }
+    
+    /// retrieve first name with white space removed
+    ///
+    /// - Returns: <#return value description#>
+    func getFirstName() -> String {
+        let strText = mTextName.text!
+        return strText.trimmingCharacters(in: .whitespaces)
+    }
+    
+    /// retrieve first name with white space removed
+    ///
+    /// - Returns: <#return value description#>
+    func getLastName() -> String {
+        let strText = mTextLastName.text!
+        return strText.trimmingCharacters(in: .whitespaces)
     }
     
     /*

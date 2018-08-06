@@ -17,18 +17,18 @@ class BaseModel {
     static let FIELD_DATE = "createdAt"
     
     var id = ""
-    var createdAt: Int64
+    var createdAt: Int64 = FirebaseManager.getServerLongTime()
     
-    init() {
-        createdAt = FirebaseManager.getServerLongTime()
+    init() {        
     }
     
     init(snapshot: DataSnapshot) {
         self.id = snapshot.key
         
         let info = snapshot.value! as! [String: Any?]
-        
-        self.createdAt = info[BaseModel.FIELD_DATE] as! Int64
+        if let createdAt = info[BaseModel.FIELD_DATE] {
+            self.createdAt = createdAt as! Int64
+        }
     }
         
     func tableName() -> String {
