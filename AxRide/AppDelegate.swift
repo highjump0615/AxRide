@@ -10,6 +10,10 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import Firebase
+import GoogleSignIn
+import FBSDKCoreKit
+import FBSDKLoginKit
+
 
 
 @UIApplicationMain
@@ -26,6 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // firebase initialization
         FirebaseApp.configure()
+        
+        // google sign-in initialization
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        
+        // facebook initialization
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKSettings.setAppID(Config.facebookId)
         
         //
         // init status bar
@@ -119,6 +130,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        var handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+        if !handled {
+            handled = GIDSignIn.sharedInstance().handle(url,
+                                                        sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                        annotation: [:])
+        }
+        
+        return handled
+    }
 
 }
 

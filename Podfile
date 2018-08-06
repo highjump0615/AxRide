@@ -23,6 +23,10 @@ target 'AxRide' do
   pod 'SDWebImage'
   pod 'SVProgressHUD'
   pod 'ReachabilitySwift'
+  
+  pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn'
+  pod 'EmptyDataSet-Swift', '~> 4.0.5'
 
   target 'AxRideTests' do
     inherit! :search_paths
