@@ -12,7 +12,7 @@ import GoogleMaps
 class BaseMapViewController: BaseViewController {
     
     let locationManager = CLLocationManager()
-    var mLocation: CLLocation?
+    var mCoordinate: CLLocationCoordinate2D?
 
     @IBOutlet weak var mViewMap: GMSMapView!
     
@@ -45,22 +45,22 @@ class BaseMapViewController: BaseViewController {
         mViewMap.settings.myLocationButton = true
         mViewMap.delegate = self
         
-        showMyLocation(location: mViewMap.myLocation)
+        showMyLocation(location: mViewMap.myLocation?.coordinate)
     }
     
-    func showMyLocation(location: CLLocation?) {
-        if mLocation != nil {
+    func showMyLocation(location: CLLocationCoordinate2D?, updateForce: Bool = false) {
+        if mCoordinate != nil && !updateForce {
             // alredy showed my location, return
             return
         }
         
         if let l = location {
-            let camera = GMSCameraPosition.camera(withLatitude: l.coordinate.latitude,
-                                                  longitude: l.coordinate.longitude,
+            let camera = GMSCameraPosition.camera(withLatitude: l.latitude,
+                                                  longitude: l.longitude,
                                                   zoom: 16.0)
             mViewMap.camera = camera
             
-            mLocation = l
+            mCoordinate = l
         }
     }
 
@@ -85,7 +85,7 @@ extension BaseMapViewController: CLLocationManagerDelegate {
         
         print("\(location.coordinate.latitude) \(location.coordinate.longitude)")
         
-        showMyLocation(location: location)
+        showMyLocation(location: location.coordinate)
     }
 }
 

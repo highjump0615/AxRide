@@ -216,6 +216,7 @@ extension UIViewController {
             self.navigationController?.navigationBar.barTintColor = Constants.gColorPurple
         }
     
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.setNavigationBarHidden(!show, animated: animated)
     }
 }

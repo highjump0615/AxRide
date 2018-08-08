@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GooglePlaces
 
 class MainUserViewController: BaseHomeViewController {
     
@@ -46,7 +47,7 @@ class MainUserViewController: BaseHomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.        
+        // Do any additional setup after loading the view.
         
         mViewSearch.makeRound(r: 10)
         mViewLocation.makeRound(r: 20)
@@ -213,5 +214,60 @@ extension MainUserViewController: UITextFieldDelegate {
         return true
     }
     
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == mTextSearch {
+            // go to full screen place autocomplete
+            let autocompleteController = GMSAutocompleteViewController()
+            autocompleteController.delegate = self
+            
+            autocompleteController.navigationController?.navigationBar.barTintColor = UIColor.black
+            autocompleteController.navigationController?.navigationBar.tintColor = UIColor.black
+            
+            // nav bar tint color
+            present(autocompleteController, animated: true, completion: nil)
+            
+            return false
+        }
+        
+        return true
+    }
 }
 
+extension MainUserViewController: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        
+        // update place name
+        mTextSearch.text = place.name
+        
+        // update map
+        showMyLocation(location: place.coordinate, updateForce: true)
+        
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress)")
+        print("Place attributions: \(place.attributions)")
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+}
