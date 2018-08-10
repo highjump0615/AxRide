@@ -58,7 +58,7 @@ class BaseMapViewController: BaseViewController {
             let camera = GMSCameraPosition.camera(withLatitude: l.latitude,
                                                   longitude: l.longitude,
                                                   zoom: 16.0)
-            mViewMap.camera = camera
+            mViewMap.animate(to: camera)
             
             mCoordinate = l
         }

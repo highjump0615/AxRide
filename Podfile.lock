@@ -56,6 +56,9 @@ PODS:
   - GoogleMaps/Base (2.7.0)
   - GoogleMaps/Maps (2.7.0):
     - GoogleMaps/Base
+  - GooglePlacePicker (2.7.0):
+    - GoogleMaps (= 2.7.0)
+    - GooglePlaces (= 2.7.0)
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
   - GoogleSignIn (4.1.2):
@@ -107,6 +110,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - GoogleMaps
+  - GooglePlacePicker
   - GooglePlaces
   - GoogleSignIn
   - IHKeyboardAvoiding
@@ -131,6 +135,7 @@ SPEC REPOS:
     - FirebaseMessaging
     - FirebaseStorage
     - GoogleMaps
+    - GooglePlacePicker
     - GooglePlaces
     - GoogleSignIn
     - GoogleToolboxForMac
@@ -160,6 +165,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 6894b8fe0a0cf26c3b13dad729f1131654ae0bdb
   FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+  GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
@@ -174,6 +180,6 @@ SPEC CHECKSUMS:
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: d43e68eac616e0f56b2cafa804dd9a32e20c7ad1
+PODFILE CHECKSUM: 63079a2d84a1a4dfa639ad3a8ad4223cfb9ab7d8
 
 COCOAPODS: 1.5.3

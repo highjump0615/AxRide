@@ -8,6 +8,8 @@
 
 import UIKit
 import GooglePlaces
+import GoogleMaps
+import GooglePlacePicker
 
 class MainUserViewController: BaseHomeViewController {
     
@@ -34,6 +36,14 @@ class MainUserViewController: BaseHomeViewController {
     static let RIDE_TYPE_SHARE = 2
     
     var mnRideType = RIDE_TYPE_NORMAL
+    
+    var placePickerFrom: GMSPlacePickerViewController?
+    var placePickerTo: GMSPlacePickerViewController?
+    
+    var mCoordinateFrom: CLLocationCoordinate2D?
+    var mCoordinateTo: CLLocationCoordinate2D?
+    var mMarkerFrom: GMSMarker?
+    var mMarkerTo: GMSMarker?
     
     private var mOrder: Order?
     var order: Order? {
@@ -73,6 +83,23 @@ class MainUserViewController: BaseHomeViewController {
         
         // empty title
         self.navigationItem.title = " "
+        
+        // clear buttons
+        mTextLocationFrom.clearButtonMode = .whileEditing
+        mTextLocationTo.clearButtonMode = .whileEditing
+        
+        // place pickers
+        let config = GMSPlacePickerConfig(viewport: nil)
+        placePickerFrom = GMSPlacePickerViewController(config: config)
+        placePickerFrom?.delegate = self
+        placePickerTo = GMSPlacePickerViewController(config: config)
+        placePickerTo?.delegate = self
+        
+        // markers
+        mMarkerFrom = GMSMarker()
+        mMarkerFrom?.icon = UIImage(named: "MainLocationFrom")
+        mMarkerTo = GMSMarker()
+        mMarkerTo?.icon = UIImage(named: "MainLocationTo")
     }
 
     override func didReceiveMemoryWarning() {
@@ -204,7 +231,60 @@ class MainUserViewController: BaseHomeViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    override func showMyLocation(location: CLLocationCoordinate2D?, updateForce: Bool = false) {
+        super.showMyLocation(location: location, updateForce: updateForce)
+        
+        if location == nil {
+            return
+        }
+        
+        if !updateForce {
+            // fill address in from
+            let geocoder = GMSGeocoder()
+            
+            geocoder.reverseGeocodeCoordinate(location!) { response , error in
+                if let address = response?.firstResult() {
+                    let lines = address.lines! as [String]
+                    let currentAddress = lines.joined(separator: " ")
+                    
+                    // fill address in from location
+                    self.mTextLocationFrom.text = currentAddress
+                }
+            }
+            
+            updateFromLocation(location: location!)
+        }
+    }
     
+    func updateFromLocation(location: CLLocationCoordinate2D) {
+        mCoordinateFrom = location
+        mMarkerFrom?.position = location
+        mMarkerFrom?.map = mViewMap
+    }
+    
+    func updateToLocation(location: CLLocationCoordinate2D) {
+        mCoordinateTo = location
+        mMarkerTo?.position = location
+        mMarkerTo?.map = mViewMap
+    }
+    
+    /// update map camera based on from & to locations
+    ///
+    /// - Parameter location: <#location description#>
+    func updateMapCamera(location: CLLocationCoordinate2D) {
+        if mCoordinateFrom != nil && mCoordinateTo != nil {
+            var bounds = GMSCoordinateBounds()
+            bounds = bounds.includingCoordinate(mCoordinateFrom!)
+            bounds = bounds.includingCoordinate(mCoordinateTo!)
+
+            let update = GMSCameraUpdate.fit(bounds, withPadding: 100)
+            mViewMap.animate(with: update)
+        }
+        else {
+            showMyLocation(location: location, updateForce: true)
+        }
+    }
 }
 
 extension MainUserViewController: UITextFieldDelegate {
@@ -225,11 +305,15 @@ extension MainUserViewController: UITextFieldDelegate {
             
             // nav bar tint color
             present(autocompleteController, animated: true, completion: nil)
-            
-            return false
+        }
+        else if textField == mTextLocationFrom {
+            present(placePickerFrom!, animated: true, completion: nil)
+        }
+        else if textField == mTextLocationTo {
+            present(placePickerTo!, animated: true, completion: nil)
         }
         
-        return true
+        return false
     }
 }
 
@@ -268,6 +352,40 @@ extension MainUserViewController: GMSAutocompleteViewControllerDelegate {
     
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+}
+
+extension MainUserViewController: GMSPlacePickerViewControllerDelegate {
+    func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
+        // Dismiss the place picker, as it cannot dismiss itself.
+        viewController.dismiss(animated: true, completion: nil)
+        
+        print("Place name \(place.name)")
+        print("Place address \(place.formattedAddress)")
+        print("Place attributions \(place.attributions)")
+        
+        if viewController == placePickerFrom {
+            self.mTextLocationFrom.text = place.formattedAddress
+            updateFromLocation(location: place.coordinate)
+            
+            // update camera
+            updateMapCamera(location: mCoordinateFrom!)
+            
+        }
+        else if viewController == placePickerTo {
+            self.mTextLocationTo.text = place.formattedAddress
+            updateToLocation(location: place.coordinate)
+            
+            // update camera
+            updateMapCamera(location: mCoordinateTo!)
+        }
+    }
+    
+    func placePickerDidCancel(_ viewController: GMSPlacePickerViewController) {
+        // Dismiss the place picker, as it cannot dismiss itself.
+        viewController.dismiss(animated: true, completion: nil)
+        
+        print("No place selected")
     }
     
 }
