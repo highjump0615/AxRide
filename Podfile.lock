@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.7.2)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -99,8 +100,10 @@ PODS:
     - SDWebImage/Core (= 4.4.1)
   - SDWebImage/Core (4.4.1)
   - SVProgressHUD (2.2.5)
+  - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
+  - Alamofire
   - Cosmos (~> 16.0)
   - EmptyDataSet-Swift (~> 4.0.5)
   - FBSDKLoginKit
@@ -118,9 +121,11 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SDWebImage
   - SVProgressHUD
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Bolts
     - Cosmos
     - EmptyDataSet-Swift
@@ -149,8 +154,10 @@ SPEC REPOS:
     - ReachabilitySwift
     - SDWebImage
     - SVProgressHUD
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
   EmptyDataSet-Swift: a25810f50c3adfaa3840aa33ae8b5ba12ac29279
@@ -179,7 +186,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 63079a2d84a1a4dfa639ad3a8ad4223cfb9ab7d8
+PODFILE CHECKSUM: b0526488962bc3836c60332e8b322433a9f7cab3
 
 COCOAPODS: 1.5.3

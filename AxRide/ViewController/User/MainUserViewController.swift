@@ -30,6 +30,7 @@ class MainUserViewController: BaseHomeViewController {
     @IBOutlet weak var mButCancel: UIButton!
     @IBOutlet weak var mButDriver: UIButton!
     
+    @IBOutlet weak var mLblPrice: UILabel!
     
     static let RIDE_TYPE_NORMAL = 0
     static let RIDE_TYPE_SUV = 1
@@ -44,6 +45,17 @@ class MainUserViewController: BaseHomeViewController {
     var mCoordinateTo: CLLocationCoordinate2D?
     var mMarkerFrom: GMSMarker?
     var mMarkerTo: GMSMarker?
+    
+    private var mdPrice: Double = 0
+    var price: Double {
+        get {
+            return mdPrice
+        }
+        set {
+            mdPrice = newValue
+            mLblPrice.text = (mdPrice > 0) ? "\(mdPrice.format(f: ".1"))$" : ""
+        }
+    }
     
     private var mOrder: Order?
     var order: Order? {
@@ -100,6 +112,9 @@ class MainUserViewController: BaseHomeViewController {
         mMarkerFrom?.icon = UIImage(named: "MainLocationFrom")
         mMarkerTo = GMSMarker()
         mMarkerTo?.icon = UIImage(named: "MainLocationTo")
+        
+        // price
+        price = 0
     }
 
     override func didReceiveMemoryWarning() {
@@ -280,6 +295,33 @@ class MainUserViewController: BaseHomeViewController {
 
             let update = GMSCameraUpdate.fit(bounds, withPadding: 100)
             mViewMap.animate(with: update)
+            
+            // update price
+            ApiManager.shared().googleMapGetDistance(pointFrom: mCoordinateFrom!, pointTo: mCoordinateTo!, completion: {(data, error) in
+                if let element = data {
+                    //
+                    // calculate taxi fee
+                    //
+                    
+                    let serviceFee = 2.0
+                    let baseFee = 2.0
+                    let perMile = 1.8
+                    let perMinute = 0.6
+                    
+                    let distance = element["distance"]["value"].int
+                    let duration = element["duration"]["value"].int
+                    
+                    var dFee = baseFee
+                    if let dist = distance {
+                        dFee += perMile * (Double(dist) / 1609.34)
+                    }
+                    if let dur = duration {
+                        dFee += perMinute * (Double(dur) / 1609.34)
+                    }
+                    
+                    self.price = dFee * Config.feeRate
+                }
+            })
         }
         else {
             showMyLocation(location: location, updateForce: true)

@@ -44,6 +44,7 @@
 		C3C81D6F20FEB74C001F2C08 /* ProfileCardListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D6E20FEB74C001F2C08 /* ProfileCardListHeader.swift */; };
 		C3C8562A2118DAEA003ACCDB /* BaseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C856292118DAEA003ACCDB /* BaseHomeViewController.swift */; };
 		C3DA44A12113BE4E00980E1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3DA44A02113BE4D00980E1A /* GoogleService-Info.plist */; };
+		C3DBC35A211E333100F42A2B /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBC359211E333100F42A2B /* ApiManager.swift */; };
 		C3E0EA2A20FD3EFE00F41DB7 /* BaseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */; };
 		C3EE8C7E20FC2F92000D7CD5 /* SignupChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */; };
 		C3EE8C8020FC39A8000D7CD5 /* TermViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */; };
@@ -147,6 +148,7 @@
 		C3C81D6E20FEB74C001F2C08 /* ProfileCardListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardListHeader.swift; sourceTree = "<group>"; };
 		C3C856292118DAEA003ACCDB /* BaseHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHomeViewController.swift; sourceTree = "<group>"; };
 		C3DA44A02113BE4D00980E1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C3DBC359211E333100F42A2B /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewController.swift; sourceTree = "<group>"; };
 		C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupChooseViewController.swift; sourceTree = "<group>"; };
 		C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermViewController.xib; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				C3C81D4B20FDE6F6001F2C08 /* Globals.swift */,
 				C3C81D5520FE6DA3001F2C08 /* Utils.swift */,
 				C308C0E921161D7500D2BC45 /* FirebaseManager.swift */,
+				C3DBC359211E333100F42A2B /* ApiManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AxRide/Pods-AxRide-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/EmptyDataSet-Swift/EmptyDataSet_Swift.framework",
@@ -729,11 +733,13 @@
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EmptyDataSet_Swift.framework",
@@ -748,6 +754,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -809,6 +816,7 @@
 				C37C645E20F8B4C100ECC1FA /* AppDelegate.swift in Sources */,
 				C3C81D6F20FEB74C001F2C08 /* ProfileCardListHeader.swift in Sources */,
 				C38E718E20FFC1C0003C139F /* ProfileLocationListFooter.swift in Sources */,
+				C3DBC35A211E333100F42A2B /* ApiManager.swift in Sources */,
 				C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */,
 				C3C81D6D20FEB6F7001F2C08 /* BaseCustomView.swift in Sources */,
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,

@@ -19,6 +19,7 @@
                 <outlet property="mImgViewRideNormal" destination="snh-ya-bIu" id="IWm-97-TAl"/>
                 <outlet property="mImgViewRideShare" destination="EbR-or-gfV" id="6cy-oR-UIj"/>
                 <outlet property="mImgViewRideSuv" destination="QKK-Wh-Ls1" id="Rod-3z-lHD"/>
+                <outlet property="mLblPrice" destination="STU-UQ-Zer" id="uQg-ZC-sr8"/>
                 <outlet property="mTextLocationFrom" destination="gZF-Td-X4G" id="KK9-Cs-uXe"/>
                 <outlet property="mTextLocationTo" destination="gZx-2Q-zgV" id="6GM-gZ-Wl0"/>
                 <outlet property="mTextSearch" destination="0IZ-Tw-XXd" id="cXz-mV-fzc"/>
@@ -317,22 +318,19 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PBn-GB-wqU">
                     <rect key="frame" x="0.0" y="611" width="375" height="56"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REQUEST A RIDE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnd-yN-ctH">
-                            <rect key="frame" x="115.5" y="17.5" width="144" height="21.5"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7j0-DX-Tj4">
-                            <rect key="frame" x="319" y="0.0" width="56" height="56"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="7j0-DX-Tj4" secondAttribute="height" id="8mK-cg-hKp"/>
-                            </constraints>
-                            <state key="normal" image="ButMainGo"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7j0-DX-Tj4">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                            <state key="normal" title="REQUEST A RIDE">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
                             <connections>
-                                <action selector="onButGo:" destination="-1" eventType="touchUpInside" id="g2U-Qf-gEk"/>
+                                <action selector="onButGo:" destination="-1" eventType="touchUpInside" id="zaL-rn-VL3"/>
                             </connections>
                         </button>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButMainGo" translatesAutoresizingMaskIntoConstraints="NO" id="KWE-jY-JLM">
+                            <rect key="frame" x="335" y="17" width="22" height="22"/>
+                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="85$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STU-UQ-Zer">
                             <rect key="frame" x="20" y="18.5" width="31.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -342,14 +340,15 @@
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.25882352941176467" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="hnd-yN-ctH" firstAttribute="centerY" secondItem="PBn-GB-wqU" secondAttribute="centerY" id="06A-rP-gCD"/>
                         <constraint firstAttribute="trailing" secondItem="7j0-DX-Tj4" secondAttribute="trailing" id="E24-dc-Hir"/>
+                        <constraint firstItem="STU-UQ-Zer" firstAttribute="centerY" secondItem="PBn-GB-wqU" secondAttribute="centerY" id="FBi-tt-sDr"/>
+                        <constraint firstItem="KWE-jY-JLM" firstAttribute="centerY" secondItem="PBn-GB-wqU" secondAttribute="centerY" id="IG5-3A-lp4"/>
                         <constraint firstItem="7j0-DX-Tj4" firstAttribute="top" secondItem="PBn-GB-wqU" secondAttribute="top" id="K5O-x2-NyZ"/>
                         <constraint firstAttribute="bottom" secondItem="7j0-DX-Tj4" secondAttribute="bottom" id="MFE-Df-P8v"/>
                         <constraint firstAttribute="height" constant="56" id="Mhb-lw-dpN"/>
-                        <constraint firstItem="STU-UQ-Zer" firstAttribute="centerY" secondItem="hnd-yN-ctH" secondAttribute="centerY" id="Vwx-Hk-0o6"/>
+                        <constraint firstAttribute="trailing" secondItem="KWE-jY-JLM" secondAttribute="trailing" constant="18" id="T6i-c0-zs8"/>
+                        <constraint firstItem="7j0-DX-Tj4" firstAttribute="leading" secondItem="PBn-GB-wqU" secondAttribute="leading" id="Zl4-06-adb"/>
                         <constraint firstItem="STU-UQ-Zer" firstAttribute="leading" secondItem="PBn-GB-wqU" secondAttribute="leading" constant="20" id="ivK-UW-bhY"/>
-                        <constraint firstItem="hnd-yN-ctH" firstAttribute="centerX" secondItem="PBn-GB-wqU" secondAttribute="centerX" id="zlz-1G-z9r"/>
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqS-6N-SCc">

@@ -28,6 +28,9 @@ target 'AxRide' do
   pod 'FBSDKLoginKit'
   pod 'GoogleSignIn'
   pod 'EmptyDataSet-Swift', '~> 4.0.5'
+  
+  pod 'Alamofire'
+  pod 'SwiftyJSON', '~> 4.0'
 
   target 'AxRideTests' do
     inherit! :search_paths
