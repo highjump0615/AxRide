@@ -27,6 +27,7 @@ class User : BaseModel {
     static let FIELD_FIRSTNAME = "firstName"
     static let FIELD_LASTNAME = "lastName"
     static let FIELD_PHOTO = "photoUrl"
+    static let FIELD_LOCATION = "location"
     static let FIELD_TYPE = "userType"
     static let FIELD_BANNED = "banned"
     static let FIELD_TOKEN = "token"
@@ -38,6 +39,7 @@ class User : BaseModel {
     var firstName = ""
     var lastName = ""
     var photoUrl: String?
+    var location:String?
     
     var type = UserType.notdetermined
     var banned: Bool = false
@@ -95,6 +97,7 @@ class User : BaseModel {
         }
         
         self.photoUrl = info[User.FIELD_PHOTO] as? String
+        self.location = info[User.FIELD_LOCATION] as? String
         self.token = info[User.FIELD_TOKEN] as? String
         
         // banned
@@ -115,10 +118,15 @@ class User : BaseModel {
         dict[User.FIELD_FIRSTNAME] = self.firstName
         dict[User.FIELD_LASTNAME] = self.lastName
         dict[User.FIELD_PHOTO] = self.photoUrl
+        dict[User.FIELD_LOCATION] = self.location
         dict[User.FIELD_BANNED] = self.banned
         dict[User.FIELD_TOKEN] = self.token
         dict[User.FIELD_TYPE] = self.type.rawValue
         
         return dict
+    }
+    
+    func userFullName() -> String {
+        return "\(firstName) \(lastName)"
     }
 }

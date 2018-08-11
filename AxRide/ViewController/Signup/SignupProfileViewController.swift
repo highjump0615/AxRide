@@ -74,6 +74,7 @@ class SignupProfileViewController: BaseViewController {
             
             mTextName.text = user.firstName
             mTextLastName.text = user.lastName
+            mTextLocation.text = user.location
         }
     }
     
@@ -206,6 +207,7 @@ class SignupProfileViewController: BaseViewController {
         // save info
         user?.firstName = getFirstName()
         user?.lastName = getLastName()
+        user?.location = mTextLocation.text!
         
         user?.saveToDatabase()
         
@@ -281,7 +283,6 @@ extension SignupProfileViewController: UITextFieldDelegate {
         }
         else {
             textField.resignFirstResponder()
-            onButNext(textField)
         }
         
         return true

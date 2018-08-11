@@ -48,6 +48,9 @@ class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.title = "Profile"
+        
+        // reload
+        mTableView.reloadData()
     }
 
     /// edit profile
@@ -102,6 +105,7 @@ extension ProfileViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             // user info
             let cellUser = tableView.dequeueReusableCell(withIdentifier: CELLID_USER) as! ProfileUserCell
+            cellUser.fillContent(user: User.currentUser)
             cellUser.updateListType(type: mnListType)
             
             // buttons

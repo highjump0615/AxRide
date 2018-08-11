@@ -16,6 +16,8 @@ class ProfileUserCell: UITableViewCell {
     @IBOutlet weak var mButPayment: UIButton!
     @IBOutlet weak var mButLocation: UIButton!
     
+    @IBOutlet weak var mViewLocation: UIStackView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -35,6 +37,28 @@ class ProfileUserCell: UITableViewCell {
     func initButtonColors() {
         mButPayment.setBackgroundColor(Constants.gColorSemiPurple, for: .normal)
         mButLocation.setBackgroundColor(Constants.gColorSemiPurple, for: .normal)
+    }
+    
+    func fillContent(user: User?) {
+        // fill info
+        if let u = user {
+            if let photoUrl = u.photoUrl {
+                mImgViewUser.sd_setImage(with: URL(string: photoUrl),
+                                         placeholderImage: UIImage(named: "UserDefault"),
+                                         options: .progressiveDownload,
+                                         completed: nil)
+            }
+            
+            mLblName.text = u.userFullName()
+            
+            if let address = u.location {
+                mViewLocation.isHidden = false
+                mLblAddress.text = address
+            }
+            else {
+                mViewLocation.isHidden = true
+            }            
+        }
     }
     
     func updateListType(type: Int) {

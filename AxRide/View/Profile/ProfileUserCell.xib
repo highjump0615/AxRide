@@ -91,6 +91,7 @@
                 <outlet property="mImgViewUser" destination="Ve2-xD-Tol" id="tzU-tH-oJN"/>
                 <outlet property="mLblAddress" destination="ZYj-jI-5hl" id="z2m-yE-bf2"/>
                 <outlet property="mLblName" destination="8pl-eS-zi2" id="Oeh-2Q-NPh"/>
+                <outlet property="mViewLocation" destination="cgQ-LD-vwM" id="Wff-DP-4m8"/>
             </connections>
             <point key="canvasLocation" x="24.5" y="-146"/>
         </view>

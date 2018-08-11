@@ -113,7 +113,7 @@
                             <rect key="frame" x="16" y="0.0" width="325" height="38"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="5Yh-Zj-g94"/>
                             </connections>
