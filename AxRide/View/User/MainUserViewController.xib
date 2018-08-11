@@ -15,6 +15,7 @@
             <connections>
                 <outlet property="mButCancel" destination="fIq-6x-5ER" id="kgw-Rg-Elf"/>
                 <outlet property="mButDriver" destination="i1K-kq-yab" id="zd1-hs-oqg"/>
+                <outlet property="mButGo" destination="7j0-DX-Tj4" id="IVW-MF-w65"/>
                 <outlet property="mButProfile" destination="7bR-fb-vfQ" id="MiV-Hb-GIw"/>
                 <outlet property="mImgViewRideNormal" destination="snh-ya-bIu" id="IWm-97-TAl"/>
                 <outlet property="mImgViewRideShare" destination="EbR-or-gfV" id="6cy-oR-UIj"/>
@@ -129,7 +130,7 @@
                                 <outlet property="delegate" destination="-1" id="VoF-Ac-961"/>
                             </connections>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxg-cm-dGk">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxg-cm-dGk">
                             <rect key="frame" x="266" y="13" width="24" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="4DK-V7-c5B"/>
@@ -163,7 +164,7 @@
                                 <outlet property="delegate" destination="-1" id="Vh5-dk-9QO"/>
                             </connections>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I27-ZK-kEj">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I27-ZK-kEj">
                             <rect key="frame" x="266" y="54" width="24" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Anz-m7-d5G"/>
@@ -318,7 +319,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PBn-GB-wqU">
                     <rect key="frame" x="0.0" y="611" width="375" height="56"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7j0-DX-Tj4">
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7j0-DX-Tj4">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                             <state key="normal" title="REQUEST A RIDE">

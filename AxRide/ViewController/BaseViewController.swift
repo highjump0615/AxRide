@@ -42,7 +42,7 @@ class BaseViewController: UIViewController {
     /// show loading mast view
     ///
     /// - Parameter show: show/hide
-    func showLoadingView(show: Bool = true) {
+    func showLoadingView(show: Bool = true, desc: String? = nil) {
         if SVProgressHUD.isVisible() && show {
             // loading view is already shown
             return
@@ -53,7 +53,8 @@ class BaseViewController: UIViewController {
         if show {
             SVProgressHUD.setContainerView(self.view)
             SVProgressHUD.setDefaultMaskType(.gradient)
-            SVProgressHUD.show()
+            
+            SVProgressHUD.show(withStatus: desc)
         }
     }
     

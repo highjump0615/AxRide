@@ -30,6 +30,8 @@ class MainUserViewController: BaseHomeViewController {
     @IBOutlet weak var mButCancel: UIButton!
     @IBOutlet weak var mButDriver: UIButton!
     
+    @IBOutlet weak var mButGo: UIButton!
+    
     @IBOutlet weak var mLblPrice: UILabel!
     
     static let RIDE_TYPE_NORMAL = 0
@@ -54,6 +56,8 @@ class MainUserViewController: BaseHomeViewController {
         set {
             mdPrice = newValue
             mLblPrice.text = (mdPrice > 0) ? "\(mdPrice.format(f: ".1"))$" : ""
+   
+            mButGo.makeEnable(enable: mdPrice > 0)
         }
     }
     
@@ -194,20 +198,32 @@ class MainUserViewController: BaseHomeViewController {
     ///
     /// - Parameter sender: <#sender description#>
     @IBAction func onButLocationExchange(_ sender: Any) {
+        // exchange address
         let strAddrFrom = mTextLocationFrom.text
         mTextLocationFrom.text = mTextLocationTo.text
         mTextLocationTo.text = strAddrFrom
+        
+        // exchange position
+        let coordTemp = mCoordinateFrom
+        updateFromLocation(location: mCoordinateTo)
+        updateToLocation(location: coordTemp)
+        
+        // update map
+        updateMapCamera(location: nil)
     }
     
     @IBAction func onButGo(_ sender: Any) {
-        // go to profile page
-        let foundVC = FoundDriverViewController(nibName: "FoundDriverViewController", bundle: nil)
-        foundVC.homeVC = self
+        // show loading
+        showLoadingView(show: true, desc: "Sending request to the drivers near you...")
         
-        let nav = UINavigationController()
-        nav.setViewControllers([foundVC], animated: true)
-        
-        present(nav, animated: true, completion: nil)
+//        // go to profile page
+//        let foundVC = FoundDriverViewController(nibName: "FoundDriverViewController", bundle: nil)
+//        foundVC.homeVC = self
+//
+//        let nav = UINavigationController()
+//        nav.setViewControllers([foundVC], animated: true)
+//
+//        present(nav, animated: true, completion: nil)
     }
     
     func updateOrder() {
@@ -272,22 +288,34 @@ class MainUserViewController: BaseHomeViewController {
         }
     }
     
-    func updateFromLocation(location: CLLocationCoordinate2D) {
+    func updateFromLocation(location: CLLocationCoordinate2D?) {
         mCoordinateFrom = location
-        mMarkerFrom?.position = location
-        mMarkerFrom?.map = mViewMap
+        
+        if let l = location {
+            mMarkerFrom?.position = l
+            mMarkerFrom?.map = mViewMap
+        }
+        else {
+            mMarkerFrom?.map = nil
+        }
     }
     
-    func updateToLocation(location: CLLocationCoordinate2D) {
+    func updateToLocation(location: CLLocationCoordinate2D?) {
         mCoordinateTo = location
-        mMarkerTo?.position = location
-        mMarkerTo?.map = mViewMap
+        
+        if let l = location {
+            mMarkerTo?.position = l
+            mMarkerTo?.map = mViewMap
+        }
+        else {
+            mMarkerTo?.map = nil
+        }
     }
     
     /// update map camera based on from & to locations
     ///
     /// - Parameter location: <#location description#>
-    func updateMapCamera(location: CLLocationCoordinate2D) {
+    func updateMapCamera(location: CLLocationCoordinate2D?) {
         if mCoordinateFrom != nil && mCoordinateTo != nil {
             var bounds = GMSCoordinateBounds()
             bounds = bounds.includingCoordinate(mCoordinateFrom!)
