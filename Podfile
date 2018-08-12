@@ -31,7 +31,7 @@ target 'AxRide' do
   
   pod 'Alamofire'
   pod 'SwiftyJSON', '~> 4.0'
-  pod 'UICircularProgressRing'
+  pod 'UICircularProgressRing', '3.0.0'
 
   target 'AxRideTests' do
     inherit! :search_paths

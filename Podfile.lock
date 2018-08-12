@@ -101,7 +101,7 @@ PODS:
   - SDWebImage/Core (4.4.1)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.1.0)
-  - UICircularProgressRing (2.2.0)
+  - UICircularProgressRing (3.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -123,7 +123,7 @@ DEPENDENCIES:
   - SDWebImage
   - SVProgressHUD
   - SwiftyJSON (~> 4.0)
-  - UICircularProgressRing
+  - UICircularProgressRing (= 3.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -190,8 +190,8 @@ SPEC CHECKSUMS:
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
-  UICircularProgressRing: d7fb0551e553716053514622648ab12a2254496e
+  UICircularProgressRing: 3b472692ffca84060fd444ea5c0b387161067c54
 
-PODFILE CHECKSUM: 04b23bce9a3e5e4446a820a07a53a8a482b4d12e
+PODFILE CHECKSUM: 0a5037bcd3f9a2719049f38dddbe458403439fcf
 
 COCOAPODS: 1.5.3

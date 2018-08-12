@@ -26,6 +26,8 @@
 		C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */; };
 		C38E719620FFDB24003C139F /* DriverProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C38E719520FFDB24003C139F /* DriverProfileViewController.xib */; };
 		C38E719820FFDB73003C139F /* DriverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E719720FFDB73003C139F /* DriverProfileViewController.swift */; };
+		C3C5DA93211F7615002F934C /* UserWaitPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C5DA92211F7615002F934C /* UserWaitPopup.xib */; };
+		C3C5DA95211F7E8B002F934C /* UserWaitPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5DA94211F7E8B002F934C /* UserWaitPopup.swift */; };
 		C3C81D4C20FDE6F6001F2C08 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D4B20FDE6F6001F2C08 /* Globals.swift */; };
 		C3C81D4E20FDE9BE001F2C08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D4D20FDE9BE001F2C08 /* User.swift */; };
 		C3C81D5220FDF4B0001F2C08 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C81D5120FDF4B0001F2C08 /* Settings.storyboard */; };
@@ -130,6 +132,8 @@
 		C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundDriverViewController.swift; sourceTree = "<group>"; };
 		C38E719520FFDB24003C139F /* DriverProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverProfileViewController.xib; sourceTree = "<group>"; };
 		C38E719720FFDB73003C139F /* DriverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverProfileViewController.swift; sourceTree = "<group>"; };
+		C3C5DA92211F7615002F934C /* UserWaitPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserWaitPopup.xib; sourceTree = "<group>"; };
+		C3C5DA94211F7E8B002F934C /* UserWaitPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWaitPopup.swift; sourceTree = "<group>"; };
 		C3C81D4B20FDE6F6001F2C08 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C3C81D4D20FDE9BE001F2C08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C3C81D5120FDF4B0001F2C08 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -393,6 +397,7 @@
 				C3EE8C8520FC44E7000D7CD5 /* MainUserViewController.xib */,
 				C38E719120FFCB15003C139F /* FoundDriverViewController.xib */,
 				C38E719520FFDB24003C139F /* DriverProfileViewController.xib */,
+				C3C5DA92211F7615002F934C /* UserWaitPopup.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				C3EE8C8720FCA38B000D7CD5 /* MainUserViewController.swift */,
 				C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */,
 				C38E719720FFDB73003C139F /* DriverProfileViewController.swift */,
+				C3C5DA94211F7E8B002F934C /* UserWaitPopup.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -637,6 +643,7 @@
 				C3FC110920FB023900DAA392 /* SigninViewController.xib in Resources */,
 				C3C81D5820FE7061001F2C08 /* AboutViewController.xib in Resources */,
 				C3DA44A12113BE4E00980E1A /* GoogleService-Info.plist in Resources */,
+				C3C5DA93211F7615002F934C /* UserWaitPopup.xib in Resources */,
 				C3FC111D20FC0F1C00DAA392 /* SignupChooseViewController.xib in Resources */,
 				C38E719620FFDB24003C139F /* DriverProfileViewController.xib in Resources */,
 				C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */,
@@ -824,6 +831,7 @@
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,
 				C3FC111720FBE69200DAA392 /* SignupEmailViewController.swift in Sources */,
 				C3FBDAA62100430C007143BF /* Message.swift in Sources */,
+				C3C5DA95211F7E8B002F934C /* UserWaitPopup.swift in Sources */,
 				C3C81D4E20FDE9BE001F2C08 /* User.swift in Sources */,
 				C3FBDAB021007BC7007143BF /* MainDriverViewController.swift in Sources */,
 				C308C0E821161A7E00D2BC45 /* BaseModel.swift in Sources */,

@@ -48,6 +48,8 @@ class MainUserViewController: BaseHomeViewController {
     var mMarkerFrom: GMSMarker?
     var mMarkerTo: GMSMarker?
     
+    var mViewWaiting: UserWaitPopup?
+    
     private var mdPrice: Double = 0
     var price: Double {
         get {
@@ -119,6 +121,10 @@ class MainUserViewController: BaseHomeViewController {
         
         // price
         price = 0
+        
+        // init waiting popup
+        mViewWaiting = UserWaitPopup.getView() as? UserWaitPopup
+        self.view.addSubview(mViewWaiting!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -213,8 +219,12 @@ class MainUserViewController: BaseHomeViewController {
     }
     
     @IBAction func onButGo(_ sender: Any) {
+        //
         // show loading
-        showLoadingView(show: true, desc: "Sending request to the drivers near you...")
+        //
+        mViewWaiting?.frame = self.view.bounds
+        mViewWaiting?.showView(bShow: true, animated: true)
+        mViewWaiting?.startTimer()
         
 //        // go to profile page
 //        let foundVC = FoundDriverViewController(nibName: "FoundDriverViewController", bundle: nil)
