@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainDriverViewController: BaseMapViewController {
+class MainDriverViewController: BaseHomeViewController {
     
     @IBOutlet weak var mSwitch: UISwitch!
     @IBOutlet weak var mViewInfo: UIView!

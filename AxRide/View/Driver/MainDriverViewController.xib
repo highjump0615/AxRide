@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainDriverViewController" customModule="AxRide" customModuleProvider="target">
             <connections>
-                <outlet property="mButProfile" destination="lMu-o9-WH6" id="7Zb-mU-WtN"/>
+                <outlet property="mButProfile" destination="lMu-o9-WH6" id="oId-tL-kAK"/>
                 <outlet property="mSwitch" destination="BNk-5Q-V2t" id="qWE-2q-ZKo"/>
                 <outlet property="mViewInfo" destination="0bf-Qc-jVj" id="YCt-Pa-Gan"/>
                 <outlet property="mViewMap" destination="AUK-nF-HXm" id="RCn-Dn-uOr"/>
@@ -121,8 +121,8 @@
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainDriverStar" translatesAutoresizingMaskIntoConstraints="NO" id="2Cb-Gk-LkP">
                                             <rect key="frame" x="49" y="14.5" width="17" height="17"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efu-7G-Sg9">
-                                            <rect key="frame" x="41" y="38.5" width="33" height="19.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efu-7G-Sg9">
+                                            <rect key="frame" x="41.5" y="38.5" width="32.5" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.49019607840000001" green="0.019607843140000001" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>

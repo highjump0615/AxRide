@@ -45,8 +45,6 @@ class UserWaitPopup: BaseCustomView {
         mLblTimer.text = strTime
 
         mProgressTimer.value = UICircularProgressRing.ProgressValue(value)
-//        mProgressTimer.startProgress(to: UICircularProgressRing.ProgressValue(value),
-//                                     duration: 0)
     }
 
     func startTimer() {
