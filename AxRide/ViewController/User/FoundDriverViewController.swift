@@ -52,7 +52,7 @@ class FoundDriverViewController: BaseViewController {
     
     @IBAction func onButProceed(_ sender: Any) {
         let parentVC = homeVC as? MainUserViewController
-        parentVC?.order = Order()
+//        parentVC?.order = Order()
         
         dismiss(animated: true)
     }

@@ -12,6 +12,7 @@
 		8E8DCF09DD854F0CE5B74A99 /* Pods_AxRideUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E54110D02939500BADE773A /* Pods_AxRideUITests.framework */; };
 		C308C0E821161A7E00D2BC45 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308C0E721161A7E00D2BC45 /* BaseModel.swift */; };
 		C308C0EA21161D7500D2BC45 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308C0E921161D7500D2BC45 /* FirebaseManager.swift */; };
+		C31C00BF213E3B2D00F28942 /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31C00BE213E3B2D00F28942 /* GooglePlace.swift */; };
 		C33F88EB21002ACD00C52766 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33F88EA21002ACD00C52766 /* Order.swift */; };
 		C33F88ED2100376000C52766 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33F88EC2100376000C52766 /* ChatViewController.xib */; };
 		C33F88F121003B0100C52766 /* ChatItemViewFrom.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33F88F021003B0100C52766 /* ChatItemViewFrom.xib */; };
@@ -112,6 +113,7 @@
 		B8684931169060DD272CA2EE /* Pods-AxRideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideTests/Pods-AxRideTests.release.xcconfig"; sourceTree = "<group>"; };
 		C308C0E721161A7E00D2BC45 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		C308C0E921161D7500D2BC45 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		C31C00BE213E3B2D00F28942 /* GooglePlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
 		C33F88EA21002ACD00C52766 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		C33F88EC2100376000C52766 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		C33F88F021003B0100C52766 /* ChatItemViewFrom.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatItemViewFrom.xib; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				C33F88EA21002ACD00C52766 /* Order.swift */,
 				C3FBDAA52100430C007143BF /* Message.swift */,
 				C308C0E721161A7E00D2BC45 /* BaseModel.swift */,
+				C31C00BE213E3B2D00F28942 /* GooglePlace.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */,
 				C3C81D6D20FEB6F7001F2C08 /* BaseCustomView.swift in Sources */,
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,
+				C31C00BF213E3B2D00F28942 /* GooglePlace.swift in Sources */,
 				C3FC111720FBE69200DAA392 /* SignupEmailViewController.swift in Sources */,
 				C3FBDAA62100430C007143BF /* Message.swift in Sources */,
 				C3C5DA95211F7E8B002F934C /* UserWaitPopup.swift in Sources */,

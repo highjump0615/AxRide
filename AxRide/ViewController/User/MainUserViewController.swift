@@ -43,12 +43,12 @@ class MainUserViewController: BaseHomeViewController {
     var placePickerFrom: GMSPlacePickerViewController?
     var placePickerTo: GMSPlacePickerViewController?
     
-    var mCoordinateFrom: CLLocationCoordinate2D?
-    var mCoordinateTo: CLLocationCoordinate2D?
     var mMarkerFrom: GMSMarker?
     var mMarkerTo: GMSMarker?
     
     var mViewWaiting: UserWaitPopup?
+    
+    var mOrder: Order = Order()
     
     private var mdPrice: Double = 0
     var price: Double {
@@ -60,15 +60,6 @@ class MainUserViewController: BaseHomeViewController {
             mLblPrice.text = (mdPrice > 0) ? "\(mdPrice.format(f: ".1"))$" : ""
    
             mButGo.makeEnable(enable: mdPrice > 0)
-        }
-    }
-    
-    private var mOrder: Order?
-    var order: Order? {
-        get { return mOrder}
-        set {
-            mOrder = newValue
-            updateOrder()
         }
     }
     
@@ -113,12 +104,6 @@ class MainUserViewController: BaseHomeViewController {
         placePickerTo = GMSPlacePickerViewController(config: config)
         placePickerTo?.delegate = self
         
-        // markers
-        mMarkerFrom = GMSMarker()
-        mMarkerFrom?.icon = UIImage(named: "MainLocationFrom")
-        mMarkerTo = GMSMarker()
-        mMarkerTo?.icon = UIImage(named: "MainLocationTo")
-        
         // price
         price = 0
         
@@ -136,6 +121,14 @@ class MainUserViewController: BaseHomeViewController {
         super.viewWillAppear(animated)
         
         showNavbar(show: false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // update map
+        updateMapCamera()
+        
+        updateFromLocation()
+        updateToLocation()
     }
     
     @IBAction func onButProfile(_ sender: Any) {
@@ -208,17 +201,22 @@ class MainUserViewController: BaseHomeViewController {
         let strAddrFrom = mTextLocationFrom.text
         mTextLocationFrom.text = mTextLocationTo.text
         mTextLocationTo.text = strAddrFrom
-        
+
         // exchange position
-        let coordTemp = mCoordinateFrom
-        updateFromLocation(location: mCoordinateTo)
-        updateToLocation(location: coordTemp)
-        
+        let locationTemp = mOrder.from
+        mOrder.from = mOrder.to
+        mOrder.to = locationTemp
+
         // update map
-        updateMapCamera(location: nil)
+        updateMapCamera()
+        
+        updateFromLocation()
+        updateToLocation()
+
     }
     
     @IBAction func onButGo(_ sender: Any) {
+        
         //
         // show loading
         //
@@ -236,17 +234,17 @@ class MainUserViewController: BaseHomeViewController {
 //        present(nav, animated: true, completion: nil)
     }
     
-    func updateOrder() {
-        if let o = order {
-            // hide location & ride
-            mViewLocation.isHidden = true
-            mViewRide.isHidden = true
-            mViewRequest.isHidden = true
-            
-            // show driver info
-            mViewDriver.isHidden = false
-        }
-    }
+//    func updateOrder() {
+//        if let o = order {
+//            // hide location & ride
+//            mViewLocation.isHidden = true
+//            mViewRide.isHidden = true
+//            mViewRequest.isHidden = true
+//
+//            // show driver info
+//            mViewDriver.isHidden = false
+//        }
+//    }
     
     @IBAction func onButDriver(_ sender: Any) {
         // go to driver profile page
@@ -273,11 +271,13 @@ class MainUserViewController: BaseHomeViewController {
     }
     */
 
-    override func showMyLocation(location: CLLocationCoordinate2D?, updateForce: Bool = false) {
-        super.showMyLocation(location: location, updateForce: updateForce)
+    override func showMyLocation(location: CLLocationCoordinate2D?, updateForce: Bool = false) -> Bool {
+        if !super.showMyLocation(location: location, updateForce: updateForce) {
+            return false
+        }
         
         if location == nil {
-            return
+            return false
         }
         
         if !updateForce {
@@ -291,51 +291,78 @@ class MainUserViewController: BaseHomeViewController {
                     
                     // fill address in from location
                     self.mTextLocationFrom.text = currentAddress
+                    
+                    //
+                    // set from place
+                    //
+                    let pFrom = GooglePlace()
+                    pFrom.name = currentAddress
+                    
+                    // city
+                    if let city = address.locality {
+                        pFrom.city = city
+                    }
+                    else if let country = address.country {
+                        pFrom.city = country
+                    }
+                    
+                    pFrom.location = location
+                    
+                    self.mOrder.from = pFrom
                 }
+                
+                self.updateFromLocation()
             }
-            
-            updateFromLocation(location: location!)
         }
+        
+        return true
     }
     
-    func updateFromLocation(location: CLLocationCoordinate2D?) {
-        mCoordinateFrom = location
+    /// update "from marker" on the map
+    ///
+    /// - Parameter location: <#location description#>
+    func updateFromLocation() {
+        mMarkerFrom?.map = nil
         
-        if let l = location {
+        if let l = mOrder.from?.location {
+            mMarkerFrom = GMSMarker()
+            mMarkerFrom?.icon = UIImage(named: "MainLocationFrom")
             mMarkerFrom?.position = l
             mMarkerFrom?.map = mViewMap
         }
-        else {
-            mMarkerFrom?.map = nil
-        }
     }
     
-    func updateToLocation(location: CLLocationCoordinate2D?) {
-        mCoordinateTo = location
+    /// update "to marker" on the map
+    ///
+    /// - Parameter location: <#location description#>
+    func updateToLocation() {
+        mMarkerTo?.map = nil
         
-        if let l = location {
+        if let l = mOrder.to?.location {
+            mMarkerTo = GMSMarker()
+            mMarkerTo?.icon = UIImage(named: "MainLocationTo")
             mMarkerTo?.position = l
             mMarkerTo?.map = mViewMap
-        }
-        else {
-            mMarkerTo?.map = nil
         }
     }
     
     /// update map camera based on from & to locations
     ///
     /// - Parameter location: <#location description#>
-    func updateMapCamera(location: CLLocationCoordinate2D?) {
-        if mCoordinateFrom != nil && mCoordinateTo != nil {
+    func updateMapCamera() {
+        
+        if let coordFrom = mOrder.from?.location, let coordTo = mOrder.to?.location {
             var bounds = GMSCoordinateBounds()
-            bounds = bounds.includingCoordinate(mCoordinateFrom!)
-            bounds = bounds.includingCoordinate(mCoordinateTo!)
+            bounds = bounds.includingCoordinate(coordFrom)
+            bounds = bounds.includingCoordinate(coordTo)
 
-            let update = GMSCameraUpdate.fit(bounds, withPadding: 100)
+            let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(140 + 96, 20, 60 + 70 + 20, 20))
             mViewMap.animate(with: update)
             
+            print("update map")
+            
             // update price
-            ApiManager.shared().googleMapGetDistance(pointFrom: mCoordinateFrom!, pointTo: mCoordinateTo!, completion: {(data, error) in
+            ApiManager.shared().googleMapGetDistance(pointFrom: coordFrom, pointTo: coordTo, completion: {(data, error) in
                 if let element = data {
                     //
                     // calculate taxi fee
@@ -349,6 +376,8 @@ class MainUserViewController: BaseHomeViewController {
                     let distance = element["distance"]["value"].int
                     let duration = element["duration"]["value"].int
                     
+                    print("distance: \(distance)")
+                    
                     var dFee = baseFee
                     if let dist = distance {
                         dFee += perMile * (Double(dist) / 1609.34)
@@ -360,10 +389,12 @@ class MainUserViewController: BaseHomeViewController {
                     self.price = dFee * Config.feeRate
                 }
             })
+            
+            return
         }
-        else {
-            showMyLocation(location: location, updateForce: true)
-        }
+
+        moveCameraToLocation(mOrder.from?.location)
+        moveCameraToLocation(mOrder.to?.location)
     }
 }
 
@@ -405,12 +436,12 @@ extension MainUserViewController: GMSAutocompleteViewControllerDelegate {
         // update place name
         mTextSearch.text = place.name
         
-        // update map
-        showMyLocation(location: place.coordinate, updateForce: true)
-        
         print("Place name: \(place.name)")
         print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
+        
+        // update map
+        if (showMyLocation(location: place.coordinate, updateForce: true)) {
+        }
         
         dismiss(animated: true, completion: nil)
     }
@@ -442,22 +473,15 @@ extension MainUserViewController: GMSPlacePickerViewControllerDelegate {
         
         print("Place name \(place.name)")
         print("Place address \(place.formattedAddress)")
-        print("Place attributions \(place.attributions)")
+        print("Place location \(place.coordinate.latitude), \(place.coordinate.longitude)")
         
         if viewController == placePickerFrom {
             self.mTextLocationFrom.text = place.formattedAddress
-            updateFromLocation(location: place.coordinate)
-            
-            // update camera
-            updateMapCamera(location: mCoordinateFrom!)
-            
+            mOrder.from = GooglePlace(place: place)
         }
         else if viewController == placePickerTo {
             self.mTextLocationTo.text = place.formattedAddress
-            updateToLocation(location: place.coordinate)
-            
-            // update camera
-            updateMapCamera(location: mCoordinateTo!)
+            mOrder.to = GooglePlace(place: place)
         }
     }
     

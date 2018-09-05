@@ -48,12 +48,18 @@ class BaseMapViewController: BaseViewController {
         showMyLocation(location: mViewMap.myLocation?.coordinate)
     }
     
-    func showMyLocation(location: CLLocationCoordinate2D?, updateForce: Bool = false) {
+    func showMyLocation(location: CLLocationCoordinate2D?, updateForce: Bool = false) -> Bool {
         if mCoordinate != nil && !updateForce {
             // alredy showed my location, return
-            return
+            return false
         }
         
+        moveCameraToLocation(location)
+        
+        return true
+    }
+    
+    func moveCameraToLocation(_ location: CLLocationCoordinate2D?) {
         if let l = location {
             let camera = GMSCameraPosition.camera(withLatitude: l.latitude,
                                                   longitude: l.longitude,

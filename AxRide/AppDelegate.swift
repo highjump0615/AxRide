@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if let homeVC = BaseViewController.getMainViewController() {
                             nav.setViewControllers([homeVC], animated: true)
                             UIApplication.shared.delegate?.window??.rootViewController = nav
-                        }                        
+                        }
                     }
                     else {
                         self.goToSigninView(nav: nav)

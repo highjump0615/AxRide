@@ -40,6 +40,9 @@ class ApiManager {
                 switch response.result {
                 case .success(let val):
                     let json = JSON(val)
+                    
+//                    print("JSON: \(json)")
+                    
                     let row = json["rows"][0]
                     let element = row["elements"][0]
                     
