@@ -52,6 +52,8 @@ PODS:
   - FirebaseStorage (3.0.0):
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - GeoFire (3.0.0):
+    - Firebase/Database (~> 5.0)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -113,6 +115,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Messaging
   - Firebase/Storage
+  - GeoFire
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
@@ -141,6 +144,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMessaging
     - FirebaseStorage
+    - GeoFire
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
@@ -174,6 +178,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   FirebaseMessaging: 6894b8fe0a0cf26c3b13dad729f1131654ae0bdb
   FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
+  GeoFire: e3ae6f4be3f2466c3467ef6c1c203db3af935c59
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
@@ -192,6 +197,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   UICircularProgressRing: 3b472692ffca84060fd444ea5c0b387161067c54
 
-PODFILE CHECKSUM: 0a5037bcd3f9a2719049f38dddbe458403439fcf
+PODFILE CHECKSUM: 2e300700f65fff2f0aa43f4959661304c234c22a
 
 COCOAPODS: 1.5.3

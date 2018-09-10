@@ -19,4 +19,6 @@ class Constants {
     static let gColorGray = UIColor(red: 90/255.0, green: 90/255.0, blue: 90/255.0, alpha: 1.0)
 
     static let reachability = Reachability(hostname: "www.google.com")!
+    
+    static let MAX_DISTANCE = 10.0 // 10km
 }

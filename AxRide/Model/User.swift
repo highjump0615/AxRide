@@ -82,8 +82,6 @@ class User : BaseModel {
         
         let info = snapshot.value! as! [String: Any?]
         
-        self.id = snapshot.key
-        
         self.email = info[User.FIELD_EMAIL] as! String
         
         // first name

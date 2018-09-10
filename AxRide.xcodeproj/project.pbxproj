@@ -13,6 +13,7 @@
 		C308C0E821161A7E00D2BC45 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308C0E721161A7E00D2BC45 /* BaseModel.swift */; };
 		C308C0EA21161D7500D2BC45 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308C0E921161D7500D2BC45 /* FirebaseManager.swift */; };
 		C31C00BF213E3B2D00F28942 /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31C00BE213E3B2D00F28942 /* GooglePlace.swift */; };
+		C33E89C9213F8DDD00FD294D /* DriverStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33E89C8213F8DDD00FD294D /* DriverStatus.swift */; };
 		C33F88EB21002ACD00C52766 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33F88EA21002ACD00C52766 /* Order.swift */; };
 		C33F88ED2100376000C52766 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33F88EC2100376000C52766 /* ChatViewController.xib */; };
 		C33F88F121003B0100C52766 /* ChatItemViewFrom.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33F88F021003B0100C52766 /* ChatItemViewFrom.xib */; };
@@ -55,6 +56,7 @@
 		C3EE8C8420FC3BA0000D7CD5 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C8320FC3BA0000D7CD5 /* Config.swift */; };
 		C3EE8C8620FC44E7000D7CD5 /* MainUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EE8C8520FC44E7000D7CD5 /* MainUserViewController.xib */; };
 		C3EE8C8820FCA38B000D7CD5 /* MainUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C8720FCA38B000D7CD5 /* MainUserViewController.swift */; };
+		C3F5CCDD214471C300A7A597 /* beijing.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C3F5CCDC214471C300A7A597 /* beijing.gpx */; };
 		C3FBDAA021004015007143BF /* ChatItemViewTo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FBDA9F21004015007143BF /* ChatItemViewTo.xib */; };
 		C3FBDAA2210041AA007143BF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA1210041AA007143BF /* ChatViewController.swift */; };
 		C3FBDAA4210041D0007143BF /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA3210041D0007143BF /* ChatCell.swift */; };
@@ -114,6 +116,7 @@
 		C308C0E721161A7E00D2BC45 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		C308C0E921161D7500D2BC45 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		C31C00BE213E3B2D00F28942 /* GooglePlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
+		C33E89C8213F8DDD00FD294D /* DriverStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStatus.swift; sourceTree = "<group>"; };
 		C33F88EA21002ACD00C52766 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		C33F88EC2100376000C52766 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		C33F88F021003B0100C52766 /* ChatItemViewFrom.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatItemViewFrom.xib; sourceTree = "<group>"; };
@@ -162,6 +165,7 @@
 		C3EE8C8320FC3BA0000D7CD5 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C3EE8C8520FC44E7000D7CD5 /* MainUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainUserViewController.xib; sourceTree = "<group>"; };
 		C3EE8C8720FCA38B000D7CD5 /* MainUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserViewController.swift; sourceTree = "<group>"; };
+		C3F5CCDC214471C300A7A597 /* beijing.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = beijing.gpx; sourceTree = "<group>"; };
 		C3FBDA9F21004015007143BF /* ChatItemViewTo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatItemViewTo.xib; sourceTree = "<group>"; };
 		C3FBDAA1210041AA007143BF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C3FBDAA3210041D0007143BF /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 		C37C645120F8B4C100ECC1FA = {
 			isa = PBXGroup;
 			children = (
+				C3F5CCDC214471C300A7A597 /* beijing.gpx */,
 				C37C645C20F8B4C100ECC1FA /* AxRide */,
 				C37C647120F8B4C200ECC1FA /* AxRideTests */,
 				C37C647C20F8B4C200ECC1FA /* AxRideUITests */,
@@ -382,6 +387,7 @@
 				C3FBDAA52100430C007143BF /* Message.swift */,
 				C308C0E721161A7E00D2BC45 /* BaseModel.swift */,
 				C31C00BE213E3B2D00F28942 /* GooglePlace.swift */,
+				C33E89C8213F8DDD00FD294D /* DriverStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -628,6 +634,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3F5CCDD214471C300A7A597 /* beijing.gpx in Resources */,
 				C3EE8C8020FC39A8000D7CD5 /* TermViewController.xib in Resources */,
 				C3FBDAB221008038007143BF /* SignupApplicationViewControllerSmall.xib in Resources */,
 				C3FBDAAD210075F7007143BF /* MainDriverViewController.xib in Resources */,
@@ -843,6 +850,7 @@
 				C3FBDABA21008910007143BF /* ProfileDriverUserCell.swift in Sources */,
 				C3EE8C8420FC3BA0000D7CD5 /* Config.swift in Sources */,
 				C3EE8C8220FC3AF9000D7CD5 /* TermViewController.swift in Sources */,
+				C33E89C9213F8DDD00FD294D /* DriverStatus.swift in Sources */,
 				C3FBDABE210089EA007143BF /* ProfileDriverViewController.swift in Sources */,
 				C3FC110520FA919400DAA392 /* ARTextHelper.swift in Sources */,
 				C3FC111B20FBF37100DAA392 /* SignupProfileViewController.swift in Sources */,

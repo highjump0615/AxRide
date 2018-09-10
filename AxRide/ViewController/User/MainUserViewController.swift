@@ -10,6 +10,8 @@ import UIKit
 import GooglePlaces
 import GoogleMaps
 import GooglePlacePicker
+import GeoFire
+import Firebase
 
 class MainUserViewController: BaseHomeViewController {
     
@@ -50,16 +52,20 @@ class MainUserViewController: BaseHomeViewController {
     
     var mOrder: Order = Order()
     
-    private var mdPrice: Double = 0
+    var drivers: [DriverStatus] = []
+    var selectedDriver: DriverStatus?
+    
+    var mqueryAccept: DatabaseReference?
+    
     var price: Double {
         get {
-            return mdPrice
+            return mOrder.fee
         }
         set {
-            mdPrice = newValue
-            mLblPrice.text = (mdPrice > 0) ? "\(mdPrice.format(f: ".1"))$" : ""
+            mOrder.fee = newValue
+            mLblPrice.text = (newValue > 0) ? "\(newValue.format(f: ".1"))$" : ""
    
-            mButGo.makeEnable(enable: mdPrice > 0)
+            mButGo.makeEnable(enable: newValue > 0)
         }
     }
     
@@ -109,7 +115,11 @@ class MainUserViewController: BaseHomeViewController {
         
         // init waiting popup
         mViewWaiting = UserWaitPopup.getView() as? UserWaitPopup
+        mViewWaiting?.delegate = self
         self.view.addSubview(mViewWaiting!)
+        
+        // fetch current order
+        getOrderInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -124,11 +134,65 @@ class MainUserViewController: BaseHomeViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // update map
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // clear map init mark
+        self.isMapInited = false
+    }
+    
+    /// update map - from, to
+    func updateMap() {
         updateMapCamera()
         
-        updateFromLocation()
-        updateToLocation()
+        updateFromMark()
+        updateToMark()
+    }
+    
+    /// fetch current order info
+    func getOrderInfo() {
+        let userCurrent = User.currentUser!
+        let dbRef = FirebaseManager.ref()
+        
+        showLoadingView()
+        
+        let query = dbRef.child(Order.TABLE_NAME_PICKED).child(userCurrent.id)
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            // order not found
+            if !snapshot.exists() {
+                self.showLoadingView(show: false)
+                return
+            }
+            
+            self.mOrder = Order(snapshot: snapshot)
+            
+            // fetch current driver
+            self.getDriverStatus()
+        
+            self.updateMap()
+            self.updateOrder()
+        }
+    }
+    
+    /// fetch current driver status
+    func getDriverStatus() {
+        let driverStatusRef = FirebaseManager.ref().child(DriverStatus.TABLE_NAME)
+        let geoFire = GeoFire(firebaseRef: driverStatusRef)
+        
+        geoFire.getLocationForKey(mOrder.driverId) { (location, error) in
+            self.showLoadingView(show: false)
+            
+            if let l = location {
+                let driver = DriverStatus()
+                driver.id = self.mOrder.driverId
+                driver.location = l
+                
+                self.selectedDriver = driver
+            }
+        }
     }
     
     @IBAction func onButProfile(_ sender: Any) {
@@ -210,12 +274,43 @@ class MainUserViewController: BaseHomeViewController {
         // update map
         updateMapCamera()
         
-        updateFromLocation()
-        updateToLocation()
+        updateFromMark()
+        updateToMark()
 
     }
     
+    /// A driver has accepted the request
+    private lazy var mListenerDriver: (DataSnapshot) -> Void = { snapshot in
+        if !snapshot.exists() {
+            return
+        }
+        
+        let driverId = snapshot.value as! String
+        if driverId.isEmpty {
+            return
+        }
+        
+        for driver in self.drivers {
+            if driver.id == driverId {
+                self.selectedDriver = driver.copy() as? DriverStatus
+                break
+            }
+        }
+
+        // close wait dialog
+        self.mViewWaiting?.onButCancel(nil)
+    }
+    
     @IBAction func onButGo(_ sender: Any) {
+        let userCurrent = User.currentUser!
+        
+        // add request to "request" table
+        self.mOrder.customerId = userCurrent.id
+        if let coord = self.mCoordinate {
+            self.mOrder.latitude = coord.latitude
+            self.mOrder.longitude = coord.longitude
+        }
+        self.mOrder.saveToDatabase(withID: userCurrent.id)
         
         //
         // show loading
@@ -223,6 +318,50 @@ class MainUserViewController: BaseHomeViewController {
         mViewWaiting?.frame = self.view.bounds
         mViewWaiting?.showView(bShow: true, animated: true)
         mViewWaiting?.startTimer()
+        
+        // clear driver list
+        drivers.removeAll()
+        
+        //
+        // load drivers near around
+        //
+        let driverStatusRef = FirebaseManager.ref().child(DriverStatus.TABLE_NAME)
+        let geoFire = GeoFire(firebaseRef: driverStatusRef)
+
+        // get current location
+        var dLatitude = self.mOrder.from?.location?.latitude
+        var dLongitude = self.mOrder.to?.location?.latitude
+        if let coord = self.mCoordinate {
+            dLatitude = coord.latitude
+            dLongitude = coord.longitude
+        }
+        
+        let queryDriver = geoFire.query(at: CLLocation(latitude: dLatitude!,
+                                                       longitude: dLongitude!),
+                                        withRadius: Constants.MAX_DISTANCE)
+        
+        queryDriver.observe(.keyEntered) { (key, location) in
+            print("Entered:\(key) latitude:\(location.coordinate.latitude) longitude:\(location.coordinate.longitude)" )
+            
+            // add new driver to list
+            let newDriver = DriverStatus()
+            newDriver.id = key
+            newDriver.location = location
+            
+            self.drivers.append(newDriver)
+            
+            // add a mark to "accepts" table
+            let acceptRef = FirebaseManager.ref().child(Order.TABLE_NAME_ACCEPT)
+            acceptRef.child(key).child(userCurrent.id).setValue("request")
+        }
+        
+        queryDriver.observeReady {
+            print("ready")
+        }
+        
+        // wait for drivers accept
+        mqueryAccept = FirebaseManager.ref().child(Order.TABLE_NAME_REQUEST).child(userCurrent.id).child(Order.FIELD_DRIVERID)
+        mqueryAccept?.observe(.value, with: mListenerDriver)
         
 //        // go to profile page
 //        let foundVC = FoundDriverViewController(nibName: "FoundDriverViewController", bundle: nil)
@@ -234,17 +373,17 @@ class MainUserViewController: BaseHomeViewController {
 //        present(nav, animated: true, completion: nil)
     }
     
-//    func updateOrder() {
-//        if let o = order {
-//            // hide location & ride
-//            mViewLocation.isHidden = true
-//            mViewRide.isHidden = true
-//            mViewRequest.isHidden = true
-//
-//            // show driver info
-//            mViewDriver.isHidden = false
-//        }
-//    }
+    /// update page based on order status
+    func updateOrder() {
+        
+        // show/hide location & ride
+        mViewLocation.isHidden = !(mOrder.status == Order.STATUS_REQUEST)
+        mViewRide.isHidden = !(mOrder.status == Order.STATUS_REQUEST)
+        mViewRequest.isHidden = !(mOrder.status == Order.STATUS_REQUEST)
+        
+        // show/hide driver info
+        mViewDriver.isHidden = (mOrder.status == Order.STATUS_REQUEST)
+    }
     
     @IBAction func onButDriver(_ sender: Any) {
         // go to driver profile page
@@ -311,7 +450,7 @@ class MainUserViewController: BaseHomeViewController {
                     self.mOrder.from = pFrom
                 }
                 
-                self.updateFromLocation()
+                self.updateFromMark()
             }
         }
         
@@ -321,7 +460,7 @@ class MainUserViewController: BaseHomeViewController {
     /// update "from marker" on the map
     ///
     /// - Parameter location: <#location description#>
-    func updateFromLocation() {
+    func updateFromMark() {
         mMarkerFrom?.map = nil
         
         if let l = mOrder.from?.location {
@@ -335,7 +474,7 @@ class MainUserViewController: BaseHomeViewController {
     /// update "to marker" on the map
     ///
     /// - Parameter location: <#location description#>
-    func updateToLocation() {
+    func updateToMark() {
         mMarkerTo?.map = nil
         
         if let l = mOrder.to?.location {
@@ -356,45 +495,66 @@ class MainUserViewController: BaseHomeViewController {
             bounds = bounds.includingCoordinate(coordFrom)
             bounds = bounds.includingCoordinate(coordTo)
 
-            let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(140 + 96, 20, 60 + 70 + 20, 20))
-            mViewMap.animate(with: update)
-            
-            print("update map")
-            
-            // update price
-            ApiManager.shared().googleMapGetDistance(pointFrom: coordFrom, pointTo: coordTo, completion: {(data, error) in
-                if let element = data {
-                    //
-                    // calculate taxi fee
-                    //
-                    
-                    let serviceFee = 2.0
-                    let baseFee = 2.0
-                    let perMile = 1.8
-                    let perMinute = 0.6
-                    
-                    let distance = element["distance"]["value"].int
-                    let duration = element["duration"]["value"].int
-                    
-                    print("distance: \(distance)")
-                    
-                    var dFee = baseFee
-                    if let dist = distance {
-                        dFee += perMile * (Double(dist) / 1609.34)
+            if mOrder.status == Order.STATUS_REQUEST {
+                let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(140 + 96, 20, 60 + 70 + 20, 20))
+                mViewMap.animate(with: update)
+                
+                // update price
+                ApiManager.shared().googleMapGetDistance(pointFrom: coordFrom, pointTo: coordTo, completion: {(data, error) in
+                    if let element = data {
+                        //
+                        // calculate taxi fee
+                        //
+                        
+                        let serviceFee = 2.0
+                        let baseFee = 2.0
+                        let perMile = 1.8
+                        let perMinute = 0.6
+                        
+                        let distance = element["distance"]["value"].int
+                        let duration = element["duration"]["value"].int
+                        
+                        print("distance: \(distance)")
+                        
+                        var dFee = baseFee
+                        if let dist = distance {
+                            dFee += perMile * (Double(dist) / 1609.34)
+                        }
+                        if let dur = duration {
+                            dFee += perMinute * (Double(dur) / 1609.34)
+                        }
+                        
+                        self.price = dFee * Config.feeRate
                     }
-                    if let dur = duration {
-                        dFee += perMinute * (Double(dur) / 1609.34)
-                    }
-                    
-                    self.price = dFee * Config.feeRate
-                }
-            })
-            
+                })
+            }
+            else {
+                let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(140 + 10, 20, 170 + 40, 20))
+                mViewMap.animate(with: update)
+                
+                // draw a road path
+            }
+        
             return
         }
 
         moveCameraToLocation(mOrder.from?.location)
         moveCameraToLocation(mOrder.to?.location)
+    }
+    
+    
+    //
+    // GMSMapViewDelegate
+    //
+    
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        if self.isMapInited {
+            return
+        }
+        
+        updateMap()
+        
+        self.isMapInited = true
     }
 }
 
@@ -492,4 +652,63 @@ extension MainUserViewController: GMSPlacePickerViewControllerDelegate {
         print("No place selected")
     }
     
+}
+
+// MARK: - Wait dialog Popup
+extension MainUserViewController: PopupDelegate {
+    func onClosePopup(_ sender: Any?) {
+        let userCurrent = User.currentUser!
+        let dbRef = FirebaseManager.ref()
+        
+        // remove order in "request" table
+        dbRef.child(Order.TABLE_NAME_REQUEST).child(userCurrent.id).removeValue()
+
+        if self.drivers.count > 0 {
+            for d in self.drivers {
+                // remove mark from "accepts" table
+                dbRef.child(Order.TABLE_NAME_ACCEPT + "/" + d.id + "/" + userCurrent.id).removeValue()
+            }
+        }
+        else {
+            // no drivers found
+            alertOk(title: "No drivers found",
+                    message: "You can try later or move your position",
+                    cancelButton: "OK",
+                    cancelHandler: nil)
+            
+            return
+        }
+        
+        // cancel waiting for drivers accept
+        mqueryAccept?.removeAllObservers()
+        
+        // check variety of current selected driver
+        guard let driverCurrent = self.selectedDriver else {
+            // show notice when time out
+            if sender == nil {
+                // no drivers accept
+                alertOk(title: "No driver accept your ride",
+                        message: "You can try later or move your position",
+                        cancelButton: "OK",
+                        cancelHandler: nil)
+            }
+            
+            return
+        }
+        
+        // check current order
+        if mOrder.isEmpty() {
+            return
+        }
+        
+        // remove mark from "accepts" table totally
+        dbRef.child(Order.TABLE_NAME_ACCEPT + "/" + driverCurrent.id).removeValue()
+        mOrder.driverId = driverCurrent.id
+        
+        // add request to "picked" table
+        self.mOrder.saveToDatabaseRaw(path: Order.TABLE_NAME_PICKED + "/" + userCurrent.id)
+        self.mOrder.saveToDatabaseRaw(path: Order.TABLE_NAME_PICKED + "/" + driverCurrent.id)
+
+        updateOrder()
+    }
 }

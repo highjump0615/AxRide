@@ -13,6 +13,8 @@ class BaseMapViewController: BaseViewController {
     
     let locationManager = CLLocationManager()
     var mCoordinate: CLLocationCoordinate2D?
+    
+    var isMapInited = false
 
     @IBOutlet weak var mViewMap: GMSMapView!
     
@@ -45,7 +47,7 @@ class BaseMapViewController: BaseViewController {
         mViewMap.settings.myLocationButton = true
         mViewMap.delegate = self
         
-        showMyLocation(location: mViewMap.myLocation?.coordinate)
+        _ = showMyLocation(location: mViewMap.myLocation?.coordinate)
     }
     
     func showMyLocation(location: CLLocationCoordinate2D?, updateForce: Bool = false) -> Bool {
@@ -60,14 +62,12 @@ class BaseMapViewController: BaseViewController {
     }
     
     func moveCameraToLocation(_ location: CLLocationCoordinate2D?) {
-        if let l = location {
-            let camera = GMSCameraPosition.camera(withLatitude: l.latitude,
-                                                  longitude: l.longitude,
-                                                  zoom: 16.0)
-            mViewMap.animate(to: camera)
-            
-            mCoordinate = l
-        }
+        guard let l = location else { return }
+
+        let camera = GMSCameraPosition.camera(withLatitude: l.latitude,
+                                              longitude: l.longitude,
+                                              zoom: 16.0)
+        mViewMap.animate(to: camera)
     }
 
     /*
@@ -91,9 +91,11 @@ extension BaseMapViewController: CLLocationManagerDelegate {
         
         print("\(location.coordinate.latitude) \(location.coordinate.longitude)")
         
-        showMyLocation(location: location.coordinate)
+        _ = showMyLocation(location: location.coordinate)
+        
+        mCoordinate = location.coordinate
     }
 }
 
-extension BaseMapViewController: GMSMapViewDelegate {
+extension BaseMapViewController: GMSMapViewDelegate {    
 }

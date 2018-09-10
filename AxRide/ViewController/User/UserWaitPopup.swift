@@ -9,6 +9,10 @@
 import UIKit
 import UICircularProgressRing
 
+protocol PopupDelegate: Any {
+    func onClosePopup(_ sender: Any?)
+}
+
 class UserWaitPopup: BaseCustomView {
 
     @IBOutlet weak var mProgressTimer: UICircularProgressRing!
@@ -16,6 +20,8 @@ class UserWaitPopup: BaseCustomView {
     
     var timer: Timer?
     var nTime = 0
+    
+    var delegate: PopupDelegate?
     
     /*
     // Only override draw() if you perform custom drawing.
@@ -33,9 +39,11 @@ class UserWaitPopup: BaseCustomView {
         super.awakeFromNib()
     }
     
-    @IBAction func onButCancel(_ sender: Any) {
+    @IBAction func onButCancel(_ sender: Any?) {
         stopTimer()
         self.showView(bShow: false, animated: true)
+        
+        delegate?.onClosePopup(sender)
     }
     
     func updateTime(_ value: Int) {
@@ -55,7 +63,7 @@ class UserWaitPopup: BaseCustomView {
             self.updateTime(self.nTime + 1)
             
             if self.nTime >= 120 {
-                self.stopTimer()
+                self.onButCancel(nil)
             }
         })
     }

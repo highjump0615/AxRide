@@ -169,7 +169,7 @@ class SignupProfileViewController: BaseViewController {
         if avatarLoaded, let image = self.mButPhoto.image(for: .normal) {
             showLoadingView()
             
-            let path = "users / " + user.id + ".png"
+            let path = "users/" + user.id + ".png"
             
             let resized = image.resized(toWidth: 200, toHeight: 200)
             FirebaseManager.uploadImageTo(path: path, image: resized, completionHandler: { (downloadURL, error) in

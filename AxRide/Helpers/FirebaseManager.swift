@@ -23,8 +23,8 @@ class FirebaseManager {
     }
     
     static func initServerTime() {
-        let serverTiemQuery = FirebaseManager.ref().child(".info/serverTimeOffset")
-        serverTiemQuery.observeSingleEvent(of: .value) { (snapshot) in
+        let serverTimeQuery = FirebaseManager.ref().child(".info/serverTimeOffset")
+        serverTimeQuery.observeSingleEvent(of: .value) { (snapshot) in
             FirebaseManager.ServerOffset = snapshot.value as? Double ?? 0
         }
     }

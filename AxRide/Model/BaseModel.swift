@@ -52,13 +52,22 @@ class BaseModel {
         let database = FirebaseManager.ref().child(strDb)
         
         if let strId = withID, !strId.isEmpty {
-            //            self.id = strId
+            return database.child(strId)
         }
-        else if self.id.isEmpty {
+        
+        if self.id.isEmpty {
             self.id = database.childByAutoId().key
         }
         
         return database.child(self.id)
+    }
+    
+    /// save entire object to database ref path
+    ///
+    /// - Parameter path: <#path description#>
+    func saveToDatabaseRaw(path: String) {
+        let database = FirebaseManager.ref().child(path)
+        database.setValue(self.toDictionary())
     }
     
     /// save entire object to database
@@ -85,5 +94,10 @@ class BaseModel {
     
     func isEqual(to: BaseModel) -> Bool {
         return id == to.id
+    }
+    
+    func copyData(with: BaseModel) {
+        id = with.id
+        createdAt = with.createdAt
     }
 }

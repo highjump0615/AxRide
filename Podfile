@@ -20,6 +20,7 @@ target 'AxRide' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
+  pod 'GeoFire'
   
   pod 'SDWebImage'
   pod 'SVProgressHUD'
