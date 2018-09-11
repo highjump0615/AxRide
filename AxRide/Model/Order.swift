@@ -24,6 +24,7 @@ class Order: BaseModel {
     static let TABLE_NAME_REQUEST = "requests"
     static let TABLE_NAME_PICKED = "picked"
     static let TABLE_NAME_ACCEPT = "accepts"
+    static let TABLE_NAME_ARRIVED = "arrived"
     
     static let FIELD_CUSTOMERID = "customerId"
     static let FIELD_DRIVERID = "driverId"
@@ -119,5 +120,10 @@ class Order: BaseModel {
     /// - Returns: <#return value description#>
     func isEmpty() -> Bool {
         return customerId.isEmpty || fee <= 0 || from == nil || to == nil
+    }
+    
+    func clear() {
+        driverId = ""
+        fee = 0
     }
 }

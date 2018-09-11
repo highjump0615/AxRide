@@ -54,4 +54,32 @@ class ApiManager {
             })
     }
     
+    
+    func googleMapGetRoutes(pointFrom: CLLocationCoordinate2D,
+                            pointTo: CLLocationCoordinate2D,
+                            completion: @escaping (_ data: [JSON], _ error: Error?)->()) {
+        
+        let strLocFrom = "\(pointFrom.latitude),\(pointFrom.longitude)"
+        let strLocTo = "\(pointTo.latitude),\(pointTo.longitude)"
+        
+        var url = urlBaseMapApi + "/directions/json?"
+        url += "origin=\(strLocFrom)"
+        url += "&destination=\(strLocTo)"
+        
+        Alamofire.request(url)
+            .validate()
+            .responseJSON(completionHandler: { (response) in
+                switch response.result {
+                case .success(let val):
+                    let json = JSON(val)
+                    
+                    let routes = json["routes"].arrayValue
+                    
+                    completion(routes, nil)
+                    
+                case .failure(let error):
+                    completion([], error)
+                }
+            })
+    }
 }

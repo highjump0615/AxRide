@@ -53,6 +53,7 @@ class MainUserViewController: BaseHomeViewController {
     
     var mMarkerFrom: GMSMarker?
     var mMarkerTo: GMSMarker?
+    var mMarkerDriver: GMSMarker?
     
     var mViewWaiting: UserWaitPopup?
     
@@ -62,6 +63,7 @@ class MainUserViewController: BaseHomeViewController {
     var selectedDriver: DriverStatus?
     
     var mqueryAccept: DatabaseReference?
+    var mqueryDriver: DatabaseReference?
     
     var price: Double {
         get {
@@ -146,6 +148,8 @@ class MainUserViewController: BaseHomeViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        updateMap()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -192,16 +196,27 @@ class MainUserViewController: BaseHomeViewController {
     func getDriverStatus() {
         let driverStatusRef = FirebaseManager.ref().child(DriverStatus.TABLE_NAME)
         let geoFire = GeoFire(firebaseRef: driverStatusRef)
+        mqueryDriver = driverStatusRef.child(mOrder.driverId)
         
-        geoFire.getLocationForKey(mOrder.driverId) { (location, error) in
-            self.showLoadingView(show: false)
-            
-            if let l = location {
-                let driver = DriverStatus()
-                driver.id = self.mOrder.driverId
-                driver.location = l
+        // query location change
+        mqueryDriver?.observe(.value) { (snapshot) in
+            // get current driver location
+            geoFire.getLocationForKey(self.mOrder.driverId) { (location, error) in
+                self.showLoadingView(show: false)
                 
-                self.selectedDriver = driver
+                if let l = location {
+                    var driver = self.selectedDriver
+                    if driver == nil {
+                        driver = DriverStatus()
+                        driver?.id = self.mOrder.driverId
+                        self.selectedDriver = driver
+                    }
+                    
+                    driver?.location = l
+                    
+                    // update driver mark on the map
+                    self.updateDriverMark(location)
+                }
             }
         }
     }
@@ -283,11 +298,7 @@ class MainUserViewController: BaseHomeViewController {
         mOrder.to = locationTemp
 
         // update map
-        updateMapCamera()
-        
-        updateFromMark()
-        updateToMark()
-
+        updateMap()
     }
     
     /// A driver has accepted the request
@@ -417,7 +428,7 @@ class MainUserViewController: BaseHomeViewController {
             return
         }
         
-        updateDistance()
+        updateDistance(mCoordinate)
         
         let strRating = d.userRate().format(f: ".1")
         mLblDriverName.text = "\(d.userFullName())    \(strRating)"
@@ -433,9 +444,9 @@ class MainUserViewController: BaseHomeViewController {
         }
     }
     
-    func updateDistance() {
+    func updateDistance(_ location: CLLocationCoordinate2D?) {
         // calculate distance
-        if let from = mCoordinate, let to = mOrder.to?.location {
+        if let from = location, let to = mOrder.to?.location {
             let locationFrom = CLLocation(latitude: from.latitude, longitude: from.longitude)
             let locationTo = CLLocation(latitude: to.latitude, longitude: to.longitude)
             let dist = locationTo.distance(from: locationFrom) / 1000.0
@@ -457,6 +468,37 @@ class MainUserViewController: BaseHomeViewController {
     }
     
     @IBAction func onButCancel(_ sender: Any) {
+        self.alert(title: "Are you sure to cancel this ride?",
+                   message: "You may have unnecessary financial lost",
+                   okButton: "OK",
+                   cancelButton: "Cancel",
+                   okHandler: { (_) in
+                    self.doCancelRide()
+        }, cancelHandler: nil)
+    }
+    
+    /// cancel ride
+    func doCancelRide() {
+        let dbRef = FirebaseManager.ref()
+        let userCurrent = User.currentUser!
+        
+        // clear data in database
+        dbRef.child(Order.TABLE_NAME_ARRIVED).child(userCurrent.id).removeValue()
+        dbRef.child(Order.TABLE_NAME_PICKED).child(userCurrent.id).removeValue()
+        dbRef.child(Order.TABLE_NAME_PICKED).child(mOrder.driverId).removeValue()
+        
+        // clear order
+        mOrder = Order()
+        let _ = showMyLocation(location: mCoordinate, updateForce: true)
+        
+        updateOrder()
+        
+        // clear map
+        mViewMap.clear()
+        updateMap()
+
+        // clear observe driver
+        mqueryDriver?.removeAllObservers()
     }
     
     /*
@@ -470,6 +512,8 @@ class MainUserViewController: BaseHomeViewController {
     */
 
     override func showMyLocation(location: CLLocationCoordinate2D?, updateForce: Bool = false) -> Bool {
+        updateDistance(location)
+        
         if !super.showMyLocation(location: location, updateForce: updateForce) {
             return false
         }
@@ -478,7 +522,8 @@ class MainUserViewController: BaseHomeViewController {
             return false
         }
         
-        if !updateForce {
+        // set as "from" location if not set
+        if self.mOrder.from == nil {
             // fill address in from
             let geocoder = GMSGeocoder()
             
@@ -544,6 +589,19 @@ class MainUserViewController: BaseHomeViewController {
         }
     }
     
+    /// update driver marker on the map
+    func updateDriverMark(_ location: CLLocation?) {
+        if mMarkerDriver == nil {
+            mMarkerDriver = GMSMarker()
+            mMarkerDriver?.icon = UIImage(named: "MainDriverMark")
+            mMarkerDriver?.map = mViewMap
+        }
+        
+        if let l = location {
+            mMarkerDriver?.position = l.coordinate
+        }
+    }
+    
     /// update map camera based on from & to locations
     ///
     /// - Parameter location: <#location description#>
@@ -591,7 +649,19 @@ class MainUserViewController: BaseHomeViewController {
                 let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(140 + 10, 20, 170 + 40, 20))
                 mViewMap.animate(with: update)
                 
-                // draw a road path
+                // draw a road path on the map
+                ApiManager.shared().googleMapGetRoutes(pointFrom: coordFrom, pointTo: coordTo) { (routes, err) in
+                    for route in routes
+                    {
+                        let routeOverviewPolyline = route["overview_polyline"].dictionary
+                        let points = routeOverviewPolyline?["points"]?.stringValue
+                        let path = GMSPath.init(fromEncodedPath: points!)
+                        let polyline = GMSPolyline.init(path: path)
+                        polyline.strokeColor = UIColor.blue
+                        polyline.strokeWidth = 3
+                        polyline.map = self.mViewMap
+                    }
+                }
             }
         
             return
@@ -599,6 +669,8 @@ class MainUserViewController: BaseHomeViewController {
 
         moveCameraToLocation(mOrder.from?.location)
         moveCameraToLocation(mOrder.to?.location)
+        
+        
     }
     
     
