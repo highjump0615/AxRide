@@ -20,6 +20,9 @@
                 <outlet property="mImgViewRideNormal" destination="snh-ya-bIu" id="IWm-97-TAl"/>
                 <outlet property="mImgViewRideShare" destination="EbR-or-gfV" id="6cy-oR-UIj"/>
                 <outlet property="mImgViewRideSuv" destination="QKK-Wh-Ls1" id="Rod-3z-lHD"/>
+                <outlet property="mLblDriverAddress" destination="feP-LE-r16" id="G8C-v0-2Wx"/>
+                <outlet property="mLblDriverDistance" destination="Frx-Wq-dzo" id="bL9-MI-F2n"/>
+                <outlet property="mLblDriverName" destination="KsQ-QS-35l" id="oCh-sW-0TQ"/>
                 <outlet property="mLblPrice" destination="STU-UQ-Zer" id="uQg-ZC-sr8"/>
                 <outlet property="mTextLocationFrom" destination="gZF-Td-X4G" id="KK9-Cs-uXe"/>
                 <outlet property="mTextLocationTo" destination="gZx-2Q-zgV" id="6GM-gZ-Wl0"/>

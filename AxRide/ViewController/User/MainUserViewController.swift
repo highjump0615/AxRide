@@ -24,17 +24,23 @@ class MainUserViewController: BaseHomeViewController {
     @IBOutlet weak var mImgViewRideSuv: UIImageView!
     @IBOutlet weak var mImgViewRideShare: UIImageView!
     
+    // location
     @IBOutlet weak var mTextSearch: UITextField!
     @IBOutlet weak var mTextLocationFrom: UITextField!
     @IBOutlet weak var mTextLocationTo: UITextField!
     
     @IBOutlet weak var mViewDriver: UIView!
-    @IBOutlet weak var mButCancel: UIButton!
-    @IBOutlet weak var mButDriver: UIButton!
     
     @IBOutlet weak var mButGo: UIButton!
     
     @IBOutlet weak var mLblPrice: UILabel!
+    
+    // driver info
+    @IBOutlet weak var mLblDriverDistance: UILabel!
+    @IBOutlet weak var mLblDriverName: UILabel!
+    @IBOutlet weak var mLblDriverAddress: UILabel!
+    @IBOutlet weak var mButCancel: UIButton!
+    @IBOutlet weak var mButDriver: UIButton!
     
     static let RIDE_TYPE_NORMAL = 0
     static let RIDE_TYPE_SUV = 1
@@ -80,6 +86,11 @@ class MainUserViewController: BaseHomeViewController {
         mViewDriver.makeRound(r: 6)
         mButCancel.makeRound(r: 6)
         mButDriver.makeRound()
+        
+        // clear driver info
+        mLblDriverDistance.text = ""
+        mLblDriverName.text = ""
+        mLblDriverAddress.text = ""
         
         // placeholders
         mTextSearch.attributedPlaceholder = NSAttributedString(string: "Search",
@@ -383,6 +394,54 @@ class MainUserViewController: BaseHomeViewController {
         
         // show/hide driver info
         mViewDriver.isHidden = (mOrder.status == Order.STATUS_REQUEST)
+        
+        // order has not started, exit
+        if mOrder.status == Order.STATUS_REQUEST {
+            return
+        }
+        
+        // fetch driver
+        if mOrder.driver == nil {
+            User.readFromDatabase(withId: mOrder.driverId) { (user) in
+                self.mOrder.driver = user
+                
+                // update driver info
+                self.updateDriverInfo()
+            }
+        }
+    }
+    
+    /// update UI for driver info
+    func updateDriverInfo() {
+        guard let d = mOrder.driver else {
+            return
+        }
+        
+        updateDistance()
+        
+        let strRating = d.userRate().format(f: ".1")
+        mLblDriverName.text = "\(d.userFullName())    \(strRating)"
+        mLblDriverAddress.text = d.location
+        
+        // photo
+        if let photoUrl = d.photoUrl {
+            mButDriver.sd_setImage(with: URL(string: photoUrl),
+                                   for: .normal,
+                                   placeholderImage: UIImage(named: "UserDefault"),
+                                   options: .progressiveDownload,
+                                   completed: nil)
+        }
+    }
+    
+    func updateDistance() {
+        // calculate distance
+        if let from = mCoordinate, let to = mOrder.to?.location {
+            let locationFrom = CLLocation(latitude: from.latitude, longitude: from.longitude)
+            let locationTo = CLLocation(latitude: to.latitude, longitude: to.longitude)
+            let dist = locationTo.distance(from: locationFrom) / 1000.0
+            
+            mLblDriverDistance.text = "\(dist.format(f: ".1")) km"
+        }
     }
     
     @IBAction func onButDriver(_ sender: Any) {
@@ -518,10 +577,10 @@ class MainUserViewController: BaseHomeViewController {
                         
                         var dFee = baseFee
                         if let dist = distance {
-                            dFee += perMile * (Double(dist) / 1609.34)
+                            dFee += perMile * (Double(dist) / Constants.MILE_DIST)
                         }
                         if let dur = duration {
-                            dFee += perMinute * (Double(dur) / 1609.34)
+                            dFee += perMinute * (Double(dur) / Constants.MILE_DIST)
                         }
                         
                         self.price = dFee * Config.feeRate

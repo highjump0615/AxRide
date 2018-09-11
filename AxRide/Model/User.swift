@@ -31,6 +31,8 @@ class User : BaseModel {
     static let FIELD_TYPE = "userType"
     static let FIELD_BANNED = "banned"
     static let FIELD_TOKEN = "token"
+    static let FIELD_RATE = "rate"
+    static let FIELD_RATECOUNT = "rateCount"
     
     static var currentUser: User?
     
@@ -46,12 +48,21 @@ class User : BaseModel {
     
     var token: String?
     
+    var rate = 0.0
+    var rateCount = 0
+    
     //
     // excludes
     //
     var password = ""
     
     static func readFromDatabase(withId: String, completion: @escaping((User?)->())) {
+        // invalid id, exit directly
+        if withId.isEmpty {
+            completion(nil)
+            return
+        }
+        
         let userRef = FirebaseManager.ref().child(TABLE_NAME).child(withId)
         
         userRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -107,6 +118,15 @@ class User : BaseModel {
         if let t = info[User.FIELD_TYPE] {
             self.type = UserType(rawValue: t as! String)!
         }
+        
+        // rate
+        if let r = info[User.FIELD_RATE] {
+            self.rate = r as! Double
+        }
+        
+        if let rc = info[User.FIELD_RATECOUNT] {
+            self.rateCount = rc as! Int
+        }
     }
     
     override func toDictionary() -> [String: Any] {
@@ -120,11 +140,22 @@ class User : BaseModel {
         dict[User.FIELD_BANNED] = self.banned
         dict[User.FIELD_TOKEN] = self.token
         dict[User.FIELD_TYPE] = self.type.rawValue
+        dict[User.FIELD_RATE] = self.rate
+        dict[User.FIELD_RATECOUNT] = self.rateCount
         
         return dict
     }
     
     func userFullName() -> String {
         return "\(firstName) \(lastName)"
+    }
+    
+    func userRate() -> Double {
+        // avoid division by 0
+        if rateCount == 0 {
+            return 0
+        }
+        
+        return rate / Double(rateCount)
     }
 }

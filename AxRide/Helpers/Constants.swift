@@ -21,4 +21,5 @@ class Constants {
     static let reachability = Reachability(hostname: "www.google.com")!
     
     static let MAX_DISTANCE = 10.0 // 10km
+    static let MILE_DIST = 1609.34
 }

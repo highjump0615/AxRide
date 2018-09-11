@@ -50,6 +50,8 @@ class Order: BaseModel {
         }
     }
     
+    var driver: User?
+    
     var latitude = 0.0
     var longitude = 0.0
     
