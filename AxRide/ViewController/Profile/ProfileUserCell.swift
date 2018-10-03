@@ -41,23 +41,35 @@ class ProfileUserCell: UITableViewCell {
     
     func fillContent(user: User?) {
         // fill info
-        if let u = user {
-            if let photoUrl = u.photoUrl {
-                mImgViewUser.sd_setImage(with: URL(string: photoUrl),
-                                         placeholderImage: UIImage(named: "UserDefault"),
-                                         options: .progressiveDownload,
-                                         completed: nil)
-            }
-            
-            mLblName.text = u.userFullName()
-            
-            if let address = u.location {
-                mViewLocation.isHidden = false
-                mLblAddress.text = address
-            }
-            else {
-                mViewLocation.isHidden = true
-            }            
+        guard let u = user else {
+            return
+        }
+        
+        if let photoUrl = u.photoUrl {
+            mImgViewUser.sd_setImage(with: URL(string: photoUrl),
+                                     placeholderImage: UIImage(named: "UserDefault"),
+                                     options: .progressiveDownload,
+                                     completed: nil)
+        }
+        
+        mLblName.text = u.userFullName()
+        
+        if let address = u.location {
+            mViewLocation.isHidden = false
+            mLblAddress.text = address
+        }
+        else {
+            mViewLocation.isHidden = true
+        }
+        
+        // update button labels
+        if u.type == UserType.customer {
+            mButPayment.setTitle("Payment Accounts", for: .normal)
+            mButLocation.setTitle("Saved Locations", for: .normal)
+        }
+        else if u.type == UserType.driver {
+            mButPayment.setTitle("Payment History", for: .normal)
+            mButLocation.setTitle("Rating and Reviews", for: .normal)
         }
     }
     

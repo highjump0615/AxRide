@@ -19,22 +19,28 @@ class ProfileViewController: BaseViewController {
     static let LIST_TYPE_LOCATION = 1
     
     private var mnListType = ProfileViewController.LIST_TYPE_PAYMENT
+    var user: User?
     
     @IBOutlet weak var mTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // init table view
         mTableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: mTableView.frame.width, height: 0.01))
         mTableView.register(UINib(nibName: "ProfileUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
         mTableView.register(UINib(nibName: "ProfileEmptyCell", bundle: nil), forCellReuseIdentifier: CELLID_EMPTY)
         
-        // right bar button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ButProfileEdit"),
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(onButEdit))
+        // current user as default
+        if self.user == nil {
+            self.user = User.currentUser
+            
+            // right bar button
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ButProfileEdit"),
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(onButEdit))
+        }
         
         showNavbar(transparent: false)
     }
@@ -95,6 +101,11 @@ extension ProfileViewController: UITableViewDataSource {
             // user info
             return 1
         }
+
+        // drivers don't show this temporarily
+        if self.user?.type == UserType.driver {
+            return 0
+        }
         
         return 1
     }
@@ -105,7 +116,7 @@ extension ProfileViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             // user info
             let cellUser = tableView.dequeueReusableCell(withIdentifier: CELLID_USER) as! ProfileUserCell
-            cellUser.fillContent(user: User.currentUser)
+            cellUser.fillContent(user: self.user!)
             cellUser.updateListType(type: mnListType)
             
             // buttons
@@ -156,6 +167,11 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var view: UIView?
         
+        // showing in customer page only
+        if self.user?.type == UserType.driver {
+            return view
+        }
+        
         if section == 1 {
             let viewHeader = ProfileCardListHeader.getView(listType: mnListType) as! ProfileCardListHeader
             viewHeader.showView(bShow: true, animated: false)
@@ -168,6 +184,11 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         var view: UIView?
+        
+        // showing in customer page only
+        if self.user?.type == UserType.driver {
+            return view
+        }
         
         if section == 1 && mnListType == ProfileViewController.LIST_TYPE_LOCATION {
             let viewFooter = ProfileLocationListFooter.getView() as! ProfileLocationListFooter

@@ -65,6 +65,8 @@ class MainUserViewController: BaseHomeViewController {
     var mqueryAccept: DatabaseReference?
     var mqueryDriver: DatabaseReference?
     
+    var polygonRoad: GMSPolyline?
+    
     var price: Double {
         get {
             return mOrder.fee
@@ -456,8 +458,13 @@ class MainUserViewController: BaseHomeViewController {
     }
     
     @IBAction func onButDriver(_ sender: Any) {
-        // go to driver profile page
-        let profileVC = DriverProfileViewController(nibName: "DriverProfileViewController", bundle: nil)
+        guard let d = mOrder.driver else {
+            return
+        }
+        
+        // go to profile page
+        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        profileVC.user = d
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
@@ -650,6 +657,10 @@ class MainUserViewController: BaseHomeViewController {
                 mViewMap.animate(with: update)
                 
                 // draw a road path on the map
+                if self.polygonRoad != nil {
+                    return
+                }
+                
                 ApiManager.shared().googleMapGetRoutes(pointFrom: coordFrom, pointTo: coordTo) { (routes, err) in
                     for route in routes
                     {
@@ -660,6 +671,8 @@ class MainUserViewController: BaseHomeViewController {
                         polyline.strokeColor = UIColor.blue
                         polyline.strokeWidth = 3
                         polyline.map = self.mViewMap
+                        
+                        self.polygonRoad = polyline
                     }
                 }
             }
