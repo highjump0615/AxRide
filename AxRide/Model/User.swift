@@ -28,6 +28,7 @@ class User : BaseModel {
     static let FIELD_LASTNAME = "lastName"
     static let FIELD_PHOTO = "photoUrl"
     static let FIELD_LOCATION = "location"
+    static let FIELD_PHONE = "phone"
     static let FIELD_TYPE = "userType"
     static let FIELD_BANNED = "banned"
     static let FIELD_TOKEN = "token"
@@ -42,6 +43,7 @@ class User : BaseModel {
     var lastName = ""
     var photoUrl: String?
     var location:String?
+    var phone:String?
     
     var type = UserType.notdetermined
     var banned: Bool = false
@@ -107,6 +109,7 @@ class User : BaseModel {
         
         self.photoUrl = info[User.FIELD_PHOTO] as? String
         self.location = info[User.FIELD_LOCATION] as? String
+        self.phone = info[User.FIELD_PHONE] as? String
         self.token = info[User.FIELD_TOKEN] as? String
         
         // banned
@@ -137,6 +140,7 @@ class User : BaseModel {
         dict[User.FIELD_LASTNAME] = self.lastName
         dict[User.FIELD_PHOTO] = self.photoUrl
         dict[User.FIELD_LOCATION] = self.location
+        dict[User.FIELD_PHONE] = self.phone
         dict[User.FIELD_BANNED] = self.banned
         dict[User.FIELD_TOKEN] = self.token
         dict[User.FIELD_TYPE] = self.type.rawValue

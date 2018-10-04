@@ -75,6 +75,7 @@ class SignupProfileViewController: BaseViewController {
             mTextName.text = user.firstName
             mTextLastName.text = user.lastName
             mTextLocation.text = user.location
+            mTextContact.text = user.phone
         }
     }
     
@@ -208,6 +209,7 @@ class SignupProfileViewController: BaseViewController {
         user?.firstName = getFirstName()
         user?.lastName = getLastName()
         user?.location = mTextLocation.text!
+        user?.phone = mTextContact.text!
         
         user?.saveToDatabase()
         

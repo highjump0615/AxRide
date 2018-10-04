@@ -15,6 +15,7 @@ class ChatViewController: BaseViewController {
     @IBOutlet weak var mViewInput: UIView!
     
     var messages: [Message] = []
+    var userTo: User?
     
     var mKeyboardHeight: CGFloat = 0.0
     
@@ -59,8 +60,16 @@ class ChatViewController: BaseViewController {
     
     @objc func onButPhone() {
         // phone call to driver
+        if Utils.isStringNullOrEmpty(text: self.userTo?.phone) {
+            // no contact, error notice
+            self.alertOk(title: "No contact info",
+                         message: "User didn't register a phone number",
+                         cancelButton: "OK",
+                         cancelHandler: nil)
+            return
+        }
         
-        guard let number = URL(string: "tel://" + "1393847598") else { return }
+        guard let number = URL(string: "tel://" + (self.userTo?.phone)!) else { return }
         UIApplication.shared.open(number)
     }
     

@@ -469,8 +469,13 @@ class MainUserViewController: BaseHomeViewController {
     }
     
     @IBAction func onButDriverChat(_ sender: Any) {
+        guard let d = mOrder.driver else {
+            return
+        }
+        
         // go to chat page
         let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
+        chatVC.userTo = d
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
     

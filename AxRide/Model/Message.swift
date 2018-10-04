@@ -10,4 +10,8 @@ import Foundation
 
 class Message {
     
+    //
+    // table info
+    //
+    static let TABLE_NAME = "messages"
 }

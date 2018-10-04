@@ -28,6 +28,7 @@
 		C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */; };
 		C38E719620FFDB24003C139F /* DriverProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C38E719520FFDB24003C139F /* DriverProfileViewController.xib */; };
 		C38E719820FFDB73003C139F /* DriverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E719720FFDB73003C139F /* DriverProfileViewController.swift */; };
+		C3C54324216695FD00EA0FD8 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C54323216695FD00EA0FD8 /* Chat.swift */; };
 		C3C5DA93211F7615002F934C /* UserWaitPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C5DA92211F7615002F934C /* UserWaitPopup.xib */; };
 		C3C5DA95211F7E8B002F934C /* UserWaitPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5DA94211F7E8B002F934C /* UserWaitPopup.swift */; };
 		C3C81D4C20FDE6F6001F2C08 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C81D4B20FDE6F6001F2C08 /* Globals.swift */; };
@@ -137,6 +138,7 @@
 		C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundDriverViewController.swift; sourceTree = "<group>"; };
 		C38E719520FFDB24003C139F /* DriverProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverProfileViewController.xib; sourceTree = "<group>"; };
 		C38E719720FFDB73003C139F /* DriverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverProfileViewController.swift; sourceTree = "<group>"; };
+		C3C54323216695FD00EA0FD8 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		C3C5DA92211F7615002F934C /* UserWaitPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserWaitPopup.xib; sourceTree = "<group>"; };
 		C3C5DA94211F7E8B002F934C /* UserWaitPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWaitPopup.swift; sourceTree = "<group>"; };
 		C3C81D4B20FDE6F6001F2C08 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				C308C0E721161A7E00D2BC45 /* BaseModel.swift */,
 				C31C00BE213E3B2D00F28942 /* GooglePlace.swift */,
 				C33E89C8213F8DDD00FD294D /* DriverStatus.swift */,
+				C3C54323216695FD00EA0FD8 /* Chat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -838,6 +841,7 @@
 				C3DBC35A211E333100F42A2B /* ApiManager.swift in Sources */,
 				C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */,
 				C3C81D6D20FEB6F7001F2C08 /* BaseCustomView.swift in Sources */,
+				C3C54324216695FD00EA0FD8 /* Chat.swift in Sources */,
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,
 				C31C00BF213E3B2D00F28942 /* GooglePlace.swift in Sources */,
 				C3FC111720FBE69200DAA392 /* SignupEmailViewController.swift in Sources */,
