@@ -64,6 +64,7 @@ class MainUserViewController: BaseHomeViewController {
     
     var mqueryAccept: DatabaseReference?
     var mqueryDriver: DatabaseReference?
+    var mqueryNear: GFCircleQuery?
     
     var polygonRoad: GMSPolyline?
     
@@ -135,6 +136,13 @@ class MainUserViewController: BaseHomeViewController {
         
         // fetch current order
         getOrderInfo()
+    }
+    
+    deinit {
+        // remove observers
+        mqueryDriver?.removeAllObservers()
+        mqueryNear?.removeAllObservers()
+        mqueryAccept?.removeAllObservers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -360,11 +368,11 @@ class MainUserViewController: BaseHomeViewController {
             dLongitude = coord.longitude
         }
         
-        let queryDriver = geoFire.query(at: CLLocation(latitude: dLatitude!,
-                                                       longitude: dLongitude!),
-                                        withRadius: Constants.MAX_DISTANCE)
+        mqueryNear = geoFire.query(at: CLLocation(latitude: dLatitude!,
+                                                  longitude: dLongitude!),
+                                   withRadius: Constants.MAX_DISTANCE)
         
-        queryDriver.observe(.keyEntered) { (key, location) in
+        mqueryNear?.observe(.keyEntered) { (key, location) in
             print("Entered:\(key) latitude:\(location.coordinate.latitude) longitude:\(location.coordinate.longitude)" )
             
             // add new driver to list
@@ -379,7 +387,7 @@ class MainUserViewController: BaseHomeViewController {
             acceptRef.child(key).child(userCurrent.id).setValue("request")
         }
         
-        queryDriver.observeReady {
+        mqueryNear?.observeReady {
             print("ready")
         }
         
@@ -827,6 +835,9 @@ extension MainUserViewController: PopupDelegate {
             
             return
         }
+        
+        // cancel finding near driver
+        mqueryNear?.removeAllObservers()
         
         // cancel waiting for drivers accept
         mqueryAccept?.removeAllObservers()

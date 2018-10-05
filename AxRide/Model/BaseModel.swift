@@ -43,7 +43,7 @@ class BaseModel {
         return dict
     }
     
-    private func getDatabaseRef(withID: String? = nil, parentID: String? = nil) -> DatabaseReference {
+    func getDatabaseRef(withID: String? = nil, parentID: String? = nil) -> DatabaseReference {
         var strDb = tableName()
         if let parent = parentID {
             strDb += "/" + parent
@@ -80,7 +80,7 @@ class BaseModel {
         db.setValue(self.toDictionary())
     }
     
-    /// save child value to databse
+    /// save child value to database
     ///
     /// - Parameters:
     ///   - withField: <#withField description#>
@@ -90,6 +90,18 @@ class BaseModel {
     func saveToDatabase(withField: String?, value: Any, withID: String? = nil, parentID: String? = nil) {
         let db = getDatabaseRef(withID: withID, parentID: parentID)
         db.child(withField!).setValue(value)
+    }
+    
+    
+    /// save child values to database for specific fields
+    ///
+    /// - Parameters:
+    ///   - withID: <#withID description#>
+    ///   - parentID: <#parentID description#>
+    func saveToDatabaseManually(withID: String? = nil, parentID: String? = nil) {
+        let db = getDatabaseRef(withID: withID, parentID: parentID)
+        
+        db.child(BaseModel.FIELD_DATE).setValue(self.createdAt)
     }
     
     func isEqual(to: BaseModel) -> Bool {

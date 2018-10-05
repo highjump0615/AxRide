@@ -26,4 +26,18 @@ class ChatCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func fillContent(msg: Message) {
+        if let user = msg.sender {
+            // user photo
+            if let photoUrl = user.photoUrl {
+                mImgViewUser?.sd_setImage(with: URL(string: photoUrl),
+                                          placeholderImage: UIImage(named: "UserDefault"),
+                                          options: .progressiveDownload,
+                                          completed: nil)
+            }
+        }
+        
+        // text
+        mLblMsg.text = msg.text
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChatViewController: BaseViewController {
     
@@ -17,7 +18,13 @@ class ChatViewController: BaseViewController {
     var messages: [Message] = []
     var userTo: User?
     
+    // chat room between current and to user
+    var mChat: Chat?
+    var mChatId: String = ""
+    
     var mKeyboardHeight: CGFloat = 0.0
+    
+    var mDbRef: DatabaseReference?
     
     private let CELLID_CHAT_TO = "ChatToCell"
     private let CELLID_CHAT_FROM = "ChatFromCell"
@@ -26,7 +33,9 @@ class ChatViewController: BaseViewController {
         super.viewDidLoad()
         
         showNavbar(transparent: false)
-        self.title = "Wendell"
+        
+        // title
+        self.title = self.userTo?.userFullName()
         
         mViewInput.addTopBorderWithColor(color: Constants.gColorGray, width: 0.5)
 
@@ -43,10 +52,17 @@ class ChatViewController: BaseViewController {
         // keyboard avoiding
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(notification:)), name: .UIKeyboardWillShow, object: nil)
         
+        //
         // init data
-        messages.append(Message())
-        messages.append(Message())
-        messages.append(Message())
+        //
+        mChatId = Chat.makeIdWith2User(self.userTo!.id, User.currentUser!.id)
+        
+        fetchChat()
+        getMessages()
+    }
+    
+    deinit {
+        mDbRef?.removeAllObservers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +72,48 @@ class ChatViewController: BaseViewController {
     
     @IBAction func onButSend(_ sender: Any) {
         self.view.endEditing(true)
+        
+        // send
+        let text = mTextMessage.text!
+        if text.isEmpty {
+            return
+        }
+        
+        //
+        // update chat info
+        //
+        let userCurrent = User.currentUser!
+        if mChat == nil {
+            mChat = Chat()
+        }
+        mChat?.senderId = userCurrent.id
+        mChat?.text = text
+        
+        mChat?.saveToDatabaseManually(withID: mChatId, parentID: userCurrent.id)
+        mChat?.saveToDatabaseManually(withID: mChatId, parentID: self.userTo?.id)
+        
+        //
+        // add new mesage
+        //
+        let msgNew = Message()
+        msgNew.senderId = userCurrent.id
+        msgNew.sender = userCurrent
+        msgNew.text = text
+        
+        msgNew.setTableName(withID: mChatId, parentID: userCurrent.id)
+        msgNew.saveToDatabase()
+        msgNew.setTableName(withID: mChatId, parentID: self.userTo!.id)
+        msgNew.saveToDatabase()
+        
+        self.messages.append(msgNew)
+        
+        // clear textfield
+        self.mTextMessage.text = ""
+        
+        // update table
+        updateTable()
+        
+        // send notification to user
     }
     
     @objc func onButPhone() {
@@ -130,6 +188,73 @@ class ChatViewController: BaseViewController {
         mKeyboardHeight = 0
     }
     
+    func fetchChat() {
+        let userCurrent = User.currentUser!
+        
+        if mChat != nil {
+            // already fetched, return
+            return
+        }
+        
+        // fetch chat room
+        let db = FirebaseManager.ref().child(Chat.TABLE_NAME).child(userCurrent.id).child(self.userTo!.id)
+        db.observeSingleEvent(of: .value) { (snapshot) in
+            if !snapshot.exists() {
+                return
+            }
+            
+            self.mChat = Chat(snapshot: snapshot)
+        }
+    }
+    
+    func getMessages() {
+        let userCurrent = User.currentUser!
+        
+        self.messages.removeAll()
+        
+        mDbRef = FirebaseManager.ref()
+            .child(Chat.TABLE_NAME)
+            .child(userCurrent.id)
+            .child(mChatId)
+            .child(Message.TABLE_NAME)
+        
+        mDbRef?.observe(.childAdded, with: { (snapshot) in
+            let msg = Message(snapshot: snapshot)
+            msg.id = snapshot.key
+            
+            // set user
+            msg.sender = msg.senderId == userCurrent.id ? userCurrent : self.userTo
+            
+            var isExist = false
+            for aMsg in self.messages {
+                if aMsg.isEqual(to: msg) {
+                    isExist = true
+                    break
+                }
+            }
+            
+            if !isExist {
+                DispatchQueue.main.async {
+                    self.messages.append(msg)
+                    
+                    self.updateTable()
+                }
+            }
+        })
+    }
+    
+    func updateTable(animated: Bool = false) {
+        if animated {
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            mTableView.insertRows(at: [indexPath], with: .automatic)
+        }
+        else {
+            mTableView.reloadData()
+        }
+        
+        self.tableViewScrollToBottom(animated: false)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -148,15 +273,21 @@ extension ChatViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let userCurrent = User.currentUser!
         let msg = messages[indexPath.row]
         
         var strCellId = CELLID_CHAT_FROM
-        if indexPath.row == 1 {
+        if msg.senderId == userCurrent.id {
             strCellId = CELLID_CHAT_TO
         }
         
         let cellItem = tableView.dequeueReusableCell(withIdentifier: strCellId) as! ChatCell
         cellItem.backgroundColor = .clear
+        cellItem.fillContent(msg: msg)
+
+        // user tap event
+//        cellItem.mButUser.tag = indexPath.row
+//        cellItem.mButUser.addTarget(self, action: #selector(onButUser), for: .touchUpInside)
         
         return cellItem
     }
