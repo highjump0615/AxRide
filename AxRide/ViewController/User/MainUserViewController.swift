@@ -674,7 +674,12 @@ class MainUserViewController: BaseHomeViewController {
                     return
                 }
                 
+                print("about to get routes: \(coordFrom), \(coordTo)")
+                
                 ApiManager.shared().googleMapGetRoutes(pointFrom: coordFrom, pointTo: coordTo) { (routes, err) in
+                    
+                    print("fetched routes: \(routes.count), \(err)")
+                    
                     for route in routes
                     {
                         let routeOverviewPolyline = route["overview_polyline"].dictionary

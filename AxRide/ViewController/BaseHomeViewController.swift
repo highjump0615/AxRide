@@ -16,9 +16,6 @@ class BaseHomeViewController: BaseMapViewController {
         super.viewDidLoad()
         
         mButProfile.makeRound()
-
-        // update user info
-        updateUserInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +23,12 @@ class BaseHomeViewController: BaseMapViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // update user info
+        updateUserInfo()
+    }
 
     /*
     // MARK: - Navigation

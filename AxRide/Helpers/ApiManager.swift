@@ -65,6 +65,7 @@ class ApiManager {
         var url = urlBaseMapApi + "/directions/json?"
         url += "origin=\(strLocFrom)"
         url += "&destination=\(strLocTo)"
+        url += "&key=\(Config.googleMapApiKey)"
         
         Alamofire.request(url)
             .validate()
@@ -72,6 +73,8 @@ class ApiManager {
                 switch response.result {
                 case .success(let val):
                     let json = JSON(val)
+                    
+//                    print("JSON: \(json)")
                     
                     let routes = json["routes"].arrayValue
                     
