@@ -59,6 +59,9 @@
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BNk-5Q-V2t">
                             <rect key="frame" x="8" y="29.5" width="51" height="31"/>
                             <color key="onTintColor" red="0.74117647058823533" green="0.47058823529411764" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="onSwitchChanged:" destination="-1" eventType="valueChanged" id="tpm-pH-0JS"/>
+                            </connections>
                         </switch>
                     </subviews>
                     <color key="backgroundColor" red="0.49019607840000001" green="0.019607843140000001" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>

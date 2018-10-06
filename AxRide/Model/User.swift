@@ -23,6 +23,7 @@ class User : BaseModel {
     // table info
     //
     static let TABLE_NAME = "users"
+    
     static let FIELD_EMAIL = "userEmail"
     static let FIELD_FIRSTNAME = "firstName"
     static let FIELD_LASTNAME = "lastName"
@@ -34,6 +35,12 @@ class User : BaseModel {
     static let FIELD_TOKEN = "token"
     static let FIELD_RATE = "rate"
     static let FIELD_RATECOUNT = "rateCount"
+    
+    static let FIELD_COUNT_RIDEREQUEST = "rideRequests"
+    static let FIELD_COUNT_RIDEACCEPT = "rideAccepts"
+    
+    static let FIELD_BROKEN = "broken"
+    
     
     static var currentUser: User?
     
@@ -52,6 +59,13 @@ class User : BaseModel {
     
     var rate = 0.0
     var rateCount = 0
+    
+    // counts
+    var rideRequests: Int = 0
+    var rideAccepts: Int = 0
+    var rideCancels: Int = 0
+    
+    var broken = false
     
     //
     // excludes
@@ -130,6 +144,13 @@ class User : BaseModel {
         if let rc = info[User.FIELD_RATECOUNT] {
             self.rateCount = rc as! Int
         }
+        
+        //
+        // for drivers
+        //
+        if let b = info[User.FIELD_BROKEN] {
+            self.broken = b as! Bool
+        }
     }
     
     override func toDictionary() -> [String: Any] {
@@ -146,6 +167,11 @@ class User : BaseModel {
         dict[User.FIELD_TYPE] = self.type.rawValue
         dict[User.FIELD_RATE] = self.rate
         dict[User.FIELD_RATECOUNT] = self.rateCount
+        
+        //
+        // for drivers
+        //
+        dict[User.FIELD_BROKEN] = self.broken
         
         return dict
     }

@@ -16,8 +16,7 @@ class DriverStatus: BaseModel, NSCopying {
     //
     static let TABLE_NAME = "driverstatus"
     
-    var location: CLLocation?
-    
+    var location: CLLocation?    
     
     override func tableName() -> String {
         return DriverStatus.TABLE_NAME

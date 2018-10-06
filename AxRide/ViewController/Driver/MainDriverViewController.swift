@@ -22,6 +22,9 @@ class MainDriverViewController: BaseHomeViewController {
         
         // empty title
         self.navigationItem.title = " "
+        
+        // broken state
+        self.mSwitch.setOn(!User.currentUser!.broken, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,20 +38,13 @@ class MainDriverViewController: BaseHomeViewController {
         showNavbar(show: false)
     }
     
-    @IBAction func onButProfile(_ sender: Any) {
-        // go to profile page
-        let profileVC = ProfileDriverViewController(nibName: "ProfileDriverViewController", bundle: nil)
-        self.navigationController?.pushViewController(profileVC, animated: true)
+    @IBAction func onSwitchChanged(_ sender: Any) {
+        let userCurrent = User.currentUser!
+        
+        userCurrent.broken = !mSwitch.isOn
+        userCurrent.saveToDatabase(withField: User.FIELD_BROKEN, value: userCurrent.broken)
     }
     
-    @IBAction func onButSetting(_ sender: Any) {
-        // go to settings page
-        let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-        let settingsController = storyboard.instantiateViewController(withIdentifier: "settingsController") as! SettingsViewController
-        
-        self.navigationController?.pushViewController(settingsController, animated: true)
-    }
-
     /*
     // MARK: - Navigation
 

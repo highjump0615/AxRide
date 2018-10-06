@@ -51,6 +51,7 @@
 		C3DA44A12113BE4E00980E1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3DA44A02113BE4D00980E1A /* GoogleService-Info.plist */; };
 		C3DBC35A211E333100F42A2B /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBC359211E333100F42A2B /* ApiManager.swift */; };
 		C3E0EA2A20FD3EFE00F41DB7 /* BaseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */; };
+		C3ED24B6216806E90084FF40 /* JobRequestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3ED24B5216806E90084FF40 /* JobRequestViewController.xib */; };
 		C3EE8C7E20FC2F92000D7CD5 /* SignupChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */; };
 		C3EE8C8020FC39A8000D7CD5 /* TermViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */; };
 		C3EE8C8220FC3AF9000D7CD5 /* TermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C8120FC3AF9000D7CD5 /* TermViewController.swift */; };
@@ -161,6 +162,7 @@
 		C3DA44A02113BE4D00980E1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C3DBC359211E333100F42A2B /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewController.swift; sourceTree = "<group>"; };
+		C3ED24B5216806E90084FF40 /* JobRequestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobRequestViewController.xib; sourceTree = "<group>"; };
 		C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupChooseViewController.swift; sourceTree = "<group>"; };
 		C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermViewController.xib; sourceTree = "<group>"; };
 		C3EE8C8120FC3AF9000D7CD5 /* TermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermViewController.swift; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 				C3FBDAB321008355007143BF /* ProfileDriverViewController.xib */,
 				C3FBDAB521008530007143BF /* ProfileDriverUserCell.xib */,
 				C3FBDAB721008735007143BF /* ProfileDriverRateCell.xib */,
+				C3ED24B5216806E90084FF40 /* JobRequestViewController.xib */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				C3FC110F20FB472D00DAA392 /* ForgetViewController.xib in Resources */,
 				C3FC110920FB023900DAA392 /* SigninViewController.xib in Resources */,
 				C3C81D5820FE7061001F2C08 /* AboutViewController.xib in Resources */,
+				C3ED24B6216806E90084FF40 /* JobRequestViewController.xib in Resources */,
 				C3DA44A12113BE4E00980E1A /* GoogleService-Info.plist in Resources */,
 				C3C5DA93211F7615002F934C /* UserWaitPopup.xib in Resources */,
 				C3FC111D20FC0F1C00DAA392 /* SignupChooseViewController.xib in Resources */,
