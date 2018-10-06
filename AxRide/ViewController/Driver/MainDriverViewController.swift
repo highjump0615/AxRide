@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GoogleMaps
+import GeoFire
 
 class MainDriverViewController: BaseHomeViewController {
     
@@ -54,5 +56,28 @@ class MainDriverViewController: BaseHomeViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    /// Called when location has updated
+    ///
+    /// - Parameters:
+    ///   - location: <#location description#>
+    ///   - updateForce: <#updateForce description#>
+    /// - Returns: <#return value description#>
+    override func showMyLocation(location: CLLocationCoordinate2D?, updateForce: Bool = false) -> Bool {
+        
+        guard let l = location else {
+            return false
+        }
+        
+        let cLoc = CLLocation(latitude: l.latitude, longitude: l.longitude)
+        
+        // update location driver status
+        let driverStatusRef = FirebaseManager.ref().child(DriverStatus.TABLE_NAME)
+        let geoFire = GeoFire(firebaseRef: driverStatusRef)
+        geoFire.setLocation(cLoc, forKey: User.currentUser!.id)
+        
+        return true
+    }
 
 }
