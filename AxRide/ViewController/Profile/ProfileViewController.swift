@@ -174,7 +174,7 @@ extension ProfileViewController: UITableViewDelegate {
         
         if section == 1 {
             let viewHeader = ProfileCardListHeader.getView(listType: mnListType) as! ProfileCardListHeader
-            viewHeader.showView(bShow: true, animated: false)
+            viewHeader.showView(true, animated: false)
             
             view = viewHeader
         }
@@ -192,7 +192,7 @@ extension ProfileViewController: UITableViewDelegate {
         
         if section == 1 && mnListType == ProfileViewController.LIST_TYPE_LOCATION {
             let viewFooter = ProfileLocationListFooter.getView() as! ProfileLocationListFooter
-            viewFooter.showView(bShow: true, animated: false)
+            viewFooter.showView(true, animated: false)
             
             view = viewFooter
         }

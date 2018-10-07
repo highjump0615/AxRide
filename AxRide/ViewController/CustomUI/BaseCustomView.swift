@@ -32,7 +32,7 @@ class BaseCustomView: UIView {
         self.alpha = 0
     }
     
-    func showView(bShow: Bool, animated: Bool) {
+    func showView(_ bShow: Bool, animated: Bool = false) {
         if (animated) {
             UIView.animate(withDuration: 0.3,
                            animations: {

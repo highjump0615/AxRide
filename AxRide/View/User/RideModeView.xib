@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RideModeView" customModule="AxRide" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="344" height="68"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WSr-wz-WwK">
+                    <rect key="frame" x="0.0" y="0.0" width="343.5" height="68"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vB6-pj-tJt">
+                            <rect key="frame" x="0.0" y="0.0" width="114.5" height="68"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="J1x-X0-GJQ">
+                                    <rect key="frame" x="29" y="13" width="57" height="42"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainRideNormal" translatesAutoresizingMaskIntoConstraints="NO" id="EHi-7u-6iv">
+                                            <rect key="frame" x="0.0" y="0.0" width="57" height="26"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOUR SEATS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MrI-wn-mWH">
+                                            <rect key="frame" x="0.0" y="31" width="57" height="11"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11o-Rt-JOt">
+                                    <rect key="frame" x="0.0" y="0.0" width="114.5" height="68"/>
+                                    <connections>
+                                        <action selector="onButRideNormal:" destination="iN0-l3-epB" eventType="touchUpInside" id="u1R-ru-G7l"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="J1x-X0-GJQ" firstAttribute="centerY" secondItem="vB6-pj-tJt" secondAttribute="centerY" id="OUV-yU-aZp"/>
+                                <constraint firstItem="11o-Rt-JOt" firstAttribute="leading" secondItem="vB6-pj-tJt" secondAttribute="leading" id="P1i-Cm-9tL"/>
+                                <constraint firstItem="11o-Rt-JOt" firstAttribute="top" secondItem="vB6-pj-tJt" secondAttribute="top" id="SI2-lu-ZJ1"/>
+                                <constraint firstItem="J1x-X0-GJQ" firstAttribute="centerX" secondItem="vB6-pj-tJt" secondAttribute="centerX" id="X5R-JD-h1S"/>
+                                <constraint firstAttribute="trailing" secondItem="11o-Rt-JOt" secondAttribute="trailing" id="pZ7-in-ngc"/>
+                                <constraint firstAttribute="bottom" secondItem="11o-Rt-JOt" secondAttribute="bottom" id="vJJ-KI-LB3"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JtO-me-Vvh">
+                            <rect key="frame" x="114.5" y="0.0" width="114.5" height="68"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xCb-6q-05T">
+                                    <rect key="frame" x="34" y="13.5" width="46.5" height="41"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainRideSuv" translatesAutoresizingMaskIntoConstraints="NO" id="QMO-ue-a2i">
+                                            <rect key="frame" x="0.0" y="0.0" width="46.5" height="25"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIX SEATS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEJ-Nx-43R">
+                                            <rect key="frame" x="0.0" y="30" width="46.5" height="11"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uA-4m-NDu">
+                                    <rect key="frame" x="-0.5" y="0.0" width="115" height="68"/>
+                                    <connections>
+                                        <action selector="onButRideSuv:" destination="iN0-l3-epB" eventType="touchUpInside" id="Obi-4z-TrH"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="2uA-4m-NDu" secondAttribute="trailing" id="J99-b7-cHs"/>
+                                <constraint firstItem="xCb-6q-05T" firstAttribute="centerX" secondItem="JtO-me-Vvh" secondAttribute="centerX" id="Jv1-tZ-Gk5"/>
+                                <constraint firstItem="2uA-4m-NDu" firstAttribute="leading" secondItem="JtO-me-Vvh" secondAttribute="leading" id="Rh3-TU-FSH"/>
+                                <constraint firstAttribute="bottom" secondItem="2uA-4m-NDu" secondAttribute="bottom" id="d80-8u-lFG"/>
+                                <constraint firstItem="2uA-4m-NDu" firstAttribute="top" secondItem="JtO-me-Vvh" secondAttribute="top" id="m5k-c6-VQL"/>
+                                <constraint firstItem="xCb-6q-05T" firstAttribute="centerY" secondItem="JtO-me-Vvh" secondAttribute="centerY" id="s8N-tv-U0h"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rL0-yW-kkN">
+                            <rect key="frame" x="229" y="0.0" width="114.5" height="68"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="CEh-Mv-mDS">
+                                    <rect key="frame" x="30" y="15" width="54.5" height="38"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainRideShare" translatesAutoresizingMaskIntoConstraints="NO" id="IH5-JF-x0D">
+                                            <rect key="frame" x="0.0" y="0.0" width="54.5" height="22"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RIDE SHARE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6b-Ve-NG5">
+                                            <rect key="frame" x="0.0" y="27" width="54.5" height="11"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvz-J7-j40">
+                                    <rect key="frame" x="-0.5" y="0.0" width="114.5" height="68"/>
+                                    <connections>
+                                        <action selector="onButRideShare:" destination="iN0-l3-epB" eventType="touchUpInside" id="RvW-1f-uPJ"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="dvz-J7-j40" firstAttribute="top" secondItem="rL0-yW-kkN" secondAttribute="top" id="6AE-5I-Fty"/>
+                                <constraint firstItem="CEh-Mv-mDS" firstAttribute="centerX" secondItem="rL0-yW-kkN" secondAttribute="centerX" id="FRn-BR-rsw"/>
+                                <constraint firstAttribute="trailing" secondItem="dvz-J7-j40" secondAttribute="trailing" id="U4j-WK-6Q4"/>
+                                <constraint firstAttribute="bottom" secondItem="dvz-J7-j40" secondAttribute="bottom" id="bNa-cs-zbt"/>
+                                <constraint firstItem="dvz-J7-j40" firstAttribute="leading" secondItem="rL0-yW-kkN" secondAttribute="leading" id="blx-18-7DS"/>
+                                <constraint firstItem="CEh-Mv-mDS" firstAttribute="centerY" secondItem="rL0-yW-kkN" secondAttribute="centerY" id="nSq-db-f9b"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="WSr-wz-WwK" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="9fR-Pm-TXg"/>
+                <constraint firstItem="WSr-wz-WwK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YEc-UE-hLQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WSr-wz-WwK" secondAttribute="trailing" id="cKs-Jm-61S"/>
+                <constraint firstItem="WSr-wz-WwK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="eNa-1b-9AU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="mButNormal" destination="11o-Rt-JOt" id="gvJ-Yj-iVK"/>
+                <outlet property="mButShare" destination="dvz-J7-j40" id="byz-Mu-pxC"/>
+                <outlet property="mButSuv" destination="2uA-4m-NDu" id="bTO-QO-wyb"/>
+                <outlet property="mImgViewRideNormal" destination="EHi-7u-6iv" id="7Eb-wQ-Xmk"/>
+                <outlet property="mImgViewRideShare" destination="IH5-JF-x0D" id="GCW-Z1-fXV"/>
+                <outlet property="mImgViewRideSuv" destination="QMO-ue-a2i" id="ecQ-D7-YZD"/>
+            </connections>
+            <point key="canvasLocation" x="15" y="-240"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="MainRideNormal" width="51" height="26"/>
+        <image name="MainRideShare" width="35" height="22"/>
+        <image name="MainRideSuv" width="43" height="25"/>
+    </resources>
+</document>

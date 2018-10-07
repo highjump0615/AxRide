@@ -52,6 +52,7 @@
 		C3DBC35A211E333100F42A2B /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBC359211E333100F42A2B /* ApiManager.swift */; };
 		C3E0EA2A20FD3EFE00F41DB7 /* BaseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */; };
 		C3ED24B6216806E90084FF40 /* JobRequestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3ED24B5216806E90084FF40 /* JobRequestViewController.xib */; };
+		C3ED24B82169A42A0084FF40 /* JobRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ED24B72169A42A0084FF40 /* JobRequestViewController.swift */; };
 		C3EE8C7E20FC2F92000D7CD5 /* SignupChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */; };
 		C3EE8C8020FC39A8000D7CD5 /* TermViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */; };
 		C3EE8C8220FC3AF9000D7CD5 /* TermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C8120FC3AF9000D7CD5 /* TermViewController.swift */; };
@@ -59,6 +60,8 @@
 		C3EE8C8620FC44E7000D7CD5 /* MainUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3EE8C8520FC44E7000D7CD5 /* MainUserViewController.xib */; };
 		C3EE8C8820FCA38B000D7CD5 /* MainUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C8720FCA38B000D7CD5 /* MainUserViewController.swift */; };
 		C3F5CCDD214471C300A7A597 /* beijing.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C3F5CCDC214471C300A7A597 /* beijing.gpx */; };
+		C3FB5EDB2169C54700DAAA94 /* RideModeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FB5EDA2169C54700DAAA94 /* RideModeView.xib */; };
+		C3FB5EDD2169C5DB00DAAA94 /* RideModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB5EDC2169C5DB00DAAA94 /* RideModeView.swift */; };
 		C3FBDAA021004015007143BF /* ChatItemViewTo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FBDA9F21004015007143BF /* ChatItemViewTo.xib */; };
 		C3FBDAA2210041AA007143BF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA1210041AA007143BF /* ChatViewController.swift */; };
 		C3FBDAA4210041D0007143BF /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA3210041D0007143BF /* ChatCell.swift */; };
@@ -163,6 +166,7 @@
 		C3DBC359211E333100F42A2B /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewController.swift; sourceTree = "<group>"; };
 		C3ED24B5216806E90084FF40 /* JobRequestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobRequestViewController.xib; sourceTree = "<group>"; };
+		C3ED24B72169A42A0084FF40 /* JobRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRequestViewController.swift; sourceTree = "<group>"; };
 		C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupChooseViewController.swift; sourceTree = "<group>"; };
 		C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermViewController.xib; sourceTree = "<group>"; };
 		C3EE8C8120FC3AF9000D7CD5 /* TermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 		C3EE8C8520FC44E7000D7CD5 /* MainUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainUserViewController.xib; sourceTree = "<group>"; };
 		C3EE8C8720FCA38B000D7CD5 /* MainUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserViewController.swift; sourceTree = "<group>"; };
 		C3F5CCDC214471C300A7A597 /* beijing.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = beijing.gpx; sourceTree = "<group>"; };
+		C3FB5EDA2169C54700DAAA94 /* RideModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RideModeView.xib; sourceTree = "<group>"; };
+		C3FB5EDC2169C5DB00DAAA94 /* RideModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideModeView.swift; sourceTree = "<group>"; };
 		C3FBDA9F21004015007143BF /* ChatItemViewTo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatItemViewTo.xib; sourceTree = "<group>"; };
 		C3FBDAA1210041AA007143BF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C3FBDAA3210041D0007143BF /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -412,6 +418,7 @@
 				C38E719120FFCB15003C139F /* FoundDriverViewController.xib */,
 				C38E719520FFDB24003C139F /* DriverProfileViewController.xib */,
 				C3C5DA92211F7615002F934C /* UserWaitPopup.xib */,
+				C3FB5EDA2169C54700DAAA94 /* RideModeView.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -423,6 +430,7 @@
 				C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */,
 				C38E719720FFDB73003C139F /* DriverProfileViewController.swift */,
 				C3C5DA94211F7E8B002F934C /* UserWaitPopup.swift */,
+				C3FB5EDC2169C5DB00DAAA94 /* RideModeView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -478,6 +486,7 @@
 				C3FBDAB921008910007143BF /* ProfileDriverUserCell.swift */,
 				C3FBDABB2100897B007143BF /* ProfileDriverRateCell.swift */,
 				C3FBDABD210089EA007143BF /* ProfileDriverViewController.swift */,
+				C3ED24B72169A42A0084FF40 /* JobRequestViewController.swift */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
@@ -654,6 +663,7 @@
 				C3FBDAB621008530007143BF /* ProfileDriverUserCell.xib in Resources */,
 				C3FBDAA021004015007143BF /* ChatItemViewTo.xib in Resources */,
 				C3FC111420FBE05800DAA392 /* SignupEmailViewController.xib in Resources */,
+				C3FB5EDB2169C54700DAAA94 /* RideModeView.xib in Resources */,
 				C3FBDAB421008355007143BF /* ProfileDriverViewController.xib in Resources */,
 				C3FC110F20FB472D00DAA392 /* ForgetViewController.xib in Resources */,
 				C3FC110920FB023900DAA392 /* SigninViewController.xib in Resources */,
@@ -844,6 +854,7 @@
 				C38E718E20FFC1C0003C139F /* ProfileLocationListFooter.swift in Sources */,
 				C3DBC35A211E333100F42A2B /* ApiManager.swift in Sources */,
 				C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */,
+				C3FB5EDD2169C5DB00DAAA94 /* RideModeView.swift in Sources */,
 				C3C81D6D20FEB6F7001F2C08 /* BaseCustomView.swift in Sources */,
 				C3C54324216695FD00EA0FD8 /* Chat.swift in Sources */,
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,
@@ -858,6 +869,7 @@
 				C3FBDABA21008910007143BF /* ProfileDriverUserCell.swift in Sources */,
 				C3EE8C8420FC3BA0000D7CD5 /* Config.swift in Sources */,
 				C3EE8C8220FC3AF9000D7CD5 /* TermViewController.swift in Sources */,
+				C3ED24B82169A42A0084FF40 /* JobRequestViewController.swift in Sources */,
 				C33E89C9213F8DDD00FD294D /* DriverStatus.swift in Sources */,
 				C3FBDABE210089EA007143BF /* ProfileDriverViewController.swift in Sources */,
 				C3FC110520FA919400DAA392 /* ARTextHelper.swift in Sources */,

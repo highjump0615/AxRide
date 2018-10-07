@@ -40,6 +40,7 @@ class User : BaseModel {
     static let FIELD_COUNT_RIDEACCEPT = "rideAccepts"
     
     static let FIELD_BROKEN = "broken"
+    static let FIELD_ACCEPTED = "accepted"
     
     
     static var currentUser: User?
@@ -64,8 +65,12 @@ class User : BaseModel {
     var rideRequests: Int = 0
     var rideAccepts: Int = 0
     var rideCancels: Int = 0
-    
+
+    // driver: the state that shows he cannot in work mode
     var broken = false
+    
+    // driver: the submitted data has been approved or not
+    var accepted = false
     
     //
     // excludes
@@ -151,6 +156,9 @@ class User : BaseModel {
         if let b = info[User.FIELD_BROKEN] {
             self.broken = b as! Bool
         }
+        if let a = info[User.FIELD_ACCEPTED] {
+            self.accepted = a as! Bool
+        }
     }
     
     override func toDictionary() -> [String: Any] {
@@ -172,6 +180,7 @@ class User : BaseModel {
         // for drivers
         //
         dict[User.FIELD_BROKEN] = self.broken
+        dict[User.FIELD_ACCEPTED] = self.accepted
         
         return dict
     }

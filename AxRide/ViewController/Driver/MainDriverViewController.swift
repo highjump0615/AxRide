@@ -9,11 +9,15 @@
 import UIKit
 import GoogleMaps
 import GeoFire
+import Firebase
 
 class MainDriverViewController: BaseHomeViewController {
     
     @IBOutlet weak var mSwitch: UISwitch!
     @IBOutlet weak var mViewInfo: UIView!
+    
+    var mqueryRequest: DatabaseReference?
+    var mUserIds: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +29,40 @@ class MainDriverViewController: BaseHomeViewController {
         // empty title
         self.navigationItem.title = " "
         
+        let userCurrent = User.currentUser!
+        
         // broken state
-        self.mSwitch.setOn(!User.currentUser!.broken, animated: false)
+        self.mSwitch.setOn(!userCurrent.broken, animated: false)
+        
+        // wait for user request
+        mqueryRequest = FirebaseManager.ref().child(Order.TABLE_NAME_ACCEPT).child(userCurrent.id)
+        mqueryRequest?.observe(.childAdded, with: { (snapshot) in
+            if !snapshot.exists() {
+                return
+            }
+            
+            //
+            // a request has been added
+            //
+//            if !userCurrent.accepted {
+//                // not approved driver
+//                self.alertOk(title: "Not approved yet",
+//                             message: "Your driver account should be accepted by Admin",
+//                             cancelButton: "OK",
+//                             cancelHandler: nil)
+//                return
+//            }
+            
+            let userId = snapshot.key
+            
+            // popup request page
+            let requestVC = JobRequestViewController(nibName: "JobRequestViewController", bundle: nil)
+            requestVC.userId = userId
+            requestVC.parentVC = self
+            
+            let nav = UINavigationController(rootViewController: requestVC)
+            self.present(nav, animated: true, completion: nil)
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +74,20 @@ class MainDriverViewController: BaseHomeViewController {
         super.viewWillAppear(animated)
         
         showNavbar(show: false)
+        
+        //
+        // check banned
+        //
+        
+    }
+    
+    deinit {
+        // remove observers
+        mqueryRequest?.removeAllObservers()
+    }
+    
+    func setOrder(_ order: Order) {
+//        self.mOrder = order
     }
     
     @IBAction func onSwitchChanged(_ sender: Any) {
@@ -65,6 +115,8 @@ class MainDriverViewController: BaseHomeViewController {
     ///   - updateForce: <#updateForce description#>
     /// - Returns: <#return value description#>
     override func showMyLocation(location: CLLocationCoordinate2D?, updateForce: Bool = false) -> Bool {
+        
+        let _ = super.showMyLocation(location: location, updateForce: updateForce)
         
         guard let l = location else {
             return false

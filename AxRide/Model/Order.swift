@@ -11,12 +11,12 @@ import Firebase
 
 class Order: BaseModel {
     
-    static let SEATTYPE_FOUR = 0
-    static let SEATTYPE_SIX = 1
-    static let SEATTYPE_SHARE = 2
-    
     static let STATUS_REQUEST = 0
     static let STATUS_ACCEPTED = 1
+    
+    static let RIDE_MODE_NORMAL = 0
+    static let RIDE_MODE_SUV = 1
+    static let RIDE_MODE_SHARE = 2
     
     //
     // table info
@@ -33,7 +33,7 @@ class Order: BaseModel {
     static let FIELD_FROM = "pickup"
     static let FIELD_TO = "delivery"
     static let FIELD_FEE = "fee"
-    static let FIELD_SEATTYPE = "seatType"
+    static let FIELD_RIDEMODE = "seatType"
     
     
     var customerId = ""
@@ -60,7 +60,7 @@ class Order: BaseModel {
     var to: GooglePlace?
     
     var fee = 0.0
-    var seatType = SEATTYPE_FOUR
+    var rideMode = Order.RIDE_MODE_NORMAL
     
     var status = Order.STATUS_REQUEST
     
@@ -91,7 +91,7 @@ class Order: BaseModel {
         self.to = GooglePlace(data: info[Order.FIELD_TO] as! [String : Any?])
         
         self.fee = info[Order.FIELD_FEE] as! Double
-        self.seatType = info[Order.FIELD_SEATTYPE] as! Int
+        self.rideMode = info[Order.FIELD_RIDEMODE] as! Int
     }
     
     override func toDictionary() -> [String: Any] {
@@ -110,7 +110,7 @@ class Order: BaseModel {
         }
         
         dict[Order.FIELD_FEE] = self.fee
-        dict[Order.FIELD_SEATTYPE] = self.seatType
+        dict[Order.FIELD_RIDEMODE] = self.rideMode
         
         return dict
     }

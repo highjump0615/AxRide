@@ -20,9 +20,7 @@ class MainUserViewController: BaseHomeViewController {
     @IBOutlet weak var mViewRequest: UIView!
     
     @IBOutlet weak var mViewRide: UIView!
-    @IBOutlet weak var mImgViewRideNormal: UIImageView!
-    @IBOutlet weak var mImgViewRideSuv: UIImageView!
-    @IBOutlet weak var mImgViewRideShare: UIImageView!
+    var mViewRideMode: RideModeView?
     
     // location
     @IBOutlet weak var mTextSearch: UITextField!
@@ -42,11 +40,8 @@ class MainUserViewController: BaseHomeViewController {
     @IBOutlet weak var mButCancel: UIButton!
     @IBOutlet weak var mButDriver: UIButton!
     
-    static let RIDE_TYPE_NORMAL = 0
-    static let RIDE_TYPE_SUV = 1
-    static let RIDE_TYPE_SHARE = 2
     
-    var mnRideType = RIDE_TYPE_NORMAL
+    var mnRideMode = Order.RIDE_MODE_NORMAL
     
     var placePickerFrom: GMSPlacePickerViewController?
     var placePickerTo: GMSPlacePickerViewController?
@@ -105,13 +100,6 @@ class MainUserViewController: BaseHomeViewController {
         mTextLocationTo.attributedPlaceholder = NSAttributedString(string: "Destination",
                                                                      attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
         
-        // images
-        mImgViewRideNormal.image = mImgViewRideNormal.image!.withRenderingMode(.alwaysTemplate)
-        mImgViewRideSuv.image = mImgViewRideNormal.image!.withRenderingMode(.alwaysTemplate)
-        mImgViewRideShare.image = mImgViewRideNormal.image!.withRenderingMode(.alwaysTemplate)
-        
-        updateRideView()
-        
         // empty title
         self.navigationItem.title = " "
         
@@ -133,6 +121,11 @@ class MainUserViewController: BaseHomeViewController {
         mViewWaiting = UserWaitPopup.getView() as? UserWaitPopup
         mViewWaiting?.delegate = self
         self.view.addSubview(mViewWaiting!)
+        
+        // init ride mode view
+        mViewRideMode = RideModeView.getView() as? RideModeView
+        mViewRideMode?.delegate = self
+        mViewRide.addSubview(mViewRideMode!)
         
         // fetch current order
         getOrderInfo()
@@ -167,6 +160,13 @@ class MainUserViewController: BaseHomeViewController {
         
         // clear map init mark
         self.isMapInited = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        mViewRideMode?.frame = self.mViewRide.bounds
+        mViewRideMode?.showView(true)
     }
     
     /// update map - from, to
@@ -231,38 +231,8 @@ class MainUserViewController: BaseHomeViewController {
         }
     }
     
-    @IBAction func onButRideNormal(_ sender: Any) {
-        mnRideType = MainUserViewController.RIDE_TYPE_NORMAL
-        updateRideView()
-    }
-    
-    @IBAction func onButRideSuv(_ sender: Any) {
-        mnRideType = MainUserViewController.RIDE_TYPE_SUV
-        updateRideView()
-    }
-    
-    @IBAction func onButRideShare(_ sender: Any) {
-        mnRideType = MainUserViewController.RIDE_TYPE_SHARE
-        updateRideView()
-    }
-    
     func updateRideView() {
-        mImgViewRideNormal.tintColor = Constants.gColorGray
-        mImgViewRideSuv.tintColor = Constants.gColorGray
-        mImgViewRideShare.tintColor = Constants.gColorGray
-        
-        switch mnRideType {
-        case MainUserViewController.RIDE_TYPE_NORMAL:
-            mImgViewRideNormal.tintColor = Constants.gColorPurple
-            
-        case MainUserViewController.RIDE_TYPE_SUV:
-            mImgViewRideSuv.tintColor = Constants.gColorPurple
-            
-        case MainUserViewController.RIDE_TYPE_SHARE:
-            mImgViewRideShare.tintColor = Constants.gColorPurple
-            
-        default: break
-        }
+        mViewRideMode?.updateRideView(mnRideMode)
     }
     
     /// clear location from text field
@@ -334,7 +304,7 @@ class MainUserViewController: BaseHomeViewController {
         // show loading
         //
         mViewWaiting?.frame = self.view.bounds
-        mViewWaiting?.showView(bShow: true, animated: true)
+        mViewWaiting?.showView(true, animated: true)
         mViewWaiting?.startTimer()
         
         // clear driver list
@@ -380,15 +350,6 @@ class MainUserViewController: BaseHomeViewController {
         // wait for drivers accept
         mqueryAccept = FirebaseManager.ref().child(Order.TABLE_NAME_REQUEST).child(userCurrent.id).child(Order.FIELD_DRIVERID)
         mqueryAccept?.observe(.value, with: mListenerDriver)
-        
-//        // go to profile page
-//        let foundVC = FoundDriverViewController(nibName: "FoundDriverViewController", bundle: nil)
-//        foundVC.homeVC = self
-//
-//        let nav = UINavigationController()
-//        nav.setViewControllers([foundVC], animated: true)
-//
-//        present(nav, animated: true, completion: nil)
     }
     
     /// update page based on order status
@@ -800,6 +761,13 @@ extension MainUserViewController: GMSPlacePickerViewControllerDelegate {
         print("No place selected")
     }
     
+}
+
+// MARK: - Ride Mode view
+extension MainUserViewController: RideModeDelegate {
+    func onChangeMode(_ mode: Int) {
+        mnRideMode = mode
+    }
 }
 
 // MARK: - Wait dialog Popup

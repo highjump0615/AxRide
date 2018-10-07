@@ -41,7 +41,7 @@ class UserWaitPopup: BaseCustomView {
     
     @IBAction func onButCancel(_ sender: Any?) {
         stopTimer()
-        self.showView(bShow: false, animated: true)
+        self.showView(false, animated: true)
         
         delegate?.onClosePopup(sender)
     }
