@@ -34,8 +34,13 @@ class Message: BaseModel {
         
         let info = snapshot.value! as! [String: Any?]
         
-        self.senderId = info[Message.FIELD_SENDER_ID] as! String
-        self.text = info[Message.FIELD_TEXT] as! String
+        if let senderId = info[Message.FIELD_SENDER_ID] as? String {
+            self.senderId = senderId
+        }
+        
+        if let text = info[Message.FIELD_TEXT] as? String {
+            self.text = text
+        }        
     }
     
     func setTableName(withID: String, parentID: String) {

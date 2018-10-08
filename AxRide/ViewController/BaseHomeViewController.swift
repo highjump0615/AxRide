@@ -126,7 +126,11 @@ class BaseHomeViewController: BaseMapViewController {
     func updateFromMark() {
         mMarkerFrom?.map = nil
         
-        if let l = mOrder!.from?.location {
+        guard let order = mOrder else {
+            return
+        }
+        
+        if let l = order.from?.location {
             mMarkerFrom = GMSMarker()
             mMarkerFrom?.icon = UIImage(named: "MainLocationFrom")
             mMarkerFrom?.position = l
@@ -140,7 +144,11 @@ class BaseHomeViewController: BaseMapViewController {
     func updateToMark() {
         mMarkerTo?.map = nil
         
-        if let l = mOrder!.to?.location {
+        guard let order = mOrder else {
+            return
+        }
+        
+        if let l = order.to?.location {
             mMarkerTo = GMSMarker()
             mMarkerTo?.icon = UIImage(named: "MainLocationTo")
             mMarkerTo?.position = l

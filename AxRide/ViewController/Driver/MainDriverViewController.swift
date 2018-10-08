@@ -134,9 +134,53 @@ class MainDriverViewController: BaseHomeViewController {
     }
     
     @IBAction func onButChat(_ sender: Any) {
+        guard let order = mOrder else {
+            return
+        }
+        
+        guard let customer = order.customer else {
+            return
+        }
+        
+        // go to chat page
+        let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
+        chatVC.userTo = customer
+        self.navigationController?.pushViewController(chatVC, animated: true)
     }
     
     @IBAction func onButCancel(_ sender: Any) {
+        self.alert(title: "Are you sure to cancel this ride?",
+                   message: "You may cause no income for this ride",
+                   okButton: "OK",
+                   cancelButton: "Cancel",
+                   okHandler: { (_) in
+                    self.doCancelRide()
+        }, cancelHandler: nil)
+    }
+    
+    /// cancel ride
+    func doCancelRide() {
+        guard let order = mOrder else {
+            return
+        }
+        
+        let dbRef = FirebaseManager.ref()
+        let userCurrent = User.currentUser!
+        
+        // clear data in database
+        dbRef.child(Order.TABLE_NAME_ARRIVED).child(order.customerId).removeValue()
+        dbRef.child(Order.TABLE_NAME_PICKED).child(userCurrent.id).removeValue()
+        dbRef.child(Order.TABLE_NAME_PICKED).child(order.customerId).removeValue()
+        
+        // clear order
+        mOrder = nil
+        let _ = showMyLocation(location: mCoordinate, updateForce: true)
+        
+        updateOrder()
+        
+        // clear map
+        mViewMap.clear()
+        updateMap()
     }
     
     /*
