@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,6 +17,7 @@
                 <outlet property="mSwitch" destination="BNk-5Q-V2t" id="qWE-2q-ZKo"/>
                 <outlet property="mViewInfo" destination="0bf-Qc-jVj" id="YCt-Pa-Gan"/>
                 <outlet property="mViewMap" destination="AUK-nF-HXm" id="RCn-Dn-uOr"/>
+                <outlet property="mViewPanel" destination="bTY-cO-n9z" id="xIn-is-wQJ"/>
                 <outlet property="view" destination="W4y-7t-KcV" id="18l-ei-z1q"/>
             </connections>
         </placeholder>
@@ -202,6 +204,53 @@
                         <constraint firstAttribute="trailing" secondItem="dOK-d4-kaz" secondAttribute="trailing" id="Pbb-ve-9p0"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTY-cO-n9z">
+                    <rect key="frame" x="0.0" y="621" width="375" height="46"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAq-iJ-flM">
+                            <rect key="frame" x="12" y="0.0" width="97" height="46"/>
+                            <state key="normal" title="Trip Complete">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onButComplete:" destination="-1" eventType="touchUpInside" id="634-Lq-xDX"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sy-JN-lF1">
+                            <rect key="frame" x="329" y="0.0" width="46" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="0Sy-JN-lF1" secondAttribute="height" id="CIg-Q2-Coq"/>
+                            </constraints>
+                            <state key="normal" image="MainDriverMapClose"/>
+                            <connections>
+                                <action selector="onButCancel:" destination="-1" eventType="touchUpInside" id="r3g-Nm-iaI"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pl-My-c1I">
+                            <rect key="frame" x="283" y="0.0" width="46" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="6Pl-My-c1I" secondAttribute="height" id="ZO4-Tu-a71"/>
+                            </constraints>
+                            <state key="normal" image="ButDriverProfileMail"/>
+                            <connections>
+                                <action selector="onButChat:" destination="-1" eventType="touchUpInside" id="pB9-T7-68M"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.89803921568627454" green="0.26666666666666666" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="5vx-KJ-hiF"/>
+                        <constraint firstItem="0Sy-JN-lF1" firstAttribute="leading" secondItem="6Pl-My-c1I" secondAttribute="trailing" id="A3w-qD-0j5"/>
+                        <constraint firstAttribute="bottom" secondItem="0Sy-JN-lF1" secondAttribute="bottom" id="B9x-rQ-1vg"/>
+                        <constraint firstItem="6Pl-My-c1I" firstAttribute="top" secondItem="bTY-cO-n9z" secondAttribute="top" id="DQy-8T-vBU"/>
+                        <constraint firstItem="0Sy-JN-lF1" firstAttribute="top" secondItem="bTY-cO-n9z" secondAttribute="top" id="GqZ-JF-22d"/>
+                        <constraint firstItem="aAq-iJ-flM" firstAttribute="top" secondItem="bTY-cO-n9z" secondAttribute="top" id="cqd-Kb-qm2"/>
+                        <constraint firstAttribute="bottom" secondItem="aAq-iJ-flM" secondAttribute="bottom" id="dAI-0T-Wqd"/>
+                        <constraint firstItem="aAq-iJ-flM" firstAttribute="leading" secondItem="bTY-cO-n9z" secondAttribute="leading" constant="12" id="gQa-Fk-Bvj"/>
+                        <constraint firstAttribute="bottom" secondItem="6Pl-My-c1I" secondAttribute="bottom" id="kL1-cv-Ob5"/>
+                        <constraint firstAttribute="trailing" secondItem="0Sy-JN-lF1" secondAttribute="trailing" id="scj-f7-6y3"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -210,10 +259,13 @@
                 <constraint firstItem="trW-lj-Jgg" firstAttribute="leading" secondItem="LUM-ca-68J" secondAttribute="leading" id="4R6-Lh-GT8"/>
                 <constraint firstItem="LUM-ca-68J" firstAttribute="trailing" secondItem="0bf-Qc-jVj" secondAttribute="trailing" constant="16" id="ChH-Vx-tgS"/>
                 <constraint firstItem="LUM-ca-68J" firstAttribute="bottom" secondItem="AUK-nF-HXm" secondAttribute="bottom" id="NXV-po-RRG"/>
+                <constraint firstItem="LUM-ca-68J" firstAttribute="bottom" secondItem="bTY-cO-n9z" secondAttribute="bottom" id="VOQ-dH-9nP"/>
+                <constraint firstItem="bTY-cO-n9z" firstAttribute="leading" secondItem="LUM-ca-68J" secondAttribute="leading" id="VcG-HA-eMH"/>
                 <constraint firstItem="trW-lj-Jgg" firstAttribute="top" secondItem="W4y-7t-KcV" secondAttribute="top" id="Zwd-pb-Dh4"/>
                 <constraint firstItem="0bf-Qc-jVj" firstAttribute="leading" secondItem="LUM-ca-68J" secondAttribute="leading" constant="16" id="gbB-jd-T7d"/>
                 <constraint firstItem="AUK-nF-HXm" firstAttribute="top" secondItem="LUM-ca-68J" secondAttribute="top" id="mKK-sP-Sod"/>
                 <constraint firstItem="LUM-ca-68J" firstAttribute="bottom" secondItem="0bf-Qc-jVj" secondAttribute="bottom" constant="32" id="o2S-lf-GtI"/>
+                <constraint firstItem="LUM-ca-68J" firstAttribute="trailing" secondItem="bTY-cO-n9z" secondAttribute="trailing" id="oS9-IZ-KsO"/>
                 <constraint firstItem="trW-lj-Jgg" firstAttribute="trailing" secondItem="LUM-ca-68J" secondAttribute="trailing" id="zyz-ZQ-cR3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="LUM-ca-68J"/>
@@ -221,7 +273,9 @@
         </view>
     </objects>
     <resources>
+        <image name="ButDriverProfileMail" width="26" height="18"/>
         <image name="MainDriverClose" width="18" height="18"/>
+        <image name="MainDriverMapClose" width="21" height="21"/>
         <image name="MainDriverStar" width="17" height="17"/>
         <image name="MainDriverTick" width="18" height="18"/>
         <image name="MainMapTitle" width="91" height="41"/>

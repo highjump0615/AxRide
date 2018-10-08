@@ -104,6 +104,11 @@ class BaseModel {
         db.child(BaseModel.FIELD_DATE).setValue(self.createdAt)
     }
     
+    func isExistInDb(completion: @escaping((DataSnapshot?)->())) {
+        let query = getDatabaseRef()
+        query.observeSingleEvent(of: .value, with: completion)
+    }
+    
     func isEqual(to: BaseModel) -> Bool {
         return id == to.id
     }

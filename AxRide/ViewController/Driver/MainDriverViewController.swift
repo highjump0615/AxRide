@@ -16,6 +16,8 @@ class MainDriverViewController: BaseHomeViewController {
     @IBOutlet weak var mSwitch: UISwitch!
     @IBOutlet weak var mViewInfo: UIView!
     
+    @IBOutlet weak var mViewPanel: UIView!
+    
     var mqueryRequest: DatabaseReference?
     var mUserIds: [String] = []
     
@@ -63,6 +65,9 @@ class MainDriverViewController: BaseHomeViewController {
             let nav = UINavigationController(rootViewController: requestVC)
             self.present(nav, animated: true, completion: nil)
         })
+        
+        // fetch current order
+        getOrderInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,8 +91,36 @@ class MainDriverViewController: BaseHomeViewController {
         mqueryRequest?.removeAllObservers()
     }
     
-    func setOrder(_ order: Order) {
-//        self.mOrder = order
+    func setOrder(_ order: Order?) {
+        mOrder = order
+        
+        updateOrder()
+    }
+    
+    override func updateOrder() {
+        super.updateOrder()
+        
+        // in order
+        if let order = mOrder {
+            mViewInfo.isHidden = true
+            mViewPanel.isHidden = false
+            
+            // fetch driver
+            if order.customer == nil {
+                User.readFromDatabase(withId: order.customerId) { (user) in
+                    order.customer = user
+                    
+                    self.showLoadingView(show: false)
+                }
+            }
+            else {
+                showLoadingView(show: false)
+            }
+        }
+        else {
+            mViewInfo.isHidden = false
+            mViewPanel.isHidden = true
+        }
     }
     
     @IBAction func onSwitchChanged(_ sender: Any) {
@@ -95,6 +128,15 @@ class MainDriverViewController: BaseHomeViewController {
         
         userCurrent.broken = !mSwitch.isOn
         userCurrent.saveToDatabase(withField: User.FIELD_BROKEN, value: userCurrent.broken)
+    }
+    
+    @IBAction func onButComplete(_ sender: Any) {
+    }
+    
+    @IBAction func onButChat(_ sender: Any) {
+    }
+    
+    @IBAction func onButCancel(_ sender: Any) {
     }
     
     /*

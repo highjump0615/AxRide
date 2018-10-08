@@ -51,6 +51,7 @@ class Order: BaseModel {
         }
     }
     
+    var customer: User?
     var driver: User?
     
     var latitude = 0.0

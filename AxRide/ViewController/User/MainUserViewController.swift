@@ -46,13 +46,9 @@ class MainUserViewController: BaseHomeViewController {
     var placePickerFrom: GMSPlacePickerViewController?
     var placePickerTo: GMSPlacePickerViewController?
     
-    var mMarkerFrom: GMSMarker?
-    var mMarkerTo: GMSMarker?
     var mMarkerDriver: GMSMarker?
     
     var mViewWaiting: UserWaitPopup?
-    
-    var mOrder: Order = Order()
     
     var drivers: [DriverStatus] = []
     var selectedDriver: DriverStatus?
@@ -61,14 +57,13 @@ class MainUserViewController: BaseHomeViewController {
     var mqueryDriver: DatabaseReference?
     var mqueryNear: GFCircleQuery?
     
-    var polygonRoad: GMSPolyline?
     
     var price: Double {
         get {
-            return mOrder.fee
+            return mOrder!.fee
         }
         set {
-            mOrder.fee = newValue
+            mOrder?.fee = newValue
             mLblPrice.text = (newValue > 0) ? "\(newValue.format(f: ".1"))$" : ""
    
             mButGo.makeEnable(enable: newValue > 0)
@@ -125,10 +120,17 @@ class MainUserViewController: BaseHomeViewController {
         // init ride mode view
         mViewRideMode = RideModeView.getView() as? RideModeView
         mViewRideMode?.delegate = self
+        mViewRideMode?.updateRideView(mnRideMode)
         mViewRide.addSubview(mViewRideMode!)
         
+        // init data
+        mOrder = Order()
+        
         // fetch current order
-        getOrderInfo()
+        getOrderInfo {
+            // fetch current driver
+            self.getDriverStatus()
+        }
     }
     
     deinit {
@@ -169,56 +171,24 @@ class MainUserViewController: BaseHomeViewController {
         mViewRideMode?.showView(true)
     }
     
-    /// update map - from, to
-    func updateMap() {
-        updateMapCamera()
-        
-        updateFromMark()
-        updateToMark()
-    }
-    
-    /// fetch current order info
-    func getOrderInfo() {
-        let userCurrent = User.currentUser!
-        let dbRef = FirebaseManager.ref()
-        
-        showLoadingView()
-        
-        let query = dbRef.child(Order.TABLE_NAME_PICKED).child(userCurrent.id)
-        query.observeSingleEvent(of: .value) { (snapshot) in
-            // order not found
-            if !snapshot.exists() {
-                self.showLoadingView(show: false)
-                return
-            }
-            
-            self.mOrder = Order(snapshot: snapshot)
-            
-            // fetch current driver
-            self.getDriverStatus()
-        
-            self.updateMap()
-            self.updateOrder()
-        }
-    }
     
     /// fetch current driver status
     func getDriverStatus() {
         let driverStatusRef = FirebaseManager.ref().child(DriverStatus.TABLE_NAME)
         let geoFire = GeoFire(firebaseRef: driverStatusRef)
-        mqueryDriver = driverStatusRef.child(mOrder.driverId)
+        mqueryDriver = driverStatusRef.child(mOrder!.driverId)
         
         // query location change
         mqueryDriver?.observe(.value) { (snapshot) in
             // get current driver location
-            geoFire.getLocationForKey(self.mOrder.driverId) { (location, error) in
+            geoFire.getLocationForKey(self.mOrder!.driverId) { (location, error) in
                 self.showLoadingView(show: false)
                 
                 if let l = location {
                     var driver = self.selectedDriver
                     if driver == nil {
                         driver = DriverStatus()
-                        driver?.id = self.mOrder.driverId
+                        driver?.id = self.mOrder!.driverId
                         self.selectedDriver = driver
                     }
                     
@@ -259,9 +229,9 @@ class MainUserViewController: BaseHomeViewController {
         mTextLocationTo.text = strAddrFrom
 
         // exchange position
-        let locationTemp = mOrder.from
-        mOrder.from = mOrder.to
-        mOrder.to = locationTemp
+        let locationTemp = mOrder!.from
+        mOrder!.from = mOrder!.to
+        mOrder!.to = locationTemp
 
         // update map
         updateMap()
@@ -293,12 +263,12 @@ class MainUserViewController: BaseHomeViewController {
         let userCurrent = User.currentUser!
         
         // add request to "request" table
-        self.mOrder.customerId = userCurrent.id
+        self.mOrder!.customerId = userCurrent.id
         if let coord = self.mCoordinate {
-            self.mOrder.latitude = coord.latitude
-            self.mOrder.longitude = coord.longitude
+            self.mOrder!.latitude = coord.latitude
+            self.mOrder!.longitude = coord.longitude
         }
-        self.mOrder.saveToDatabase(withID: userCurrent.id)
+        self.mOrder!.saveToDatabase(withID: userCurrent.id)
         
         //
         // show loading
@@ -317,8 +287,8 @@ class MainUserViewController: BaseHomeViewController {
         let geoFire = GeoFire(firebaseRef: driverStatusRef)
 
         // get current location
-        var dLatitude = self.mOrder.from?.location?.latitude
-        var dLongitude = self.mOrder.to?.location?.latitude
+        var dLatitude = self.mOrder!.from?.location?.latitude
+        var dLongitude = self.mOrder!.to?.location?.latitude
         if let coord = self.mCoordinate {
             dLatitude = coord.latitude
             dLongitude = coord.longitude
@@ -352,26 +322,79 @@ class MainUserViewController: BaseHomeViewController {
         mqueryAccept?.observe(.value, with: mListenerDriver)
     }
     
+    override func updateMapCamera() {
+        super.updateMapCamera()
+        
+        guard let order = mOrder else {
+            return
+        }
+        
+        if order.status > Order.STATUS_REQUEST {
+            return
+        }
+        
+        if let coordFrom = order.from?.location, let coordTo = order.to?.location {
+            var bounds = GMSCoordinateBounds()
+            bounds = bounds.includingCoordinate(coordFrom)
+            bounds = bounds.includingCoordinate(coordTo)
+            
+            if order.status == Order.STATUS_REQUEST {
+                let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(140 + 96, 20, 60 + 70 + 20, 20))
+                mViewMap.animate(with: update)
+                
+                // update price
+                ApiManager.shared().googleMapGetDistance(pointFrom: coordFrom, pointTo: coordTo, completion: {(data, error) in
+                    if let element = data {
+                        //
+                        // calculate taxi fee
+                        //
+                        
+                        let serviceFee = 2.0
+                        let baseFee = 2.0
+                        let perMile = 1.8
+                        let perMinute = 0.6
+                        
+                        let distance = element["distance"]["value"].int
+                        let duration = element["duration"]["value"].int
+                        
+                        print("distance: \(distance)")
+                        
+                        var dFee = baseFee
+                        if let dist = distance {
+                            dFee += perMile * (Double(dist) / Constants.MILE_DIST)
+                        }
+                        if let dur = duration {
+                            dFee += perMinute * (Double(dur) / Constants.MILE_DIST)
+                        }
+                        
+                        self.price = dFee * Config.feeRate
+                    }
+                })
+            }
+        }
+    }
+        
     /// update page based on order status
-    func updateOrder() {
+    override func updateOrder() {
+        super.updateOrder()
         
         // show/hide location & ride
-        mViewLocation.isHidden = !(mOrder.status == Order.STATUS_REQUEST)
-        mViewRide.isHidden = !(mOrder.status == Order.STATUS_REQUEST)
-        mViewRequest.isHidden = !(mOrder.status == Order.STATUS_REQUEST)
+        mViewLocation.isHidden = !(mOrder!.status == Order.STATUS_REQUEST)
+        mViewRide.isHidden = !(mOrder!.status == Order.STATUS_REQUEST)
+        mViewRequest.isHidden = !(mOrder!.status == Order.STATUS_REQUEST)
         
         // show/hide driver info
-        mViewDriver.isHidden = (mOrder.status == Order.STATUS_REQUEST)
+        mViewDriver.isHidden = (mOrder!.status == Order.STATUS_REQUEST)
         
         // order has not started, exit
-        if mOrder.status == Order.STATUS_REQUEST {
+        if mOrder!.status == Order.STATUS_REQUEST {
             return
         }
         
         // fetch driver
-        if mOrder.driver == nil {
-            User.readFromDatabase(withId: mOrder.driverId) { (user) in
-                self.mOrder.driver = user
+        if mOrder!.driver == nil {
+            User.readFromDatabase(withId: mOrder!.driverId) { (user) in
+                self.mOrder!.driver = user
                 
                 // update driver info
                 self.updateDriverInfo()
@@ -381,7 +404,7 @@ class MainUserViewController: BaseHomeViewController {
     
     /// update UI for driver info
     func updateDriverInfo() {
-        guard let d = mOrder.driver else {
+        guard let d = mOrder!.driver else {
             return
         }
         
@@ -403,7 +426,7 @@ class MainUserViewController: BaseHomeViewController {
     
     func updateDistance(_ location: CLLocationCoordinate2D?) {
         // calculate distance
-        if let from = location, let to = mOrder.to?.location {
+        if let from = location, let to = mOrder!.to?.location {
             let locationFrom = CLLocation(latitude: from.latitude, longitude: from.longitude)
             let locationTo = CLLocation(latitude: to.latitude, longitude: to.longitude)
             let dist = locationTo.distance(from: locationFrom) / 1000.0
@@ -413,7 +436,7 @@ class MainUserViewController: BaseHomeViewController {
     }
     
     @IBAction func onButDriver(_ sender: Any) {
-        guard let d = mOrder.driver else {
+        guard let d = mOrder!.driver else {
             return
         }
         
@@ -424,7 +447,7 @@ class MainUserViewController: BaseHomeViewController {
     }
     
     @IBAction func onButDriverChat(_ sender: Any) {
-        guard let d = mOrder.driver else {
+        guard let d = mOrder!.driver else {
             return
         }
         
@@ -452,7 +475,7 @@ class MainUserViewController: BaseHomeViewController {
         // clear data in database
         dbRef.child(Order.TABLE_NAME_ARRIVED).child(userCurrent.id).removeValue()
         dbRef.child(Order.TABLE_NAME_PICKED).child(userCurrent.id).removeValue()
-        dbRef.child(Order.TABLE_NAME_PICKED).child(mOrder.driverId).removeValue()
+        dbRef.child(Order.TABLE_NAME_PICKED).child(mOrder!.driverId).removeValue()
         
         // clear order
         mOrder = Order()
@@ -490,7 +513,7 @@ class MainUserViewController: BaseHomeViewController {
         }
         
         // set as "from" location if not set
-        if self.mOrder.from == nil {
+        if self.mOrder!.from == nil {
             // fill address in from
             let geocoder = GMSGeocoder()
             
@@ -502,58 +525,34 @@ class MainUserViewController: BaseHomeViewController {
                     // fill address in from location
                     self.mTextLocationFrom.text = currentAddress
                     
-                    //
-                    // set from place
-                    //
-                    let pFrom = GooglePlace()
-                    pFrom.name = currentAddress
-                    
-                    // city
-                    if let city = address.locality {
-                        pFrom.city = city
+                    // check again, as it took time to fetch address
+                    if self.mOrder!.from == nil {
+                        //
+                        // set from place
+                        //
+                        let pFrom = GooglePlace()
+                        pFrom.name = currentAddress
+                        
+                        // city
+                        if let city = address.locality {
+                            pFrom.city = city
+                        }
+                        else if let country = address.country {
+                            pFrom.city = country
+                        }
+                        
+                        pFrom.location = location
+                        
+                        self.mOrder!.from = pFrom
+                        self.updateFromMark()
+                        
+                        return
                     }
-                    else if let country = address.country {
-                        pFrom.city = country
-                    }
-                    
-                    pFrom.location = location
-                    
-                    self.mOrder.from = pFrom
                 }
-                
-                self.updateFromMark()
             }
         }
         
         return true
-    }
-    
-    /// update "from marker" on the map
-    ///
-    /// - Parameter location: <#location description#>
-    func updateFromMark() {
-        mMarkerFrom?.map = nil
-        
-        if let l = mOrder.from?.location {
-            mMarkerFrom = GMSMarker()
-            mMarkerFrom?.icon = UIImage(named: "MainLocationFrom")
-            mMarkerFrom?.position = l
-            mMarkerFrom?.map = mViewMap
-        }
-    }
-    
-    /// update "to marker" on the map
-    ///
-    /// - Parameter location: <#location description#>
-    func updateToMark() {
-        mMarkerTo?.map = nil
-        
-        if let l = mOrder.to?.location {
-            mMarkerTo = GMSMarker()
-            mMarkerTo?.icon = UIImage(named: "MainLocationTo")
-            mMarkerTo?.position = l
-            mMarkerTo?.map = mViewMap
-        }
     }
     
     /// update driver marker on the map
@@ -569,102 +568,6 @@ class MainUserViewController: BaseHomeViewController {
         }
     }
     
-    /// update map camera based on from & to locations
-    ///
-    /// - Parameter location: <#location description#>
-    func updateMapCamera() {
-        
-        if let coordFrom = mOrder.from?.location, let coordTo = mOrder.to?.location {
-            var bounds = GMSCoordinateBounds()
-            bounds = bounds.includingCoordinate(coordFrom)
-            bounds = bounds.includingCoordinate(coordTo)
-
-            if mOrder.status == Order.STATUS_REQUEST {
-                let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(140 + 96, 20, 60 + 70 + 20, 20))
-                mViewMap.animate(with: update)
-                
-                // update price
-                ApiManager.shared().googleMapGetDistance(pointFrom: coordFrom, pointTo: coordTo, completion: {(data, error) in
-                    if let element = data {
-                        //
-                        // calculate taxi fee
-                        //
-                        
-                        let serviceFee = 2.0
-                        let baseFee = 2.0
-                        let perMile = 1.8
-                        let perMinute = 0.6
-                        
-                        let distance = element["distance"]["value"].int
-                        let duration = element["duration"]["value"].int
-                        
-                        print("distance: \(distance)")
-                        
-                        var dFee = baseFee
-                        if let dist = distance {
-                            dFee += perMile * (Double(dist) / Constants.MILE_DIST)
-                        }
-                        if let dur = duration {
-                            dFee += perMinute * (Double(dur) / Constants.MILE_DIST)
-                        }
-                        
-                        self.price = dFee * Config.feeRate
-                    }
-                })
-            }
-            else {
-                let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsetsMake(140 + 10, 20, 170 + 40, 20))
-                mViewMap.animate(with: update)
-                
-                // draw a road path on the map
-                if self.polygonRoad != nil {
-                    return
-                }
-                
-                print("about to get routes: \(coordFrom), \(coordTo)")
-                
-                ApiManager.shared().googleMapGetRoutes(pointFrom: coordFrom, pointTo: coordTo) { (routes, err) in
-                    
-                    print("fetched routes: \(routes.count), \(err)")
-                    
-                    for route in routes
-                    {
-                        let routeOverviewPolyline = route["overview_polyline"].dictionary
-                        let points = routeOverviewPolyline?["points"]?.stringValue
-                        let path = GMSPath.init(fromEncodedPath: points!)
-                        let polyline = GMSPolyline.init(path: path)
-                        polyline.strokeColor = UIColor.blue
-                        polyline.strokeWidth = 3
-                        polyline.map = self.mViewMap
-                        
-                        self.polygonRoad = polyline
-                    }
-                }
-            }
-        
-            return
-        }
-
-        moveCameraToLocation(mOrder.from?.location)
-        moveCameraToLocation(mOrder.to?.location)
-        
-        
-    }
-    
-    
-    //
-    // GMSMapViewDelegate
-    //
-    
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        if self.isMapInited {
-            return
-        }
-        
-        updateMap()
-        
-        self.isMapInited = true
-    }
 }
 
 extension MainUserViewController: UITextFieldDelegate {
@@ -746,11 +649,11 @@ extension MainUserViewController: GMSPlacePickerViewControllerDelegate {
         
         if viewController == placePickerFrom {
             self.mTextLocationFrom.text = place.formattedAddress
-            mOrder.from = GooglePlace(place: place)
+            mOrder!.from = GooglePlace(place: place)
         }
         else if viewController == placePickerTo {
             self.mTextLocationTo.text = place.formattedAddress
-            mOrder.to = GooglePlace(place: place)
+            mOrder!.to = GooglePlace(place: place)
         }
     }
     
@@ -773,6 +676,12 @@ extension MainUserViewController: RideModeDelegate {
 // MARK: - Wait dialog Popup
 extension MainUserViewController: PopupDelegate {
     func onClosePopup(_ sender: Any?) {
+        // cancel finding near driver
+        mqueryNear?.removeAllObservers()
+        
+        // cancel waiting for drivers accept
+        mqueryAccept?.removeAllObservers()
+        
         let userCurrent = User.currentUser!
         let dbRef = FirebaseManager.ref()
         
@@ -795,12 +704,6 @@ extension MainUserViewController: PopupDelegate {
             return
         }
         
-        // cancel finding near driver
-        mqueryNear?.removeAllObservers()
-        
-        // cancel waiting for drivers accept
-        mqueryAccept?.removeAllObservers()
-        
         // check variety of current selected driver
         guard let driverCurrent = self.selectedDriver else {
             // show notice when time out
@@ -816,18 +719,19 @@ extension MainUserViewController: PopupDelegate {
         }
         
         // check current order
-        if mOrder.isEmpty() {
+        if mOrder!.isEmpty() {
             return
         }
         
         // remove mark from "accepts" table totally
         dbRef.child(Order.TABLE_NAME_ACCEPT + "/" + driverCurrent.id).removeValue()
-        mOrder.driverId = driverCurrent.id
+        mOrder!.driverId = driverCurrent.id
         
         // add request to "picked" table
-        self.mOrder.saveToDatabaseRaw(path: Order.TABLE_NAME_PICKED + "/" + userCurrent.id)
-        self.mOrder.saveToDatabaseRaw(path: Order.TABLE_NAME_PICKED + "/" + driverCurrent.id)
+        self.mOrder!.saveToDatabaseRaw(path: Order.TABLE_NAME_PICKED + "/" + userCurrent.id)
+        self.mOrder!.saveToDatabaseRaw(path: Order.TABLE_NAME_PICKED + "/" + driverCurrent.id)
 
+        updateMap()
         updateOrder()
     }
 }

@@ -160,14 +160,34 @@ class JobRequestViewController: UIViewController {
     }
     
     @IBAction func onButAccept(_ sender: Any) {
-        let dbRef = FirebaseManager.ref()
+        
+        // check if request is cancelled or taken by other driver
+        mOrder?.isExistInDb(completion: { (snapshot) in
+            if let data = snapshot {
+                if data.exists() {
+                    self.doAcceptOrder()
+                    return
+                }
+            }
+            
+            // notice and return
+            self.alertOk(title: "Sorry, you are a bit late",
+                    message: "The request is already taken or cancelled by user",
+                    cancelButton: "OK",
+                    cancelHandler: { (action) in
+                        self.backToMain()
+            })
+        })
+        
+        enableButtons(false)
+    }
+    
+    func doAcceptOrder() {
         let userCurrent = User.currentUser!
         
         // add driver id in request order data
-        dbRef.child(Order.TABLE_NAME_REQUEST)
-            .child(self.userId!)
-            .child(Order.FIELD_DRIVERID)
-            .setValue(userCurrent.id)
+        mOrder?.saveToDatabase(withField: Order.FIELD_DRIVERID, value: userCurrent.id)
+        mOrder?.driverId = userCurrent.id
         
         // update ride request count & ride accpet count
         userCurrent.rideAccepts += 1
@@ -176,20 +196,22 @@ class JobRequestViewController: UIViewController {
         userCurrent.saveToDatabase(withField: User.FIELD_COUNT_RIDEACCEPT, value: userCurrent.rideAccepts)
         userCurrent.saveToDatabase(withField: User.FIELD_COUNT_RIDEREQUEST, value: userCurrent.rideRequests)
         
+        self.parentVC?.setOrder(mOrder)
+        
         backToMain()
     }
     
     @IBAction func onButDecline(_ sender: Any) {
-        backToMain()
-    }
-    
-    func backToMain() {
         // remove "accept" mark and return
         FirebaseManager.ref().child(Order.TABLE_NAME_ACCEPT)
             .child(User.currentUser!.id)
             .child(self.userId!)
             .removeValue()
         
+        backToMain()
+    }
+    
+    func backToMain() {
         dismiss(animated: true, completion: nil)
     }
     
