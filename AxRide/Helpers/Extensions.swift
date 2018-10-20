@@ -219,6 +219,24 @@ extension UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.setNavigationBarHidden(!show, animated: animated)
     }
+    
+    //
+    // hide keyboard
+    //
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
 }
 
 extension UIView {

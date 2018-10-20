@@ -8,6 +8,8 @@
 
 import UIKit
 import KMPlaceholderTextView
+import IHKeyboardAvoiding
+import Cosmos
 
 class DriverProfileViewController: BaseViewController {
     
@@ -16,10 +18,15 @@ class DriverProfileViewController: BaseViewController {
     @IBOutlet weak var mImgViewLocation: UIImageView!
     @IBOutlet weak var mLblLocation: UILabel!
     
-    @IBOutlet weak var mLblReviewCount: UIButton!
+    @IBOutlet weak var mLblRate: UILabel!
+    @IBOutlet weak var mCosmosRate: CosmosView!
+    @IBOutlet weak var mButReviewCount: UIButton!
     @IBOutlet weak var mTextViewReview: KMPlaceholderTextView!
     
     @IBOutlet weak var mButSave: UIButton!
+    
+    var user: User?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +42,42 @@ class DriverProfileViewController: BaseViewController {
         
         showNavbar(transparent: false)
         
+        // keyboard avoiding
+        KeyboardAvoiding.setAvoidingView(self.view, withTriggerView: mTextViewReview)
+        
         self.title = "Profile"
+        
+        self.hideKeyboard()
+        
+        //
+        // init data
+        //
+        
+        if let user = self.user {
+            // photo
+            if let photoUrl = user.photoUrl {
+                mImgViewUser.sd_setImage(with: URL(string: photoUrl),
+                                         placeholderImage: UIImage(named: "UserDefault"),
+                                         options: .progressiveDownload,
+                                         completed: nil)
+            }
+            
+            // name
+            mLblName.text = user.userFullName()
+            
+            // location
+            self.mImgViewLocation.isHidden = Utils.isStringNullOrEmpty(text: user.location)
+            mLblLocation.text = user.location
+            
+            // rate
+            mCosmosRate.rating = user.userRate()
+            let strRating = mCosmosRate.rating.format(f: ".1")
+            mLblRate.text = strRating
+            
+            // review count
+            mButReviewCount.setTitle("\(user.rateCount) reviews", for: .normal)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,8 +93,8 @@ class DriverProfileViewController: BaseViewController {
 
     @IBAction func onButChat(_ sender: Any) {
         // go to chat page
-        let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
-        self.navigationController?.pushViewController(chatVC, animated: true)        
+//        let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
+//        self.navigationController?.pushViewController(chatVC, animated: true)
     }
     
     /*

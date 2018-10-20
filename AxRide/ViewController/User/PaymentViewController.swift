@@ -48,6 +48,41 @@ class PaymentViewController: BaseViewController {
     }
     
     @IBAction func onButPay(_ sender: Any) {
+        // TODO: Payment
+        
+        
+        //
+        // payment success
+        //
+//        removeRideRequest()
+        
+        self.alert(title: "Payment Done",
+                   message: "Would you like to submit feedback for your rider?",
+                   okButton: "Yes",
+                   cancelButton: "No",
+                   okHandler: { (_) in
+                    self.gotoReviewPage()
+        }, cancelHandler: { (_) in
+            // back to main page
+            self.navigationController?.popViewController(animated: false)
+        })
+    }
+    
+    func removeRideRequest() {
+        let dbRef = FirebaseManager.ref()
+        let userCurrent = User.currentUser!
+        
+        dbRef.child(Order.TABLE_NAME_REQUEST).child(userCurrent.id).removeValue()
+        dbRef.child(Order.TABLE_NAME_PICKED).child(userCurrent.id).removeValue()
+        dbRef.child(Order.TABLE_NAME_PICKED).child(order!.driverId).removeValue()
+    }
+    
+    /// Review driver
+    func gotoReviewPage() {
+        // go to driver rate page
+        let profileVC = DriverProfileViewController(nibName: "DriverProfileViewController", bundle: nil)
+        profileVC.user = self.order?.driver
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
     /*

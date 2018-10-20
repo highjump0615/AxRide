@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DriverProfileViewController" customModule="AxRide" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DriverProfileViewController" customModule="IHKeyboardAvoiding">
             <connections>
+                <outlet property="mButReviewCount" destination="GdX-qF-2G7" id="10r-oC-mic"/>
                 <outlet property="mButSave" destination="ONx-3H-4KP" id="GTg-xr-Uug"/>
+                <outlet property="mCosmosRate" destination="jbN-1P-Ilb" id="nw6-qE-gG8"/>
                 <outlet property="mImgViewLocation" destination="19H-qD-mhZ" id="wBi-oa-EYp"/>
                 <outlet property="mImgViewUser" destination="x0u-xM-Xom" id="igP-uB-5f9"/>
                 <outlet property="mLblLocation" destination="TtS-tI-Ibv" id="ksw-cl-Zy4"/>
                 <outlet property="mLblName" destination="Aap-S9-PTM" id="ZeI-ch-bAE"/>
-                <outlet property="mLblReviewCount" destination="GdX-qF-2G7" id="Q0E-AD-LwY"/>
+                <outlet property="mLblRate" destination="3Wn-uV-B7j" id="enk-7g-GuY"/>
                 <outlet property="mTextViewReview" destination="OMV-cY-KId" id="Qsf-qg-tJ2"/>
                 <outlet property="view" destination="iN0-l3-epB" id="bUp-Ze-YXN"/>
             </connections>
@@ -30,19 +30,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefault" translatesAutoresizingMaskIntoConstraints="NO" id="x0u-xM-Xom">
-                    <rect key="frame" x="125.5" y="42" width="124" height="123.5"/>
+                    <rect key="frame" x="125.5" y="42" width="124" height="124"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="x0u-xM-Xom" secondAttribute="height" id="3tS-Sl-LDE"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wendell Meister" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aap-S9-PTM">
-                    <rect key="frame" x="126.5" y="172.5" width="122" height="19.5"/>
+                    <rect key="frame" x="126.5" y="173" width="122" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0Yv-Vf-fs2">
-                    <rect key="frame" x="125.5" y="192" width="124" height="14.5"/>
+                    <rect key="frame" x="125.5" y="192.5" width="124" height="14.5"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileLocationWhite" translatesAutoresizingMaskIntoConstraints="NO" id="19H-qD-mhZ">
                             <rect key="frame" x="0.0" y="0.0" width="7" height="14.5"/>
@@ -57,22 +57,22 @@
                     </subviews>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOJ-Gp-15E">
-                    <rect key="frame" x="0.0" y="225.5" width="375" height="42"/>
+                    <rect key="frame" x="0.0" y="226" width="375" height="42"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundDriverProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Nl7-9i-iLt">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
                         </imageView>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="gzg-hf-P46">
-                            <rect key="frame" x="14" y="11.5" width="118.5" height="19.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="gzg-hf-P46">
+                            <rect key="frame" x="14" y="-4" width="118.5" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Wn-uV-B7j">
-                                    <rect key="frame" x="0.0" y="0.0" width="23.5" height="19.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="23.5" height="50"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbN-1P-Ilb" customClass="CosmosView" customModule="Cosmos">
-                                    <rect key="frame" x="29.5" y="0.0" width="89" height="19.5"/>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jbN-1P-Ilb" customClass="CosmosView" customModule="Cosmos">
+                                    <rect key="frame" x="29.5" y="0.0" width="89" height="50"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -107,7 +107,7 @@
                                 </view>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdX-qF-2G7">
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdX-qF-2G7">
                             <rect key="frame" x="146.5" y="0.0" width="81" height="42"/>
                             <state key="normal" title="291 reviews">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -142,12 +142,12 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap a star to rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RW-x0-PYY">
-                    <rect key="frame" x="14" y="284.5" width="122.5" height="19.5"/>
+                    <rect key="frame" x="14" y="285" width="122.5" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCg-qQ-wAR" customClass="CosmosView" customModule="Cosmos">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XCg-qQ-wAR" customClass="CosmosView" customModule="Cosmos">
                     <rect key="frame" x="261" y="285" width="100" height="20"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
@@ -182,13 +182,13 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write a review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUY-HS-LKh">
-                    <rect key="frame" x="14" y="322" width="108" height="20.5"/>
+                    <rect key="frame" x="14" y="322.5" width="108" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OMV-cY-KId" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                    <rect key="frame" x="14" y="352.5" width="347" height="224.5"/>
+                    <rect key="frame" x="14" y="353" width="347" height="224"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="scrollIndicatorInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
