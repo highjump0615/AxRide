@@ -18,6 +18,8 @@ class MainDriverViewController: BaseHomeViewController {
     
     @IBOutlet weak var mViewPanel: UIView!
     
+    @IBOutlet weak var mButComplete: UIButton!
+    
     var mqueryRequest: DatabaseReference?
     var mUserIds: [String] = []
     
@@ -105,6 +107,9 @@ class MainDriverViewController: BaseHomeViewController {
             mViewInfo.isHidden = true
             mViewPanel.isHidden = false
             
+            // price
+            mButComplete.setTitle("$\(order.fee.format(f: ".2"))  Trip Complete", for: .normal)
+            
             // fetch driver
             if order.customer == nil {
                 User.readFromDatabase(withId: order.customerId) { (user) in
@@ -130,7 +135,33 @@ class MainDriverViewController: BaseHomeViewController {
         userCurrent.saveToDatabase(withField: User.FIELD_BROKEN, value: userCurrent.broken)
     }
     
+    /// arrived destination
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func onButComplete(_ sender: Any) {
+        self.alert(title: "Arrived Destination?",
+                   message: "You can ask payment to user for this trip",
+                   okButton: "Yes",
+                   cancelButton: "No",
+                   okHandler: { (_) in
+                    self.doCompleteRide()
+        }, cancelHandler: nil)
+    }
+    
+    /// complete ride
+    func doCompleteRide() {
+        guard let order = mOrder else {
+            return
+        }
+        
+        // set order status
+        order.status = Order.STATUS_ARRIVED
+        
+        let userCurrent = User.currentUser!
+        
+        // add a mark to "arrived" table
+        let dbRef = FirebaseManager.ref().child(Order.TABLE_NAME_ARRIVED)
+        dbRef.child(order.customerId).child(userCurrent.id).setValue(true)
     }
     
     @IBAction func onButChat(_ sender: Any) {

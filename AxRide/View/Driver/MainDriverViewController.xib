@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainDriverViewController" customModule="AxRide" customModuleProvider="target">
             <connections>
+                <outlet property="mButComplete" destination="aAq-iJ-flM" id="AKL-YH-3ZL"/>
                 <outlet property="mButProfile" destination="lMu-o9-WH6" id="oId-tL-kAK"/>
                 <outlet property="mSwitch" destination="BNk-5Q-V2t" id="qWE-2q-ZKo"/>
                 <outlet property="mViewInfo" destination="0bf-Qc-jVj" id="YCt-Pa-Gan"/>
@@ -83,7 +83,7 @@
                     <rect key="frame" x="16" y="552" width="343" height="83"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dOK-d4-kaz">
-                            <rect key="frame" x="0.0" y="0.0" width="343.5" height="83"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="83"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0I-Ux-nyu">
                                     <rect key="frame" x="0.0" y="0.0" width="114.5" height="83"/>
@@ -121,13 +121,13 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dar-84-cIx">
-                                    <rect key="frame" x="114.5" y="0.0" width="114.5" height="83"/>
+                                    <rect key="frame" x="114.5" y="0.0" width="114" height="83"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainDriverStar" translatesAutoresizingMaskIntoConstraints="NO" id="2Cb-Gk-LkP">
-                                            <rect key="frame" x="49" y="14.5" width="17" height="17"/>
+                                            <rect key="frame" x="48.5" y="14.5" width="17" height="17"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efu-7G-Sg9">
-                                            <rect key="frame" x="41.5" y="38.5" width="32.5" height="19.5"/>
+                                            <rect key="frame" x="41" y="38.5" width="32.5" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.49019607840000001" green="0.019607843140000001" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -139,7 +139,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWD-Ut-uPc">
-                                            <rect key="frame" x="-0.5" y="0.0" width="115" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="114" height="83"/>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -153,7 +153,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsw-b9-00P">
-                                    <rect key="frame" x="229" y="0.0" width="114.5" height="83"/>
+                                    <rect key="frame" x="228.5" y="0.0" width="114.5" height="83"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainDriverClose" translatesAutoresizingMaskIntoConstraints="NO" id="Nz9-mz-9Wp">
                                             <rect key="frame" x="48.5" y="14" width="18" height="18"/>
@@ -171,7 +171,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0x-dD-4bs">
-                                            <rect key="frame" x="-0.5" y="0.0" width="114.5" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="114.5" height="83"/>
                                         </button>
                                     </subviews>
                                     <constraints>

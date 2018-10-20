@@ -56,6 +56,7 @@ class MainUserViewController: BaseHomeViewController {
     var mqueryAccept: DatabaseReference?
     var mqueryDriver: DatabaseReference?
     var mqueryNear: GFCircleQuery?
+    var mqueryArrive: DatabaseReference?
     
     
     var price: Double {
@@ -138,6 +139,7 @@ class MainUserViewController: BaseHomeViewController {
         mqueryDriver?.removeAllObservers()
         mqueryNear?.removeAllObservers()
         mqueryAccept?.removeAllObservers()
+        mqueryArrive?.removeAllObservers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -259,6 +261,22 @@ class MainUserViewController: BaseHomeViewController {
         self.mViewWaiting?.onButCancel(nil)
     }
     
+    /// Arrived destination
+    private lazy var mListenerArrive: (DataSnapshot) -> Void = { snapshot in
+        if !snapshot.exists() {
+            return
+        }
+        
+        guard let o = self.mOrder else {
+            return
+        }
+        
+        // go to payment page
+        let payVC = PaymentViewController(nibName: "PaymentViewController", bundle: nil)
+        payVC.order = o
+        self.navigationController?.pushViewController(payVC, animated: true)
+    }
+    
     @IBAction func onButGo(_ sender: Any) {
         let userCurrent = User.currentUser!
         
@@ -367,7 +385,7 @@ class MainUserViewController: BaseHomeViewController {
                             dFee += perMinute * (Double(dur) / Constants.MILE_DIST)
                         }
                         
-                        self.price = dFee * Config.feeRate
+                        self.price = dFee
                     }
                 })
             }
@@ -400,6 +418,11 @@ class MainUserViewController: BaseHomeViewController {
                 self.updateDriverInfo()
             }
         }
+        
+        // wait for arrive
+        let userCurrent = User.currentUser!
+        mqueryArrive = FirebaseManager.ref().child(Order.TABLE_NAME_ARRIVED).child(userCurrent.id)
+        mqueryArrive?.observe(.value, with: mListenerArrive)
     }
     
     /// update UI for driver info

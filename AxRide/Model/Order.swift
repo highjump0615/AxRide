@@ -13,6 +13,7 @@ class Order: BaseModel {
     
     static let STATUS_REQUEST = 0
     static let STATUS_ACCEPTED = 1
+    static let STATUS_ARRIVED = 2
     
     static let RIDE_MODE_NORMAL = 0
     static let RIDE_MODE_SUV = 1
@@ -69,6 +70,9 @@ class Order: BaseModel {
     override func tableName() -> String {
         if status == Order.STATUS_REQUEST {
             return Order.TABLE_NAME_REQUEST
+        }
+        else if status == Order.STATUS_ARRIVED {
+            return Order.TABLE_NAME_ARRIVED
         }
         
         return Order.TABLE_NAME_PICKED
