@@ -88,6 +88,11 @@ class PaymentViewController: BaseViewController {
         let profileVC = DriverProfileViewController(nibName: "DriverProfileViewController", bundle: nil)
         profileVC.user = self.order?.driver
         self.navigationController?.pushViewController(profileVC, animated: true)
+        
+        // remove itself from stack
+        var navigationArray = self.navigationController?.viewControllers
+        navigationArray!.remove(at: (navigationArray?.count)! - 2)
+        self.navigationController?.viewControllers = navigationArray!
     }
     
     /*

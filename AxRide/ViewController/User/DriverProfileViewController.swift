@@ -50,6 +50,9 @@ class DriverProfileViewController: BaseViewController {
         
         self.hideKeyboard()
         
+        // hide back button
+        self.navigationItem.hidesBackButton = true
+        
         //
         // init data
         //
@@ -80,6 +83,7 @@ class DriverProfileViewController: BaseViewController {
         }
         
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -91,7 +95,7 @@ class DriverProfileViewController: BaseViewController {
         
         mImgViewUser.makeRound()
     }
-
+    
     @IBAction func onButChat(_ sender: Any) {
         // go to chat page
 //        let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
