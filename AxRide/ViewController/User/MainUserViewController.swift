@@ -514,6 +514,20 @@ class MainUserViewController: BaseHomeViewController {
         mqueryDriver?.removeAllObservers()
     }
     
+    /// finish current order
+    func finishOrder() {
+        mOrder = Order()
+        
+        self.drivers.removeAll()
+        self.selectedDriver = nil
+        
+        updateMap()
+        updateOrder()
+        
+        setFromAddress(mCoordinate)
+        updateDriverMark(nil)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -533,6 +547,16 @@ class MainUserViewController: BaseHomeViewController {
         
         if location == nil {
             return false
+        }
+        
+        setFromAddress(mCoordinate ?? location)
+        
+        return true
+    }
+    
+    func setFromAddress(_ location: CLLocationCoordinate2D?) {
+        if location == nil {
+            return
         }
         
         // set as "from" location if not set
@@ -574,8 +598,6 @@ class MainUserViewController: BaseHomeViewController {
                 }
             }
         }
-        
-        return true
     }
     
     /// update driver marker on the map
@@ -588,6 +610,10 @@ class MainUserViewController: BaseHomeViewController {
         
         if let l = location {
             mMarkerDriver?.position = l.coordinate
+        }
+        else {
+            // remove driver mark
+            mMarkerDriver?.map = nil
         }
     }
     

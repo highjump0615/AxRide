@@ -124,7 +124,13 @@ class DriverProfileViewController: BaseViewController {
         self.alertOk(title: "Submit Success",
                      message: "Thank you for leaving a review",
                      cancelButton: "OK",
-                     cancelHandler: { (action) in                        
+                     cancelHandler: { (action) in
+                        
+                        // finish order
+                        if let mainVC = UIApplication.shared.keyWindow!.rootViewController as? MainUserViewController {
+                            mainVC.finishOrder()
+                        }
+                        
                         // back to main page
                         self.navigationController?.popToRootViewController(animated: true)
         })

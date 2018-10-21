@@ -14,7 +14,7 @@ class BaseHomeViewController: BaseMapViewController {
     @IBOutlet weak var mButProfile: UIButton!
     
     var mOrder: Order?
-    var polygonRoad: GMSPolyline?
+    var polygonRoads: [GMSPolyline] = []
     
     var mMarkerFrom: GMSMarker?
     var mMarkerTo: GMSMarker?
@@ -88,7 +88,7 @@ class BaseHomeViewController: BaseMapViewController {
                 mViewMap.animate(with: update)
                 
                 // draw a road path on the map
-                if self.polygonRoad != nil {
+                if !self.polygonRoads.isEmpty {
                     return
                 }
                 
@@ -108,16 +108,30 @@ class BaseHomeViewController: BaseMapViewController {
                         polyline.strokeWidth = 3
                         polyline.map = self.mViewMap
                         
-                        self.polygonRoad = polyline
+                        self.polygonRoads.append(polyline)
                     }
                 }
+            }
+            else {
+                removeRoadLines()
             }
             
             return
         }
         
+        removeRoadLines()
+        
         moveCameraToLocation(order.from?.location)
         moveCameraToLocation(order.to?.location)
+    }
+    
+    /// remove lines on the map
+    func removeRoadLines() {
+        for polyline in self.polygonRoads {
+            polyline.map = nil
+        }
+        
+        self.polygonRoads.removeAll()
     }
     
     /// update "from marker" on the map

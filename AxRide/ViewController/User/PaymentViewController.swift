@@ -63,8 +63,13 @@ class PaymentViewController: BaseViewController {
                    okHandler: { (_) in
                     self.gotoReviewPage()
         }, cancelHandler: { (_) in
+            // finish order
+            if let mainVC = self.navigationController?.viewControllers[0] as? MainUserViewController {
+                mainVC.finishOrder()
+            }
+            
             // back to main page
-            self.navigationController?.popViewController(animated: false)
+            self.navigationController?.popToRootViewController(animated: true)
         })
     }
     
