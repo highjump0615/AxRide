@@ -9,33 +9,26 @@
 import UIKit
 import WebKit
 
-class TermViewController: BaseViewController {
+class TermViewController: BaseWebViewController {
     
     static let TERMS_FROM_SIGNUP = 0
     static let TERMS_FROM_SETTING = 1
     static let PRIVACY_POLICY = 2
     
     var type = TermViewController.TERMS_FROM_SIGNUP
-
-    @IBOutlet weak var mWebView: WKWebView!
+    
     @IBOutlet weak var mButAccept: UIButton!
-    @IBOutlet weak var mIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        mWebView.navigationDelegate = self
-        
         let url = type == TermViewController.PRIVACY_POLICY ?
             URL(string: Config.urlPrivacyPolicy)! : URL(string: Config.urlTermCondition)!
-        mWebView.load(URLRequest(url: url))
-        mIndicator.startAnimating()
+        mWebView.load(URLRequest(url: url))        
         
         mButAccept.makeRound(r: 12.0)
-        
-        showNavbar(transparent: false)
         
         if type != TermViewController.TERMS_FROM_SIGNUP {
             // hide accept button
@@ -87,11 +80,4 @@ class TermViewController: BaseViewController {
     }
     */
 
-}
-
-extension TermViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // hide loading indicator
-        mIndicator.isHidden = true
-    }
 }

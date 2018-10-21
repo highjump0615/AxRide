@@ -64,7 +64,13 @@ class SettingsViewController: UITableViewController {
             self.navigationController?.pushViewController(editProfileVC, animated: true)
             
         case 1:
+            //
             // cards and bank accounts
+            //
+            // go to payment setup page
+            let psVC = PaymentSetupViewController(nibName: "PaymentSetupViewController", bundle: nil)
+            self.navigationController?.pushViewController(psVC, animated: true)
+            
             break
             
         case 2:
