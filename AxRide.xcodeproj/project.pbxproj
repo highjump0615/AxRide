@@ -30,6 +30,7 @@
 		C38E719820FFDB73003C139F /* DriverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E719720FFDB73003C139F /* DriverProfileViewController.swift */; };
 		C3A31264217AA8890032B118 /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A31263217AA8890032B118 /* PaymentViewController.xib */; };
 		C3A31268217AD2120032B118 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A31267217AD2120032B118 /* PaymentViewController.swift */; };
+		C3A3126A217B7F0E0032B118 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A31269217B7F0E0032B118 /* Rate.swift */; };
 		C3C54324216695FD00EA0FD8 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C54323216695FD00EA0FD8 /* Chat.swift */; };
 		C3C5DA93211F7615002F934C /* UserWaitPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C5DA92211F7615002F934C /* UserWaitPopup.xib */; };
 		C3C5DA95211F7E8B002F934C /* UserWaitPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5DA94211F7E8B002F934C /* UserWaitPopup.swift */; };
@@ -146,6 +147,7 @@
 		C38E719720FFDB73003C139F /* DriverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverProfileViewController.swift; sourceTree = "<group>"; };
 		C3A31263217AA8890032B118 /* PaymentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentViewController.xib; sourceTree = "<group>"; };
 		C3A31267217AD2120032B118 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		C3A31269217B7F0E0032B118 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		C3C54323216695FD00EA0FD8 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		C3C5DA92211F7615002F934C /* UserWaitPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserWaitPopup.xib; sourceTree = "<group>"; };
 		C3C5DA94211F7E8B002F934C /* UserWaitPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWaitPopup.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				C31C00BE213E3B2D00F28942 /* GooglePlace.swift */,
 				C33E89C8213F8DDD00FD294D /* DriverStatus.swift */,
 				C3C54323216695FD00EA0FD8 /* Chat.swift */,
+				C3A31269217B7F0E0032B118 /* Rate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -880,6 +883,7 @@
 				C3ED24B82169A42A0084FF40 /* JobRequestViewController.swift in Sources */,
 				C33E89C9213F8DDD00FD294D /* DriverStatus.swift in Sources */,
 				C3FBDABE210089EA007143BF /* ProfileDriverViewController.swift in Sources */,
+				C3A3126A217B7F0E0032B118 /* Rate.swift in Sources */,
 				C3FC110520FA919400DAA392 /* ARTextHelper.swift in Sources */,
 				C3FC111B20FBF37100DAA392 /* SignupProfileViewController.swift in Sources */,
 				C3C81D4C20FDE6F6001F2C08 /* Globals.swift in Sources */,

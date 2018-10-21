@@ -23,6 +23,7 @@ class DriverProfileViewController: BaseViewController {
     @IBOutlet weak var mButReviewCount: UIButton!
     @IBOutlet weak var mTextViewReview: KMPlaceholderTextView!
     
+    @IBOutlet weak var mCosmosRateNew: CosmosView!
     @IBOutlet weak var mButSave: UIButton!
     
     var user: User?
@@ -95,6 +96,39 @@ class DriverProfileViewController: BaseViewController {
         // go to chat page
 //        let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
 //        self.navigationController?.pushViewController(chatVC, animated: true)
+    }
+    
+    @IBAction func onButSave(_ sender: Any) {
+        // check validation
+        if mCosmosRateNew.rating <= 0 {
+            alertOk(title: "Input rate", message: "Rate value cannot be 0", cancelButton: "OK", cancelHandler: nil)
+            return
+        }
+        
+        // make new rate
+        let rateNew = Rate()
+        rateNew.rating = mCosmosRateNew.rating
+        rateNew.text = mTextViewReview.text
+        
+        rateNew.saveToDatabase(parentID: self.user!.id)
+
+        // update user's rate
+        if let u = self.user {
+            u.rateCount += 1
+            u.rate += mCosmosRateNew.rating
+            
+            u.saveToDatabase(withField: User.FIELD_RATECOUNT, value: u.rateCount)
+            u.saveToDatabase(withField: User.FIELD_RATE, value: u.rate)
+        }
+        
+        self.alertOk(title: "Submit Success",
+                     message: "Thank you for leaving a review",
+                     cancelButton: "OK",
+                     cancelHandler: { (action) in                        
+                        // back to main page
+                        self.navigationController?.popToRootViewController(animated: true)
+        })
+                     
     }
     
     /*
