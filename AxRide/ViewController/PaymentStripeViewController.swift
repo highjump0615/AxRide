@@ -19,7 +19,7 @@ class PaymentStripeViewController: BaseWebViewController {
         self.title = "Connect Stripe Account"
         
         let userCurrent = User.currentUser!
-        let strUrl = Config.urlStripeBase + "connectStripe?email=\(userCurrent.email)"
+        let strUrl = "\(Config.urlStripeBase)/connectStripe?email=\(userCurrent.email)"
         let url = URL(string: strUrl)!
         mWebView.load(URLRequest(url: url))
     }
@@ -35,4 +35,42 @@ class PaymentStripeViewController: BaseWebViewController {
     }
     */
 
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        var action: WKNavigationActionPolicy?
+        
+        defer {
+            decisionHandler(action ?? .allow)
+        }
+        
+        guard let url = navigationAction.request.url else { return }
+        
+        print(url)
+        
+        if navigationAction.navigationType == .linkActivated, url.absoluteString.contains("axle://success") {
+            action = .cancel                  // Stop in WebView
+            
+            //
+            // update stripe account id of current user
+            //
+            let userCurrent = User.currentUser!
+            let query = userCurrent.getDatabaseRef().child(User.FIELD_STRIPE_ACCOUNTID)
+            
+            query.observeSingleEvent(of: .value) { (snapshot) in
+                // data not found
+                if !snapshot.exists() {
+                    return
+                }
+                
+                userCurrent.stripeAccountId = snapshot.value as? String
+            }
+            
+            // back to prev page
+            self.navigationController?.popViewController(animated: true)
+            
+            return
+        }
+    }
 }

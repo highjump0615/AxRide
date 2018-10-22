@@ -17,8 +17,6 @@
 		C33F88EB21002ACD00C52766 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33F88EA21002ACD00C52766 /* Order.swift */; };
 		C33F88ED2100376000C52766 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33F88EC2100376000C52766 /* ChatViewController.xib */; };
 		C33F88F121003B0100C52766 /* ChatItemViewFrom.xib in Resources */ = {isa = PBXBuildFile; fileRef = C33F88F021003B0100C52766 /* ChatItemViewFrom.xib */; };
-		C35C86C5217CB18B00FBA781 /* PaymentSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C35C86C4217CB18B00FBA781 /* PaymentSetupViewController.xib */; };
-		C35C86C7217CB39C00FBA781 /* PaymentSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C86C6217CB39C00FBA781 /* PaymentSetupViewController.swift */; };
 		C35C86C9217CB7D800FBA781 /* PaymentStripeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C35C86C8217CB7D800FBA781 /* PaymentStripeViewController.xib */; };
 		C35C86CB217CB9B700FBA781 /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C86CA217CB9B700FBA781 /* BaseWebViewController.swift */; };
 		C35C86CD217CBADE00FBA781 /* PaymentStripeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C86CC217CBADE00FBA781 /* PaymentStripeViewController.swift */; };
@@ -134,8 +132,6 @@
 		C33F88EA21002ACD00C52766 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		C33F88EC2100376000C52766 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		C33F88F021003B0100C52766 /* ChatItemViewFrom.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatItemViewFrom.xib; sourceTree = "<group>"; };
-		C35C86C4217CB18B00FBA781 /* PaymentSetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentSetupViewController.xib; sourceTree = "<group>"; };
-		C35C86C6217CB39C00FBA781 /* PaymentSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSetupViewController.swift; sourceTree = "<group>"; };
 		C35C86C8217CB7D800FBA781 /* PaymentStripeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentStripeViewController.xib; sourceTree = "<group>"; };
 		C35C86CA217CB9B700FBA781 /* BaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebViewController.swift; sourceTree = "<group>"; };
 		C35C86CC217CBADE00FBA781 /* PaymentStripeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentStripeViewController.swift; sourceTree = "<group>"; };
@@ -373,7 +369,6 @@
 				C3FC110E20FB472D00DAA392 /* ForgetViewController.xib */,
 				C3EE8C7F20FC39A8000D7CD5 /* TermViewController.xib */,
 				C3C81D5720FE7061001F2C08 /* AboutViewController.xib */,
-				C35C86C4217CB18B00FBA781 /* PaymentSetupViewController.xib */,
 				C35C86C8217CB7D800FBA781 /* PaymentStripeViewController.xib */,
 			);
 			path = View;
@@ -397,7 +392,6 @@
 				C3C81D5320FDF99C001F2C08 /* SettingsViewController.swift */,
 				C3C81D5920FE70D9001F2C08 /* AboutViewController.swift */,
 				C3C856292118DAEA003ACCDB /* BaseHomeViewController.swift */,
-				C35C86C6217CB39C00FBA781 /* PaymentSetupViewController.swift */,
 				C35C86CA217CB9B700FBA781 /* BaseWebViewController.swift */,
 				C35C86CC217CBADE00FBA781 /* PaymentStripeViewController.swift */,
 			);
@@ -689,7 +683,6 @@
 				C3FBDAB221008038007143BF /* SignupApplicationViewControllerSmall.xib in Resources */,
 				C3FBDAAD210075F7007143BF /* MainDriverViewController.xib in Resources */,
 				C38E719220FFCB15003C139F /* FoundDriverViewController.xib in Resources */,
-				C35C86C5217CB18B00FBA781 /* PaymentSetupViewController.xib in Resources */,
 				C33F88ED2100376000C52766 /* ChatViewController.xib in Resources */,
 				C3EE8C8620FC44E7000D7CD5 /* MainUserViewController.xib in Resources */,
 				C3C81D5C20FE732B001F2C08 /* ProfileViewController.xib in Resources */,
@@ -898,7 +891,6 @@
 				C3C81D6D20FEB6F7001F2C08 /* BaseCustomView.swift in Sources */,
 				C3C54324216695FD00EA0FD8 /* Chat.swift in Sources */,
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,
-				C35C86C7217CB39C00FBA781 /* PaymentSetupViewController.swift in Sources */,
 				C31C00BF213E3B2D00F28942 /* GooglePlace.swift in Sources */,
 				C3FC111720FBE69200DAA392 /* SignupEmailViewController.swift in Sources */,
 				C3FBDAA62100430C007143BF /* Message.swift in Sources */,

@@ -36,7 +36,7 @@ class User : BaseModel {
     static let FIELD_RATE = "rate"
     static let FIELD_RATECOUNT = "rateCount"
     
-    static let FIELD_STRIPE_ACCOUNTID = "stripeAccountID"
+    static let FIELD_STRIPE_ACCOUNTID = "stripeAccountId"
     static let FIELD_STRIPE_CUSTOMERID = "stripeCustomId"
     
     static let FIELD_COUNT_RIDEREQUEST = "rideRequests"
@@ -64,8 +64,8 @@ class User : BaseModel {
     var rate = 0.0
     var rateCount = 0
     
-    var stripeAccountID: String?
-    var stripeCustomerID: String?
+    var stripeAccountId: String?
+    var stripeCustomerId: String?
     
     // counts
     var rideRequests: Int = 0
@@ -167,8 +167,8 @@ class User : BaseModel {
         }
         
         // stripe info
-        self.stripeAccountID = info[User.FIELD_STRIPE_ACCOUNTID] as? String
-        self.stripeCustomerID = info[User.FIELD_STRIPE_CUSTOMERID] as? String
+        self.stripeAccountId = info[User.FIELD_STRIPE_ACCOUNTID] as? String
+        self.stripeCustomerId = info[User.FIELD_STRIPE_CUSTOMERID] as? String
     }
     
     override func toDictionary() -> [String: Any] {

@@ -82,7 +82,7 @@ class SettingsViewController: UITableViewController {
                 self.navigationController?.pushViewController(paymentMethodsViewController, animated: true)
             }
             else if userCurrent.type == UserType.driver {
-                let psVC = PaymentSetupViewController(nibName: "PaymentSetupViewController", bundle: nil)
+                let psVC = PaymentStripeViewController(nibName: "PaymentStripeViewController", bundle: nil)
                 self.navigationController?.pushViewController(psVC, animated: true)
             }
             

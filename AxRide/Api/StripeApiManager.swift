@@ -37,7 +37,7 @@ class MainAPIClient: NSObject, STPEphemeralKeyProvider {
         
         guard
             let userCurrent = User.currentUser,
-            let customerId = userCurrent.stripeCustomerID else {
+            let customerId = userCurrent.stripeCustomerId else {
                 completion(nil, CustomerKeyError.missingBaseURL)
                 return
         }
