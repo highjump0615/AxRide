@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class PaymentStripeViewController: BaseWebViewController {
 
@@ -16,6 +17,11 @@ class PaymentStripeViewController: BaseWebViewController {
 
         // title
         self.title = "Connect Stripe Account"
+        
+        let userCurrent = User.currentUser!
+        let strUrl = Config.urlStripeBase + "connectStripe?email=\(userCurrent.email)"
+        let url = URL(string: strUrl)!
+        mWebView.load(URLRequest(url: url))
     }
     
 

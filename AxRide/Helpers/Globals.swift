@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Stripe
 
 class Globals {
     private static let mInstance = Globals()

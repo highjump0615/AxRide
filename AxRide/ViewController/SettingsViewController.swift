@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import Stripe
 
 class SettingsViewController: UITableViewController {
 
@@ -68,8 +69,22 @@ class SettingsViewController: UITableViewController {
             // cards and bank accounts
             //
             // go to payment setup page
-            let psVC = PaymentSetupViewController(nibName: "PaymentSetupViewController", bundle: nil)
-            self.navigationController?.pushViewController(psVC, animated: true)
+            let userCurrent = User.currentUser!
+            
+            if userCurrent.type == UserType.customer {
+                // Setup customer context
+                let customerContext = STPCustomerContext(keyProvider: MainAPIClient.shared)
+                
+                // Setup payment methods view controller
+                let paymentMethodsViewController = STPPaymentMethodsViewController(configuration: STPPaymentConfiguration.shared(), theme: STPTheme.default(), customerContext: customerContext, delegate: self)
+                
+                // go to payment methods view controller
+                self.navigationController?.pushViewController(paymentMethodsViewController, animated: true)
+            }
+            else if userCurrent.type == UserType.driver {
+                let psVC = PaymentSetupViewController(nibName: "PaymentSetupViewController", bundle: nil)
+                self.navigationController?.pushViewController(psVC, animated: true)
+            }
             
             break
             
@@ -142,4 +157,22 @@ extension SettingsViewController : MFMailComposeViewControllerDelegate {
     }
 }
 
+extension SettingsViewController : STPPaymentMethodsViewControllerDelegate {
+    func paymentMethodsViewController(_ paymentMethodsViewController: STPPaymentMethodsViewController, didFailToLoadWithError error: Error) {
+        self.navigationController?.popViewController(animated: true)
+
+        // error occured
+    }
+    
+    func paymentMethodsViewControllerDidFinish(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
+        // close
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func paymentMethodsViewControllerDidCancel(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
+        // close
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+}
 

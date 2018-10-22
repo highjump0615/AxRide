@@ -132,6 +132,9 @@ class MainUserViewController: BaseHomeViewController {
             // fetch current driver
             self.getDriverStatus()
         }
+        
+        // init stripe context
+//        StripeApiManager.shared().initStripeContext()
     }
     
     deinit {

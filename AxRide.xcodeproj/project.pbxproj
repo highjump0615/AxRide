@@ -70,6 +70,7 @@
 		C3F5CCDD214471C300A7A597 /* beijing.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C3F5CCDC214471C300A7A597 /* beijing.gpx */; };
 		C3FB5EDB2169C54700DAAA94 /* RideModeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FB5EDA2169C54700DAAA94 /* RideModeView.xib */; };
 		C3FB5EDD2169C5DB00DAAA94 /* RideModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB5EDC2169C5DB00DAAA94 /* RideModeView.swift */; };
+		C3FB6344217DDA0500B96D71 /* StripeApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FB6343217DDA0500B96D71 /* StripeApiManager.swift */; };
 		C3FBDAA021004015007143BF /* ChatItemViewTo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FBDA9F21004015007143BF /* ChatItemViewTo.xib */; };
 		C3FBDAA2210041AA007143BF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA1210041AA007143BF /* ChatViewController.swift */; };
 		C3FBDAA4210041D0007143BF /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBDAA3210041D0007143BF /* ChatCell.swift */; };
@@ -192,6 +193,7 @@
 		C3F5CCDC214471C300A7A597 /* beijing.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = beijing.gpx; sourceTree = "<group>"; };
 		C3FB5EDA2169C54700DAAA94 /* RideModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RideModeView.xib; sourceTree = "<group>"; };
 		C3FB5EDC2169C5DB00DAAA94 /* RideModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideModeView.swift; sourceTree = "<group>"; };
+		C3FB6343217DDA0500B96D71 /* StripeApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApiManager.swift; sourceTree = "<group>"; };
 		C3FBDA9F21004015007143BF /* ChatItemViewTo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatItemViewTo.xib; sourceTree = "<group>"; };
 		C3FBDAA1210041AA007143BF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C3FBDAA3210041D0007143BF /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				C3DA44A02113BE4D00980E1A /* GoogleService-Info.plist */,
+				C3FB6342217DD9B400B96D71 /* Api */,
 				C3FC10FC20FA86D700DAA392 /* Helpers */,
 				C3891F6420F9304100E6D81B /* Resource */,
 				C3891F6320F9303300E6D81B /* Model */,
@@ -491,6 +494,15 @@
 			path = CustomUI;
 			sourceTree = "<group>";
 		};
+		C3FB6342217DD9B400B96D71 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				C3DBC359211E333100F42A2B /* ApiManager.swift */,
+				C3FB6343217DDA0500B96D71 /* StripeApiManager.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
 		C3FBDAAB21007580007143BF /* Driver */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,7 +537,6 @@
 				C3C81D4B20FDE6F6001F2C08 /* Globals.swift */,
 				C3C81D5520FE6DA3001F2C08 /* Utils.swift */,
 				C308C0E921161D7500D2BC45 /* FirebaseManager.swift */,
-				C3DBC359211E333100F42A2B /* ApiManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -794,6 +805,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -816,6 +828,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -889,6 +902,7 @@
 				C31C00BF213E3B2D00F28942 /* GooglePlace.swift in Sources */,
 				C3FC111720FBE69200DAA392 /* SignupEmailViewController.swift in Sources */,
 				C3FBDAA62100430C007143BF /* Message.swift in Sources */,
+				C3FB6344217DDA0500B96D71 /* StripeApiManager.swift in Sources */,
 				C3A31268217AD2120032B118 /* PaymentViewController.swift in Sources */,
 				C3C5DA95211F7E8B002F934C /* UserWaitPopup.swift in Sources */,
 				C3C81D4E20FDE9BE001F2C08 /* User.swift in Sources */,
