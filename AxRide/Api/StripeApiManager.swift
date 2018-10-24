@@ -60,4 +60,46 @@ class MainAPIClient: NSObject, STPEphemeralKeyProvider {
             }
     }
     
+    enum RequestOrderError: Error {
+        case missingBaseURL
+        case invalidResponse
+    }
+
+    func requestOrder(source: String,
+                      amount: Int,
+                      currency: String,
+                      customerId: String,
+                      senderId: String,
+                      merchantId: String,
+                      receiverId: String,
+                      completion: @escaping (RequestOrderError?) -> Void) {
+        
+        let strUrl = "\(Config.urlApiBase)/order"
+        
+        // Important: For this demo, we're trusting the `amount` and `currency` coming from the client request.
+        // A real application should absolutely have the `amount` and `currency` securely computed on the backend
+        // to make sure the user can't change the payment amount from their web browser or client-side environment.
+        let parameters: [String: Any] = [
+            "source": source,
+            "amount": amount,
+            "currency": currency,
+            "customer_id": customerId,
+            "merchant_id": merchantId,
+            "sender_id": senderId,
+            "receiver_id": receiverId,
+            ]
+        
+        Alamofire.request(strUrl,
+                          method: .post,
+                          parameters: parameters)
+            .validate()
+            .responseJSON { (response) in
+                guard (response.result.value as? [String: Any]) != nil else {
+                    completion(.invalidResponse)
+                    return
+                }
+                
+                completion(nil)
+            }
+    }
 }
