@@ -11,6 +11,7 @@ import WebKit
 
 class PaymentStripeViewController: BaseWebViewController {
 
+    var fromSetting = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,17 @@ class PaymentStripeViewController: BaseWebViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func finish() {
+        if self.fromSetting {
+            // back to prev page
+            self.navigationController?.popViewController(animated: true)
+        }
+        else {
+            // go to main
+            goToMain()
+        }
+    }
 
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
@@ -67,8 +79,7 @@ class PaymentStripeViewController: BaseWebViewController {
                 userCurrent.stripeAccountId = snapshot.value as? String
             }
             
-            // back to prev page
-            self.navigationController?.popViewController(animated: true)
+            self.finish()
             
             return
         }

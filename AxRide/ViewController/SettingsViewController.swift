@@ -79,6 +79,7 @@ class SettingsViewController: UITableViewController {
             }
             else if userCurrent.type == UserType.driver {
                 let psVC = PaymentStripeViewController(nibName: "PaymentStripeViewController", bundle: nil)
+                psVC.fromSetting = true
                 self.navigationController?.pushViewController(psVC, animated: true)
             }
             

@@ -28,16 +28,20 @@ class SignupApplicationViewController: BaseViewController {
     
     var mButSelected: UIButton?
     
+    var photoHelper: PhotoViewHelper?
+    
     let mColorSelected = UIColor(red: 255/255.0, green: 86/255.0, blue: 23/255.0, alpha: 1.0)
     let mColorUnSelected = UIColor(red: 180/255.0, green: 180/255.0, blue: 180/255.0, alpha: 1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         showNavbar(transparent: false)
         
         self.title = "Application"
+        
+        // init photo view helper
+        photoHelper = PhotoViewHelper(self)
         
         // corner rounds
         mButLicense.makeRound(r: 12)
@@ -80,13 +84,13 @@ class SignupApplicationViewController: BaseViewController {
     
     @IBAction func onButUploadData(_ sender: Any) {
         mButSelected = sender as? UIButton
-        selectImageFromPicker()
+        photoHelper?.selectImageFromPicker()
     }
     
     @IBAction func onButSubmit(_ sender: Any) {
-        // go to main page
-        let mainVC = MainDriverViewController(nibName: "MainDriverViewController", bundle: nil)
-        self.navigationController?.pushViewController(mainVC, animated: true)
+        // go to payment method page
+        let psVC = PaymentStripeViewController(nibName: "PaymentStripeViewController", bundle: nil)
+        self.navigationController?.pushViewController(psVC, animated: true)
     }
     
     @IBAction func onButDeclare(_ sender: Any) {
@@ -95,42 +99,23 @@ class SignupApplicationViewController: BaseViewController {
         mImgViewCheck.tintColor = mButDeclare.isSelected ? mColorSelected : mColorUnSelected
         mButSubmit.makeEnable(enable: mButDeclare.isSelected)
     }
-    
-    func selectImageFromPicker() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Take a new photo", style: .default, handler: { (action) in
-//            UIViewController.takePhoto(viewController: self)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Select from gallery", style: .default, handler: { (action) in
-//            UIViewController.loadFromGallery(viewController: self)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
 }
 
-extension SignupApplicationViewController : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            
-            if mButSelected == mButLicense {
-                mImgViewLicense.image = chosenImage
-            }
-            else if mButSelected == mButInsurance {
-                mImgViewInsurance.image = chosenImage
-            }
-            else if mButSelected == mButRegistration {
-                mImgViewRegistration.image = chosenImage
-            }
+extension SignupApplicationViewController: ARUpdateImageDelegate {
+    func onUpdateImage(_ image: UIImage, tag: Int) {
+        if mButSelected == mButLicense {
+            mImgViewLicense.image = image
         }
-        
-        picker.dismiss(animated: true, completion: nil)
+        else if mButSelected == mButInsurance {
+            mImgViewInsurance.image = image
+        }
+        else if mButSelected == mButRegistration {
+            mImgViewRegistration.image = image
+        }
     }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+    
+    func getViewController() -> UIViewController {
+        return self
     }
+    
 }
