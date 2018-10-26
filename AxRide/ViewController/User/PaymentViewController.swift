@@ -72,15 +72,6 @@ class PaymentViewController: BaseViewController {
         showLoadingView()
     }
     
-    func removeRideRequest() {
-        let dbRef = FirebaseManager.ref()
-        let userCurrent = User.currentUser!
-        
-        dbRef.child(Order.TABLE_NAME_REQUEST).child(userCurrent.id).removeValue()
-        dbRef.child(Order.TABLE_NAME_PICKED).child(userCurrent.id).removeValue()
-        dbRef.child(Order.TABLE_NAME_PICKED).child(order!.driverId).removeValue()
-    }
-    
     /// Review driver
     func gotoReviewPage() {
         // go to driver rate page
@@ -190,7 +181,12 @@ extension PaymentViewController : STPPaymentContextDelegate {
             //
             // payment success
             //
-//        removeRideRequest()
+            self.order?.clearFromDatabase()
+            
+            // finish order
+            if let mainVC = self.navigationController?.viewControllers[0] as? MainUserViewController {
+                mainVC.finishOrder()
+            }
             
             self.alert(title: "Payment Done",
                        message: "Would you like to submit feedback for your rider?",
@@ -199,11 +195,6 @@ extension PaymentViewController : STPPaymentContextDelegate {
                        okHandler: { (_) in
                         self.gotoReviewPage()
             }, cancelHandler: { (_) in
-                // finish order
-                if let mainVC = self.navigationController?.viewControllers[0] as? MainUserViewController {
-                    mainVC.finishOrder()
-                }
-                
                 // back to main page
                 self.navigationController?.popToRootViewController(animated: true)
             })

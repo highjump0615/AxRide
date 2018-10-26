@@ -21,6 +21,7 @@ class MainDriverViewController: BaseHomeViewController {
     @IBOutlet weak var mButComplete: UIButton!
     
     var mqueryRequest: DatabaseReference?
+    var mqueryPickup: DatabaseReference?
     var mUserIds: [String] = []
     
     @IBOutlet weak var mLblAcceptance: UILabel!
@@ -73,6 +74,9 @@ class MainDriverViewController: BaseHomeViewController {
             self.present(nav, animated: true, completion: nil)
         })
         
+        // listener for order complete
+        listenOrderComplete()
+        
         // fetch current order
         getOrderInfo()
     }
@@ -112,6 +116,20 @@ class MainDriverViewController: BaseHomeViewController {
     deinit {
         // remove observers
         mqueryRequest?.removeAllObservers()
+        mqueryPickup?.removeAllObservers()
+    }
+    
+    func listenOrderComplete() {
+        let userCurrent = User.currentUser!
+        
+        // wait for remove data from picked
+        mqueryPickup = FirebaseManager.ref().child(Order.TABLE_NAME_PICKED).child(userCurrent.id)
+        mqueryPickup?.observe(.value, with: { (snapshot) in
+            // order has completed, update order
+            if !snapshot.exists() {
+                self.setOrder(nil)
+            }
+        })
     }
     
     func setOrder(_ order: Order?) {
@@ -216,13 +234,8 @@ class MainDriverViewController: BaseHomeViewController {
             return
         }
         
-        let dbRef = FirebaseManager.ref()
-        let userCurrent = User.currentUser!
-        
         // clear data in database
-        dbRef.child(Order.TABLE_NAME_ARRIVED).child(order.customerId).removeValue()
-        dbRef.child(Order.TABLE_NAME_PICKED).child(userCurrent.id).removeValue()
-        dbRef.child(Order.TABLE_NAME_PICKED).child(order.customerId).removeValue()
+        order.clearFromDatabase()
         
         // clear order
         mOrder = nil

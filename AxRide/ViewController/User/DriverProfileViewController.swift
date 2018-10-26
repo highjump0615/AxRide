@@ -50,9 +50,6 @@ class DriverProfileViewController: BaseViewController {
         
         self.hideKeyboard()
         
-        // hide back button
-        self.navigationItem.hidesBackButton = true
-        
         //
         // init data
         //
@@ -129,11 +126,6 @@ class DriverProfileViewController: BaseViewController {
                      message: "Thank you for leaving a review",
                      cancelButton: "OK",
                      cancelHandler: { (action) in
-                        
-                        // finish order
-                        if let mainVC = UIApplication.shared.keyWindow!.rootViewController as? MainUserViewController {
-                            mainVC.finishOrder()
-                        }
                         
                         // back to main page
                         self.navigationController?.popToRootViewController(animated: true)

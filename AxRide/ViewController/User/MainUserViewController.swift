@@ -132,9 +132,6 @@ class MainUserViewController: BaseHomeViewController {
             // fetch current driver
             self.getDriverStatus()
         }
-        
-        // init stripe context
-//        StripeApiManager.shared().initStripeContext()
     }
     
     deinit {
@@ -495,13 +492,8 @@ class MainUserViewController: BaseHomeViewController {
     
     /// cancel ride
     func doCancelRide() {
-        let dbRef = FirebaseManager.ref()
-        let userCurrent = User.currentUser!
-        
         // clear data in database
-        dbRef.child(Order.TABLE_NAME_ARRIVED).child(userCurrent.id).removeValue()
-        dbRef.child(Order.TABLE_NAME_PICKED).child(userCurrent.id).removeValue()
-        dbRef.child(Order.TABLE_NAME_PICKED).child(mOrder!.driverId).removeValue()
+        mOrder?.clearFromDatabase()
         
         // clear order
         mOrder = Order()
@@ -738,7 +730,7 @@ extension MainUserViewController: PopupDelegate {
         let dbRef = FirebaseManager.ref()
         
         // remove order in "request" table
-        dbRef.child(Order.TABLE_NAME_REQUEST).child(userCurrent.id).removeValue()
+        mOrder?.removeFromDatabase()
 
         if self.drivers.count > 0 {
             for d in self.drivers {

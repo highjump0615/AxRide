@@ -71,9 +71,6 @@ class Order: BaseModel {
         if status == Order.STATUS_REQUEST {
             return Order.TABLE_NAME_REQUEST
         }
-        else if status == Order.STATUS_ARRIVED {
-            return Order.TABLE_NAME_ARRIVED
-        }
         
         return Order.TABLE_NAME_PICKED
     }
@@ -130,5 +127,24 @@ class Order: BaseModel {
     func clear() {
         driverId = ""
         fee = 0
+    }
+    
+    /// remove value
+    func removeFromDatabase() {
+        //
+        // will remove data from difference table based on status
+        //
+        getDatabaseRef(withID: customerId).removeValue()
+        getDatabaseRef(withID: driverId).removeValue()
+    }
+    
+    func removeArriveMark() {
+        let database = FirebaseManager.ref().child(Order.TABLE_NAME_ARRIVED)
+        database.child(customerId).removeValue()
+    }
+    
+    func clearFromDatabase() {
+        removeArriveMark()
+        removeFromDatabase()
     }
 }
