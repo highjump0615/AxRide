@@ -14,6 +14,9 @@
             <connections>
                 <outlet property="mButComplete" destination="aAq-iJ-flM" id="AKL-YH-3ZL"/>
                 <outlet property="mButProfile" destination="lMu-o9-WH6" id="oId-tL-kAK"/>
+                <outlet property="mLblAcceptance" destination="6OH-e5-GzR" id="q2A-bd-w9r"/>
+                <outlet property="mLblCancellation" destination="FVc-ql-CBc" id="Qtv-Q7-qWO"/>
+                <outlet property="mLblRating" destination="Efu-7G-Sg9" id="2VT-f0-YUo"/>
                 <outlet property="mSwitch" destination="BNk-5Q-V2t" id="qWE-2q-ZKo"/>
                 <outlet property="mViewInfo" destination="0bf-Qc-jVj" id="YCt-Pa-Gan"/>
                 <outlet property="mViewMap" destination="AUK-nF-HXm" id="RCn-Dn-uOr"/>

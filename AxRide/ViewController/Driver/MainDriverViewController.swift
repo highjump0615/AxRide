@@ -23,6 +23,11 @@ class MainDriverViewController: BaseHomeViewController {
     var mqueryRequest: DatabaseReference?
     var mUserIds: [String] = []
     
+    @IBOutlet weak var mLblAcceptance: UILabel!
+    @IBOutlet weak var mLblRating: UILabel!
+    @IBOutlet weak var mLblCancellation: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -86,6 +91,22 @@ class MainDriverViewController: BaseHomeViewController {
         // check banned
         //
         
+        //
+        // update parameters
+        //
+        let userCurrent = User.currentUser!
+        
+        if userCurrent.rideRequests > 0 {
+            // acceptance
+            let dAccept = Double(userCurrent.rideAccepts) / Double(max(userCurrent.rideRequests, 1))
+            mLblAcceptance.text = (dAccept * 100.0).format(f: ".2") + " %"
+            
+            // ratings
+            mLblRating.text = userCurrent.userRate().format(f: ".2")
+            
+            // cancellation
+            mLblCancellation.text = ((1 - dAccept) * 100.0).format(f: ".2") + " %"
+        }
     }
     
     deinit {
