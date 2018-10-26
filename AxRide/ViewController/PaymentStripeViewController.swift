@@ -59,9 +59,9 @@ class PaymentStripeViewController: BaseWebViewController {
         
         guard let url = navigationAction.request.url else { return }
         
-        print(url)
+        print(url.absoluteString + ": " + String(navigationAction.navigationType.rawValue))
         
-        if navigationAction.navigationType == .linkActivated, url.absoluteString.contains("axle://success") {
+        if url.absoluteString.range(of: "axle://success") != nil {
             action = .cancel                  // Stop in WebView
             
             //
