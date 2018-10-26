@@ -22,3 +22,8 @@ class Globals {
     }
     
 }
+
+
+protocol ARBaseViewHelperDelegate {
+    func getViewController() -> UIViewController
+}

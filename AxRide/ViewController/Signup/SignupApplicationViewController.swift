@@ -100,11 +100,11 @@ class SignupApplicationViewController: BaseViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
         alert.addAction(UIAlertAction(title: "Take a new photo", style: .default, handler: { (action) in
-            UIViewController.takePhoto(viewController: self)
+//            UIViewController.takePhoto(viewController: self)
         }))
         
         alert.addAction(UIAlertAction(title: "Select from gallery", style: .default, handler: { (action) in
-            UIViewController.loadFromGallery(viewController: self)
+//            UIViewController.loadFromGallery(viewController: self)
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))

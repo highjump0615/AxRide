@@ -19,6 +19,8 @@ class SignupProfileViewController: BaseViewController {
     var email: String?
     var password: String?
     
+    var photoHelper: PhotoViewHelper?
+    
     var type = SignupProfileViewController.FROM_SIGNUP
     
     @IBOutlet weak var mButPhoto: UIButton!
@@ -35,7 +37,8 @@ class SignupProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // init photo view helper
+        photoHelper = PhotoViewHelper(self)
         
         // placeholders
         mTextName.attributedPlaceholder = NSAttributedString(string: "Name",
@@ -92,7 +95,7 @@ class SignupProfileViewController: BaseViewController {
     }
     
     @IBAction func onButPhoto(_ sender: Any) {
-        selectImageFromPicker()
+        photoHelper?.selectImageFromPicker()
     }
     
     @IBAction func onButNext(_ sender: Any) {
@@ -254,22 +257,6 @@ class SignupProfileViewController: BaseViewController {
     }
     */
     
-    func selectImageFromPicker() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Take a new photo", style: .default, handler: { (action) in
-            UIViewController.takePhoto(viewController: self)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Select from gallery", style: .default, handler: { (action) in
-            UIViewController.loadFromGallery(viewController: self)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-
 }
 
 extension SignupProfileViewController: UITextFieldDelegate {
@@ -292,16 +279,13 @@ extension SignupProfileViewController: UITextFieldDelegate {
     
 }
 
-extension SignupProfileViewController : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            mButPhoto.setImage(chosenImage, for: .normal)
-            avatarLoaded = true
-        }
-        
-        picker.dismiss(animated: true, completion: nil)
+extension SignupProfileViewController: ARUpdateImageDelegate {
+    func onUpdateImage(_ image: UIImage, tag: Int) {
+        mButPhoto.setImage(image, for: .normal)
+        avatarLoaded = true
     }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+    
+    func getViewController() -> UIViewController {
+        return self
     }
 }

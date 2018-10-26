@@ -32,6 +32,7 @@
 		C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */; };
 		C38E719620FFDB24003C139F /* DriverProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C38E719520FFDB24003C139F /* DriverProfileViewController.xib */; };
 		C38E719820FFDB73003C139F /* DriverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E719720FFDB73003C139F /* DriverProfileViewController.swift */; };
+		C38EB85A2182C37E005A2111 /* PhotoViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EB8592182C37E005A2111 /* PhotoViewHelper.swift */; };
 		C3A31264217AA8890032B118 /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A31263217AA8890032B118 /* PaymentViewController.xib */; };
 		C3A31268217AD2120032B118 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A31267217AD2120032B118 /* PaymentViewController.swift */; };
 		C3A3126A217B7F0E0032B118 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A31269217B7F0E0032B118 /* Rate.swift */; };
@@ -154,6 +155,7 @@
 		C38E719320FFD4C7003C139F /* FoundDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundDriverViewController.swift; sourceTree = "<group>"; };
 		C38E719520FFDB24003C139F /* DriverProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverProfileViewController.xib; sourceTree = "<group>"; };
 		C38E719720FFDB73003C139F /* DriverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverProfileViewController.swift; sourceTree = "<group>"; };
+		C38EB8592182C37E005A2111 /* PhotoViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewHelper.swift; sourceTree = "<group>"; };
 		C3A31263217AA8890032B118 /* PaymentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentViewController.xib; sourceTree = "<group>"; };
 		C3A31267217AD2120032B118 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		C3A31269217B7F0E0032B118 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				C3C81D5520FE6DA3001F2C08 /* Utils.swift */,
 				C308C0E921161D7500D2BC45 /* FirebaseManager.swift */,
 				C37038DC21810306004489E0 /* PaymentMethodHelper.swift */,
+				C38EB8592182C37E005A2111 /* PhotoViewHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -893,6 +896,7 @@
 				C3DBC35A211E333100F42A2B /* ApiManager.swift in Sources */,
 				C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */,
 				C3FB5EDD2169C5DB00DAAA94 /* RideModeView.swift in Sources */,
+				C38EB85A2182C37E005A2111 /* PhotoViewHelper.swift in Sources */,
 				C3C81D6D20FEB6F7001F2C08 /* BaseCustomView.swift in Sources */,
 				C3C54324216695FD00EA0FD8 /* Chat.swift in Sources */,
 				C3FC110B20FB0A3900DAA392 /* SigninViewController.swift in Sources */,

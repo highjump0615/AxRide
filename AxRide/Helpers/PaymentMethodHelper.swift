@@ -11,8 +11,7 @@ import UIKit
 import Stripe
 import Toast_Swift
 
-protocol ARPaymentMethodDelegate: STPPaymentMethodsViewControllerDelegate {
-    func getViewController() -> UIViewController
+protocol ARPaymentMethodDelegate: ARBaseViewHelperDelegate, STPPaymentMethodsViewControllerDelegate {
 }
 
 class PaymentMethodHelper: NSObject {
