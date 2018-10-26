@@ -62,6 +62,11 @@ class MainDriverViewController: BaseHomeViewController {
 //                             cancelHandler: nil)
 //                return
 //            }
+        
+            // if in order, cannot accept any request
+            if let _ = self.mOrder {
+                return
+            }
             
             let userId = snapshot.key
             
@@ -127,7 +132,7 @@ class MainDriverViewController: BaseHomeViewController {
         mqueryPickup?.observe(.value, with: { (snapshot) in
             // order has completed, update order
             if !snapshot.exists() {
-                self.setOrder(nil)
+                self.orderComplete()
             }
         })
     }
@@ -237,11 +242,13 @@ class MainDriverViewController: BaseHomeViewController {
         // clear data in database
         order.clearFromDatabase()
         
+        orderComplete()
+    }
+    
+    func orderComplete() {
         // clear order
-        mOrder = nil
         let _ = showMyLocation(location: mCoordinate, updateForce: true)
-        
-        updateOrder()
+        setOrder(nil)
         
         // clear map
         mViewMap.clear()
