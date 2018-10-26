@@ -21,6 +21,26 @@ class StripeApiManager {
         return mInstance
     }
     
+    func createCustomerId(email: String,
+                          completion: @escaping (_ error: Error?, _ value: String?)->() = {_,_ in }) {
+        let strUrl = "\(Config.urlApiBase)/createCustomStripe"
+        let parameters: [String: Any] = ["email": email]
+        
+        Alamofire.request(strUrl,
+                          method: .post,
+                          parameters: parameters)
+            .validate()
+            .responseJSON { (response) in
+                guard let json = response.result.value as? [AnyHashable: Any] else {
+                    print("stripe Customer Id error:" + response.error.debugDescription)
+                    completion(response.error, nil)
+                    return
+                }
+                
+                completion(nil, json["id"] as? String)
+        }
+    }
+    
 }
 
 class MainAPIClient: NSObject, STPEphemeralKeyProvider {

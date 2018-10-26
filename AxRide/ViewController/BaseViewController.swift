@@ -80,7 +80,8 @@ class BaseViewController: UIViewController {
     /// go to main page according to user type
     func goToMain() {
         if let vc = BaseViewController.getMainViewController() {
-            self.navigationController?.pushViewController(vc, animated: true)
+            // remove previous pages
+            self.navigationController?.setViewControllers([vc], animated: true)
         }
     }
 }

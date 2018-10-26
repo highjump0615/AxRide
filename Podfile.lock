@@ -104,6 +104,7 @@ PODS:
   - Stripe (13.1.0)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.1.0)
+  - Toast-Swift (3.0.1)
   - UICircularProgressRing (3.0.0)
 
 DEPENDENCIES:
@@ -128,6 +129,7 @@ DEPENDENCIES:
   - Stripe
   - SVProgressHUD
   - SwiftyJSON (~> 4.0)
+  - Toast-Swift
   - UICircularProgressRing (= 3.0.0)
 
 SPEC REPOS:
@@ -164,6 +166,7 @@ SPEC REPOS:
     - Stripe
     - SVProgressHUD
     - SwiftyJSON
+    - Toast-Swift
     - UICircularProgressRing
 
 SPEC CHECKSUMS:
@@ -199,8 +202,9 @@ SPEC CHECKSUMS:
   Stripe: 4f043bb840721b1f30492fa77790bbf9e3508ab0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
   UICircularProgressRing: 3b472692ffca84060fd444ea5c0b387161067c54
 
-PODFILE CHECKSUM: b1422332ead6fccb376eb9452045b88579ff78ca
+PODFILE CHECKSUM: 6a8ed59d0e4090a819b584db2e9bb2abe0d6bde2
 
 COCOAPODS: 1.5.3

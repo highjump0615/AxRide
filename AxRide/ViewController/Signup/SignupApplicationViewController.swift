@@ -84,7 +84,7 @@ class SignupApplicationViewController: BaseViewController {
     }
     
     @IBAction func onButSubmit(_ sender: Any) {
-        // go to forget page
+        // go to main page
         let mainVC = MainDriverViewController(nibName: "MainDriverViewController", bundle: nil)
         self.navigationController?.pushViewController(mainVC, animated: true)
     }
@@ -117,18 +117,14 @@ extension SignupApplicationViewController : UINavigationControllerDelegate, UIIm
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             
-            switch mButSelected {
-            case mButLicense:
+            if mButSelected == mButLicense {
                 mImgViewLicense.image = chosenImage
-                
-            case mButInsurance:
+            }
+            else if mButSelected == mButInsurance {
                 mImgViewInsurance.image = chosenImage
-                
-            case mButRegistration:
+            }
+            else if mButSelected == mButRegistration {
                 mImgViewRegistration.image = chosenImage
-                
-            default:
-                break
             }
         }
         

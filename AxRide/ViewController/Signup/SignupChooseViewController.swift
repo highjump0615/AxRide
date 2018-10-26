@@ -42,7 +42,13 @@ class SignupChooseViewController: BaseViewController {
         
         let userCurrent = User.currentUser!
         userCurrent.type = type
-        userCurrent.saveToDatabase(withField: User.FIELD_TYPE, value: type.rawValue)
+        userCurrent.saveToDatabase(withField: User.FIELD_TYPE, value: type.rawValue) { (error, ref) in
+            if userCurrent.type == UserType.customer {
+                StripeApiManager.shared().createCustomerId(email: userCurrent.email) { (err, customerId) in
+                    userCurrent.stripeCustomerId = customerId
+                }
+            }
+        }
         
         // go to term page
         let termVC = TermViewController(nibName: "TermViewController", bundle: nil)

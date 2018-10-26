@@ -87,9 +87,13 @@ class BaseModel {
     ///   - value: <#value description#>
     ///   - withID: <#withID description#>
     ///   - parentID: <#parentID description#>
-    func saveToDatabase(withField: String?, value: Any, withID: String? = nil, parentID: String? = nil) {
+    func saveToDatabase(withField: String?,
+                        value: Any,
+                        withID: String? = nil,
+                        parentID: String? = nil,
+                        completion: @escaping (_ error: Error?, _ dbRef: DatabaseReference)->() = {_,_ in }) {
         let db = getDatabaseRef(withID: withID, parentID: parentID)
-        db.child(withField!).setValue(value)
+        db.child(withField!).setValue(value, withCompletionBlock: completion)
     }
     
     

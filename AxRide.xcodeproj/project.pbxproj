@@ -20,6 +20,7 @@
 		C35C86C9217CB7D800FBA781 /* PaymentStripeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C35C86C8217CB7D800FBA781 /* PaymentStripeViewController.xib */; };
 		C35C86CB217CB9B700FBA781 /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C86CA217CB9B700FBA781 /* BaseWebViewController.swift */; };
 		C35C86CD217CBADE00FBA781 /* PaymentStripeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C86CC217CBADE00FBA781 /* PaymentStripeViewController.swift */; };
+		C37038DD21810306004489E0 /* PaymentMethodHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37038DC21810306004489E0 /* PaymentMethodHelper.swift */; };
 		C37C645E20F8B4C100ECC1FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37C645D20F8B4C100ECC1FA /* AppDelegate.swift */; };
 		C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C37C646420F8B4C100ECC1FA /* Assets.xcassets */; };
 		C37C646820F8B4C100ECC1FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37C646620F8B4C100ECC1FA /* LaunchScreen.storyboard */; };
@@ -135,6 +136,7 @@
 		C35C86C8217CB7D800FBA781 /* PaymentStripeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentStripeViewController.xib; sourceTree = "<group>"; };
 		C35C86CA217CB9B700FBA781 /* BaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebViewController.swift; sourceTree = "<group>"; };
 		C35C86CC217CBADE00FBA781 /* PaymentStripeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentStripeViewController.swift; sourceTree = "<group>"; };
+		C37038DC21810306004489E0 /* PaymentMethodHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodHelper.swift; sourceTree = "<group>"; };
 		C37C645A20F8B4C100ECC1FA /* AxRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AxRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37C645D20F8B4C100ECC1FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C37C646420F8B4C100ECC1FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				C3C81D4B20FDE6F6001F2C08 /* Globals.swift */,
 				C3C81D5520FE6DA3001F2C08 /* Utils.swift */,
 				C308C0E921161D7500D2BC45 /* FirebaseManager.swift */,
+				C37038DC21810306004489E0 /* PaymentMethodHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -823,6 +827,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -909,6 +914,7 @@
 				C33E89C9213F8DDD00FD294D /* DriverStatus.swift in Sources */,
 				C3FBDABE210089EA007143BF /* ProfileDriverViewController.swift in Sources */,
 				C3A3126A217B7F0E0032B118 /* Rate.swift in Sources */,
+				C37038DD21810306004489E0 /* PaymentMethodHelper.swift in Sources */,
 				C3FC110520FA919400DAA392 /* ARTextHelper.swift in Sources */,
 				C3FC111B20FBF37100DAA392 /* SignupProfileViewController.swift in Sources */,
 				C3C81D4C20FDE6F6001F2C08 /* Globals.swift in Sources */,

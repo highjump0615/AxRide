@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import Stripe
 
 class TermViewController: BaseWebViewController {
     
@@ -17,18 +18,24 @@ class TermViewController: BaseWebViewController {
     
     var type = TermViewController.TERMS_FROM_SIGNUP
     
+    var paymentHelper: PaymentMethodHelper?
+    
     @IBOutlet weak var mButAccept: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // init payment method helper
+        paymentHelper = PaymentMethodHelper(self)
         
         let url = type == TermViewController.PRIVACY_POLICY ?
             URL(string: Config.urlPrivacyPolicy)! : URL(string: Config.urlTermCondition)!
         mWebView.load(URLRequest(url: url))        
         
         mButAccept.makeRound(r: 12.0)
+        
+        // disable for the first time
+        mButAccept.makeEnable(enable: false)
         
         if type != TermViewController.TERMS_FROM_SIGNUP {
             // hide accept button
@@ -52,9 +59,8 @@ class TermViewController: BaseWebViewController {
         if let userCurrent = User.currentUser {
             // user
             if userCurrent.type == UserType.customer {
-                // go to main page
-                let mainUserVC = MainUserViewController(nibName: "MainUserViewController", bundle: nil)
-                self.navigationController?.setViewControllers([mainUserVC], animated: true)
+                // setup payment
+                paymentHelper?.showPaymentMethod()
             }
             // driver
             else {
@@ -80,4 +86,33 @@ class TermViewController: BaseWebViewController {
     }
     */
 
+    // MARK: - WKNavigationDelegate
+    override func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        super.webView(webView, didFinish: navigation)
+        
+        // enable button
+        mButAccept.makeEnable(enable: true)
+    }
 }
+
+extension TermViewController : ARPaymentMethodDelegate {
+    func getViewController() -> UIViewController {
+        return self
+    }
+    
+    func paymentMethodsViewController(_ paymentMethodsViewController: STPPaymentMethodsViewController, didFailToLoadWithError error: Error) {
+        goToMain()
+        
+        // error occured
+    }
+    
+    func paymentMethodsViewControllerDidFinish(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
+        goToMain()
+    }
+    
+    func paymentMethodsViewControllerDidCancel(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
+        goToMain()
+    }
+    
+}
+

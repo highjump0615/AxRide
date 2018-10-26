@@ -11,11 +11,14 @@ import MessageUI
 import Stripe
 
 class SettingsViewController: UITableViewController {
+    
+    var paymentHelper: PaymentMethodHelper?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // init payment method helper
+        paymentHelper = PaymentMethodHelper(self)
         
         // show nav bar
         showNavbar(transparent: false)
@@ -72,14 +75,7 @@ class SettingsViewController: UITableViewController {
             let userCurrent = User.currentUser!
             
             if userCurrent.type == UserType.customer {
-                // Setup customer context
-                let customerContext = STPCustomerContext(keyProvider: MainAPIClient.shared)
-                
-                // Setup payment methods view controller
-                let paymentMethodsViewController = STPPaymentMethodsViewController(configuration: STPPaymentConfiguration.shared(), theme: STPTheme.default(), customerContext: customerContext, delegate: self)
-                
-                // go to payment methods view controller
-                self.navigationController?.pushViewController(paymentMethodsViewController, animated: true)
+                paymentHelper?.showPaymentMethod()
             }
             else if userCurrent.type == UserType.driver {
                 let psVC = PaymentStripeViewController(nibName: "PaymentStripeViewController", bundle: nil)
@@ -157,11 +153,13 @@ extension SettingsViewController : MFMailComposeViewControllerDelegate {
     }
 }
 
-extension SettingsViewController : STPPaymentMethodsViewControllerDelegate {
+extension SettingsViewController : ARPaymentMethodDelegate {
+    func getViewController() -> UIViewController {
+        return self
+    }
+    
     func paymentMethodsViewController(_ paymentMethodsViewController: STPPaymentMethodsViewController, didFailToLoadWithError error: Error) {
         self.navigationController?.popViewController(animated: true)
-
-        // error occured
     }
     
     func paymentMethodsViewControllerDidFinish(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
