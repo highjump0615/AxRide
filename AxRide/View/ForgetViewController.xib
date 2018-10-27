@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ForgetViewController" customModule="AxRide" customModuleProvider="target">
+            <connections>
+                <outlet property="mButDone" destination="5Z3-l2-Xzy" id="bDc-ZI-GqK"/>
+                <outlet property="mTextEmail" destination="edz-cj-p8Z" id="JNY-Pn-aZv"/>
+                <outlet property="view" destination="iN0-l3-epB" id="QoQ-Hf-P7K"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KeyboardDismissingView" customModule="IHKeyboardAvoiding">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundOnboard" translatesAutoresizingMaskIntoConstraints="NO" id="lLQ-ag-vB6">
+                    <rect key="frame" x="0.0" y="20" width="375" height="442"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Z3-l2-Xzy">
+                    <rect key="frame" x="72" y="423" width="231" height="46"/>
+                    <color key="backgroundColor" red="1" green="0.61176470589999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="IaK-ak-L17"/>
+                        <constraint firstAttribute="width" constant="231" id="spJ-U3-zcd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="onButDone:" destination="-1" eventType="touchUpInside" id="Mjy-pt-BiE"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21v-N6-MaG">
+                    <rect key="frame" x="73.5" y="143" width="228.5" height="72"/>
+                    <string key="text">Put in your email address
+so we can send you 
+a password reset link.</string>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NwC-CT-G6O">
+                    <rect key="frame" x="9" y="285" width="357" height="48"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="edz-cj-p8Z">
+                            <rect key="frame" x="16" y="0.0" width="325" height="48"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="I0z-DE-S8o"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="edz-cj-p8Z" firstAttribute="leading" secondItem="NwC-CT-G6O" secondAttribute="leading" constant="16" id="1j6-Cs-x5I"/>
+                        <constraint firstAttribute="bottom" secondItem="edz-cj-p8Z" secondAttribute="bottom" id="GqC-mL-ttB"/>
+                        <constraint firstAttribute="height" constant="48" id="HwB-CY-An1"/>
+                        <constraint firstItem="edz-cj-p8Z" firstAttribute="top" secondItem="NwC-CT-G6O" secondAttribute="top" id="WgG-XI-Nwp"/>
+                        <constraint firstAttribute="trailing" secondItem="edz-cj-p8Z" secondAttribute="trailing" constant="16" id="eK2-2G-3Aw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="lLQ-ag-vB6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Arh-fr-OFz"/>
+                <constraint firstItem="5Z3-l2-Xzy" firstAttribute="top" secondItem="NwC-CT-G6O" secondAttribute="bottom" constant="90" id="F6g-4U-B8Q"/>
+                <constraint firstItem="lLQ-ag-vB6" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Jgq-PY-juw"/>
+                <constraint firstItem="21v-N6-MaG" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="U7E-Zt-Vwi"/>
+                <constraint firstItem="NwC-CT-G6O" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.9" id="ckX-Mx-Jom"/>
+                <constraint firstItem="5Z3-l2-Xzy" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="eHd-Rl-I2r"/>
+                <constraint firstItem="lLQ-ag-vB6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hA7-HH-oSZ"/>
+                <constraint firstItem="NwC-CT-G6O" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="9" id="m5a-jb-4rV"/>
+                <constraint firstItem="NwC-CT-G6O" firstAttribute="top" secondItem="21v-N6-MaG" secondAttribute="bottom" constant="70" id="uZO-TO-dQQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NwC-CT-G6O" secondAttribute="trailing" constant="9" id="xan-x2-mx7"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="25.5" y="52"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BackgroundOnboard" width="374" height="442"/>
+    </resources>
+</document>

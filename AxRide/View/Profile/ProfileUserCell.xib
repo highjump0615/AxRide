@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileUserCell" customModule="AxRide" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="272"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundProfile" translatesAutoresizingMaskIntoConstraints="NO" id="ocM-ej-b9u">
+                    <rect key="frame" x="0.0" y="-306" width="375" height="578"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Ve2-xD-Tol">
+                    <rect key="frame" x="118.5" y="34" width="138" height="138"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Ve2-xD-Tol" secondAttribute="height" multiplier="1:1" id="BzR-WT-B2a"/>
+                        <constraint firstAttribute="width" constant="138" id="Naf-Ig-UWW"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wendell Meister" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pl-eS-zi2">
+                    <rect key="frame" x="127" y="180" width="122" height="20"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="cgQ-LD-vwM">
+                    <rect key="frame" x="125" y="199.5" width="124" height="14.5"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileLocationWhite" translatesAutoresizingMaskIntoConstraints="NO" id="9bg-cK-9Xv">
+                            <rect key="frame" x="0.0" y="0.0" width="7" height="14.5"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manhattan NY, USA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYj-jI-5hl">
+                            <rect key="frame" x="13" y="0.0" width="111" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3XX-Cn-BSx">
+                    <rect key="frame" x="0.0" y="230" width="375" height="42"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zt-Cb-XDV">
+                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="42"/>
+                            <state key="normal" title="Payment Accounts">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2D-kf-Hia">
+                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="42"/>
+                            <state key="normal" title="Saved Locations">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="ekd-P9-Pod"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ocM-ej-b9u" secondAttribute="bottom" id="81B-MB-tWe"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="3XX-Cn-BSx" secondAttribute="bottom" priority="750" id="9MQ-hX-ImZ"/>
+                <constraint firstItem="Ve2-xD-Tol" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="CrH-Zu-9G7"/>
+                <constraint firstItem="3XX-Cn-BSx" firstAttribute="top" secondItem="cgQ-LD-vwM" secondAttribute="bottom" constant="16" id="JbE-nb-DF1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ocM-ej-b9u" secondAttribute="trailing" id="MDB-na-8d5"/>
+                <constraint firstItem="8pl-eS-zi2" firstAttribute="top" secondItem="Ve2-xD-Tol" secondAttribute="bottom" constant="8" id="VH9-1m-WOz"/>
+                <constraint firstItem="ocM-ej-b9u" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YWA-8w-5zo"/>
+                <constraint firstItem="3XX-Cn-BSx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZYx-Bh-dHq"/>
+                <constraint firstItem="cgQ-LD-vwM" firstAttribute="top" secondItem="8pl-eS-zi2" secondAttribute="bottom" id="cBi-YU-jD5"/>
+                <constraint firstItem="8pl-eS-zi2" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="cWO-nH-Wmy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3XX-Cn-BSx" secondAttribute="trailing" id="dGm-Fe-7Ub"/>
+                <constraint firstItem="cgQ-LD-vwM" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="gEY-SI-21R"/>
+                <constraint firstItem="Ve2-xD-Tol" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="34" id="lyv-K0-2wH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="mButLocation" destination="O2D-kf-Hia" id="3DV-2Z-bH2"/>
+                <outlet property="mButPayment" destination="2Zt-Cb-XDV" id="aeg-Pq-7Rm"/>
+                <outlet property="mImgViewUser" destination="Ve2-xD-Tol" id="tzU-tH-oJN"/>
+                <outlet property="mLblAddress" destination="ZYj-jI-5hl" id="z2m-yE-bf2"/>
+                <outlet property="mLblName" destination="8pl-eS-zi2" id="Oeh-2Q-NPh"/>
+                <outlet property="mViewLocation" destination="cgQ-LD-vwM" id="Wff-DP-4m8"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="-146"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BackgroundProfile" width="375" height="578"/>
+        <image name="ProfileLocationWhite" width="7" height="11"/>
+        <image name="UserDefault" width="100" height="100"/>
+    </resources>
+</document>

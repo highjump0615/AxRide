@@ -7,16 +7,106 @@
 //
 
 import UIKit
+import GoogleMaps
+import GooglePlaces
+import Firebase
+import GoogleSignIn
+import FBSDKCoreKit
+import FBSDKLoginKit
+import Stripe
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        STPPaymentConfiguration.shared().publishableKey = Config.stripeApiKey
+        
+        // google map initialization
+        GMSServices.provideAPIKey(Config.googleMapApiKey)
+        GMSPlacesClient.provideAPIKey(Config.googleMapApiKey)
+        
+        // firebase initialization
+        FirebaseApp.configure()
+        
+        // google sign-in initialization
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        
+        // facebook initialization
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKSettings.setAppID(Config.facebookId)
+        
+        //
+        // init status bar
+        //
+        UIApplication.shared.statusBarView?.backgroundColor = Constants.gColorPurple
+        
+        //
+        // init navigation bar
+        //
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        UINavigationBar.appearance().isTranslucent = true
+        
+        // nav bar back icon
+        let backImage = UIImage(named: "ButBack")?.withRenderingMode(.alwaysOriginal)
+        UINavigationBar.appearance().backIndicatorImage = backImage
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
+        
+        let nav = UINavigationController()
+        
+        // go to home when logged in
+        let userId = FirebaseManager.mAuth.currentUser?.uid
+        if !Utils.isStringNullOrEmpty(text: userId) {
+            // open splash screen temporately
+            let splashVC = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
+            UIApplication.shared.delegate?.window??.rootViewController = splashVC
+            
+            // check connection
+            if Constants.reachability.connection == .none {
+                self.goToSigninView(nav: nav)
+            }
+            else {
+                // fetch user info
+                User.readFromDatabase(withId: userId!) { (user) in
+                    User.currentUser = user
+                    
+                    if user != nil {
+                        // go to home page
+                        if let homeVC = BaseViewController.getMainViewController() {
+                            nav.setViewControllers([homeVC], animated: true)
+                            UIApplication.shared.delegate?.window??.rootViewController = nav
+                        }
+                    }
+                    else {
+                        self.goToSigninView(nav: nav)
+                    }
+                }
+            }
+        }
+        else {
+            goToSigninView(nav: nav)
+        }
+        
         return true
+    }
+    
+    func goToSigninView(nav: UINavigationController) {
+        // if tutorial has been read, go to log in page directly
+        if let tutorial = UserDefaults.standard.value(forKey: OnboardViewController.KEY_TUTORIAL) as? Bool, tutorial == true {
+            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
+            nav.setViewControllers([signinVC], animated: true)
+            UIApplication.shared.delegate?.window??.rootViewController = nav
+        }
+        else {
+            let onboardVC = OnboardViewController(nibName: "OnboardViewController", bundle: nil)
+            nav.setViewControllers([onboardVC], animated: true)
+            UIApplication.shared.delegate?.window??.rootViewController = nav
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -41,6 +131,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        var handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+        if !handled {
+            handled = GIDSignIn.sharedInstance().handle(url,
+                                                        sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                        annotation: [:])
+        }
+        
+        return handled
+    }
 
 }
 
