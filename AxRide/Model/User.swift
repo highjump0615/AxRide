@@ -83,6 +83,8 @@ class User : BaseModel {
     //
     var password = ""
     
+    var stripeCards: [Card]?
+    
     static func readFromDatabase(withId: String, completion: @escaping((User?)->())) {
         // invalid id, exit directly
         if withId.isEmpty {
@@ -206,5 +208,13 @@ class User : BaseModel {
         }
         
         return rate / Double(rateCount)
+    }
+    
+    func addStripeCard(_ cardInfo: Card) {
+        if self.stripeCards == nil {
+           self.stripeCards = []
+        }
+        
+        self.stripeCards?.append(cardInfo)
     }
 }

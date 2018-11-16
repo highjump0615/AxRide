@@ -14,6 +14,10 @@ class StripeApiManager {
     
     private static let mInstance = StripeApiManager()
     
+    func getBasicAuth() -> String{
+        return "Bearer \(Config.stripeSecretKey)"
+    }
+    
     /// shared object
     ///
     /// - Returns: <#return value description#>
@@ -38,6 +42,38 @@ class StripeApiManager {
                 }
                 
                 completion(nil, json["id"] as? String)
+        }
+    }
+    
+    /// get user card list
+    ///
+    /// - Parameters:
+    ///   - customerId: <#customerId description#>
+    ///   - completion: <#completion description#>
+    func getCardsList(customerId: String?, completion: @escaping (_ result: [AnyObject]?) -> Void) {
+        
+        guard let cId = customerId else {
+            return
+        }
+
+        let strUrl = "https://api.stripe.com/v1/customers/\(cId)/sources?object=card"
+        var request = URLRequest(url: URL(string: strUrl)!)
+        
+        //basic auth
+        request.setValue(getBasicAuth(), forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+        
+        Alamofire.request(request)
+            .validate()
+            .responseJSON { (response) in
+                guard let json = response.result.value as? [AnyHashable: Any] else {
+                    print("stripe Customer Id error:" + response.error.debugDescription)
+                    completion(nil)
+                    return
+                }
+                
+                let cardsArray = json["data"] as? [AnyObject]
+                completion(cardsArray)
         }
     }
     

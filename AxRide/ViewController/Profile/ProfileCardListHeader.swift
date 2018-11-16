@@ -29,5 +29,7 @@ class ProfileCardListHeader: BaseCustomView {
             mLblTitle.text = "Cards"
         }
     }
+    
+    
 
 }

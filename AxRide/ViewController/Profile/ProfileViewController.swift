@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Stripe
 
 class ProfileViewController: BaseViewController {
     
@@ -30,6 +31,7 @@ class ProfileViewController: BaseViewController {
         mTableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: mTableView.frame.width, height: 0.01))
         mTableView.register(UINib(nibName: "ProfileUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
         mTableView.register(UINib(nibName: "ProfileEmptyCell", bundle: nil), forCellReuseIdentifier: CELLID_EMPTY)
+        mTableView.register(UINib(nibName: "ProfileCardCell", bundle: nil), forCellReuseIdentifier: CELLID_CARD)
         
         // current user as default
         if self.user == nil {
@@ -43,6 +45,29 @@ class ProfileViewController: BaseViewController {
         }
         
         showNavbar(transparent: false)
+        
+        // init stripe card list
+        if self.user!.stripeCards == nil {
+            StripeApiManager.shared().getCardsList(customerId: self.user!.stripeCustomerId) { (result) in
+                guard let result = result else {
+                    return
+                }
+                
+                for cardInfo in result {
+                    let cardNew = Card()
+                    cardNew.last4 = cardInfo["last4"] as! String
+                    
+                    if let brand = cardInfo["brand"] as? String {
+                        cardNew.brand = STPCard.brand(from: brand)
+                    }
+                    
+                    // add card to list
+                    self.user?.addStripeCard(cardNew)
+                }
+                
+                self.mTableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +112,16 @@ class ProfileViewController: BaseViewController {
         
         mTableView.reloadData()
     }
+    
+    @objc func onButAddCard(sender: UIButton) {
+        // Setup add card view controller
+        let addCardViewController = STPAddCardViewController()
+        addCardViewController.delegate = self
+        
+        // Present add card view controller
+        let navigationController = UINavigationController(rootViewController: addCardViewController)
+        present(navigationController, animated: true)
+    }
 
 }
 
@@ -105,6 +140,13 @@ extension ProfileViewController: UITableViewDataSource {
         // drivers don't show this temporarily
         if self.user?.type == UserType.driver {
             return 0
+        }
+        else {
+            if mnListType == ProfileViewController.LIST_TYPE_PAYMENT {
+                if let cards = self.user?.stripeCards {
+                    return max(cards.count, 1)
+                }
+            }
         }
         
         return 1
@@ -126,11 +168,29 @@ extension ProfileViewController: UITableViewDataSource {
             cellItem = cellUser
         }
         else {
-            // empty notice
-            let cellEmpty = tableView.dequeueReusableCell(withIdentifier: CELLID_EMPTY) as? ProfileEmptyCell
-            cellEmpty?.fillContent(listType: mnListType)
+            var isEmpty = true
             
-            cellItem = cellEmpty
+            if mnListType == ProfileViewController.LIST_TYPE_PAYMENT {
+                if let cards = self.user!.stripeCards {
+                    isEmpty = cards.isEmpty
+                    
+                    if !isEmpty {
+                        // card cell
+                        let cellCard = tableView.dequeueReusableCell(withIdentifier: CELLID_CARD) as? ProfileCardCell
+                        cellCard?.fillContent(cards[indexPath.row])
+                        
+                        cellItem = cellCard
+                    }
+                }
+            }
+            
+            if isEmpty {
+                // empty notice
+                let cellEmpty = tableView.dequeueReusableCell(withIdentifier: CELLID_EMPTY) as? ProfileEmptyCell
+                cellEmpty?.fillContent(listType: mnListType)
+                
+                cellItem = cellEmpty
+            }
         }
         
         return cellItem!
@@ -176,6 +236,15 @@ extension ProfileViewController: UITableViewDelegate {
             let viewHeader = ProfileCardListHeader.getView(listType: mnListType) as! ProfileCardListHeader
             viewHeader.showView(true, animated: false)
             
+//            if self.user!.isEqual(to: User.currentUser!) {
+//                // add button action
+//                viewHeader.mButAdd.addTarget(self, action: #selector(onButAddCard), for: .touchUpInside)
+//            }
+//            else {
+                // hide add button
+                viewHeader.mButAdd.isHidden = true
+//            }
+            
             view = viewHeader
         }
         
@@ -198,5 +267,26 @@ extension ProfileViewController: UITableViewDelegate {
         }
         
         return view
+    }
+}
+
+extension ProfileViewController: STPAddCardViewControllerDelegate {
+    func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
+        print("addCardViewControllerDidCancel")
+        
+        dismiss(animated: true)
+    }
+
+    func addCardViewController(_ addCardViewController: STPAddCardViewController,
+                               didCreateToken token: STPToken,
+                               completion: @escaping STPErrorBlock) {
+        guard let card = token.card else {
+            return
+        }
+
+        self.user?.addStripeCard(Card(withSTPCard: card))
+        self.mTableView.reloadData()
+        
+        dismiss(animated: true)
     }
 }
