@@ -105,6 +105,9 @@
 		C3FC111920FBEBEE00DAA392 /* SignupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC111820FBEBEE00DAA392 /* SignupProfileViewController.xib */; };
 		C3FC111B20FBF37100DAA392 /* SignupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC111A20FBF37100DAA392 /* SignupProfileViewController.swift */; };
 		C3FC111D20FC0F1C00DAA392 /* SignupChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC111C20FC0F1C00DAA392 /* SignupChooseViewController.xib */; };
+		C3FDF1AF219F71A4008BFB85 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1AE219F71A4008BFB85 /* Address.swift */; };
+		C3FDF1B1219FCE71008BFB85 /* ProfileLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FDF1B0219FCE71008BFB85 /* ProfileLocationCell.xib */; };
+		C3FDF1B3219FD3C2008BFB85 /* ProfileLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +234,9 @@
 		C3FC111820FBEBEE00DAA392 /* SignupProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupProfileViewController.xib; sourceTree = "<group>"; };
 		C3FC111A20FBF37100DAA392 /* SignupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileViewController.swift; sourceTree = "<group>"; };
 		C3FC111C20FC0F1C00DAA392 /* SignupChooseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupChooseViewController.xib; sourceTree = "<group>"; };
+		C3FDF1AE219F71A4008BFB85 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		C3FDF1B0219FCE71008BFB85 /* ProfileLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileLocationCell.xib; sourceTree = "<group>"; };
+		C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLocationCell.swift; sourceTree = "<group>"; };
 		CDDE5B81BF71EA296A4F3E88 /* Pods-AxRideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideTests/Pods-AxRideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D309FD1287A9F9B420515CCC /* Pods_AxRideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F816AA4BB6B87A4BEA370A89 /* Pods-AxRide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRide.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxRide/Pods-AxRide.release.xcconfig"; sourceTree = "<group>"; };
@@ -429,6 +435,7 @@
 				C3C54323216695FD00EA0FD8 /* Chat.swift */,
 				C3A31269217B7F0E0032B118 /* Rate.swift */,
 				C3E92AAC219ED4B4005CD252 /* Card.swift */,
+				C3FDF1AE219F71A4008BFB85 /* Address.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -476,6 +483,7 @@
 				C3C81D6220FE812F001F2C08 /* ProfileEmptyCell.xib */,
 				C3C81D6420FE81B2001F2C08 /* ProfileLocationListFooter.xib */,
 				C3E92AA8219EC2B8005CD252 /* ProfileCardCell.xib */,
+				C3FDF1B0219FCE71008BFB85 /* ProfileLocationCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -489,6 +497,7 @@
 				C38E718B20FFBC94003C139F /* ProfileEmptyCell.swift */,
 				C38E718D20FFC1C0003C139F /* ProfileLocationListFooter.swift */,
 				C3E92AAA219EC51B005CD252 /* ProfileCardCell.swift */,
+				C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -703,6 +712,7 @@
 				C3C81D5C20FE732B001F2C08 /* ProfileViewController.xib in Resources */,
 				C37C646820F8B4C100ECC1FA /* LaunchScreen.storyboard in Resources */,
 				C3C81D6320FE812F001F2C08 /* ProfileEmptyCell.xib in Resources */,
+				C3FDF1B1219FCE71008BFB85 /* ProfileLocationCell.xib in Resources */,
 				C3C81D6520FE81B2001F2C08 /* ProfileLocationListFooter.xib in Resources */,
 				C3FBDAB621008530007143BF /* ProfileDriverUserCell.xib in Resources */,
 				C3FBDAA021004015007143BF /* ChatItemViewTo.xib in Resources */,
@@ -917,6 +927,7 @@
 				C3FB6344217DDA0500B96D71 /* StripeApiManager.swift in Sources */,
 				C3A31268217AD2120032B118 /* PaymentViewController.swift in Sources */,
 				C3E92AAD219ED4B4005CD252 /* Card.swift in Sources */,
+				C3FDF1AF219F71A4008BFB85 /* Address.swift in Sources */,
 				C3C5DA95211F7E8B002F934C /* UserWaitPopup.swift in Sources */,
 				C3C81D4E20FDE9BE001F2C08 /* User.swift in Sources */,
 				C3FBDAB021007BC7007143BF /* MainDriverViewController.swift in Sources */,
@@ -940,6 +951,7 @@
 				C35C86CB217CB9B700FBA781 /* BaseWebViewController.swift in Sources */,
 				C38E718C20FFBC94003C139F /* ProfileEmptyCell.swift in Sources */,
 				C3FBDAAA210065C3007143BF /* SignupApplicationViewController.swift in Sources */,
+				C3FDF1B3219FD3C2008BFB85 /* ProfileLocationCell.swift in Sources */,
 				C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */,
 				C3C81D5620FE6DA3001F2C08 /* Utils.swift in Sources */,
 				C3C81D6820FE8305001F2C08 /* ProfileViewController.swift in Sources */,

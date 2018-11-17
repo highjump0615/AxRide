@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileLocationCell" customModule="AxRide" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xTy-EP-cBY">
+                    <rect key="frame" x="12" y="10" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="cLA-KV-rZS"/>
+                        <constraint firstAttribute="height" constant="36" id="p2l-3v-TNx"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ip-UR-HKS">
+                    <rect key="frame" x="60" y="9" width="39" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2S-8q-g88">
+                    <rect key="frame" x="60" y="30" width="305" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69m-CD-0rK">
+                    <rect key="frame" x="12" y="55.5" width="351" height="0.5"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="vSY-A8-uh0"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="69m-CD-0rK" secondAttribute="trailing" constant="12" id="2tV-u7-lxT"/>
+                <constraint firstItem="69m-CD-0rK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="4eN-rE-lTO"/>
+                <constraint firstItem="u2S-8q-g88" firstAttribute="leading" secondItem="xTy-EP-cBY" secondAttribute="trailing" constant="12" id="Ae3-Ca-Zhp"/>
+                <constraint firstItem="1Ip-UR-HKS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="9" id="DaL-aK-BRs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="u2S-8q-g88" secondAttribute="bottom" constant="10" id="ORa-rR-zKH"/>
+                <constraint firstItem="u2S-8q-g88" firstAttribute="top" secondItem="1Ip-UR-HKS" secondAttribute="bottom" constant="4" id="X9v-Lg-slF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="69m-CD-0rK" secondAttribute="bottom" id="dLG-fd-xmF"/>
+                <constraint firstItem="xTy-EP-cBY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="gWk-Bh-YpY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="u2S-8q-g88" secondAttribute="trailing" constant="10" id="kBW-v7-TNg"/>
+                <constraint firstItem="1Ip-UR-HKS" firstAttribute="leading" secondItem="xTy-EP-cBY" secondAttribute="trailing" constant="12" id="kc1-Sr-ka7"/>
+                <constraint firstItem="xTy-EP-cBY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="lKE-sc-X1O"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="mImgviewType" destination="xTy-EP-cBY" id="7Wm-64-lbY"/>
+                <outlet property="mLblAddress" destination="u2S-8q-g88" id="Pkk-1O-6KY"/>
+                <outlet property="mLblType" destination="1Ip-UR-HKS" id="gCs-Ku-bzT"/>
+            </connections>
+            <point key="canvasLocation" x="40.799999999999997" y="333.7331334332834"/>
+        </view>
+    </objects>
+</document>

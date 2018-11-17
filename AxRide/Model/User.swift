@@ -84,6 +84,7 @@ class User : BaseModel {
     var password = ""
     
     var stripeCards: [Card]?
+    var addresses: [Address]?
     
     static func readFromDatabase(withId: String, completion: @escaping((User?)->())) {
         // invalid id, exit directly
@@ -216,5 +217,13 @@ class User : BaseModel {
         }
         
         self.stripeCards?.append(cardInfo)
+    }
+    
+    func addAddress(_ data: Address) {
+        if self.addresses == nil {
+            self.addresses = []
+        }
+        
+        self.addresses?.append(data)
     }
 }

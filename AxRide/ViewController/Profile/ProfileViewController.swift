@@ -8,6 +8,8 @@
 
 import UIKit
 import Stripe
+import GooglePlacePicker
+import Firebase
 
 class ProfileViewController: BaseViewController {
     
@@ -22,6 +24,8 @@ class ProfileViewController: BaseViewController {
     private var mnListType = ProfileViewController.LIST_TYPE_PAYMENT
     var user: User?
     
+    var placePicker: GMSPlacePickerViewController?
+    
     @IBOutlet weak var mTableView: UITableView!
     
     override func viewDidLoad() {
@@ -32,6 +36,7 @@ class ProfileViewController: BaseViewController {
         mTableView.register(UINib(nibName: "ProfileUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
         mTableView.register(UINib(nibName: "ProfileEmptyCell", bundle: nil), forCellReuseIdentifier: CELLID_EMPTY)
         mTableView.register(UINib(nibName: "ProfileCardCell", bundle: nil), forCellReuseIdentifier: CELLID_CARD)
+        mTableView.register(UINib(nibName: "ProfileLocationCell", bundle: nil), forCellReuseIdentifier: CELLID_LOCATION)
         
         // current user as default
         if self.user == nil {
@@ -46,7 +51,9 @@ class ProfileViewController: BaseViewController {
         
         showNavbar(transparent: false)
         
+        //
         // init stripe card list
+        //
         if self.user!.stripeCards == nil {
             StripeApiManager.shared().getCardsList(customerId: self.user!.stripeCustomerId) { (result) in
                 guard let result = result else {
@@ -63,6 +70,35 @@ class ProfileViewController: BaseViewController {
                     
                     // add card to list
                     self.user?.addStripeCard(cardNew)
+                }
+                
+                self.mTableView.reloadData()
+            }
+        }
+
+        //
+        // int place picker
+        //
+        let config = GMSPlacePickerConfig(viewport: nil)
+        self.placePicker = GMSPlacePickerViewController(config: config)
+        self.placePicker?.delegate = self
+        
+        //
+        // init addresses
+        //
+        if self.user!.addresses == nil {
+            let dbRef = FirebaseManager.ref()
+            
+            let query = dbRef.child(Address.TABLE_NAME).child(self.user!.id)
+            query.observeSingleEvent(of: .value) { (snapshot) in
+                // order not found
+                if !snapshot.exists() {
+                    return
+                }
+                
+                for addr in snapshot.children {
+                    let a = Address(snapshot: addr as! DataSnapshot)
+                    self.user!.addAddress(a)
                 }
                 
                 self.mTableView.reloadData()
@@ -122,6 +158,21 @@ class ProfileViewController: BaseViewController {
         let navigationController = UINavigationController(rootViewController: addCardViewController)
         present(navigationController, animated: true)
     }
+    
+    @objc func onButAddLocation(sender: UIButton) {
+        present(self.placePicker!, animated: true, completion: nil)
+    }
+    
+    func doDeleteAddress(_ index: Int) {
+        // remove from user info
+        if let user = self.user, let addr = user.addresses?[index] {
+            addr.removeFromDatabase(user.id)
+            user.addresses?.remove(at: index)
+            
+            // remove from table
+            mTableView.deleteRows(at: [IndexPath(row: index, section: 1)], with: .bottom)
+        }
+    }
 
 }
 
@@ -144,7 +195,14 @@ extension ProfileViewController: UITableViewDataSource {
         else {
             if mnListType == ProfileViewController.LIST_TYPE_PAYMENT {
                 if let cards = self.user?.stripeCards {
+                    // if no cards, show no content cell
                     return max(cards.count, 1)
+                }
+            }
+            else {
+                if let locations = self.user?.addresses {
+                    // if no locations, show no content cell
+                    return max(locations.count, 1)
                 }
             }
         }
@@ -169,17 +227,32 @@ extension ProfileViewController: UITableViewDataSource {
         }
         else {
             var isEmpty = true
-            
-            if mnListType == ProfileViewController.LIST_TYPE_PAYMENT {
-                if let cards = self.user!.stripeCards {
-                    isEmpty = cards.isEmpty
-                    
-                    if !isEmpty {
-                        // card cell
-                        let cellCard = tableView.dequeueReusableCell(withIdentifier: CELLID_CARD) as? ProfileCardCell
-                        cellCard?.fillContent(cards[indexPath.row])
+
+            if let user = self.user, user.type == UserType.customer {
+                if mnListType == ProfileViewController.LIST_TYPE_PAYMENT {
+                    if let cards = user.stripeCards {
+                        isEmpty = cards.isEmpty
                         
-                        cellItem = cellCard
+                        if !isEmpty {
+                            // card cell
+                            let cellCard = tableView.dequeueReusableCell(withIdentifier: CELLID_CARD) as? ProfileCardCell
+                            cellCard?.fillContent(cards[indexPath.row])
+                            
+                            cellItem = cellCard
+                        }
+                    }
+                }
+                else {
+                    if let addrs = user.addresses {
+                        isEmpty = addrs.isEmpty
+
+                        if !isEmpty {
+                            // location cell
+                            let cellLocation = tableView.dequeueReusableCell(withIdentifier: CELLID_LOCATION) as? ProfileLocationCell
+                            cellLocation?.fillContent(addrs[indexPath.row])
+
+                            cellItem = cellLocation
+                        }
                     }
                 }
             }
@@ -263,10 +336,65 @@ extension ProfileViewController: UITableViewDelegate {
             let viewFooter = ProfileLocationListFooter.getView() as! ProfileLocationListFooter
             viewFooter.showView(true, animated: false)
             
+            // can add address for his own profile only
+            if self.user!.isEqual(to: User.currentUser!) {
+                // add button action
+                viewFooter.mButAdd.addTarget(self, action: #selector(onButAddLocation), for: .touchUpInside)
+            }
+            else {
+                // hide add button
+                viewFooter.mButAdd.isHidden = true
+            }
+            
             view = viewFooter
         }
         
         return view
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // user cell is not editable
+        if indexPath.section == 0 {
+            return false
+        }
+        
+        // working for customer case only
+        if self.user?.type == UserType.driver {
+            return false
+        }
+        
+        // card list is not editable
+        if mnListType == ProfileViewController.LIST_TYPE_PAYMENT {
+            return false
+        }
+        
+        if let user = self.user {
+            // can add address for his own profile only
+            if !user.isEqual(to: User.currentUser!) {
+                return false
+            }
+                
+            if let addrs = user.addresses {
+                if !addrs.isEmpty {
+                    return true
+                }
+            }
+        }
+
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            // delete address
+            self.alert(title: "Are you sure to delete this address?",
+                       message: "",
+                       okButton: "OK",
+                       cancelButton: "Cancel",
+                       okHandler: { (_) in
+                        self.doDeleteAddress(indexPath.row)
+            }, cancelHandler: nil)
+        }
     }
 }
 
@@ -289,4 +417,51 @@ extension ProfileViewController: STPAddCardViewControllerDelegate {
         
         dismiss(animated: true)
     }
+}
+
+extension ProfileViewController: GMSPlacePickerViewControllerDelegate {
+    func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
+        // Dismiss the place picker, as it cannot dismiss itself.
+        viewController.dismiss(animated: true, completion: nil)
+        
+        print("Place name \(place.name)")
+        print("Place address \(place.formattedAddress)")
+        print("Place location \(place.coordinate.latitude), \(place.coordinate.longitude)")
+        
+        if viewController == self.placePicker {
+            // make new address
+            let addrNew = Address()
+            
+            addrNew.latitude = place.coordinate.latitude
+            addrNew.longitude = place.coordinate.longitude
+            
+            if let location = place.formattedAddress {
+                addrNew.location = location
+            }
+            
+            guard let user = self.user else {
+                return
+            }
+            
+            // restaurant from 2nd address
+            if let addrs = user.addresses, !addrs.isEmpty {
+                addrNew.type = AddressType.restaurant
+            }
+            
+            // save to db
+            addrNew.saveToDatabase(parentID: user.id)
+            
+            // add to list
+            self.user?.addAddress(addrNew)
+            self.mTableView.reloadData()
+        }
+    }
+    
+    func placePickerDidCancel(_ viewController: GMSPlacePickerViewController) {
+        // Dismiss the place picker, as it cannot dismiss itself.
+        viewController.dismiss(animated: true, completion: nil)
+        
+        print("No place selected")
+    }
+    
 }
