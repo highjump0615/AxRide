@@ -172,6 +172,10 @@ class User : BaseModel {
         // stripe info
         self.stripeAccountId = info[User.FIELD_STRIPE_ACCOUNTID] as? String
         self.stripeCustomerId = info[User.FIELD_STRIPE_CUSTOMERID] as? String
+        
+        // accepts
+        self.rideAccepts = info[User.FIELD_COUNT_RIDEACCEPT] as! Int
+        self.rideRequests = info[User.FIELD_COUNT_RIDEREQUEST] as! Int
     }
     
     override func toDictionary() -> [String: Any] {

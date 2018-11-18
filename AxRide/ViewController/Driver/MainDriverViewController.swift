@@ -110,12 +110,12 @@ class MainDriverViewController: BaseHomeViewController {
             let dAccept = Double(userCurrent.rideAccepts) / Double(max(userCurrent.rideRequests, 1))
             mLblAcceptance.text = (dAccept * 100.0).format(f: ".2") + " %"
             
-            // ratings
-            mLblRating.text = userCurrent.userRate().format(f: ".2")
-            
             // cancellation
             mLblCancellation.text = ((1 - dAccept) * 100.0).format(f: ".2") + " %"
         }
+        
+        // ratings
+        mLblRating.text = userCurrent.userRate().format(f: ".2")
     }
     
     deinit {
