@@ -105,10 +105,21 @@ class ProfileViewController: BaseViewController {
                 }
                 
                 for cardInfo in result {
-                    let cardNew = Card()
-                    cardNew.last4 = cardInfo["last4"] as! String
+                    // source case; card added in Android version
+                    var jsonCard = cardInfo["card"] as? [AnyHashable: Any]
+                    if jsonCard == nil {
+                        jsonCard = cardInfo as? [AnyHashable: Any]
+                    }
                     
-                    if let brand = cardInfo["brand"] as? String {
+                    // card case; card added in iOS version
+                    guard let last4 = jsonCard!["last4"] as? String else {
+                        continue
+                    }
+                    
+                    let cardNew = Card()
+                    cardNew.last4 = last4
+                    
+                    if let brand = jsonCard!["brand"] as? String {
                         cardNew.brand = STPCard.brand(from: brand)
                     }
                     
@@ -487,14 +498,14 @@ extension ProfileViewController: UITableViewDelegate {
             let viewHeader = ProfileCardListHeader.getView(listType: mnListType) as! ProfileCardListHeader
             viewHeader.showView(true, animated: false)
             
-//            if self.user!.isEqual(to: User.currentUser!) {
-//                // add button action
-//                viewHeader.mButAdd.addTarget(self, action: #selector(onButAddCard), for: .touchUpInside)
-//            }
-//            else {
+            if self.user!.isEqual(to: User.currentUser!) {
+                // add button action
+                viewHeader.mButAdd.addTarget(self, action: #selector(onButAddCard), for: .touchUpInside)
+            }
+            else {
                 // hide add button
                 viewHeader.mButAdd.isHidden = true
-//            }
+            }
             
             view = viewHeader
         }
@@ -589,6 +600,10 @@ extension ProfileViewController: STPAddCardViewControllerDelegate {
         guard let card = token.card else {
             return
         }
+        
+        // add card using stripe api
+        StripeApiManager.shared().createCard(customerId: self.user!.stripeCustomerId,
+                                             token: token)
 
         self.user?.addStripeCard(Card(withSTPCard: card))
         self.mTableView.reloadData()

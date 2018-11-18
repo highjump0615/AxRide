@@ -56,7 +56,7 @@ class StripeApiManager {
             return
         }
 
-        let strUrl = "https://api.stripe.com/v1/customers/\(cId)/sources?object=card"
+        let strUrl = "https://api.stripe.com/v1/customers/\(cId)/sources"
         var request = URLRequest(url: URL(string: strUrl)!)
         
         //basic auth
@@ -67,7 +67,7 @@ class StripeApiManager {
             .validate()
             .responseJSON { (response) in
                 guard let json = response.result.value as? [AnyHashable: Any] else {
-                    print("stripe Customer Id error:" + response.error.debugDescription)
+                    print("stripe get card error:" + response.error.debugDescription)
                     completion(nil)
                     return
                 }
@@ -77,6 +77,43 @@ class StripeApiManager {
         }
     }
     
+    //create card for given user
+    func createCard(customerId: String?, token: STPToken, completion: ((_ success: Bool) -> Void)? = nil) {
+        
+        guard let cId = customerId else {
+            return
+        }
+        
+        let strUrl = "https://api.stripe.com/v1/customers/\(cId)/sources"
+        var request = URLRequest(url: URL(string: strUrl)!)
+        
+        // basic auth
+        request.setValue(getBasicAuth(), forHTTPHeaderField: "Authorization")
+        request.httpMethod = "POST"
+        
+        // token needed
+        var params = [String:String]()
+        params["source"] = token.tokenId
+        
+        var str = ""
+        params.forEach({ (key, value) in
+            str = "\(str)\(key)=\(value)&"
+        })
+        
+        request.httpBody = str.data(using: String.Encoding.utf8)
+        
+        Alamofire.request(request)
+            .validate()
+            .responseJSON { (response) in
+                guard (response.result.value as? [AnyHashable: Any]) != nil else {
+                    print("stripe create card error:" + response.error.debugDescription)
+                    completion?(false)
+                    return
+                }
+
+                completion?(true)
+        }
+    }
 }
 
 class MainAPIClient: NSObject, STPEphemeralKeyProvider {
