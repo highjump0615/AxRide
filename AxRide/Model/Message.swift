@@ -23,8 +23,6 @@ class Message: BaseModel {
     var senderId: String = ""
     var sender: User?
     
-    private var mTableName = Message.TABLE_NAME
-    
     override init() {
         super.init()
     }
@@ -43,12 +41,8 @@ class Message: BaseModel {
         }        
     }
     
-    func setTableName(withID: String, parentID: String) {
-        mTableName = "\(Chat.TABLE_NAME)/\(parentID)/\(withID)/\(Message.TABLE_NAME)"
-    }
-    
     override func tableName() -> String {
-        return mTableName
+        return Message.TABLE_NAME
     }
     
     override func toDictionary() -> [String: Any] {

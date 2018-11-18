@@ -23,13 +23,24 @@ class ProfileEmptyCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func fillContent(listType: Int) {
-        if listType == ProfileViewController.LIST_TYPE_PAYMENT {
-            mLblNotice.text = "No cards added yet"
+    func fillContent(user: User?, listType: Int) {
+        // customer
+        if user?.type == UserType.customer {
+            if listType == ProfileViewController.LIST_TYPE_PAYMENT {
+                mLblNotice.text = "No cards added yet"
+            }
+            else {
+                mLblNotice.text = "No locations added yet"
+            }
         }
+        // driver
         else {
-            mLblNotice.text = "No locations added yet"
+            if listType == ProfileViewController.LIST_TYPE_PAYMENT {
+                mLblNotice.text = "No history yet"
+            }
+            else {
+                mLblNotice.text = "No rates yet"
+            }
         }
-        
     }
 }

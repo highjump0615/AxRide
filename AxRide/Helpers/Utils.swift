@@ -37,4 +37,21 @@ class Utils {
     static func isStringNullOrEmpty(text: String?) -> Bool {
         return (text != nil && !((text?.isEmpty)!)) ? false : true
     }
+    
+    /// date formatted from unix timestamp
+    ///
+    /// - Parameter timestamp: <#timestamp description#>
+    /// - Returns: <#return value description#>
+    static func stringFromTimestamp(timestamp: Int64) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp / 1000))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm:ss a MM/dd/yyyy"
+        
+        return dateFormatter.string(from: date)
+    }
+    
+    static func stringElapsed(timestamp: Int64) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp / 1000))
+        return date.getElapsedInterval()
+    }
 }

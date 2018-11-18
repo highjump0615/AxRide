@@ -178,6 +178,9 @@ extension PaymentViewController : STPPaymentContextDelegate {
             // Animate active ride
             print("***success***")
             
+            // update order status
+            self.order?.updateStatus(Order.STATUS_PAID)
+            
             //
             // payment success
             //

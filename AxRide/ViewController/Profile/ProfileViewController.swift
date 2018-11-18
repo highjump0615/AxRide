@@ -17,12 +17,14 @@ class ProfileViewController: BaseViewController {
     private let CELLID_CARD = "ProfileCardCell"
     private let CELLID_LOCATION = "ProfileLocationCell"
     private let CELLID_EMPTY = "ProfileEmptyCell"
+    private let CELLID_ORDER = "ProfileOrderCell"
     
     static let LIST_TYPE_PAYMENT = 0
     static let LIST_TYPE_LOCATION = 1
     
     private var mnListType = ProfileViewController.LIST_TYPE_PAYMENT
     var user: User?
+    var orders: [Order] = []
     
     var placePicker: GMSPlacePickerViewController?
     
@@ -35,8 +37,11 @@ class ProfileViewController: BaseViewController {
         mTableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: mTableView.frame.width, height: 0.01))
         mTableView.register(UINib(nibName: "ProfileUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
         mTableView.register(UINib(nibName: "ProfileEmptyCell", bundle: nil), forCellReuseIdentifier: CELLID_EMPTY)
+        
         mTableView.register(UINib(nibName: "ProfileCardCell", bundle: nil), forCellReuseIdentifier: CELLID_CARD)
         mTableView.register(UINib(nibName: "ProfileLocationCell", bundle: nil), forCellReuseIdentifier: CELLID_LOCATION)
+        
+        mTableView.register(UINib(nibName: "ProfileOrderCell", bundle: nil), forCellReuseIdentifier: CELLID_ORDER)
         
         // current user as default
         if self.user == nil {
@@ -51,10 +56,45 @@ class ProfileViewController: BaseViewController {
         
         showNavbar(transparent: false)
         
-        //
         // init stripe card list
+        getCardList()
+        
         //
-        if self.user!.stripeCards == nil {
+        // int place picker
+        //
+        let config = GMSPlacePickerConfig(viewport: nil)
+        self.placePicker = GMSPlacePickerViewController(config: config)
+        self.placePicker?.delegate = self
+        
+        // init addresses
+        getAddresses()
+        
+        getOrderList()
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.title = "Profile"
+        
+        // reload
+        mTableView.reloadData()
+    }
+    
+    /// fetch all card list using StripeApi
+    func getCardList() {
+        // for user only
+        if self.user?.type == UserType.driver {
+            return
+        }
+        
+        if self.user?.stripeCards == nil {
             StripeApiManager.shared().getCardsList(customerId: self.user!.stripeCustomerId) { (result) in
                 guard let result = result else {
                     return
@@ -75,18 +115,16 @@ class ProfileViewController: BaseViewController {
                 self.mTableView.reloadData()
             }
         }
-
-        //
-        // int place picker
-        //
-        let config = GMSPlacePickerConfig(viewport: nil)
-        self.placePicker = GMSPlacePickerViewController(config: config)
-        self.placePicker?.delegate = self
+    }
+    
+    func getAddresses() {
+        // for user only
+        if self.user?.type == UserType.driver {
+            return
+        }
         
-        //
-        // init addresses
-        //
         if self.user!.addresses == nil {
+            
             let dbRef = FirebaseManager.ref()
             
             let query = dbRef.child(Address.TABLE_NAME).child(self.user!.id)
@@ -105,19 +143,50 @@ class ProfileViewController: BaseViewController {
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    /// get order list
+    func getOrderList() {
+        // for driver only
+        if self.user?.type == UserType.customer {
+            return
+        }
         
-        self.title = "Profile"
+        var nFetchCount = 0
+        var nFetchUserCount = 0
         
-        // reload
-        mTableView.reloadData()
+        let dbRef = FirebaseManager.ref()
+        
+        let query = dbRef.child(Order.TABLE_NAME_DONE).child(self.user!.id)
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            // clear
+            self.orders.removeAll()
+            
+            // order not found
+            if !snapshot.exists() {
+                self.mTableView.reloadData()
+                return
+            }
+            
+            for order in snapshot.children {
+                let o = Order(snapshot: order as! DataSnapshot)
+                nFetchCount += 1
+                
+                // set user related
+                User.readFromDatabase(withId: o.customerId, completion: { (user) in
+                    nFetchUserCount += 1
+                    
+                    o.customer = user
+                    self.orders.append(o)
+                    
+                    // update table
+                    if nFetchCount == nFetchUserCount {
+                        self.mTableView.reloadData()
+                    }
+                })
+            }
+            
+            self.mTableView.reloadData()
+        }
     }
 
     /// edit profile
@@ -174,6 +243,16 @@ class ProfileViewController: BaseViewController {
         }
     }
 
+    @objc func onButUser(sender: UIButton) {
+        let nIndex = sender.tag
+        
+        // go to profile page
+        if let user = self.orders[nIndex].customer {
+            let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            profileVC.user = user
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
 }
 
 extension ProfileViewController: UITableViewDataSource {
@@ -190,15 +269,23 @@ extension ProfileViewController: UITableViewDataSource {
 
         // drivers don't show this temporarily
         if self.user?.type == UserType.driver {
-            return 0
+            // order history
+            if mnListType == ProfileViewController.LIST_TYPE_PAYMENT {
+                return max(self.orders.count, 1)
+            }
+            // rates
+            else {
+            }
         }
         else {
+            // card list
             if mnListType == ProfileViewController.LIST_TYPE_PAYMENT {
                 if let cards = self.user?.stripeCards {
                     // if no cards, show no content cell
                     return max(cards.count, 1)
                 }
             }
+            // location list
             else {
                 if let locations = self.user?.addresses {
                     // if no locations, show no content cell
@@ -229,6 +316,7 @@ extension ProfileViewController: UITableViewDataSource {
             var isEmpty = true
 
             if let user = self.user, user.type == UserType.customer {
+                // card list item
                 if mnListType == ProfileViewController.LIST_TYPE_PAYMENT {
                     if let cards = user.stripeCards {
                         isEmpty = cards.isEmpty
@@ -242,6 +330,7 @@ extension ProfileViewController: UITableViewDataSource {
                         }
                     }
                 }
+                // location list item
                 else {
                     if let addrs = user.addresses {
                         isEmpty = addrs.isEmpty
@@ -256,11 +345,29 @@ extension ProfileViewController: UITableViewDataSource {
                     }
                 }
             }
+            else {
+                // order list item
+                if mnListType == ProfileViewController.LIST_TYPE_PAYMENT {
+                    isEmpty = self.orders.isEmpty
+                    
+                    if !isEmpty {
+                        // order cell
+                        let cellOrder = tableView.dequeueReusableCell(withIdentifier: CELLID_ORDER) as? ProfileOrderCell
+                        cellOrder?.fillContent(self.orders[indexPath.row])
+                        
+                        // add button event
+                        cellOrder?.mButUser.tag = indexPath.row
+                        cellOrder?.mButUser.addTarget(self, action: #selector(onButUser), for: .touchUpInside)
+                        
+                        cellItem = cellOrder
+                    }
+                }
+            }
             
             if isEmpty {
                 // empty notice
                 let cellEmpty = tableView.dequeueReusableCell(withIdentifier: CELLID_EMPTY) as? ProfileEmptyCell
-                cellEmpty?.fillContent(listType: mnListType)
+                cellEmpty?.fillContent(user: self.user, listType: mnListType)
                 
                 cellItem = cellEmpty
             }
@@ -273,8 +380,15 @@ extension ProfileViewController: UITableViewDataSource {
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let height: CGFloat = 0.0001
+        
         if section == 0 {
-            return 0
+            return height
+        }
+        
+        // no header for driver
+        if self.user?.type == UserType.driver {
+            return height
         }
         
         return 40

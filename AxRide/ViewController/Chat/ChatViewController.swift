@@ -100,10 +100,8 @@ class ChatViewController: BaseViewController {
         msgNew.sender = userCurrent
         msgNew.text = text
         
-        msgNew.setTableName(withID: mChatId, parentID: userCurrent.id)
-        msgNew.saveToDatabase()
-        msgNew.setTableName(withID: mChatId, parentID: self.userTo!.id)
-        msgNew.saveToDatabase()
+        msgNew.saveToDatabase(withID: mChatId, parentID: userCurrent.id)
+        msgNew.saveToDatabase(withID: mChatId, parentID: self.userTo!.id)
         
         self.messages.append(msgNew)
         

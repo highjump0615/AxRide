@@ -108,6 +108,8 @@
 		C3FDF1AF219F71A4008BFB85 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1AE219F71A4008BFB85 /* Address.swift */; };
 		C3FDF1B1219FCE71008BFB85 /* ProfileLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FDF1B0219FCE71008BFB85 /* ProfileLocationCell.xib */; };
 		C3FDF1B3219FD3C2008BFB85 /* ProfileLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */; };
+		C3FDF1B721A06171008BFB85 /* ProfileOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FDF1B621A06171008BFB85 /* ProfileOrderCell.xib */; };
+		C3FDF1B921A09E40008BFB85 /* ProfileOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1B821A09E40008BFB85 /* ProfileOrderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +239,8 @@
 		C3FDF1AE219F71A4008BFB85 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		C3FDF1B0219FCE71008BFB85 /* ProfileLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileLocationCell.xib; sourceTree = "<group>"; };
 		C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLocationCell.swift; sourceTree = "<group>"; };
+		C3FDF1B621A06171008BFB85 /* ProfileOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileOrderCell.xib; sourceTree = "<group>"; };
+		C3FDF1B821A09E40008BFB85 /* ProfileOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOrderCell.swift; sourceTree = "<group>"; };
 		CDDE5B81BF71EA296A4F3E88 /* Pods-AxRideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideTests/Pods-AxRideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D309FD1287A9F9B420515CCC /* Pods_AxRideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F816AA4BB6B87A4BEA370A89 /* Pods-AxRide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRide.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxRide/Pods-AxRide.release.xcconfig"; sourceTree = "<group>"; };
@@ -484,6 +488,7 @@
 				C3C81D6420FE81B2001F2C08 /* ProfileLocationListFooter.xib */,
 				C3E92AA8219EC2B8005CD252 /* ProfileCardCell.xib */,
 				C3FDF1B0219FCE71008BFB85 /* ProfileLocationCell.xib */,
+				C3FDF1B621A06171008BFB85 /* ProfileOrderCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 				C38E718D20FFC1C0003C139F /* ProfileLocationListFooter.swift */,
 				C3E92AAA219EC51B005CD252 /* ProfileCardCell.swift */,
 				C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */,
+				C3FDF1B821A09E40008BFB85 /* ProfileOrderCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -702,6 +708,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3FDF1B721A06171008BFB85 /* ProfileOrderCell.xib in Resources */,
 				C3F5CCDD214471C300A7A597 /* beijing.gpx in Resources */,
 				C3EE8C8020FC39A8000D7CD5 /* TermViewController.xib in Resources */,
 				C3FBDAB221008038007143BF /* SignupApplicationViewControllerSmall.xib in Resources */,
@@ -930,6 +937,7 @@
 				C3FDF1AF219F71A4008BFB85 /* Address.swift in Sources */,
 				C3C5DA95211F7E8B002F934C /* UserWaitPopup.swift in Sources */,
 				C3C81D4E20FDE9BE001F2C08 /* User.swift in Sources */,
+				C3FDF1B921A09E40008BFB85 /* ProfileOrderCell.swift in Sources */,
 				C3FBDAB021007BC7007143BF /* MainDriverViewController.swift in Sources */,
 				C308C0E821161A7E00D2BC45 /* BaseModel.swift in Sources */,
 				C3FC111120FBD13000DAA392 /* ForgetViewController.swift in Sources */,

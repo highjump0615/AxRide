@@ -49,7 +49,7 @@ class Address: BaseModel {
         self.latitude = info[Address.FIELD_LATITUDE] as! Double
         self.longitude = info[Address.FIELD_LONGITUDE] as! Double
         self.location = info[Address.FIELD_LOCATION] as! String
-        self.type = AddressType(rawValue: info[Address.FIELD_TYPE] as! String)!
+        self.type = AddressType(rawValue: info[Address.FIELD_TYPE] as! String) ?? AddressType.home
     }
 
     func typeString() -> String {
