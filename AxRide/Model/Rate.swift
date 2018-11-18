@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class Rate: BaseModel {
     
@@ -38,6 +39,16 @@ class Rate: BaseModel {
             self.user = userCurrent
             self.userId = userCurrent.id
         }
+    }
+    
+    override init(snapshot: DataSnapshot) {
+        super.init(snapshot: snapshot)
+        
+        let info = snapshot.value! as! [String: Any?]
+        
+        self.userId = info[Rate.FIELD_USERID] as! String
+        self.rating = info[Rate.FIELD_RATING] as! Double
+        self.text = info[Rate.FIELD_TEXT] as! String
     }
     
     override func toDictionary() -> [String: Any] {

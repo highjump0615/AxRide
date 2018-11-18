@@ -18,6 +18,7 @@ class ProfileViewController: BaseViewController {
     private let CELLID_LOCATION = "ProfileLocationCell"
     private let CELLID_EMPTY = "ProfileEmptyCell"
     private let CELLID_ORDER = "ProfileOrderCell"
+    private let CELLID_RATE = "ProfileRateCell"
     
     static let LIST_TYPE_PAYMENT = 0
     static let LIST_TYPE_LOCATION = 1
@@ -25,6 +26,7 @@ class ProfileViewController: BaseViewController {
     private var mnListType = ProfileViewController.LIST_TYPE_PAYMENT
     var user: User?
     var orders: [Order] = []
+    var rates: [Rate] = []
     
     var placePicker: GMSPlacePickerViewController?
     
@@ -42,6 +44,7 @@ class ProfileViewController: BaseViewController {
         mTableView.register(UINib(nibName: "ProfileLocationCell", bundle: nil), forCellReuseIdentifier: CELLID_LOCATION)
         
         mTableView.register(UINib(nibName: "ProfileOrderCell", bundle: nil), forCellReuseIdentifier: CELLID_ORDER)
+        mTableView.register(UINib(nibName: "ProfileRateCell", bundle: nil), forCellReuseIdentifier: CELLID_RATE)
         
         // current user as default
         if self.user == nil {
@@ -70,6 +73,7 @@ class ProfileViewController: BaseViewController {
         getAddresses()
         
         getOrderList()
+        getRateList()
         
     }
 
@@ -177,6 +181,50 @@ class ProfileViewController: BaseViewController {
                     
                     o.customer = user
                     self.orders.append(o)
+                    
+                    // update table
+                    if nFetchCount == nFetchUserCount {
+                        self.mTableView.reloadData()
+                    }
+                })
+            }
+            
+            self.mTableView.reloadData()
+        }
+    }
+    
+    func getRateList() {
+        // for driver only
+        if self.user?.type == UserType.customer {
+            return
+        }
+        
+        var nFetchCount = 0
+        var nFetchUserCount = 0
+        
+        let dbRef = FirebaseManager.ref()
+        
+        let query = dbRef.child(Rate.TABLE_NAME).child(self.user!.id)
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            // clear
+            self.rates.removeAll()
+            
+            // order not found
+            if !snapshot.exists() {
+                self.mTableView.reloadData()
+                return
+            }
+            
+            for rate in snapshot.children {
+                let r = Rate(snapshot: rate as! DataSnapshot)
+                nFetchCount += 1
+                
+                // set user related
+                User.readFromDatabase(withId: r.userId, completion: { (user) in
+                    nFetchUserCount += 1
+                    
+                    r.user = user
+                    self.rates.append(r)
                     
                     // update table
                     if nFetchCount == nFetchUserCount {
@@ -360,6 +408,22 @@ extension ProfileViewController: UITableViewDataSource {
                         cellOrder?.mButUser.addTarget(self, action: #selector(onButUser), for: .touchUpInside)
                         
                         cellItem = cellOrder
+                    }
+                }
+                // rate list item
+                else {
+                    isEmpty = self.rates.isEmpty
+                    
+                    if !isEmpty {
+                        // rate cell
+                        let cellRate = tableView.dequeueReusableCell(withIdentifier: CELLID_RATE) as? ProfileRateCell
+                        cellRate?.fillContent(self.rates[indexPath.row])
+                        
+                        // add button event
+                        cellRate?.mButUser.tag = indexPath.row
+                        cellRate?.mButUser.addTarget(self, action: #selector(onButUser), for: .touchUpInside)
+                        
+                        cellItem = cellRate
                     }
                 }
             }

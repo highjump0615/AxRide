@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileRateCell" customModule="AxRide" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rtp-Zq-EFI">
+                    <rect key="frame" x="12" y="10" width="50" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="B7P-fC-ufA"/>
+                        <constraint firstAttribute="height" constant="51" id="ma6-Ho-iMF"/>
+                    </constraints>
+                    <state key="normal" image="UserDefault"/>
+                </button>
+                <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="0Jr-3K-GsM" customClass="CosmosView" customModule="Cosmos">
+                    <rect key="frame" x="74" y="10" width="75" height="15"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                            <real key="value" value="4.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                            <color key="value" red="0.49019607840000001" green="0.019607843140000001" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                            <color key="value" red="0.49019607840000001" green="0.019607843140000001" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                            <color key="value" red="0.49019607840000001" green="0.019607843140000001" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="emptyBorderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kz-KN-e5H">
+                    <rect key="frame" x="74" y="26" width="15" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPG-O0-7jZ">
+                    <rect key="frame" x="12" y="69.5" width="351" height="0.5"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="aZa-rL-1Dc"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great Driver!!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt6-ZE-w6W">
+                    <rect key="frame" x="74" y="45" width="289" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="WPG-O0-7jZ" secondAttribute="trailing" constant="12" id="0F0-qB-S5S"/>
+                <constraint firstItem="Tt6-ZE-w6W" firstAttribute="top" secondItem="0kz-KN-e5H" secondAttribute="bottom" constant="3" id="4gh-ky-rd9"/>
+                <constraint firstItem="rtp-Zq-EFI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="AwN-ij-Fh8"/>
+                <constraint firstItem="0kz-KN-e5H" firstAttribute="top" secondItem="0Jr-3K-GsM" secondAttribute="bottom" constant="1" id="AzL-kR-oXp"/>
+                <constraint firstItem="0Jr-3K-GsM" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Bn4-UF-2yA"/>
+                <constraint firstAttribute="bottom" secondItem="WPG-O0-7jZ" secondAttribute="bottom" id="J6d-DF-Ts3"/>
+                <constraint firstItem="rtp-Zq-EFI" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Ozz-Bo-4YV"/>
+                <constraint firstItem="WPG-O0-7jZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="QnG-qo-gYd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Tt6-ZE-w6W" secondAttribute="bottom" constant="10" id="W9b-9e-ukD"/>
+                <constraint firstItem="0Jr-3K-GsM" firstAttribute="leading" secondItem="rtp-Zq-EFI" secondAttribute="trailing" constant="12" id="bwc-sa-hMG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Tt6-ZE-w6W" secondAttribute="trailing" constant="12" id="cQ5-Em-xUM"/>
+                <constraint firstItem="Tt6-ZE-w6W" firstAttribute="leading" secondItem="0kz-KN-e5H" secondAttribute="leading" id="ekY-Ri-CpN"/>
+                <constraint firstItem="0kz-KN-e5H" firstAttribute="leading" secondItem="0Jr-3K-GsM" secondAttribute="leading" id="lvP-qs-ks3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="mButUser" destination="rtp-Zq-EFI" id="o9j-Cn-dTF"/>
+                <outlet property="mLblContent" destination="Tt6-ZE-w6W" id="D1V-8X-ROo"/>
+                <outlet property="mLblUser" destination="0kz-KN-e5H" id="Tuu-Mf-88e"/>
+                <outlet property="mViewStar" destination="0Jr-3K-GsM" id="jIV-fA-vcR"/>
+            </connections>
+            <point key="canvasLocation" x="40.799999999999997" y="307.64617691154427"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="UserDefault" width="100" height="100"/>
+    </resources>
+</document>

@@ -110,6 +110,8 @@
 		C3FDF1B3219FD3C2008BFB85 /* ProfileLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */; };
 		C3FDF1B721A06171008BFB85 /* ProfileOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FDF1B621A06171008BFB85 /* ProfileOrderCell.xib */; };
 		C3FDF1B921A09E40008BFB85 /* ProfileOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1B821A09E40008BFB85 /* ProfileOrderCell.swift */; };
+		C3FDF1BB21A10D99008BFB85 /* ProfileRateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FDF1BA21A10D99008BFB85 /* ProfileRateCell.xib */; };
+		C3FDF1BD21A1131D008BFB85 /* ProfileRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1BC21A1131D008BFB85 /* ProfileRateCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +243,8 @@
 		C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLocationCell.swift; sourceTree = "<group>"; };
 		C3FDF1B621A06171008BFB85 /* ProfileOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileOrderCell.xib; sourceTree = "<group>"; };
 		C3FDF1B821A09E40008BFB85 /* ProfileOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOrderCell.swift; sourceTree = "<group>"; };
+		C3FDF1BA21A10D99008BFB85 /* ProfileRateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileRateCell.xib; sourceTree = "<group>"; };
+		C3FDF1BC21A1131D008BFB85 /* ProfileRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRateCell.swift; sourceTree = "<group>"; };
 		CDDE5B81BF71EA296A4F3E88 /* Pods-AxRideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideTests/Pods-AxRideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D309FD1287A9F9B420515CCC /* Pods_AxRideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F816AA4BB6B87A4BEA370A89 /* Pods-AxRide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRide.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxRide/Pods-AxRide.release.xcconfig"; sourceTree = "<group>"; };
@@ -489,6 +493,7 @@
 				C3E92AA8219EC2B8005CD252 /* ProfileCardCell.xib */,
 				C3FDF1B0219FCE71008BFB85 /* ProfileLocationCell.xib */,
 				C3FDF1B621A06171008BFB85 /* ProfileOrderCell.xib */,
+				C3FDF1BA21A10D99008BFB85 /* ProfileRateCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -504,6 +509,7 @@
 				C3E92AAA219EC51B005CD252 /* ProfileCardCell.swift */,
 				C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */,
 				C3FDF1B821A09E40008BFB85 /* ProfileOrderCell.swift */,
+				C3FDF1BC21A1131D008BFB85 /* ProfileRateCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -717,6 +723,7 @@
 				C33F88ED2100376000C52766 /* ChatViewController.xib in Resources */,
 				C3EE8C8620FC44E7000D7CD5 /* MainUserViewController.xib in Resources */,
 				C3C81D5C20FE732B001F2C08 /* ProfileViewController.xib in Resources */,
+				C3FDF1BB21A10D99008BFB85 /* ProfileRateCell.xib in Resources */,
 				C37C646820F8B4C100ECC1FA /* LaunchScreen.storyboard in Resources */,
 				C3C81D6320FE812F001F2C08 /* ProfileEmptyCell.xib in Resources */,
 				C3FDF1B1219FCE71008BFB85 /* ProfileLocationCell.xib in Resources */,
@@ -923,6 +930,7 @@
 				C3DBC35A211E333100F42A2B /* ApiManager.swift in Sources */,
 				C3E92AAB219EC51B005CD252 /* ProfileCardCell.swift in Sources */,
 				C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */,
+				C3FDF1BD21A1131D008BFB85 /* ProfileRateCell.swift in Sources */,
 				C3FB5EDD2169C5DB00DAAA94 /* RideModeView.swift in Sources */,
 				C38EB85A2182C37E005A2111 /* PhotoViewHelper.swift in Sources */,
 				C3C81D6D20FEB6F7001F2C08 /* BaseCustomView.swift in Sources */,
