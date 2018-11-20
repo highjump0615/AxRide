@@ -16,11 +16,9 @@ class RideModeView: BaseCustomView {
     
     @IBOutlet weak var mImgViewRideNormal: UIImageView!
     @IBOutlet weak var mImgViewRideSuv: UIImageView!
-    @IBOutlet weak var mImgViewRideShare: UIImageView!
     
     @IBOutlet weak var mButNormal: UIButton!
     @IBOutlet weak var mButSuv: UIButton!
-    @IBOutlet weak var mButShare: UIButton!
     
     var delegate: RideModeDelegate?
     
@@ -34,7 +32,6 @@ class RideModeView: BaseCustomView {
         // init images
         mImgViewRideNormal.image = mImgViewRideNormal.image!.withRenderingMode(.alwaysTemplate)
         mImgViewRideSuv.image = mImgViewRideSuv.image!.withRenderingMode(.alwaysTemplate)
-        mImgViewRideShare.image = mImgViewRideShare.image!.withRenderingMode(.alwaysTemplate)
         
         clearModeColor()
     }
@@ -42,13 +39,11 @@ class RideModeView: BaseCustomView {
     func enableSwitch(_ enable: Bool) {
         mButNormal.makeEnable(enable: enable)
         mButSuv.makeEnable(enable: enable)
-        mButShare.makeEnable(enable: enable)
     }
     
     func clearModeColor() {
         mImgViewRideNormal.tintColor = Constants.gColorGray
         mImgViewRideSuv.tintColor = Constants.gColorGray
-        mImgViewRideShare.tintColor = Constants.gColorGray
     }
     
     /// update switch based on current mode
@@ -63,9 +58,6 @@ class RideModeView: BaseCustomView {
             
         case Order.RIDE_MODE_SUV:
             mImgViewRideSuv.tintColor = Constants.gColorPurple
-            
-        case Order.RIDE_MODE_SHARE:
-            mImgViewRideShare.tintColor = Constants.gColorPurple
             
         default:
             break
@@ -88,14 +80,6 @@ class RideModeView: BaseCustomView {
         delegate?.onChangeMode(mode)
     }
     
-    @IBAction func onButRideShare(_ sender: Any) {
-        let mode = Order.RIDE_MODE_SHARE
-        
-        // update UI
-        updateRideView(mode)
-        delegate?.onChangeMode(mode)
-    }
-
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

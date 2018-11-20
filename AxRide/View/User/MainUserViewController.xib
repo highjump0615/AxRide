@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -122,7 +121,7 @@
                             <rect key="frame" x="20" y="20" width="15" height="15"/>
                         </imageView>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="My Current Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gZF-Td-X4G">
-                            <rect key="frame" x="55" y="18" width="235" height="20"/>
+                            <rect key="frame" x="55" y="18" width="235" height="19"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -131,7 +130,7 @@
                             </connections>
                         </textField>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxg-cm-dGk">
-                            <rect key="frame" x="266" y="13" width="24" height="30"/>
+                            <rect key="frame" x="266" y="12.5" width="24" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="4DK-V7-c5B"/>
                                 <constraint firstAttribute="width" constant="24" id="8RN-g0-mcy"/>
@@ -200,10 +199,11 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="33B-w6-xKI">
-                    <rect key="frame" x="16" y="527" width="343" height="68"/>
+                    <rect key="frame" x="72.5" y="527" width="230" height="68"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.81258026539999995" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="68" id="gwF-d3-LAB"/>
+                        <constraint firstAttribute="width" constant="230" id="paP-hv-W8q"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PBn-GB-wqU">
@@ -223,7 +223,7 @@
                             <rect key="frame" x="335" y="17" width="22" height="22"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="85$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STU-UQ-Zer">
-                            <rect key="frame" x="20" y="18.5" width="31.5" height="20.5"/>
+                            <rect key="frame" x="20" y="18" width="31.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -284,7 +284,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqU-Fj-DMV">
-                            <rect key="frame" x="92" y="32" width="30" height="30"/>
+                            <rect key="frame" x="92" y="32.5" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Bqd-04-bAJ"/>
                                 <constraint firstAttribute="width" constant="30" id="RM9-oh-C3c"/>
@@ -349,7 +349,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c4A-ns-X3A" secondAttribute="trailing" constant="16" id="OWj-T2-aN3"/>
                 <constraint firstItem="A2r-cq-qP6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Oq1-zh-9cC"/>
                 <constraint firstItem="c4A-ns-X3A" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Rlc-wO-rIu"/>
-                <constraint firstItem="33B-w6-xKI" firstAttribute="leading" secondItem="c4A-ns-X3A" secondAttribute="leading" id="TL4-KA-Rjz"/>
+                <constraint firstItem="33B-w6-xKI" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="RrN-4w-Wom"/>
                 <constraint firstItem="m1n-OM-iMh" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="TbD-rO-lVX"/>
                 <constraint firstItem="A2r-cq-qP6" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="UV9-Sm-k0M"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bqS-6N-SCc" secondAttribute="bottom" constant="29" id="WFp-Cf-EEB"/>
@@ -357,7 +357,6 @@
                 <constraint firstItem="c4A-ns-X3A" firstAttribute="top" secondItem="m1n-OM-iMh" secondAttribute="bottom" constant="16" id="edR-jo-KKM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="A2r-cq-qP6" secondAttribute="bottom" id="fEm-Jx-VJq"/>
                 <constraint firstItem="PBn-GB-wqU" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="lgx-Uo-HQr"/>
-                <constraint firstItem="33B-w6-xKI" firstAttribute="trailing" secondItem="c4A-ns-X3A" secondAttribute="trailing" id="yec-DY-oiQ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="24.5" y="50.5"/>
