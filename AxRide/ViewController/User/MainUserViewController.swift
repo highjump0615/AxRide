@@ -150,6 +150,7 @@ class MainUserViewController: BaseHomeViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        switchNavbarColor(true)
         showNavbar(show: false)
     }
     
@@ -631,16 +632,24 @@ extension MainUserViewController: UITextFieldDelegate {
             autocompleteController.navigationController?.navigationBar.tintColor = UIColor.black
             
             // nav bar tint color
+            switchNavbarColor(false)
             present(autocompleteController, animated: true, completion: nil)
         }
         else if textField == mTextLocationFrom {
+            switchNavbarColor(false)
             present(placePickerFrom!, animated: true, completion: nil)
         }
         else if textField == mTextLocationTo {
+            switchNavbarColor(false)
             present(placePickerTo!, animated: true, completion: nil)
         }
         
         return false
+    }
+    
+    func switchNavbarColor(_ isWhite: Bool) {
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : isWhite ? UIColor.white : Constants.gColorPurple]
+        UINavigationBar.appearance().tintColor = isWhite ? UIColor.white : Constants.gColorPurple
     }
 }
 
