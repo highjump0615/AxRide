@@ -62,6 +62,11 @@ class MainDriverViewController: BaseHomeViewController {
 //                             cancelHandler: nil)
 //                return
 //            }
+            
+            // if in broken state, cannot accept any request
+            if userCurrent.broken {
+                return
+            }
         
             // if in order, cannot accept any request
             if let _ = self.mOrder {
