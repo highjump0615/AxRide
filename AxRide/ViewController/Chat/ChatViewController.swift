@@ -19,8 +19,8 @@ class ChatViewController: BaseViewController {
     var userTo: User?
     
     // chat room between current and to user
-    var mChat: Chat?
-    var mChatId: String = ""
+//    var mChat: Chat?
+//    var mChatId: String = ""
     
     var mKeyboardHeight: CGFloat = 0.0
     
@@ -55,9 +55,9 @@ class ChatViewController: BaseViewController {
         //
         // init data
         //
-        mChatId = Chat.makeIdWith2User(self.userTo!.id, User.currentUser!.id)
+//        mChatId = Chat.makeIdWith2User(self.userTo!.id, User.currentUser!.id)
         
-        fetchChat()
+//        fetchChat()
         getMessages()
     }
     
@@ -83,14 +83,14 @@ class ChatViewController: BaseViewController {
         // update chat info
         //
         let userCurrent = User.currentUser!
-        if mChat == nil {
-            mChat = Chat()
-        }
-        mChat?.senderId = userCurrent.id
-        mChat?.text = text
-        
-        mChat?.saveToDatabaseManually(withID: mChatId, parentID: userCurrent.id)
-        mChat?.saveToDatabaseManually(withID: mChatId, parentID: self.userTo?.id)
+//        if mChat == nil {
+//            mChat = Chat()
+//        }
+//        mChat?.senderId = userCurrent.id
+//        mChat?.text = text
+//
+//        mChat?.saveToDatabaseManually(withID: mChatId, parentID: userCurrent.id)
+//        mChat?.saveToDatabaseManually(withID: mChatId, parentID: self.userTo?.id)
         
         //
         // add new mesage
@@ -100,8 +100,8 @@ class ChatViewController: BaseViewController {
         msgNew.sender = userCurrent
         msgNew.text = text
         
-        msgNew.saveToDatabase(withID: mChatId, parentID: userCurrent.id)
-        msgNew.saveToDatabase(withID: mChatId, parentID: self.userTo!.id)
+        msgNew.saveToDatabase(parentID: userCurrent.id + "/" + self.userTo!.id)
+        msgNew.saveToDatabase(parentID: self.userTo!.id + "/" + userCurrent.id)
         
         self.messages.append(msgNew)
         
@@ -186,35 +186,42 @@ class ChatViewController: BaseViewController {
         mKeyboardHeight = 0
     }
     
-    func fetchChat() {
-        let userCurrent = User.currentUser!
-        
-        if mChat != nil {
-            // already fetched, return
-            return
-        }
-        
-        // fetch chat room
-        let db = FirebaseManager.ref().child(Chat.TABLE_NAME).child(userCurrent.id).child(self.userTo!.id)
-        db.observeSingleEvent(of: .value) { (snapshot) in
-            if !snapshot.exists() {
-                return
-            }
-            
-            self.mChat = Chat(snapshot: snapshot)
-        }
-    }
+//    func fetchChat() {
+//        let userCurrent = User.currentUser!
+//
+//        if mChat != nil {
+//            // already fetched, return
+//            return
+//        }
+//
+//        // fetch chat room
+//        let db = FirebaseManager.ref()
+//            .child(Chat.TABLE_NAME)
+//            .child(userCurrent.id)
+//            .child(self.userTo!.id)
+//        db.observeSingleEvent(of: .value) { (snapshot) in
+//            if !snapshot.exists() {
+//                return
+//            }
+//
+//            self.mChat = Chat(snapshot: snapshot)
+//        }
+//    }
     
     func getMessages() {
         let userCurrent = User.currentUser!
         
         self.messages.removeAll()
         
+//        mDbRef = FirebaseManager.ref()
+//            .child(Chat.TABLE_NAME)
+//            .child(userCurrent.id)
+//            .child(mChatId)
+//            .child(Message.TABLE_NAME)
         mDbRef = FirebaseManager.ref()
-            .child(Chat.TABLE_NAME)
-            .child(userCurrent.id)
-            .child(mChatId)
             .child(Message.TABLE_NAME)
+            .child(userCurrent.id)
+            .child(self.userTo!.id)
         
         mDbRef?.observe(.childAdded, with: { (snapshot) in
             let msg = Message(snapshot: snapshot)
