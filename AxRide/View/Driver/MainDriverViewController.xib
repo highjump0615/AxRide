@@ -16,6 +16,7 @@
                 <outlet property="mButProfile" destination="lMu-o9-WH6" id="oId-tL-kAK"/>
                 <outlet property="mLblAcceptance" destination="6OH-e5-GzR" id="q2A-bd-w9r"/>
                 <outlet property="mLblCancellation" destination="FVc-ql-CBc" id="Qtv-Q7-qWO"/>
+                <outlet property="mLblPrice" destination="qoC-b8-Do4" id="oEW-cF-n1I"/>
                 <outlet property="mLblRating" destination="Efu-7G-Sg9" id="2VT-f0-YUo"/>
                 <outlet property="mSwitch" destination="BNk-5Q-V2t" id="qWE-2q-ZKo"/>
                 <outlet property="mViewInfo" destination="0bf-Qc-jVj" id="YCt-Pa-Gan"/>
@@ -210,10 +211,21 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTY-cO-n9z">
                     <rect key="frame" x="0.0" y="621" width="375" height="46"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoC-b8-Do4">
+                            <rect key="frame" x="12" y="23" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAq-iJ-flM">
-                            <rect key="frame" x="12" y="0.0" width="97" height="46"/>
-                            <state key="normal" title="Trip Complete">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="125.5" y="8.5" width="124" height="29"/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="124" id="nxZ-Z9-QQk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="Complete Trip">
+                                <color key="titleColor" red="0.8980392157" green="0.2666666667" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="onButComplete:" destination="-1" eventType="touchUpInside" id="634-Lq-xDX"/>
@@ -246,10 +258,11 @@
                         <constraint firstItem="0Sy-JN-lF1" firstAttribute="leading" secondItem="6Pl-My-c1I" secondAttribute="trailing" id="A3w-qD-0j5"/>
                         <constraint firstAttribute="bottom" secondItem="0Sy-JN-lF1" secondAttribute="bottom" id="B9x-rQ-1vg"/>
                         <constraint firstItem="6Pl-My-c1I" firstAttribute="top" secondItem="bTY-cO-n9z" secondAttribute="top" id="DQy-8T-vBU"/>
+                        <constraint firstItem="qoC-b8-Do4" firstAttribute="leading" secondItem="bTY-cO-n9z" secondAttribute="leading" constant="12" id="EQp-8I-EJJ"/>
                         <constraint firstItem="0Sy-JN-lF1" firstAttribute="top" secondItem="bTY-cO-n9z" secondAttribute="top" id="GqZ-JF-22d"/>
-                        <constraint firstItem="aAq-iJ-flM" firstAttribute="top" secondItem="bTY-cO-n9z" secondAttribute="top" id="cqd-Kb-qm2"/>
-                        <constraint firstAttribute="bottom" secondItem="aAq-iJ-flM" secondAttribute="bottom" id="dAI-0T-Wqd"/>
-                        <constraint firstItem="aAq-iJ-flM" firstAttribute="leading" secondItem="bTY-cO-n9z" secondAttribute="leading" constant="12" id="gQa-Fk-Bvj"/>
+                        <constraint firstItem="aAq-iJ-flM" firstAttribute="centerX" secondItem="bTY-cO-n9z" secondAttribute="centerX" id="Kfb-Os-XlD"/>
+                        <constraint firstItem="qoC-b8-Do4" firstAttribute="centerY" secondItem="bTY-cO-n9z" secondAttribute="centerY" id="Utm-qL-S88"/>
+                        <constraint firstItem="aAq-iJ-flM" firstAttribute="centerY" secondItem="bTY-cO-n9z" secondAttribute="centerY" id="gr8-Sf-hLw"/>
                         <constraint firstAttribute="bottom" secondItem="6Pl-My-c1I" secondAttribute="bottom" id="kL1-cv-Ob5"/>
                         <constraint firstAttribute="trailing" secondItem="0Sy-JN-lF1" secondAttribute="trailing" id="scj-f7-6y3"/>
                     </constraints>
@@ -272,7 +285,7 @@
                 <constraint firstItem="trW-lj-Jgg" firstAttribute="trailing" secondItem="LUM-ca-68J" secondAttribute="trailing" id="zyz-ZQ-cR3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="LUM-ca-68J"/>
-            <point key="canvasLocation" x="24.5" y="50.5"/>
+            <point key="canvasLocation" x="23.199999999999999" y="49.925037481259373"/>
         </view>
     </objects>
     <resources>

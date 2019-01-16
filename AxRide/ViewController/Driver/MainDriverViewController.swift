@@ -18,6 +18,7 @@ class MainDriverViewController: BaseHomeViewController {
     
     @IBOutlet weak var mViewPanel: UIView!
     
+    @IBOutlet weak var mLblPrice: UILabel!
     @IBOutlet weak var mButComplete: UIButton!
     
     var mqueryRequest: DatabaseReference?
@@ -35,6 +36,7 @@ class MainDriverViewController: BaseHomeViewController {
         // Do any additional setup after loading the view.
         mViewInfo.makeRound(r: 16)
         mSwitch.transform = CGAffineTransform(scaleX: 0.7, y: 0.7);
+        mButComplete.makeRound();
         
         // empty title
         self.navigationItem.title = " "
@@ -157,7 +159,7 @@ class MainDriverViewController: BaseHomeViewController {
             mViewPanel.isHidden = false
             
             // price
-            mButComplete.setTitle("$\(order.fee.format(f: ".2"))  Trip Complete", for: .normal)
+            mLblPrice.text = "$\(order.fee.format(f: ".2"))"
             
             // fetch driver
             if order.customer == nil {
