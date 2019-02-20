@@ -157,6 +157,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
             chatVC.userToId = strUserId
             rootViewController.pushViewController(chatVC, animated: true)
+            
+            // clear pending user info
+            self.pendingUserId = nil
         }
     }
 
