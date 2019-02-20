@@ -17,6 +17,7 @@ class ChatViewController: BaseViewController {
     
     var messages: [Message] = []
     var userTo: User?
+    var userToId: String?
     
     // chat room between current and to user
 //    var mChat: Chat?
@@ -33,9 +34,6 @@ class ChatViewController: BaseViewController {
         super.viewDidLoad()
         
         showNavbar(transparent: false)
-        
-        // title
-        self.title = self.userTo?.userFullName()
         
         mViewInput.addTopBorderWithColor(color: Constants.gColorGray, width: 0.5)
 
@@ -58,6 +56,25 @@ class ChatViewController: BaseViewController {
 //        mChatId = Chat.makeIdWith2User(self.userTo!.id, User.currentUser!.id)
         
 //        fetchChat()
+        
+        if self.userTo == nil {
+            // fetch user from id
+            if let userId = self.userToId {
+                User.readFromDatabase(withId: userId) { (user) in
+                    if user == nil {
+                        return
+                    }
+                    
+                    self.userTo = user
+                    self.initView()
+                }
+            }
+        }
+    }
+    
+    func initView() {
+        // title
+        self.title = self.userTo?.userFullName()
         getMessages()
     }
     
@@ -112,6 +129,10 @@ class ChatViewController: BaseViewController {
         updateTable()
         
         // send notification to user
+        Message.sendPushNotification(sender:userCurrent,
+                                     receiver: self.userTo!,
+                                     message: text,
+                                     title: userCurrent.userFullName())
     }
     
     @objc func onButPhone() {

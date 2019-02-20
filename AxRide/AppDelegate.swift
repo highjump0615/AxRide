@@ -14,12 +14,15 @@ import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Stripe
+import UserNotifications
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var pendingUserId: String?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -32,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // firebase initialization
         FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         
         // google sign-in initialization
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
@@ -39,6 +43,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // facebook initialization
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FBSDKSettings.setAppID(Config.facebookId)
+        
+        //
+        // Register for remote notifications
+        //
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
         
         //
         // init status bar
@@ -125,6 +148,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if let strUserId = self.pendingUserId {
+            //
+            // go to message page
+            //
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+
+            let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
+            chatVC.userToId = strUserId
+            rootViewController.pushViewController(chatVC, animated: true)
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -142,5 +175,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return handled
     }
 
+}
+
+extension AppDelegate: MessagingDelegate {
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("fcm token:\(fcmToken)")
+    }
+    
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("fcm message received:\(remoteMessage.appData)")
+    }
+    
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID.
+        //        if let messageID = userInfo[gcmMessageIDKey] {
+        //            print("Message ID: \(messageID)")
+        //        }
+        
+        self.processNotification(application, userInfo: userInfo)
+    }
+    
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID.
+        //        if let messageID = userInfo[gcmMessageIDKey] {
+        //            print("Message ID: \(messageID)")
+        //        }
+        //
+        // Print full message.
+        self.processNotification(application, userInfo: userInfo)
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    func processNotification(_ application: UIApplication,
+                             userInfo: [AnyHashable: Any]) {
+        print(userInfo)
+        
+        if application.applicationState != .active {
+            // tapped notification from background
+            self.pendingUserId = userInfo[Message.PN_FIELD_USER_ID] as? String
+        }
+    }
+    
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
 }
 

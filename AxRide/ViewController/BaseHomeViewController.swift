@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import Firebase
 
 class BaseHomeViewController: BaseMapViewController {
     
@@ -23,6 +24,23 @@ class BaseHomeViewController: BaseMapViewController {
         super.viewDidLoad()
         
         mButProfile.makeRound()
+        
+        // get fcm token
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instance ID: \(error)")
+            } else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+                
+                // remote token
+                if let user = User.currentUser {
+                    user.token = result.token
+                    
+                    // save to db
+                    user.saveToDatabase(withField: User.FIELD_TOKEN, value: result.token)
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
