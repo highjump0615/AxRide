@@ -46,8 +46,7 @@ func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
 - Google Firebase for backend  
   - [GeoFire](https://github.com/firebase/geofire-objc) for location saving & querying  
 - Push notification using Firebase Clound Messaging(FCM)
-  - [Sending push notification from App](https://firebase.google.com/docs/cloud-messaging/send-message?authuser=0#send_messages_using_the_legacy_app_server_protocols
-https://firebase.google.com/docs/cloud-messaging/auth-server?authuser=0) for message feature
+  - [Sending push notification from App](https://firebase.google.com/docs/cloud-messaging/send-message) for message feature
 
 #### 2.1 Data flow & use
 ##### - Request a ride  
@@ -84,7 +83,7 @@ Creates Stripe cusomer Id for user
 Web url getting Stripe accound Id for driver
 
 ##### Payment
-- /api/order
+- /api/order  
 Sending payment from user to driver
 
 ##### Stripe APIs
@@ -116,9 +115,13 @@ Add card in User Profile page
 |
 +-- bookhistories
 |  |
-|  +-- {userId}
+|  +-- {userId (driver)}
+|  |  |
+|  |  +-- {orderId}
+|  |
+|  +-- {userId (user)}
 |     |
-|     +-- {id}
+|     +-- {orderId}
 |
 +-- driverstatus
 |  |
@@ -137,6 +140,7 @@ Add card in User Profile page
 |     +-- {userId (sender)}
 |        |
 |        +-- {id}
+|
 +-- picked
 |  |
 |  +-- {userId (driver)}
@@ -155,23 +159,22 @@ Add card in User Profile page
 ```
 
 ### 3. Code tricks  
-- Custom fonts with propotional font size to screen size  
+#### Custom fonts with propotional font size to screen size  
 ```swift
 label.font = ARTextHelper.exoBold(size: width / widthDesign * 30)
 ```  
-- Methods with completion callback using closures  
+#### Methods with completion callback using closures  
 ```swift  
 func readFromDatabase(withId: String, completion: @escaping((Any?)->())) {
 }
 ```  
-- Delegate in Swift  
-``PopupDelegate`` in *UserWaitPopup.swift*
+#### Delegate in Swift  
+``PopupDelegate`` in *UserWaitPopup.swift*  
 ```swift
 protocol PopupDelegate: Any {
     func onClosePopup(_ sender: Any?)
 }
 ``` 
- 
 #### Common module  
 - ``PaymentMethodHelper`` & ``ARPaymentMethodDelegate``  
 Common pages for Stripe Payment Setup  
