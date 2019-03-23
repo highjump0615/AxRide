@@ -8,8 +8,14 @@
 
 import Foundation
 import Firebase
+import Alamofire
 
 class Message: BaseModel {
+    
+    //
+    // notification fields
+    //
+    static let PN_FIELD_USER_ID = "senderId"
     
     //
     // table info
@@ -22,8 +28,6 @@ class Message: BaseModel {
     
     var senderId: String = ""
     var sender: User?
-    
-    private var mTableName = Message.TABLE_NAME
     
     override init() {
         super.init()
@@ -43,12 +47,8 @@ class Message: BaseModel {
         }        
     }
     
-    func setTableName(withID: String, parentID: String) {
-        mTableName = "\(Chat.TABLE_NAME)/\(parentID)/\(withID)/\(Message.TABLE_NAME)"
-    }
-    
     override func tableName() -> String {
-        return mTableName
+        return Message.TABLE_NAME
     }
     
     override func toDictionary() -> [String: Any] {
@@ -58,5 +58,56 @@ class Message: BaseModel {
         dict[Message.FIELD_TEXT] = text
         
         return dict
+    }
+    
+    /// send push notification to specific user
+    ///
+    /// - Parameters:
+    ///   - receiver: <#receiver description#>
+    ///   - message: <#message description#>
+    ///   - title: <#title description#>
+    static func sendPushNotification(sender: User,
+                                     receiver: User,
+                                     message: String = "",
+                                     title: String = "") {
+        let url = "https://fcm.googleapis.com/fcm/send"
+        
+        if let deviceToken = receiver.token {
+            let headers: HTTPHeaders = [
+                "Authorization": "key=\(Config.fcmAuthKey)",
+                "Content-Type": "application/json"
+            ]
+            
+            let parameters : Parameters = [
+                "notification" : [
+                    "title": title,
+                    "body" : message,
+                    "sound" : "default"
+                ],
+                "data": [
+                    PN_FIELD_USER_ID: sender.id
+                ],
+                "to":deviceToken
+            ]
+            
+            print(headers)
+            print(parameters)
+            
+            Alamofire.request(url,
+                              method: .post,
+                              parameters: parameters,
+                              encoding: JSONEncoding.default,
+                              headers: headers)
+                .validate()
+                .responseJSON(completionHandler: { (response) in
+                    switch response.result {
+                    case .success(let val):
+                        print(val)
+                    case .failure(let val):
+                        print(val)
+                    }
+                })
+            
+        }
     }
 }

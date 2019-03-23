@@ -150,6 +150,7 @@ class MainUserViewController: BaseHomeViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        switchNavbarColor(true)
         showNavbar(show: false)
     }
     
@@ -368,9 +369,16 @@ class MainUserViewController: BaseHomeViewController {
                         //
                         
                         let serviceFee = 2.0
-                        let baseFee = 2.0
-                        let perMile = 1.8
-                        let perMinute = 0.6
+                        var baseFee = 0.83
+                        var perMile = 0.66
+                        var perMinute = 0.14
+                        
+                        // 6 seats
+                        if (order.rideMode == Order.RIDE_MODE_SUV) {
+                            baseFee = 2.07
+                            perMile = 1.08
+                            perMinute = 0.22
+                        }
                         
                         let distance = element["distance"]["value"].int
                         let duration = element["duration"]["value"].int
@@ -631,16 +639,24 @@ extension MainUserViewController: UITextFieldDelegate {
             autocompleteController.navigationController?.navigationBar.tintColor = UIColor.black
             
             // nav bar tint color
+            switchNavbarColor(false)
             present(autocompleteController, animated: true, completion: nil)
         }
         else if textField == mTextLocationFrom {
+            switchNavbarColor(false)
             present(placePickerFrom!, animated: true, completion: nil)
         }
         else if textField == mTextLocationTo {
+            switchNavbarColor(false)
             present(placePickerTo!, animated: true, completion: nil)
         }
         
         return false
+    }
+    
+    func switchNavbarColor(_ isWhite: Bool) {
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : isWhite ? UIColor.white : Constants.gColorPurple]
+        UINavigationBar.appearance().tintColor = isWhite ? UIColor.white : Constants.gColorPurple
     }
 }
 

@@ -14,6 +14,7 @@ class Order: BaseModel {
     static let STATUS_REQUEST = 0
     static let STATUS_ACCEPTED = 1
     static let STATUS_ARRIVED = 2
+    static let STATUS_PAID = 3
     
     static let RIDE_MODE_NORMAL = 0
     static let RIDE_MODE_SUV = 1
@@ -26,6 +27,7 @@ class Order: BaseModel {
     static let TABLE_NAME_PICKED = "picked"
     static let TABLE_NAME_ACCEPT = "accepts"
     static let TABLE_NAME_ARRIVED = "arrived"
+    static let TABLE_NAME_DONE = "bookhistories"
     
     static let FIELD_CUSTOMERID = "customerId"
     static let FIELD_DRIVERID = "driverId"
@@ -59,7 +61,9 @@ class Order: BaseModel {
     var longitude = 0.0
     
     var from: GooglePlace?
+    var fromAddr: String?
     var to: GooglePlace?
+    var toAddr: String?
     
     var fee = 0.0
     var rideMode = Order.RIDE_MODE_NORMAL
@@ -70,6 +74,9 @@ class Order: BaseModel {
     override func tableName() -> String {
         if status == Order.STATUS_REQUEST {
             return Order.TABLE_NAME_REQUEST
+        }
+        else if status == Order.STATUS_ARRIVED {
+            return Order.TABLE_NAME_DONE
         }
         
         return Order.TABLE_NAME_PICKED
@@ -86,14 +93,38 @@ class Order: BaseModel {
         
         self.customerId = info[Order.FIELD_CUSTOMERID] as! String
         self.driverId = info[Order.FIELD_DRIVERID] as! String
-        self.latitude = info[Order.FIELD_LATITUDE] as! Double
-        self.longitude = info[Order.FIELD_LONGITUDE] as! Double
+
+        // lat, lng are not existing in "done" table
+        if let latitude = info[Order.FIELD_LATITUDE] as? Double {
+            self.latitude = latitude
+        }
+        if let longitude = info[Order.FIELD_LONGITUDE] as? Double {
+            self.longitude = longitude
+        }
+
+        // from will be google place or string
+        if let fromData = info[Order.FIELD_FROM] as? [String : Any?] {
+            self.from = GooglePlace(data: fromData)
+        }
+        else if let fromStr = info[Order.FIELD_FROM] as? String {
+            self.fromAddr = fromStr
+        }
+        // to will be google place or string
+        if let toData = info[Order.FIELD_TO] as? [String : Any?] {
+            self.to = GooglePlace(data: toData)
+        }
+        else if let toStr = info[Order.FIELD_TO] as? String {
+            self.toAddr = toStr
+        }
         
-        self.from = GooglePlace(data: info[Order.FIELD_FROM] as! [String : Any?])
-        self.to = GooglePlace(data: info[Order.FIELD_TO] as! [String : Any?])
+        if let fee = info[Order.FIELD_FEE] as? Double {
+            self.fee = fee
+        }
         
-        self.fee = info[Order.FIELD_FEE] as! Double
-        self.rideMode = info[Order.FIELD_RIDEMODE] as! Int
+        // ridemode are not existing in "done" table
+        if let rideMode = info[Order.FIELD_RIDEMODE] as? Int {
+            self.rideMode = rideMode
+        }
     }
     
     override func toDictionary() -> [String: Any] {
@@ -101,14 +132,25 @@ class Order: BaseModel {
         
         dict[Order.FIELD_CUSTOMERID] = self.customerId
         dict[Order.FIELD_DRIVERID] = self.driverId
-        dict[Order.FIELD_LATITUDE] = self.latitude
-        dict[Order.FIELD_LONGITUDE] = self.longitude
+        
+        if self.latitude > 0 {
+            dict[Order.FIELD_LATITUDE] = self.latitude
+        }
+        if self.longitude > 0 {
+            dict[Order.FIELD_LONGITUDE] = self.longitude
+        }
         
         if let placeFrom = self.from {
             dict[Order.FIELD_FROM] = placeFrom.toDictionary()
         }
+        if let addrFrom = self.fromAddr {
+            dict[Order.FIELD_FROM] = addrFrom
+        }
         if let placeTo = self.to {
             dict[Order.FIELD_TO] = placeTo.toDictionary()
+        }
+        if let addrTo = self.toAddr {
+            dict[Order.FIELD_TO] = addrTo
         }
         
         dict[Order.FIELD_FEE] = self.fee
@@ -146,5 +188,27 @@ class Order: BaseModel {
     func clearFromDatabase() {
         removeArriveMark()
         removeFromDatabase()
+    }
+    
+    func updateStatus(_ status: Int) {
+        // update order status
+        self.status = Order.STATUS_PAID
+        
+        if status == Order.STATUS_PAID {
+            self.fromAddr = self.from?.name
+            self.toAddr = self.to?.name
+            
+            // remove google place objects
+            self.from = nil
+            self.to = nil
+            
+            // remove latitude & longitude
+            self.latitude = 0
+            self.longitude = 0
+            
+            // save order in "bookhistories" table
+            self.saveToDatabase(parentID: self.customerId)
+            self.saveToDatabase(parentID: self.driverId)
+        }
     }
 }

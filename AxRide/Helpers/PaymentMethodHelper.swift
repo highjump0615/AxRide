@@ -53,6 +53,5 @@ extension PaymentMethodHelper: STPPaymentMethodsViewControllerDelegate {
     
     func paymentMethodsViewControllerDidCancel(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
         self.delegate.paymentMethodsViewControllerDidCancel(paymentMethodsViewController)
-    }
-    
+    }    
 }

@@ -14,6 +14,10 @@ class StripeApiManager {
     
     private static let mInstance = StripeApiManager()
     
+    func getBasicAuth() -> String{
+        return "Bearer \(Config.stripeSecretKey)"
+    }
+    
     /// shared object
     ///
     /// - Returns: <#return value description#>
@@ -41,6 +45,75 @@ class StripeApiManager {
         }
     }
     
+    /// get user card list
+    ///
+    /// - Parameters:
+    ///   - customerId: <#customerId description#>
+    ///   - completion: <#completion description#>
+    func getCardsList(customerId: String?, completion: @escaping (_ result: [AnyObject]?) -> Void) {
+        
+        guard let cId = customerId else {
+            return
+        }
+
+        let strUrl = "https://api.stripe.com/v1/customers/\(cId)/sources"
+        var request = URLRequest(url: URL(string: strUrl)!)
+        
+        //basic auth
+        request.setValue(getBasicAuth(), forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+        
+        Alamofire.request(request)
+            .validate()
+            .responseJSON { (response) in
+                guard let json = response.result.value as? [AnyHashable: Any] else {
+                    print("stripe get card error:" + response.error.debugDescription)
+                    completion(nil)
+                    return
+                }
+                
+                let cardsArray = json["data"] as? [AnyObject]
+                completion(cardsArray)
+        }
+    }
+    
+    //create card for given user
+    func createCard(customerId: String?, token: STPToken, completion: ((_ success: Bool) -> Void)? = nil) {
+        
+        guard let cId = customerId else {
+            return
+        }
+        
+        let strUrl = "https://api.stripe.com/v1/customers/\(cId)/sources"
+        var request = URLRequest(url: URL(string: strUrl)!)
+        
+        // basic auth
+        request.setValue(getBasicAuth(), forHTTPHeaderField: "Authorization")
+        request.httpMethod = "POST"
+        
+        // token needed
+        var params = [String:String]()
+        params["source"] = token.tokenId
+        
+        var str = ""
+        params.forEach({ (key, value) in
+            str = "\(str)\(key)=\(value)&"
+        })
+        
+        request.httpBody = str.data(using: String.Encoding.utf8)
+        
+        Alamofire.request(request)
+            .validate()
+            .responseJSON { (response) in
+                guard (response.result.value as? [AnyHashable: Any]) != nil else {
+                    print("stripe create card error:" + response.error.debugDescription)
+                    completion?(false)
+                    return
+                }
+
+                completion?(true)
+        }
+    }
 }
 
 class MainAPIClient: NSObject, STPEphemeralKeyProvider {

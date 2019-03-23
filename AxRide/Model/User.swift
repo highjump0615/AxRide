@@ -83,6 +83,9 @@ class User : BaseModel {
     //
     var password = ""
     
+    var stripeCards: [Card]?
+    var addresses: [Address]?
+    
     static func readFromDatabase(withId: String, completion: @escaping((User?)->())) {
         // invalid id, exit directly
         if withId.isEmpty {
@@ -169,6 +172,10 @@ class User : BaseModel {
         // stripe info
         self.stripeAccountId = info[User.FIELD_STRIPE_ACCOUNTID] as? String
         self.stripeCustomerId = info[User.FIELD_STRIPE_CUSTOMERID] as? String
+        
+        // accepts
+        self.rideAccepts = info[User.FIELD_COUNT_RIDEACCEPT] as! Int
+        self.rideRequests = info[User.FIELD_COUNT_RIDEREQUEST] as! Int
     }
     
     override func toDictionary() -> [String: Any] {
@@ -206,5 +213,21 @@ class User : BaseModel {
         }
         
         return rate / Double(rateCount)
+    }
+    
+    func addStripeCard(_ cardInfo: Card) {
+        if self.stripeCards == nil {
+           self.stripeCards = []
+        }
+        
+        self.stripeCards?.append(cardInfo)
+    }
+    
+    func addAddress(_ data: Address) {
+        if self.addresses == nil {
+            self.addresses = []
+        }
+        
+        self.addresses?.append(data)
     }
 }

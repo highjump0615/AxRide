@@ -59,6 +59,9 @@
 		C3DA44A12113BE4E00980E1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3DA44A02113BE4D00980E1A /* GoogleService-Info.plist */; };
 		C3DBC35A211E333100F42A2B /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBC359211E333100F42A2B /* ApiManager.swift */; };
 		C3E0EA2A20FD3EFE00F41DB7 /* BaseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */; };
+		C3E92AA9219EC2B8005CD252 /* ProfileCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3E92AA8219EC2B8005CD252 /* ProfileCardCell.xib */; };
+		C3E92AAB219EC51B005CD252 /* ProfileCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E92AAA219EC51B005CD252 /* ProfileCardCell.swift */; };
+		C3E92AAD219ED4B4005CD252 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E92AAC219ED4B4005CD252 /* Card.swift */; };
 		C3ED24B6216806E90084FF40 /* JobRequestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3ED24B5216806E90084FF40 /* JobRequestViewController.xib */; };
 		C3ED24B82169A42A0084FF40 /* JobRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ED24B72169A42A0084FF40 /* JobRequestViewController.swift */; };
 		C3EE8C7E20FC2F92000D7CD5 /* SignupChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */; };
@@ -102,6 +105,13 @@
 		C3FC111920FBEBEE00DAA392 /* SignupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC111820FBEBEE00DAA392 /* SignupProfileViewController.xib */; };
 		C3FC111B20FBF37100DAA392 /* SignupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC111A20FBF37100DAA392 /* SignupProfileViewController.swift */; };
 		C3FC111D20FC0F1C00DAA392 /* SignupChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FC111C20FC0F1C00DAA392 /* SignupChooseViewController.xib */; };
+		C3FDF1AF219F71A4008BFB85 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1AE219F71A4008BFB85 /* Address.swift */; };
+		C3FDF1B1219FCE71008BFB85 /* ProfileLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FDF1B0219FCE71008BFB85 /* ProfileLocationCell.xib */; };
+		C3FDF1B3219FD3C2008BFB85 /* ProfileLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */; };
+		C3FDF1B721A06171008BFB85 /* ProfileOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FDF1B621A06171008BFB85 /* ProfileOrderCell.xib */; };
+		C3FDF1B921A09E40008BFB85 /* ProfileOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1B821A09E40008BFB85 /* ProfileOrderCell.swift */; };
+		C3FDF1BB21A10D99008BFB85 /* ProfileRateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FDF1BA21A10D99008BFB85 /* ProfileRateCell.xib */; };
+		C3FDF1BD21A1131D008BFB85 /* ProfileRateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FDF1BC21A1131D008BFB85 /* ProfileRateCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +133,7 @@
 
 /* Begin PBXFileReference section */
 		384C2CA1F8994EC5FAAB7EE0 /* Pods-AxRideUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideUITests/Pods-AxRideUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5EA5BBBF221AB12F008DFBDB /* AxRide.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AxRide.entitlements; sourceTree = "<group>"; };
 		6022E6D68BBBE849C094CDAC /* Pods-AxRide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRide/Pods-AxRide.debug.xcconfig"; sourceTree = "<group>"; };
 		8E54110D02939500BADE773A /* Pods_AxRideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD4DFAFCE8002BE88FE3AD10 /* Pods_AxRide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +193,9 @@
 		C3DA44A02113BE4D00980E1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C3DBC359211E333100F42A2B /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		C3E0EA2920FD3EFE00F41DB7 /* BaseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewController.swift; sourceTree = "<group>"; };
+		C3E92AA8219EC2B8005CD252 /* ProfileCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCardCell.xib; sourceTree = "<group>"; };
+		C3E92AAA219EC51B005CD252 /* ProfileCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardCell.swift; sourceTree = "<group>"; };
+		C3E92AAC219ED4B4005CD252 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C3ED24B5216806E90084FF40 /* JobRequestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobRequestViewController.xib; sourceTree = "<group>"; };
 		C3ED24B72169A42A0084FF40 /* JobRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobRequestViewController.swift; sourceTree = "<group>"; };
 		C3EE8C7D20FC2F92000D7CD5 /* SignupChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupChooseViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +239,13 @@
 		C3FC111820FBEBEE00DAA392 /* SignupProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupProfileViewController.xib; sourceTree = "<group>"; };
 		C3FC111A20FBF37100DAA392 /* SignupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileViewController.swift; sourceTree = "<group>"; };
 		C3FC111C20FC0F1C00DAA392 /* SignupChooseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupChooseViewController.xib; sourceTree = "<group>"; };
+		C3FDF1AE219F71A4008BFB85 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		C3FDF1B0219FCE71008BFB85 /* ProfileLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileLocationCell.xib; sourceTree = "<group>"; };
+		C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLocationCell.swift; sourceTree = "<group>"; };
+		C3FDF1B621A06171008BFB85 /* ProfileOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileOrderCell.xib; sourceTree = "<group>"; };
+		C3FDF1B821A09E40008BFB85 /* ProfileOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOrderCell.swift; sourceTree = "<group>"; };
+		C3FDF1BA21A10D99008BFB85 /* ProfileRateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileRateCell.xib; sourceTree = "<group>"; };
+		C3FDF1BC21A1131D008BFB85 /* ProfileRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRateCell.swift; sourceTree = "<group>"; };
 		CDDE5B81BF71EA296A4F3E88 /* Pods-AxRideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AxRideTests/Pods-AxRideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D309FD1287A9F9B420515CCC /* Pods_AxRideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AxRideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F816AA4BB6B87A4BEA370A89 /* Pods-AxRide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AxRide.release.xcconfig"; path = "Pods/Target Support Files/Pods-AxRide/Pods-AxRide.release.xcconfig"; sourceTree = "<group>"; };
@@ -327,6 +348,7 @@
 		C37C645C20F8B4C100ECC1FA /* AxRide */ = {
 			isa = PBXGroup;
 			children = (
+				5EA5BBBF221AB12F008DFBDB /* AxRide.entitlements */,
 				C3DA44A02113BE4D00980E1A /* GoogleService-Info.plist */,
 				C3FB6342217DD9B400B96D71 /* Api */,
 				C3FC10FC20FA86D700DAA392 /* Helpers */,
@@ -422,6 +444,8 @@
 				C33E89C8213F8DDD00FD294D /* DriverStatus.swift */,
 				C3C54323216695FD00EA0FD8 /* Chat.swift */,
 				C3A31269217B7F0E0032B118 /* Rate.swift */,
+				C3E92AAC219ED4B4005CD252 /* Card.swift */,
+				C3FDF1AE219F71A4008BFB85 /* Address.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -468,6 +492,10 @@
 				C3C81D6020FE8062001F2C08 /* ProfileCardListHeader.xib */,
 				C3C81D6220FE812F001F2C08 /* ProfileEmptyCell.xib */,
 				C3C81D6420FE81B2001F2C08 /* ProfileLocationListFooter.xib */,
+				C3E92AA8219EC2B8005CD252 /* ProfileCardCell.xib */,
+				C3FDF1B0219FCE71008BFB85 /* ProfileLocationCell.xib */,
+				C3FDF1B621A06171008BFB85 /* ProfileOrderCell.xib */,
+				C3FDF1BA21A10D99008BFB85 /* ProfileRateCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -480,6 +508,10 @@
 				C3C81D6E20FEB74C001F2C08 /* ProfileCardListHeader.swift */,
 				C38E718B20FFBC94003C139F /* ProfileEmptyCell.swift */,
 				C38E718D20FFC1C0003C139F /* ProfileLocationListFooter.swift */,
+				C3E92AAA219EC51B005CD252 /* ProfileCardCell.swift */,
+				C3FDF1B2219FD3C2008BFB85 /* ProfileLocationCell.swift */,
+				C3FDF1B821A09E40008BFB85 /* ProfileOrderCell.swift */,
+				C3FDF1BC21A1131D008BFB85 /* ProfileRateCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -646,6 +678,11 @@
 					C37C645920F8B4C100ECC1FA = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					C37C646D20F8B4C200ECC1FA = {
 						CreatedOnToolsVersion = 9.1;
@@ -684,6 +721,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3FDF1B721A06171008BFB85 /* ProfileOrderCell.xib in Resources */,
 				C3F5CCDD214471C300A7A597 /* beijing.gpx in Resources */,
 				C3EE8C8020FC39A8000D7CD5 /* TermViewController.xib in Resources */,
 				C3FBDAB221008038007143BF /* SignupApplicationViewControllerSmall.xib in Resources */,
@@ -692,8 +730,10 @@
 				C33F88ED2100376000C52766 /* ChatViewController.xib in Resources */,
 				C3EE8C8620FC44E7000D7CD5 /* MainUserViewController.xib in Resources */,
 				C3C81D5C20FE732B001F2C08 /* ProfileViewController.xib in Resources */,
+				C3FDF1BB21A10D99008BFB85 /* ProfileRateCell.xib in Resources */,
 				C37C646820F8B4C100ECC1FA /* LaunchScreen.storyboard in Resources */,
 				C3C81D6320FE812F001F2C08 /* ProfileEmptyCell.xib in Resources */,
+				C3FDF1B1219FCE71008BFB85 /* ProfileLocationCell.xib in Resources */,
 				C3C81D6520FE81B2001F2C08 /* ProfileLocationListFooter.xib in Resources */,
 				C3FBDAB621008530007143BF /* ProfileDriverUserCell.xib in Resources */,
 				C3FBDAA021004015007143BF /* ChatItemViewTo.xib in Resources */,
@@ -707,6 +747,7 @@
 				C3DA44A12113BE4E00980E1A /* GoogleService-Info.plist in Resources */,
 				C3C5DA93211F7615002F934C /* UserWaitPopup.xib in Resources */,
 				C3FC111D20FC0F1C00DAA392 /* SignupChooseViewController.xib in Resources */,
+				C3E92AA9219EC2B8005CD252 /* ProfileCardCell.xib in Resources */,
 				C3A31264217AA8890032B118 /* PaymentViewController.xib in Resources */,
 				C38E719620FFDB24003C139F /* DriverProfileViewController.xib in Resources */,
 				C37C646520F8B4C100ECC1FA /* Assets.xcassets in Resources */,
@@ -894,7 +935,9 @@
 				C3C81D6F20FEB74C001F2C08 /* ProfileCardListHeader.swift in Sources */,
 				C38E718E20FFC1C0003C139F /* ProfileLocationListFooter.swift in Sources */,
 				C3DBC35A211E333100F42A2B /* ApiManager.swift in Sources */,
+				C3E92AAB219EC51B005CD252 /* ProfileCardCell.swift in Sources */,
 				C38E719420FFD4C7003C139F /* FoundDriverViewController.swift in Sources */,
+				C3FDF1BD21A1131D008BFB85 /* ProfileRateCell.swift in Sources */,
 				C3FB5EDD2169C5DB00DAAA94 /* RideModeView.swift in Sources */,
 				C38EB85A2182C37E005A2111 /* PhotoViewHelper.swift in Sources */,
 				C3C81D6D20FEB6F7001F2C08 /* BaseCustomView.swift in Sources */,
@@ -905,8 +948,11 @@
 				C3FBDAA62100430C007143BF /* Message.swift in Sources */,
 				C3FB6344217DDA0500B96D71 /* StripeApiManager.swift in Sources */,
 				C3A31268217AD2120032B118 /* PaymentViewController.swift in Sources */,
+				C3E92AAD219ED4B4005CD252 /* Card.swift in Sources */,
+				C3FDF1AF219F71A4008BFB85 /* Address.swift in Sources */,
 				C3C5DA95211F7E8B002F934C /* UserWaitPopup.swift in Sources */,
 				C3C81D4E20FDE9BE001F2C08 /* User.swift in Sources */,
+				C3FDF1B921A09E40008BFB85 /* ProfileOrderCell.swift in Sources */,
 				C3FBDAB021007BC7007143BF /* MainDriverViewController.swift in Sources */,
 				C308C0E821161A7E00D2BC45 /* BaseModel.swift in Sources */,
 				C3FC111120FBD13000DAA392 /* ForgetViewController.swift in Sources */,
@@ -928,6 +974,7 @@
 				C35C86CB217CB9B700FBA781 /* BaseWebViewController.swift in Sources */,
 				C38E718C20FFBC94003C139F /* ProfileEmptyCell.swift in Sources */,
 				C3FBDAAA210065C3007143BF /* SignupApplicationViewController.swift in Sources */,
+				C3FDF1B3219FD3C2008BFB85 /* ProfileLocationCell.swift in Sources */,
 				C3FC10FE20FA86F900DAA392 /* Constants.swift in Sources */,
 				C3C81D5620FE6DA3001F2C08 /* Utils.swift in Sources */,
 				C3C81D6820FE8305001F2C08 /* ProfileViewController.swift in Sources */,
@@ -1099,12 +1146,15 @@
 			baseConfigurationReference = 6022E6D68BBBE849C094CDAC /* Pods-AxRide.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AxRide/AxRide.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UVYHAK8TVM;
 				INFOPLIST_FILE = AxRide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.Axle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1115,12 +1165,15 @@
 			baseConfigurationReference = F816AA4BB6B87A4BEA370A89 /* Pods-AxRide.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AxRide/AxRide.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UVYHAK8TVM;
 				INFOPLIST_FILE = AxRide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.Axle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
