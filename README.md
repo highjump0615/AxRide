@@ -87,7 +87,7 @@ Web url getting Stripe accound Id for driver
 Sending payment from user to driver
 
 ##### Stripe APIs
-- ~~[Get Card List]~~  
+- ~~Get Card List~~  
 [https://stripe.com/docs/api/cards/list](https://stripe.com/docs/api/cards/list)  
   - Problems  
 Result object is ``source`` when added in Android and ``card`` when added in iOS version  
